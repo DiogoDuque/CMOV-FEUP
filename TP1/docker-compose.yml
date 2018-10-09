@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  postgres:
+    build: ./backend/database
+    volumes:
+      - /var/lib/postgresql
+    environment: 
+      POSTGRES_USER: cmov
+      POSTGRES_PASSWORD: tickets
+      POSTGRES_DB: postgres
+  node:
+    build: ./backend/server
+    volumes:
+      - ./backend/server:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      DATABASE_URL: postgres://cmov:tickets@postgres:5432/postgres
+    ports:
+      - "80:3000"
+    depends_on:
+      - postgres
+  pgadmin:
+    links:
+      - postgres:postgres
+    image: fenglc/pgadmin4
+    environment: 
+      DEFAULT_USER: cmov
+      DEFAULT_PASSWORD: tickets
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    ports:
+      - "5050:5050"
