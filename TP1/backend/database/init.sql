@@ -48,6 +48,15 @@ CREATE TABLE customer
   public_key TEXT NOT NULL
 );
 
+CREATE TABLE "event"
+(
+  id SERIAL PRIMARY KEY,
+  "name" TEXT NOT NULL,
+  "date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+  price NUMERIC NOT NULL,
+  UNIQUE("name", "date")
+);
+
 CREATE TABLE ticket
 (
   id SERIAL PRIMARY KEY,
@@ -57,19 +66,10 @@ CREATE TABLE ticket
   event_id INTEGER REFERENCES "event"(id) NOT NULL
 );
 
-CREATE TABLE "event"
-(
-  id SERIAL PRIMARY KEY,
-  "name" TEXT NOT NULL,
-  "date" DATETIME NOT NULL,
-  price NUMERIC NOT NULL,
-  UNIQUE("name", "date")
-);
-
 CREATE TABLE cafeteria_order
 (
   id SERIAL PRIMARY KEY,
-  "date" DATETIME NOT NULL,
+  "date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   customer_id INTEGER REFERENCES customer(id) NOT NULL
 );
 
@@ -108,7 +108,7 @@ CREATE TABLE cafeteria_order_product
 -- DEF INS --
 -------------
 
-INSERT INTO cafeteria_product("name", price) VALUES("Coffee", 0.6);
-INSERT INTO cafeteria_product("name", price) VALUES("Soda Drink", 1);
-INSERT INTO cafeteria_product("name", price) VALUES("Popcorn", 1);
-INSERT INTO cafeteria_product("name", price) VALUES("Sandwich", 1.5);
+INSERT INTO cafeteria_product("name", price) VALUES('Coffee', 0.6);
+INSERT INTO cafeteria_product("name", price) VALUES('Soda Drink', 1);
+INSERT INTO cafeteria_product("name", price) VALUES('Popcorn', 1);
+INSERT INTO cafeteria_product("name", price) VALUES('Sandwich', 1.5);
