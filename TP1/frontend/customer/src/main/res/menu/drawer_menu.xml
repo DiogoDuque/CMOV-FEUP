@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_menu_shows"
+        android:title="@string/drawer_main_menu_shows" />
+    <item
+        android:id="@+id/nav_menu_my_shows"
+        android:title="@string/drawer_main_menu_my_shows" />
+    <item
+        android:id="@+id/nav_menu_vouchers"
+        android:title="@string/drawer_main_menu_vouchers" />
+</menu>
