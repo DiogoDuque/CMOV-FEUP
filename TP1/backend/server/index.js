@@ -1,5 +1,6 @@
 const express = require('express');
 const ejs = require('ejs');
+const { userRoute, cafeteriaRoute, showRoute } = require('./src/routes');
 
 const PORT = 3000;
 const app = express();
@@ -12,6 +13,8 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-// app.use('/person', PersonRoute);
+app.use('/user', userRoute);
+app.use('/cafeteria', cafeteriaRoute);
+app.use('/show', showRoute);
 
 app.listen(PORT, () => console.log('Started Tickets and Payment System API...'));
