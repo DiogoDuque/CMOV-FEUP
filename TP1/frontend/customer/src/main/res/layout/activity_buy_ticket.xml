@@ -42,7 +42,7 @@
         <Spinner
             android:id="@+id/show"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
 
