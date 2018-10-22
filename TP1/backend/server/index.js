@@ -1,6 +1,6 @@
 const express = require('express');
 const ejs = require('ejs');
-const { userRoute, cafeteriaRoute, showRoute } = require('./src/routes');
+const { userRoute, cafeteriaRoute, showRoute, authRoute } = require('./src/routes');
 
 const PORT = 3000;
 const app = express();
@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 // Routes
+app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/cafeteria', cafeteriaRoute);
 app.use('/show', showRoute);
