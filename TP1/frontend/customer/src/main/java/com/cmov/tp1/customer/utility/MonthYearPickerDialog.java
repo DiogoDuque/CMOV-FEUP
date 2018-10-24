@@ -19,7 +19,7 @@ import java.util.Calendar;
  */
 public class MonthYearPickerDialog extends DialogFragment {
 
-    private static final int MAX_YEAR = 2099;
+    private static final int MAX_YEAR = 2050;
     private DatePickerDialog.OnDateSetListener listener;
 
     public void setListener(DatePickerDialog.OnDateSetListener listener) {

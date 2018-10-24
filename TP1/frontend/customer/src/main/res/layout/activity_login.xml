@@ -87,7 +87,7 @@
             android:id="@+id/navigate_register_button"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="37dp"
+            android:layout_height="wrap_content"
             android:backgroundTint="#ffffffff"
             android:text="Register here"
             android:textAllCaps="false"

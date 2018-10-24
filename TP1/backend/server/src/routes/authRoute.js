@@ -9,6 +9,7 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
+    console.log(JSON.stringify(req.body));
     console.log('Cannot register (yet)');
     res.status(501).send();
 });

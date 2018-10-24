@@ -3,6 +3,7 @@ package com.cmov.tp1.customer.activity;
 import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -12,7 +13,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.networking.RegisterRequest;
+import com.cmov.tp1.customer.utility.HTTPRequestUtility;
 import com.cmov.tp1.customer.utility.MonthYearPickerDialog;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -67,7 +72,17 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "There are empty/incorrect fields.", Toast.LENGTH_SHORT).show();
             return;
         }
-        //TODO make request
+        new RegisterRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+                Log.i(TAG, json.toString());
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+                Log.w(TAG, json.toString());
+            }
+        });
     }
 
     private void pickCardDate() {
@@ -80,7 +95,6 @@ public class RegisterActivity extends AppCompatActivity {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month-1);
                 // update
-                //cardDateInput.setText(month+);
                 cardDateInput.setText(new SimpleDateFormat("MM/yy", Locale.UK).format(calendar.getTime()));
             }
         });
