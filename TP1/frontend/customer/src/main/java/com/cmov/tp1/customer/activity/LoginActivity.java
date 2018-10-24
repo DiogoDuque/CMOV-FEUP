@@ -9,13 +9,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.networking.AsyncRequest;
+import com.cmov.tp1.customer.utility.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.LoginRequest;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Iterator;
 
 public class LoginActivity extends AppCompatActivity {
     private static String TAG = "LoginActivity";
@@ -44,18 +41,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        new LoginRequest(username, password, new AsyncRequest.OnTaskCompleted() {
+        new LoginRequest(this, username, password, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
-            public void onTaskCompleted(JSONObject json) {
-                Iterator<String> keys = json.keys();
-                for(; keys.hasNext();) {
-                    String key = keys.next();
-                    try {
-                        Log.d(TAG,key+": "+json.getString(key));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
+            public void onSuccess(JSONObject json) {
+                Log.i(TAG, json.toString());
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+                Log.w(TAG, json.toString());
             }
         });
     }
