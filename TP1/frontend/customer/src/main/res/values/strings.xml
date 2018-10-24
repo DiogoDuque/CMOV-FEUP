@@ -3,4 +3,7 @@
     <string name="drawer_main_menu_shows">Shows</string>
     <string name="drawer_main_menu_my_shows">My Shows</string>
     <string name="drawer_main_menu_vouchers">My Vouchers</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>
