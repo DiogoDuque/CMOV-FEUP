@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,20 +23,29 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button loginButton = findViewById(R.id.login_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        Button loginBtn = findViewById(R.id.login_button);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
         });
+
+        Button registerBtn = findViewById(R.id.navigate_register_button);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), RegisterActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     private void login() {
-        EditText userInput = findViewById(R.id.user_input);
-        EditText passInput = findViewById(R.id.pass_input);
-        String username = userInput.getText().toString();
-        String password = passInput.getText().toString();
+        EditText usernameInput = findViewById(R.id.username_input);
+        EditText passwordInput = findViewById(R.id.password_input);
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
         if(username.length()==0 || password.length()==0) {
             Toast.makeText(this, "Username or password is empty", Toast.LENGTH_SHORT).show();
             return;
