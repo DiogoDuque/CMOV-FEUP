@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const Query = require('../database/AuthQuery');
 
 const router = express.Router();
 
