@@ -11,16 +11,17 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:orientation="horizontal"
         android:paddingBottom="20dp">
 
         <TextView
             android:id="@+id/show_label"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="49dp"
             android:layout_weight="1"
             android:padding="10dp"
+            android:paddingBottom="30dp"
             android:text="Show" />
 
     </LinearLayout>
@@ -32,47 +33,12 @@
         android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/show_date"
+            android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Show Date" />
-
-        <Spinner
-            android:id="@+id/show"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="20dp">
-
-        <Button
-            android:id="@+id/minus_button"
-            android:layout_width="36dp"
-            android:layout_height="wrap_content"
-            android:text="-" />
-
-        <TextView
-            android:id="@+id/quantity_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="Quantity" />
-
-        <Button
-            android:id="@+id/plus_button"
-            android:layout_width="36dp"
-            android:layout_height="match_parent"
-            android:text="+" />
+            android:text="Your purchased is finished" />
 
     </LinearLayout>
 
@@ -83,19 +49,64 @@
         android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/total_label"
+            android:id="@+id/type_discount_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Total to pay" />
+            android:text="You have 99$ accumulated" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/finish_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finish" />
+        android:orientation="horizontal"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/viucher_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="You received a voucher! Congrats!!!" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="249dp"
+        android:layout_height="149dp"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="148dp"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/make_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Make Order" />
+
+        <Button
+            android:id="@+id/see_voucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="See voucher" />
+    </LinearLayout>
 
 </LinearLayout>
