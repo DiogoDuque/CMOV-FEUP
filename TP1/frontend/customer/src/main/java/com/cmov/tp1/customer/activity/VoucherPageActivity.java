@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,8 +19,13 @@ public class VoucherPageActivity extends AppCompatActivity {
         useVoucherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_make_order);
+                makeOrder();
             }
         });
+    }
+
+    private void makeOrder(){
+        Intent intent = new Intent(this, MakeOrderActivity.class);
+        startActivity(intent);
     }
 }
