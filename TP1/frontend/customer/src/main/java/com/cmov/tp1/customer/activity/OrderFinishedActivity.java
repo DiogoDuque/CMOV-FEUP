@@ -10,6 +10,6 @@ public class OrderFinishedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_order_finished_cafeteria);
     }
 }
