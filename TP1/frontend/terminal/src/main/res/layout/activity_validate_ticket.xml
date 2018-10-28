@@ -17,9 +17,13 @@
 
         <Button
             android:id="@+id/validate_button"
-            android:layout_width="wrap_content"
+            android:layout_width="141dp"
             android:layout_height="wrap_content"
-            android:text="Validate Ticket" />
+            android:background="@drawable/mybutton"
+            android:text="Validate Ticket"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

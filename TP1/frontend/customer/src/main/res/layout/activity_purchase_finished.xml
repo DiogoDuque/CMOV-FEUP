@@ -11,18 +11,22 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="47dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:paddingBottom="40dp">
 
         <TextView
             android:id="@+id/show_label"
             android:layout_width="wrap_content"
-            android:layout_height="49dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
             android:paddingBottom="30dp"
-            android:text="Show" />
+            android:text="Show"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -30,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:paddingBottom="15dp">
 
         <TextView
             android:id="@+id/info"
@@ -38,7 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Your purchased is finished" />
+            android:text="Your purchased is finished"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -54,7 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="You have 99$ accumulated" />
+            android:text="You have 99$ accumulated"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -62,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:paddingBottom="15dp">
 
         <TextView
             android:id="@+id/viucher_label"
@@ -70,7 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="You received a voucher! Congrats!!!" />
+            android:text="You received a voucher! Congrats!!!"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -78,7 +85,7 @@
         android:layout_width="249dp"
         android:layout_height="149dp"
         android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:paddingBottom="15dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -98,15 +105,26 @@
             android:id="@+id/make_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/mybutton"
             android:padding="10dp"
-            android:text="Make Order" />
+            android:text="Make Order"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/see_voucher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/mybutton"
             android:padding="10dp"
-            android:text="See voucher" />
+            android:text="See voucher"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

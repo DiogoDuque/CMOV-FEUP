@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="82dp"
         android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:paddingBottom="40dp">
 
         <TextView
             android:id="@+id/show_label"
@@ -22,7 +22,10 @@
             android:layout_weight="1"
             android:padding="10dp"
             android:paddingBottom="30dp"
-            android:text="Show" />
+            android:text="Show"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -38,11 +41,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Show Date" />
+            android:text="Show Date"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/show"
-            android:layout_width="match_parent"
+            android:layout_width="115dp"
             android:layout_height="38dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
@@ -61,7 +65,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet laoreet iaculis. Nullam eu tempus lorem, ac sagittis ex. Proin vestibulum lacinia augue, id molestie sapien iaculis et. Nullam efficitur rhoncus pulvinar. Mauris in fringilla ante. In dapibus vel ipsum congue facilisis. Quisque quis mi quis diam semper iaculis vitae quis lorem. Sed aliquam nulla sit amet mauris ullamcorper, sit amet viverra erat vestibulum. Mauris mattis massa orci, vel consectetur lectus tincidunt eu. Cras sagittis et massa sit amet posuere." />
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet laoreet iaculis. Nullam eu tempus lorem, ac sagittis ex. Proin vestibulum lacinia augue, id molestie sapien iaculis et. Nullam efficitur rhoncus pulvinar. Mauris in fringilla ante. In dapibus vel ipsum congue facilisis. Quisque quis mi quis diam semper iaculis vitae quis lorem. Sed aliquam nulla sit amet mauris ullamcorper, sit amet viverra erat vestibulum. Mauris mattis massa orci, vel consectetur lectus tincidunt eu. Cras sagittis et massa sit amet posuere."
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark" />
 
     </LinearLayout>
 
@@ -69,6 +75,10 @@
         android:id="@+id/buy_ticket_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buy Ticket" />
+        android:background="@drawable/mybutton"
+        android:text="Buy Ticket"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold" />
 
 </LinearLayout>

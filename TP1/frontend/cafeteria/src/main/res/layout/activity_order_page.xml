@@ -23,6 +23,7 @@
             android:padding="10dp"
             android:text="Order"
             android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -57,7 +58,6 @@
                     android:id="@+id/product_list"
                     android:layout_width="match_parent"
                     android:layout_height="314dp"
-                    android:background="@color/white"
                     android:divider="@color/colorPrimary"
                     android:scrollbars="vertical" />
             </LinearLayout>
@@ -73,12 +73,13 @@
 
         <Button
             android:id="@+id/validate_button"
-            android:layout_width="wrap_content"
+            android:layout_width="134dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/mybutton"
+            android:text="Validate Voucher"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Validate Voucher" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 

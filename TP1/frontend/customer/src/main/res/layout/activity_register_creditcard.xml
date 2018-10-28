@@ -29,7 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Number" />
+            android:text="Number"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/name_input"
@@ -53,7 +55,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="CSC" />
+            android:text="CSC"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/username_input"
@@ -77,7 +81,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Date" />
+            android:text="Date"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/pass_input"
@@ -101,7 +107,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Card Type" />
+            android:text="Card Type"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textStyle="bold" />
 
         <RadioGroup
             android:layout_width="166dp"
@@ -113,14 +121,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Master Card" />
+                android:text="Master Card"
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/visa"
-                android:layout_width="wrap_content"
+                android:layout_width="83dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Visa" />
+                android:text="Visa"
+                android:textStyle="bold" />
         </RadioGroup>
 
     </LinearLayout>
@@ -135,13 +145,20 @@
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back" />
+            android:layout_marginRight="20dp"
+            android:background="@drawable/mybutton"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light" />
 
         <Button
             android:id="@+id/associate_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Associate" />
+            android:background="@drawable/mybutton"
+            android:text="Associate"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light" />
 
     </LinearLayout>
 

@@ -28,11 +28,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Username" />
+            android:text="Username"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/user_input"
-            android:layout_width="150dp"
+            android:layout_width="148dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:autofillHints="username"
@@ -43,7 +46,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
+        android:paddingBottom="25dp"
         android:orientation="horizontal">
 
         <TextView
@@ -52,7 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Password" />
+            android:text="Password"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/pass_input"
@@ -68,12 +74,18 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:background="@drawable/mybutton"
+        android:text="Login"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
 
         <TextView
@@ -91,7 +103,8 @@
             android:backgroundTint="#ffffffff"
             android:text="Sign in here"
             android:textAllCaps="false"
-            android:textColor="@color/design_default_color_primary" />
+            android:textColor="@color/design_default_color_primary"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
