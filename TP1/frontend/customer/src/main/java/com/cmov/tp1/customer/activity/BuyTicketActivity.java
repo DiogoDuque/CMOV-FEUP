@@ -1,6 +1,7 @@
 package com.cmov.tp1.customer.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -41,7 +42,8 @@ public class BuyTicketActivity extends AppCompatActivity {
         int showID = Integer.valueOf(spinner.getSelectedItemPosition());
         int quantity = Integer.parseInt(findViewById(R.id.quantity_label).toString());
 
-        setContentView(R.layout.activity_shows);
+        Intent intent = new Intent(this, ShowsActivity.class);
+        startActivity(intent);
     }
 
     private void changeQuantity(boolean type){

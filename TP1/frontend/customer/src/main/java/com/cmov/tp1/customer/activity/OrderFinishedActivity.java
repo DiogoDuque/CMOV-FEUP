@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,9 +33,12 @@ public class OrderFinishedActivity extends AppCompatActivity {
     }
 
     private void wantVoucher(Boolean answer){
+        Intent intent;
         if(answer)
-            setContentView(R.layout.activity_voucher_info);
+            intent = new Intent(this, VoucherPageActivity.class);
         else
-            setContentView(R.layout.activity_order_finished_cafeteria);
+            intent = new Intent(this, OrderFinishedActivity.class);
+
+        startActivity(intent);
     }
 }

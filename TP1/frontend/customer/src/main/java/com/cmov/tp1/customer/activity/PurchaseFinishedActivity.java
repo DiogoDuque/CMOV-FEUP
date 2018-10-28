@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,7 +19,7 @@ public class PurchaseFinishedActivity extends AppCompatActivity {
         makeOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_make_order);
+                changeLayout(true);
             }
         });
 
@@ -26,8 +27,18 @@ public class PurchaseFinishedActivity extends AppCompatActivity {
         voucherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_voucher_info);
+                changeLayout(false);
             }
         });
+    }
+
+    private void changeLayout(boolean type){
+        Intent intent;
+        if(type)
+            intent = new Intent(this, MakeOrderActivity.class);
+        else
+            intent = new Intent(this, VoucherPageActivity.class);
+
+        startActivity(intent);
     }
 }

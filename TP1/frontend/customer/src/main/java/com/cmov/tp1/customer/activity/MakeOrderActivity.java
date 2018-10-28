@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -46,7 +47,8 @@ public class MakeOrderActivity extends AppCompatActivity {
 
     private void finishPurchase(){
 
-        setContentView(R.layout.activity_shows);
+        Intent intent = new Intent(this, ShowsActivity.class);
+        startActivity(intent);
     }
 
     private void addProduct(){
