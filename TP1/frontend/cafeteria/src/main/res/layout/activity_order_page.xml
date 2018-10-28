@@ -21,7 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Order" />
+            android:text="Order"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/total_label"
@@ -29,7 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Total" />
+            android:text="Total"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +56,10 @@
                 <ListView
                     android:id="@+id/product_list"
                     android:layout_width="match_parent"
-                    android:layout_height="314dp" />
+                    android:layout_height="314dp"
+                    android:background="@color/white"
+                    android:divider="@color/colorPrimary"
+                    android:scrollbars="vertical" />
             </LinearLayout>
         </ScrollView>
 
@@ -66,6 +75,9 @@
             android:id="@+id/validate_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:backgroundTint="@color/colorPrimary"
             android:text="Validate Voucher" />
 
     </LinearLayout>
