@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.PurchaseFinishedActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"

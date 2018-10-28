@@ -7,7 +7,7 @@
     android:gravity="center"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.ProfileActivity">
 
     <ImageView
         android:id="@+id/app_logo"
