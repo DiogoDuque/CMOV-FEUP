@@ -45,7 +45,7 @@
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/show"
+            android:id="@+id/show_date_spinner"
             android:layout_width="115dp"
             android:layout_height="38dp"
             android:background="@android:drawable/btn_dropdown"

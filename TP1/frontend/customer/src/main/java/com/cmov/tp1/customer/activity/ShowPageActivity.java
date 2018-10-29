@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.cmov.tp1.customer.R;
 
@@ -25,6 +26,9 @@ public class ShowPageActivity extends AppCompatActivity {
     }
 
     private void changeToBuy(){
+        Spinner spinner = (Spinner) findViewById(R.id.show_date_spinner);
+        int showID = Integer.valueOf(spinner.getSelectedItemPosition());
+
         Intent intent = new Intent(this, BuyTicketActivity.class);
         startActivity(intent);
     }
