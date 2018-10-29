@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 
@@ -36,7 +37,7 @@ public class MakeOrderActivity extends AppCompatActivity {
         });
 
         Button addProductButton = findViewById(R.id.addproduct_button);
-        plusButton.setOnClickListener(new View.OnClickListener() {
+        addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addProduct();
@@ -46,7 +47,6 @@ public class MakeOrderActivity extends AppCompatActivity {
 
 
     private void finishPurchase(){
-
         Intent intent = new Intent(this, ShowsActivity.class);
         startActivity(intent);
     }
@@ -55,6 +55,13 @@ public class MakeOrderActivity extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.products);
         int productID = Integer.valueOf(spinner.getSelectedItemPosition());
         int quantity = Integer.parseInt(findViewById(R.id.quantity_label).toString());
+
+        if(quantity < 0){
+            Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        totalToPay += quantity * 0;
     }
 
     private void changeQuantity(boolean type){

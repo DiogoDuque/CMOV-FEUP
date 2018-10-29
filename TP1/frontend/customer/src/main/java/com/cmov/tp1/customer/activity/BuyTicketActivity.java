@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 
@@ -38,9 +41,14 @@ public class BuyTicketActivity extends AppCompatActivity {
     }
 
     private void finishPurchase(){
-        Spinner spinner = (Spinner) findViewById(R.id.show);
+        Spinner spinner = (Spinner) findViewById(R.id.show_buy_spinner);
         int showID = Integer.valueOf(spinner.getSelectedItemPosition());
         int quantity = Integer.parseInt(findViewById(R.id.quantity_label).toString());
+
+        if(quantity < 0){
+            Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Intent intent = new Intent(this, ShowsActivity.class);
         startActivity(intent);
@@ -53,5 +61,13 @@ public class BuyTicketActivity extends AppCompatActivity {
             quantity--;
 
         totalToPay = quantity * 0;
+
+        TextView quantityText = (TextView)findViewById(R.id.quantity_label);
+        quantityText.setText(quantity);
+
+        TextView TotalText = (TextView)findViewById(R.id.total);
+        TotalText.setText((int) totalToPay);
+
+        startActivity(new Intent(this, BuyTicketActivity.class));
     }
 }
