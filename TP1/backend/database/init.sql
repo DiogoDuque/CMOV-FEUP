@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS cafeteria_product CASCADE;
 DROP TABLE IF EXISTS voucher CASCADE;
 DROP TABLE IF EXISTS voucher_ticket CASCADE;
 DROP TABLE IF EXISTS cafeteria_order_product CASCADE;
+DROP TABLE IF EXISTS encryption CASCADE;
 
 -----------
 -- ENUMS --
@@ -101,6 +102,12 @@ CREATE TABLE cafeteria_order_product
   product_id INTEGER REFERENCES cafeteria_product(id) NOT NULL,
   voucher_id INTEGER REFERENCES voucher(id) UNIQUE,
   PRIMARY KEY(order_id, product_id)
+);
+
+CREATE TABLE encryption
+(
+  uuid TEXT PRIMARY KEY,
+  public_key TEXT NOT NULL
 );
 
 

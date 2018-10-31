@@ -10,6 +10,7 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
     console.log('Cannot register (yet)');
+    //Call Register.registerCostumer and then send uuid (res.send())
     res.status(501).send();
 });
 
