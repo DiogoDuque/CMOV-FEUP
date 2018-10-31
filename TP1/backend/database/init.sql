@@ -53,6 +53,7 @@ CREATE TABLE "event"
   id SERIAL PRIMARY KEY,
   "name" TEXT NOT NULL,
   "date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+  place TEXT NOT NULL,
   price NUMERIC NOT NULL,
   UNIQUE("name", "date")
 );
@@ -60,7 +61,6 @@ CREATE TABLE "event"
 CREATE TABLE ticket
 (
   id SERIAL PRIMARY KEY,
-  place TEXT NOT NULL,
   is_used BOOLEAN NOT NULL DEFAULT FALSE,
   customer_id INTEGER REFERENCES customer(id) NOT NULL,
   event_id INTEGER REFERENCES "event"(id) NOT NULL
