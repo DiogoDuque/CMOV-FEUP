@@ -3,7 +3,7 @@ const execute = require('./DB');
 module.exports = {
 
     getTicket(id, callback){
-        const baseQuery = 'SELECT ticket.is_used, costumer.name, event.name, event.description, event.place, event.price, event.date'
+        const baseQuery = 'SELECT ticket.is_used, ticket.place costumer.name, event.name, event.description, event.place, event.price, event.date'
             + ' FROM ticket, costumer, event WHERE ticket.id = ? AND event.id = ticket.event_id AND costumer.name = ticket.costumer_id';
         execute(baseQuery, [id], (response, err) => {
               if(err){
@@ -15,9 +15,9 @@ module.exports = {
         });
     }
 
-    buyTicket(user_id, show_id, callback){
-        const baseQuery = 'INSERT INTO ticket(is_used, costumer_id, event_id) WHERE (FALSE, ?, ?)';
-        execute(baseQuery, [user_id, show_id], (response, err) => {
+    buyTicket(user_id, show_id, place, callback){
+        const baseQuery = 'INSERT INTO ticket(place, is_used, costumer_id, event_id) WHERE (?, FALSE, ?, ?)';
+        execute(baseQuery, [place, user_id, show_id], (response, err) => {
             if (err) {
                 callback(null, err);
             }
