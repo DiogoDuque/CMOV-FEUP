@@ -1,11 +1,11 @@
 const express = require('express');
-const Query = require('../database/Cafeteria');
+const Query = require('../database/Profile');
 
 const router = express.Router();
 
-router.get('/order', (req, res) => {
+router.get('/', (req, res) => {
     const { id } = req.body;
-    Query.getOrderProducts(id, (result, err) => {
+    Query.getProfileInfo(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -14,9 +14,9 @@ router.get('/order', (req, res) => {
     });
 });
 
-router.get('/order_products', (req, res) => {
+router.get('/credit_card', (req, res) => {
     const { id } = req.body;
-    Query.getOrder(id, (result, err) => {
+    Query.getCreditCard(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -25,9 +25,9 @@ router.get('/order_products', (req, res) => {
     });
 });
 
-router.post('/make_order', (req, res) => {
-    const { date, costumer } = req.body;
-    Query.makeOrder(date, costumer, (result, err) => {
+router.put('/', (req, res) => {
+    const { id, name, username, nif, password } = req.body;
+    Query.setMyProfile(id, name, username, nif, password, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -36,9 +36,9 @@ router.post('/make_order', (req, res) => {
     });
 });
 
-router.post('/add_products', (req, res) => {
-    const { order, product, voucher } = req.body;
-    Query.addProductToOrder(order, product, voucher, (result, err) => {
+router.put('/credit_card', (req, res) => {
+    const { id, card_type, card_number, card_validity } = req.body;
+    Query.setCreditCard(id, card_type, card_number, card_validity, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

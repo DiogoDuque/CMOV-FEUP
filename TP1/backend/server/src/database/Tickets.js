@@ -1,4 +1,5 @@
 const execute = require('./DB');
+const Profile = require('Profile');
 
 module.exports = {
 
@@ -16,39 +17,20 @@ module.exports = {
     }
 
     buyTicket(user_id, show_id, place, callback){
-        const baseQuery = 'INSERT INTO ticket(place, is_used, costumer_id, event_id) WHERE (?, FALSE, ?, ?)';
+        let baseQuery = 'INSERT INTO ticket(place, is_used, costumer_id, event_id) WHERE (?, FALSE, ?, ?)';
         execute(baseQuery, [place, user_id, show_id], (response, err) => {
             if (err) {
                 callback(null, err);
             }
             else {
-                callback(response);
-            }
-        });
-    },
-
-    createVoucher(ticket_id, type, product, callback){
-        const baseQuery = 'INSERT INTO voucher(is_used, type, product_id) WHERE (FALSE, ?, ?)';
-        execute(baseQuery, [type, product], (response, err) => {
-            if(err) {
-                callback(null, err);
-            }
-            else {
-                baseQuery = 'SELECT id FROM voucher ORDER BY id DESC LIMIT 1';
-                execute(baseQuery, [], (response, err) => {
-                    if(err) {
+                baseQuery = 'SELECT price FROM event WHERE id = ?';
+                execute(baseQuery, [show_id], (response, err) => {
+                    if (err) {
                         callback(null, err);
                     }
                     else {
-                        baseQuery = 'INSERT INTO voucher_ticket(voucher_id, ticket_id) WHERE (?, ?)';
-                        execute(baseQuery, [response[0].id, ticket_id], (response, err) => {
-                            if(err) {
-                                callback(null, err);
-                            }
-                            else {
-                                 callback(response);
-                            }
-                        });
+                        Profile.setBalance(user_id, response.rows[0].price, callback);
+                        callback(response);
                     }
                 });
             }
