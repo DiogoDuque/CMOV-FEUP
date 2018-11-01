@@ -2,6 +2,7 @@ package com.cmov.tp1.customer.utility;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -12,6 +13,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HTTPRequestUtility {
 
@@ -62,9 +65,11 @@ public class HTTPRequestUtility {
             public void onErrorResponse(VolleyError error) {
                 JSONObject json = new JSONObject();
                 try {
-                    json.put("code", error.networkResponse.statusCode);
                     json.put("message", error.getMessage());
-                    json.put("data", new String(error.networkResponse.data, "UTF-8"));
+                    if(error.networkResponse != null) {
+                        json.put("code", error.networkResponse.statusCode);
+                        json.put("data", new String(error.networkResponse.data, "UTF-8"));
+                    }
                 } catch (JSONException|UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

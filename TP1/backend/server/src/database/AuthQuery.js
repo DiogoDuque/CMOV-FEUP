@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 // function used for debugging, and a starting point for create login
 function showHash(password, callback) {
-    bcrypt.genSalt(10, function (saltErr, salt) {
+    bcrypt.genSalt(10, (saltErr, salt) => {
       if (saltErr) {
         callback(null, err);
       } else bcrypt.hash(password, salt, null, (err, res) => {
@@ -19,15 +19,26 @@ function showHash(password, callback) {
   }
   
   module.exports = {
+    register(name, nif, username, password, cardType, cardNumber, cardValidity, publicKey, callback) {
+      const baseQuery = 'INSERT INTO customer(name, nif, username, password, ' +
+        'card_type, card_number, card_validity, public_key) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id';
+      execute(baseQuery, [name, nif, username, password, cardType, cardNumber, cardValidity, publicKey],
+        (response, err) => {
+          if(err) {
+            callback(null, err);
+          } else callback(response.rows[0]);
+      })
+    },
+
+
     /**
      * Looks for an existing pair user-pass.
      * @param {object} username username.
      * @param {Function} password password.
      * @param {function} callback callback for the executed command.
      */
-    /*checkIfLoginExists(username, password, callback) {
-      const baseQuery = 'SELECT password FROM login INNER JOIN person ON login.person_id = person.id '
-        + 'WHERE login.username = $1';
+    checkIfLoginExists(username, password, callback) {
+      const baseQuery = 'SELECT password FROM customer WHERE username = $1';
       execute(baseQuery, [username], (response, err) => {
         if (err) {
           callback(null, err);
@@ -45,5 +56,5 @@ function showHash(password, callback) {
           showHash(password, callback);
         }
       })
-    },*/
+    },
   };

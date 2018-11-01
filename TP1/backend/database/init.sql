@@ -44,7 +44,7 @@ CREATE TABLE customer
   "password" TEXT NOT NULL,
   "card_type" card_type NOT NULL,
   card_number TEXT UNIQUE NOT NULL,
-  card_validity DATE NOT NULL,
+  card_validity TEXT NOT NULL,
   public_key TEXT NOT NULL
 );
 

@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         String cardCode = cardCodeInput.getText().toString();
         String cardValidity = cardValidityInput.getText().toString();
         String cardType = cardTypeSelected.getText().toString();
+        final Activity activity = this; // useful for popping this activity from below callbacks
         if(name.length() == 0 || username.length()==0 || nif.length() != 9 || password.length()==0 ||
                 cardNumber.length() != 16 || cardCode.length() != 3 || cardValidity.length()==0 || cardType.length() == 0) {
             Toast.makeText(this, "There are empty/incorrect fields.", Toast.LENGTH_SHORT).show();
@@ -75,12 +77,15 @@ public class RegisterActivity extends AppCompatActivity {
         new RegisterRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
-                Log.i(TAG, json.toString());
+                Log.i(TAG, "SUCCESSFUL REGISTER -> "+json.toString());
+                // TODO KEEP id smwhere
+                Toast.makeText(activity.getBaseContext(), "Registered successfully!", Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
 
             @Override
             public void onError(JSONObject json) {
-                Log.w(TAG, json.toString());
+                Toast.makeText(getBaseContext(), json.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
