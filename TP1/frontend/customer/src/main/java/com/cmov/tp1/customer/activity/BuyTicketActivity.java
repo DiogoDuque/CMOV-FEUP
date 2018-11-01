@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ public class BuyTicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_show_ticket);
 
+        addValuesToSpinner();
+
         Button minusButton = findViewById(R.id.minus_button);
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +41,19 @@ public class BuyTicketActivity extends AppCompatActivity {
                 changeQuantity(true);
             }
         });
+    }
+
+    private void addValuesToSpinner(){
+        //Exemplo
+        String[] arraySpinner = new String[] {
+                "1", "2", "3", "4", "5"
+        };
+
+        Spinner s = (Spinner) findViewById(R.id.show_date_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
     }
 
     private void finishPurchase(){

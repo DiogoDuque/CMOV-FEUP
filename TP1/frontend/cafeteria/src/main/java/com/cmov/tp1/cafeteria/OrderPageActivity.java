@@ -7,9 +7,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class OrderPageActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    //ArrayAdapter<Product> adapter;
+public class OrderPageActivity extends AppCompatActivity {
+
+    //Só para teste
+    List<String> products = new ArrayList<>();
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +22,7 @@ public class OrderPageActivity extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_order_page);
 
         ListView list = findViewById(R.id.product_list);
-        /**adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rests);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, products);
         list.setAdapter(adapter);
-        list.setOnItemClickListener(this);**/
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 }

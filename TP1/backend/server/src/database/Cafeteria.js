@@ -26,6 +26,32 @@ module.exports = {
         });
     },
 
+    getOrders(date, callback){
+        let baseQuery = "";
+        if(date !== null){
+            baseQuery = 'SELECT id, date FROM cafeteria_order WHERE date = ?';
+            execute(baseQuery, [id], (response, err) => {
+                if (err) {
+                    callback(null, err);
+                }
+                else {
+                    callback(res);
+                }
+            });
+        }
+        else{
+            baseQuery = 'SELECT id, date FROM cafeteria_order';
+            execute(baseQuery, [], (response, err) => {
+                if (err) {
+                    callback(null, err);
+                }
+                else {
+                    callback(res);
+                }
+            });
+        }
+    },
+
     getOrder(id, callback){
         const baseQuery = 'SELECT id, date FROM cafeteria_order WHERE id = ?';
         execute(baseQuery, [id], (response, err) => {

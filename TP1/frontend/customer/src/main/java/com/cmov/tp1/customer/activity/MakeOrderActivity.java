@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ public class MakeOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_order);
+
+        addValuesToSpinner();
 
         Button minusButton = findViewById(R.id.minus_button);
         minusButton.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +46,19 @@ public class MakeOrderActivity extends AppCompatActivity {
                 addProduct();
             }
         });
+    }
+
+    private void addValuesToSpinner(){
+        //Exemplo
+        String[] arraySpinner = new String[] {
+                "1", "2", "3", "4", "5"
+        };
+
+        Spinner s = (Spinner) findViewById(R.id.products);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
     }
 
 

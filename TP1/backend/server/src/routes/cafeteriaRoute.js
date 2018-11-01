@@ -3,6 +3,17 @@ const Query = require('../database/Cafeteria');
 
 const router = express.Router();
 
+router.get('/orders', (req, res) => {
+    const { date} = req.body;
+    Query.getOrders(date, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
 router.get('/order', (req, res) => {
     const { id } = req.body;
     Query.getOrderProducts(id, (result, err) => {

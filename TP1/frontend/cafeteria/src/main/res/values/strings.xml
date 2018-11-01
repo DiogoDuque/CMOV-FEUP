@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TP1 - Cafeteria</string>
+    <string-array name="order_by">
+            <item>Order ID</item>
+            <item>Name</item>
+    </string-array>
 </resources>
