@@ -36,11 +36,10 @@ public class RegistCreditCardActivity extends AppCompatActivity {
 
     private void associateCreditCard(){
         String number = findViewById(R.id.number_input).toString();
-        String csc = findViewById(R.id.csc_input).toString();
         String date = findViewById(R.id.date_input).toString();
 
-        if(number.length() == 0 || csc.length() == 0 || date.length() == 0){
-            Toast.makeText(this, "Credit card number, csc ou date is empty", Toast.LENGTH_SHORT).show();
+        if(number.length() == 0 || date.length() == 0){
+            Toast.makeText(this, "Credit card number or validity is empty", Toast.LENGTH_SHORT).show();
             return;
         }
 

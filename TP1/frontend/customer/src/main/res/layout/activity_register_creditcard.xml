@@ -11,11 +11,10 @@
 
     <ImageView
         android:id="@+id/app_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="181dp"
+        android:layout_height="163dp"
         android:layout_margin="30dp"
-        android:background="@drawable/ic_launcher_background"
-        android:src="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@mipmap/credit_card" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,8 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Number"
-            android:textColor="@color/design_default_color_primary_dark"
+            android:textColor="@color/light_orange"
             android:textStyle="bold" />
 
         <EditText
@@ -38,35 +38,10 @@
             android:layout_width="177dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/monserrat"
             android:autofillHints="number"
             android:ems="10"
             android:inputType="text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/csc_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="CSC"
-            android:textColor="@color/design_default_color_primary_dark"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/csc_input"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints="csc"
-            android:ems="10"
-            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout
@@ -81,8 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Date"
-            android:textColor="@color/design_default_color_primary_dark"
+            android:fontFamily="@font/monserrat"
+            android:text="Validity"
+            android:textColor="@color/light_orange"
             android:textStyle="bold" />
 
         <EditText
@@ -91,8 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:autofillHints="validity"
+            android:fontFamily="@font/monserrat"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="date" />
     </LinearLayout>
 
     <LinearLayout
@@ -103,12 +80,13 @@
 
         <TextView
             android:id="@+id/type_label"
-            android:layout_width="wrap_content"
+            android:layout_width="112dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/monserrat"
             android:padding="10dp"
             android:text="Card Type"
-            android:textColor="@color/design_default_color_primary_dark"
+            android:textColor="@color/light_orange"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -122,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/monserrat"
                 android:text="Master Card"
                 android:textStyle="bold" />
 
@@ -130,6 +109,7 @@
                 android:layout_width="83dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/monserrat"
                 android:text="Visa"
                 android:textStyle="bold" />
         </RadioGroup>
@@ -148,6 +128,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
+            android:fontFamily="@font/monserrat"
+            android:textSize="16dp"
             android:text="Back"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light" />
@@ -157,6 +139,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/mybutton"
+            android:fontFamily="@font/monserrat"
+            android:textSize="16dp"
             android:text="Associate"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light" />

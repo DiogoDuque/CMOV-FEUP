@@ -22,8 +22,9 @@
             android:layout_weight="1"
             android:padding="10dp"
             android:paddingBottom="30dp"
+            android:fontFamily="@font/monserrat"
             android:text="Show"
-            android:textColor="@color/design_default_color_primary_dark"
+            android:textColor="@color/orange"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Show Date"
             android:textStyle="bold" />
 
@@ -48,7 +50,6 @@
             android:id="@+id/show_date_spinner"
             android:layout_width="115dp"
             android:layout_height="38dp"
-            android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
 
     </LinearLayout>
@@ -64,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/monserrat"
             android:padding="10dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet laoreet iaculis. Nullam eu tempus lorem, ac sagittis ex. Proin vestibulum lacinia augue, id molestie sapien iaculis et. Nullam efficitur rhoncus pulvinar. Mauris in fringilla ante. In dapibus vel ipsum congue facilisis. Quisque quis mi quis diam semper iaculis vitae quis lorem. Sed aliquam nulla sit amet mauris ullamcorper, sit amet viverra erat vestibulum. Mauris mattis massa orci, vel consectetur lectus tincidunt eu. Cras sagittis et massa sit amet posuere."
             android:textAlignment="center"
@@ -73,12 +75,14 @@
 
     <Button
         android:id="@+id/buy_ticket_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="116dp"
+        android:layout_height="59dp"
         android:background="@drawable/mybutton"
+        android:fontFamily="@font/monserrat"
         android:text="Buy Ticket"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
+        android:textSize="16dp"
         android:textStyle="bold" />
 
 </LinearLayout>

@@ -21,7 +21,7 @@ public class BuyTicketActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buy_ticket);
+        setContentView(R.layout.activity_buy_show_ticket);
 
         Button minusButton = findViewById(R.id.minus_button);
         minusButton.setOnClickListener(new View.OnClickListener() {

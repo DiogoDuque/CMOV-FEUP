@@ -11,11 +11,10 @@
 
     <ImageView
         android:id="@+id/app_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="118dp"
+        android:layout_height="151dp"
         android:layout_margin="30dp"
-        android:background="@drawable/ic_launcher_background"
-        android:src="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@mipmap/ticket" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,16 +27,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Username"
-            android:textColor="@color/design_default_color_primary_dark"
+            android:textColor="@color/light_orange"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/user_input"
-            android:layout_width="148dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/monserrat"
             android:autofillHints="username"
             android:ems="10"
             android:inputType="text" />
@@ -55,8 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Password"
-            android:textColor="@color/design_default_color_primary_dark"
+            android:textColor="@color/light_orange"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -65,6 +67,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/monserrat"
             android:autofillHints="password"
             android:ems="10"
             android:inputType="textPassword" />
@@ -75,11 +78,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/mybutton"
+        android:fontFamily="@font/monserrat"
         android:text="Login"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -93,7 +97,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Don't have a login yet?" />
+            android:fontFamily="@font/monserrat"
+            android:text="Don't have a login yet?"
+            android:textColor="@color/grey" />
 
         <Button
             android:id="@+id/navigate_register_button"
@@ -101,9 +107,10 @@
             android:layout_width="wrap_content"
             android:layout_height="37dp"
             android:backgroundTint="#ffffffff"
+            android:fontFamily="@font/monserrat"
             android:text="Sign in here"
             android:textAllCaps="false"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
 
     </LinearLayout>

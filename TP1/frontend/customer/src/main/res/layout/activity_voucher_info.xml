@@ -22,8 +22,9 @@
             android:layout_weight="1"
             android:padding="10dp"
             android:paddingBottom="30dp"
+            android:fontFamily="@font/monserrat"
             android:text="Voucher"
-            android:textColor="@color/design_default_color_primary_dark"
+            android:textColor="@color/orange"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Product"
             android:textStyle="bold" />
 
@@ -58,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Type of discount"
             android:textStyle="bold" />
 
@@ -75,8 +78,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Status"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -92,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/gifticonnew" />
     </LinearLayout>
 
     <Button
@@ -100,6 +104,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/mybutton"
+        android:fontFamily="@font/monserrat"
+        android:textSize="16dp"
         android:text="Use It"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
