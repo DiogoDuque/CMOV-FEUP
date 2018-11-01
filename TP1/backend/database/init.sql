@@ -46,6 +46,7 @@ CREATE TABLE customer
   "card_type" card_type NOT NULL,
   card_number TEXT UNIQUE NOT NULL,
   card_validity DATE NOT NULL,
+  balance NUMERIC NOT NULL,
   public_key TEXT NOT NULL
 );
 
