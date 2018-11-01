@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Order"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:fontFamily="@font/monserrat"
             android:text="Total"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
@@ -76,9 +78,11 @@
             android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:background="@drawable/mybutton"
+            android:fontFamily="@font/monserrat"
             android:text="Validate Voucher"
             android:textAllCaps="false"
             android:textColor="@color/white"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
     </LinearLayout>

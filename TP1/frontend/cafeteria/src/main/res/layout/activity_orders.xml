@@ -21,7 +21,6 @@
             android:id="@+id/orders_selector"
             android:layout_width="159dp"
             android:layout_height="38dp"
-            android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
 
     </LinearLayout>

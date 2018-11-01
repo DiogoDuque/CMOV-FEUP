@@ -19,6 +19,8 @@
             android:id="@+id/validate_button"
             android:layout_width="141dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/monserrat"
+            android:textSize="16dp"
             android:background="@drawable/mybutton"
             android:text="Validate Ticket"
             android:textAllCaps="false"
