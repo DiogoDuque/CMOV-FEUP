@@ -3,6 +3,7 @@ const ejs = require('ejs');
 const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
+const AuthQuery = require('./src/database/AuthQuery');
 const { userRoute, cafeteriaRoute, showRoute, authRoute } = require('./src/routes');
 
 const PORT = 3000;
@@ -16,7 +17,7 @@ passport.use('local', new Strategy(
   (req, username, password, done) => {
     if(!username || !password)
       done("No username or password found");
-    AuthDB.checkIfLoginExists(username, password, (result, err) => {
+      AuthQuery.checkIfLoginExists(username, password, (result, err) => {
       if(err) {
         done(err);
       } else if(result) {

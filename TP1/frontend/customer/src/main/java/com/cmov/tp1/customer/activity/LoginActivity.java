@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.utility.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.LoginRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
@@ -51,10 +53,19 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        final Activity activity = this;
         new LoginRequest(this, username, password, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, json.toString());
+                try {
+                    if(json.getBoolean("result")) {
+                        Intent intent = new Intent(activity.getBaseContext(), ShowsActivity.class);
+                        activity.getBaseContext().startActivity(intent);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

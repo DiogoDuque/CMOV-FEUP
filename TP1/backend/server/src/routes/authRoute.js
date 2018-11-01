@@ -13,9 +13,16 @@ router.get('/', (req, res) => {
   });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
-    console.log(JSON.stringify(req.body));
-    console.log('Cannot login (yet)');
-    res.status(501).send();
+    const { username, password } = req.body;
+    Query.checkIfLoginExists(username, password, (result, err) => {
+        if(result === true) {
+            res.send("{result: true}");
+        } else if(result === false) {
+            res.status(401).send();
+        } else {
+            res.status(500).send();
+        }
+    });
 });
 
 router.post('/register', (req, res) => {
