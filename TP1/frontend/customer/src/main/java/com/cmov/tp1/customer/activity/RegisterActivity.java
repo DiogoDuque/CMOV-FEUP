@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.networking.RegisterRequest;
-import com.cmov.tp1.customer.utility.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 import com.cmov.tp1.customer.utility.MonthYearPickerDialog;
 
 import org.json.JSONObject;

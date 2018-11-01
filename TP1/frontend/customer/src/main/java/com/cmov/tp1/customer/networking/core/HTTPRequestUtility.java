@@ -1,8 +1,7 @@
-package com.cmov.tp1.customer.utility;
+package com.cmov.tp1.customer.networking.core;
 
 import android.content.Context;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -13,8 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class HTTPRequestUtility {
 
@@ -23,7 +20,7 @@ public class HTTPRequestUtility {
         void onError(JSONObject json);
     }
 
-    private static final String HOST = "http://10.227.156.175";
+    private static final String HOST = "http://192.168.1.247";
     private static HTTPRequestUtility instance = null;
     private RequestQueue queue;
     private static Context context;

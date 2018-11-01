@@ -8,7 +8,7 @@ const router = express.Router();
 // Just for checking if logged in
 router.get('/', (req, res) => {
     if(req.isAuthenticated()) {
-      res.status(200).send();
+      res.status(200).send('{result:true}');
     } else res.status(401).send();
   });
 
