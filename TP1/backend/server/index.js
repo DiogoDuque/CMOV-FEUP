@@ -65,8 +65,8 @@ app.use('/auth',      authRoute);
 app.use('/user',      isLoggedIn, userRoute);
 app.use('/cafeteria', isLoggedIn, cafeteriaRoute);
 app.use('/show',      isLoggedIn, showRoute);
-app.use('/tickets',      isLoggedIn, ticketsRoute);
-app.use('/vouchers',      isLoggedIn, vouchersRoute);
-app.use('/profile',      isLoggedIn, profileRoute);
+app.use('/tickets',   isLoggedIn, ticketsRoute);
+app.use('/vouchers',  isLoggedIn, vouchersRoute);
+app.use('/profile',   isLoggedIn, profileRoute);
 
 app.listen(PORT, () => console.log('Started Tickets and Payment System API...'));
