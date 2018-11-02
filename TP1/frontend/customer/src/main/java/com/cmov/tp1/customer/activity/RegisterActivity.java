@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -95,7 +96,12 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        KeyPair keyPair = RSA.buildKeyPair();
+        KeyPair keyPair = null;
+        try {
+            keyPair = RSA.buildKeyPair();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         PublicKey pubKey = keyPair.getPublic();
         PrivateKey privateKey = keyPair.getPrivate();
 
