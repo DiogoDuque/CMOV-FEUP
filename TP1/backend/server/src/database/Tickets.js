@@ -1,5 +1,5 @@
 const execute = require('./DB');
-const Profile = require('Profile');
+const Profile = require('./Profile');
 
 module.exports = {
 
@@ -14,7 +14,7 @@ module.exports = {
                   callback(response);
               }
         });
-    }
+    },
 
     buyTicket(user_id, show_id, place, callback){
         let baseQuery = 'INSERT INTO ticket(place, is_used, costumer_id, event_id) WHERE (?, FALSE, ?, ?)';
