@@ -3,6 +3,12 @@
     <string name="drawer_main_menu_shows">Shows</string>
     <string name="drawer_main_menu_my_shows">My Shows</string>
     <string name="drawer_main_menu_vouchers">My Vouchers</string>
+    <string-array name="products">
+        <item>Coffee</item>
+        <item>Soda Drink</item>
+        <item>Popcorn</item>
+        <item>Sandwich</item>
+    </string-array>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>

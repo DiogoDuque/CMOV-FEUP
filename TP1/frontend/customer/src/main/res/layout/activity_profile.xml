@@ -7,15 +7,14 @@
     android:gravity="center"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.ProfileActivity">
 
     <ImageView
         android:id="@+id/app_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="138dp"
+        android:layout_height="132dp"
         android:layout_margin="30dp"
-        android:background="@drawable/ic_launcher_background"
-        android:src="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@mipmap/profile" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,7 +28,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Name" />
+            android:fontFamily="@font/monserrat"
+            android:text="Name"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Username" />
+            android:fontFamily="@font/monserrat"
+            android:text="Username"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -59,26 +65,53 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Currenyt Balance" />
+            android:fontFamily="@font/monserrat"
+            android:text="Currenyt Balance"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:fontFamily="@font/monserrat"
+            android:text="Balance"
+            android:textColor="@color/orange"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:text="Edit Profile" />
+            android:layout_marginRight="20dp"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/monserrat"
+            android:textSize="16dp"
+            android:text="Edit Profile"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/associate_button"
-            android:layout_width="wrap_content"
+            android:layout_width="113dp"
             android:layout_height="wrap_content"
-            android:text="Credit Card" />
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/monserrat"
+            android:textSize="16dp"
+            android:text="Credit Card"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

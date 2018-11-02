@@ -26,6 +26,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 
 router.post('/register', (req, res) => {
+    //Call Register.registerCostumer and then send uuid (res.send())
     const { name, nif, username, password, cardType, cardNumber, cardValidity } = req.body;
     if(!name) {
         res.status(400).send('Name not found in request');

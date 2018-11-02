@@ -4,7 +4,7 @@ const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
 const AuthQuery = require('./src/database/AuthQuery');
-const { userRoute, cafeteriaRoute, showRoute, authRoute } = require('./src/routes');
+const { userRoute, cafeteriaRoute, showRoute, authRoute, profileRoute, ticketsRoute, vouchersRoute } = require('./src/routes');
 
 const PORT = 3000;
 const app = express();
@@ -57,7 +57,7 @@ function isLoggedIn(req, res, next) {
 
 // Root
 app.get('/', (req, res) => {
-  res.render('help.html');
+    res.render('help.html');
 });
 
 // Routes
@@ -65,5 +65,8 @@ app.use('/auth',      authRoute);
 app.use('/user',      isLoggedIn, userRoute);
 app.use('/cafeteria', isLoggedIn, cafeteriaRoute);
 app.use('/show',      isLoggedIn, showRoute);
+app.use('/tickets',      isLoggedIn, ticketsRoute);
+app.use('/vouchers',      isLoggedIn, vouchersRoute);
+app.use('/profile',      isLoggedIn, profileRoute);
 
 app.listen(PORT, () => console.log('Started Tickets and Payment System API...'));

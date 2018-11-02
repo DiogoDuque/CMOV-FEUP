@@ -1,15 +1,61 @@
 const express = require('express');
+const Query = require('../database/Cafeteria');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    console.log('Cannot see orders (yet)');
-    res.status(501).send();
+router.get('/orders', (req, res) => {
+    const { date} = req.body;
+    Query.getOrders(date, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
 });
 
-router.post('/', (req, res) => {
-    console.log('Cannot issue orders (yet)');
-    res.status(501).send();
+router.get('/order', (req, res) => {
+    const { id } = req.body;
+    Query.getOrderProducts(id, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
+router.get('/order_products', (req, res) => {
+    const { id } = req.body;
+    Query.getOrder(id, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
+router.post('/make_order', (req, res) => {
+    const { date, costumer } = req.body;
+    Query.makeOrder(date, costumer, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
+router.post('/add_products', (req, res) => {
+    const { order, product, voucher } = req.body;
+    Query.addProductToOrder(order, product, voucher, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
 });
 
 module.exports = router;

@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS cafeteria_product CASCADE;
 DROP TABLE IF EXISTS voucher CASCADE;
 DROP TABLE IF EXISTS voucher_ticket CASCADE;
 DROP TABLE IF EXISTS cafeteria_order_product CASCADE;
+DROP TABLE IF EXISTS encryption CASCADE;
 
 -----------
 -- ENUMS --
@@ -45,6 +46,7 @@ CREATE TABLE customer
   "card_type" card_type NOT NULL,
   card_number TEXT UNIQUE NOT NULL,
   card_validity TEXT NOT NULL,
+  balance NUMERIC NOT NULL,
   public_key TEXT NOT NULL
 );
 
@@ -101,6 +103,12 @@ CREATE TABLE cafeteria_order_product
   product_id INTEGER REFERENCES cafeteria_product(id) NOT NULL,
   voucher_id INTEGER REFERENCES voucher(id) UNIQUE,
   PRIMARY KEY(order_id, product_id)
+);
+
+CREATE TABLE encryption
+(
+  uuid TEXT PRIMARY KEY,
+  public_key TEXT NOT NULL
 );
 
 
