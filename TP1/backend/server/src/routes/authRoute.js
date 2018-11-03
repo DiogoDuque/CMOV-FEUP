@@ -16,6 +16,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     const { username, password } = req.body;
     Query.checkIfLoginExists(username, password, (result, err) => {
         if(result === true) {
+            req.session.username = username;
             res.send("{result: true}");
         } else if(result === false) {
             res.status(401).send();
