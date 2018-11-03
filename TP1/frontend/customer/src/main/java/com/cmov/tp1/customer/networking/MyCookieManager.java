@@ -1,4 +1,4 @@
-package com.cmov.tp1.customer.networking.core;
+package com.cmov.tp1.customer.networking;
 
 import android.content.Context;
 import android.util.Log;

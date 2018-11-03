@@ -21,7 +21,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
         } else if(result === false) {
             res.status(401).send();
         } else {
-            res.status(500).send();
+            res.status(500).send(err);
         }
     });
 });

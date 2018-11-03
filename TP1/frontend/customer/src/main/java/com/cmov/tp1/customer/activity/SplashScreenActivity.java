@@ -8,8 +8,8 @@ import android.util.Log;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.networking.NetworkRequests;
-import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
-import com.cmov.tp1.customer.networking.core.MyCookieManager;
+import com.cmov.tp1.customer.networking.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.MyCookieManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;

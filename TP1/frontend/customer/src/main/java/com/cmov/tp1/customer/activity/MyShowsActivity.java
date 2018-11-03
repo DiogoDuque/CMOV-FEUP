@@ -7,13 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.networking.core.MyCookieManager;
-import com.cmov.tp1.customer.networking.core.SiCookieStore2;
+import com.cmov.tp1.customer.networking.MyCookieManager;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
-
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
 
 public class MyShowsActivity extends AppCompatActivity {
 

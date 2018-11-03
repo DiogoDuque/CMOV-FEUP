@@ -3,7 +3,6 @@ package com.cmov.tp1.customer.networking;
 import android.content.Context;
 
 import com.android.volley.Request;
-import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 
 import org.json.JSONException;
 import org.json.JSONObject;
