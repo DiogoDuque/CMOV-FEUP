@@ -9,6 +9,7 @@ import android.util.Log;
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.networking.CheckIfLoggedInRequest;
 import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.core.MyCookieManager;
 import com.cmov.tp1.customer.networking.core.SiCookieStore2;
 
 import org.json.JSONException;
@@ -28,9 +29,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        SiCookieStore2 siCookieStore = new SiCookieStore2(this);
-        CookieManager cookieManager = new CookieManager(siCookieStore, CookiePolicy.ACCEPT_ALL);
-        CookieHandler.setDefault(cookieManager);
+        MyCookieManager.getInstance(this);
 
         final Activity activity = this;
         new CheckIfLoggedInRequest(this, new HTTPRequestUtility.OnRequestCompleted() {

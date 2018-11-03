@@ -3,15 +3,11 @@ package com.cmov.tp1.customer.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,12 +20,16 @@ import android.widget.Toast;
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.networking.RegisterRequest;
 import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.core.MyCookieManager;
 import com.cmov.tp1.customer.utility.MonthYearPickerDialog;
 import com.cmov.tp1.customer.utility.RSA;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -45,6 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        MyCookieManager.getInstance(this);
 
         Button registerBtn = findViewById(R.id.register_button);
         registerBtn.setOnClickListener(new View.OnClickListener() {

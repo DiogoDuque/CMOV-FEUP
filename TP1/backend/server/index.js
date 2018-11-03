@@ -3,7 +3,7 @@ const ejs = require('ejs');
 const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
-const AuthQuery = require('./src/database/AuthQuery');
+const AuthQuery = require('./src/database/Auth');
 const { userRoute, cafeteriaRoute, showRoute, authRoute, profileRoute, ticketsRoute, vouchersRoute } = require('./src/routes');
 
 const PORT = 3000;
@@ -57,7 +57,7 @@ function isLoggedIn(req, res, next) {
 
 // Root
 app.get('/', (req, res) => {
-    res.render('help.html');
+  res.render('help.html');
 });
 
 // Routes

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.LoginRequest;
+import com.cmov.tp1.customer.networking.core.MyCookieManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        MyCookieManager.getInstance(this);
 
         Button loginBtn = findViewById(R.id.login_button);
         loginBtn.setOnClickListener(new View.OnClickListener() {
