@@ -7,18 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.networking.CheckIfLoggedInRequest;
+import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.core.MyCookieManager;
-import com.cmov.tp1.customer.networking.core.SiCookieStore2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
-import java.net.CookieStore;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -32,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         MyCookieManager.getInstance(this);
 
         final Activity activity = this;
-        new CheckIfLoggedInRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.checkIfLoggedInRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, "Success -> "+json.toString());

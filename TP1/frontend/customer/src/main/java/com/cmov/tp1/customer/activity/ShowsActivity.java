@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.networking.GetShowsRequest;
+import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.core.MyCookieManager;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
@@ -27,7 +27,7 @@ public class ShowsActivity extends AppCompatActivity {
 
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
-        new GetShowsRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.getShowsRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
 
             @Override
             public void onSuccess(JSONObject json) {

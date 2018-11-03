@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.networking.RegisterRequest;
+import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.core.MyCookieManager;
 import com.cmov.tp1.customer.utility.MonthYearPickerDialog;
@@ -26,9 +26,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
 import java.security.KeyPair;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -40,8 +37,6 @@ import java.security.cert.CertificateException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-
-import javax.crypto.KeyGenerator;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
@@ -121,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
         PublicKey pubKey = keyPair.getPublic();
         final PrivateKey privateKey = keyPair.getPrivate();
 
-        new RegisterRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, pubKey.toString(), new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.registerRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, pubKey.toString(), new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, "SUCCESSFUL REGISTER -> "+json.toString());

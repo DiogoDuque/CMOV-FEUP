@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
-import com.cmov.tp1.customer.networking.LoginRequest;
 import com.cmov.tp1.customer.networking.core.MyCookieManager;
 
 import org.json.JSONException;
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         final Activity activity = this;
-        new LoginRequest(this, username, password, new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.loginRequest(this, username, password, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, json.toString());
