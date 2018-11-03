@@ -1,17 +1,10 @@
 package com.cmov.tp1.customer.activity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,13 +23,21 @@ import com.cmov.tp1.customer.utility.RSA;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyPair;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.CertificateException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import javax.crypto.KeyGenerator;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
@@ -50,7 +51,13 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                try {
+                    register();
+                } catch (NoSuchProviderException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -63,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void register() {
+    private void register() throws NoSuchProviderException, NoSuchAlgorithmException {
         EditText nameInput = findViewById(R.id.name_input);
         EditText nifInput = findViewById(R.id.nif_input);
         EditText usernameInput = findViewById(R.id.username_input);
@@ -91,13 +98,22 @@ public class RegisterActivity extends AppCompatActivity {
 
         KeyPair keyPair = null;
         try {
-            keyPair = RSA.buildKeyPair();
+            keyPair = RSA.buildKeyPair(this);
         } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (UnrecoverableEntryException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         PublicKey pubKey = keyPair.getPublic();
         final PrivateKey privateKey = keyPair.getPrivate();
-
 
         new RegisterRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, pubKey.toString(), new HTTPRequestUtility.OnRequestCompleted() {
             @Override
@@ -137,16 +153,13 @@ public class RegisterActivity extends AppCompatActivity {
         pd.show(getSupportFragmentManager(), "MonthYearPickerDialog");
     }
 
-    //keystore
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private void storeInfoKey(PrivateKey privateKey, String uuid){
 
         SharedPreferences sPrefs = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = sPrefs.edit();
         editor.putString("uuid", uuid);
         editor.putString("privateKey", privateKey.toString());
-        //editor.commit();
         editor.apply();
     }
+
 }
