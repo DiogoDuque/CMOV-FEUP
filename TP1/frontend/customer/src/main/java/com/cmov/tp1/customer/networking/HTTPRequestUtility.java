@@ -1,6 +1,7 @@
 package com.cmov.tp1.customer.networking;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -14,6 +15,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public class HTTPRequestUtility {
+    private static final String TAG = "HttpReqUtil";
 
     public interface OnRequestCompleted{
         void onSuccess(JSONObject json);
@@ -54,7 +56,7 @@ public class HTTPRequestUtility {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // Display the first 500 characters of the response string.
+                        Log.i(TAG, "Success response: "+response.toString());
                         onRequestCompleted.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {
@@ -70,6 +72,7 @@ public class HTTPRequestUtility {
                 } catch (JSONException|UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
+                Log.w(TAG, "Error response: "+json.toString());
                 onRequestCompleted.onError(json);
             }
         });

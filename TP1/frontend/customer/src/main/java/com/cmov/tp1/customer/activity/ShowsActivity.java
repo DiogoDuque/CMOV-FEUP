@@ -42,13 +42,10 @@ public class ShowsActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
-
         NetworkRequests.getShowsRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
 
             @Override
             public void onSuccess(JSONObject json) {
-                Log.i(TAG, json.toString());
-
                 final List<Show> showList = ShowsAdapter.parseJsonShows(json);
                 ShowsAdapter adapter = new ShowsAdapter(showList);
                 adapter.setupBoilerplate(getApplicationContext(), recyclerView, new ShowClickListener.ClickListener() {
@@ -70,7 +67,7 @@ public class ShowsActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                Log.w(TAG, json.toString());
+                Log.e(TAG, json.toString()); //TODO handle error
             }
         });
     }

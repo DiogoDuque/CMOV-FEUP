@@ -35,7 +35,6 @@ public class MyShowsActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
-
         NetworkRequests.getMyShowsRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
 
             @Override
