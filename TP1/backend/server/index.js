@@ -47,10 +47,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 function isLoggedIn(req, res, next) {
-  if(req.session.username)
-    console.log(`${req.session.username} made an authenticated request.`);
-  else console.log('User without username tried an authenticated request.');
-
   // if user is authenticated in the session, carry on 
   if (req.isAuthenticated())
       return next();
