@@ -1,5 +1,7 @@
 package com.cmov.tp1.customer.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,9 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.utility.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.LoginRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
@@ -22,29 +25,47 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button loginButton = findViewById(R.id.login_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        Button loginBtn = findViewById(R.id.login_button);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
         });
+
+        Button registerBtn = findViewById(R.id.navigate_register_button);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), RegisterActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     private void login() {
-        EditText userInput = findViewById(R.id.user_input);
-        EditText passInput = findViewById(R.id.pass_input);
-        String username = userInput.getText().toString();
-        String password = passInput.getText().toString();
+        EditText usernameInput = findViewById(R.id.username_input);
+        EditText passwordInput = findViewById(R.id.password_input);
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
         if(username.length()==0 || password.length()==0) {
             Toast.makeText(this, "Username or password is empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        final Activity activity = this;
         new LoginRequest(this, username, password, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, json.toString());
+                try {
+                    if(json.getBoolean("result")) {
+                        Intent intent = new Intent(activity.getBaseContext(), ShowsActivity.class);
+                        activity.getBaseContext().startActivity(intent);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

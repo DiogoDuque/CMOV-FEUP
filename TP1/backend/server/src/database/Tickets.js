@@ -1,5 +1,5 @@
 const execute = require('./DB');
-const Profile = require('Profile');
+const Profile = require('./Profile');
 
 module.exports = {
 

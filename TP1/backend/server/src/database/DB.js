@@ -1,31 +1,31 @@
 const { Pool } = require('pg');
 
 function createConfiguration() {
-    const connectionString = process.env.DATABASE_URL;
+  const connectionString = process.env.DATABASE_URL;
 
-    const config = {
-        connectionString,
-    };
+  const config = {
+    connectionString,
+  };
 
-    const pool = new Pool(config);
+  const pool = new Pool(config);
 
-    return { pool };
+  return { pool };
 }
 
 module.exports = function execute(text, values, callback) {
-    const config = createConfiguration();
+  const config = createConfiguration();
 
-    const { pool } = config;
-    const p = pool.connect();
+  const { pool } = config;
+  const p = pool.connect();
 
-    p.then(client =>
+  p.then(client =>
     client.query(text, values)
-        .then((result, error) => {
+      .then((result, error) => {
         client.end();
-    pool.end();
-    callback(result, error);
-})).catch((error) => {
         pool.end();
+        callback(result, error);
+      })).catch((error) => {
+    pool.end();
     callback(undefined, error);
-});
+  });
 }

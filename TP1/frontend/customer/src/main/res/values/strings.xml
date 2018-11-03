@@ -9,4 +9,7 @@
         <item>Popcorn</item>
         <item>Sandwich</item>
     </string-array>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>
