@@ -14,7 +14,7 @@ router.get('/next_shows', (req, res) => {
 });
 
 router.get('/my_shows', (req, res) => {
-    const { username } = req.body;
+    const { username } = req.session;
     Query.getMyShows(username, (result, err) => {
         if(result) {
             res.status(200).send(`{shows:${JSON.stringify(result.rows)}}`);
