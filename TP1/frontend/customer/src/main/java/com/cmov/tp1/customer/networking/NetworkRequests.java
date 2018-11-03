@@ -63,6 +63,13 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
+    public static void getMyShowsRequest(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/show/my_shows";
+        final int METHOD = Request.Method.GET;
+
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
+    }
+
     //PROFILE REQUESTS
     public static void getProfileInfo(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile";

@@ -17,7 +17,7 @@ router.get('/my_shows', (req, res) => {
     const { username } = req.body;
     Query.getMyShows(username, (result, err) => {
         if(result) {
-            res.status(200).send(result.rows);
+            res.status(200).send(`{shows:${JSON.stringify(result.rows)}}`);
         } else {
             res.status(400).send(err);
         }

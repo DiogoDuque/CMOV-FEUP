@@ -10,9 +10,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.Show;
+import com.cmov.tp1.customer.core.ShowClickListener;
 import com.cmov.tp1.customer.core.ShowsAdapter;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
@@ -45,27 +48,24 @@ public class ShowsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, json.toString());
-                try {
-                    JSONArray jsonArray = json.getJSONArray("shows");
-                    List<Show> shows = new ArrayList<>();
-                    for(int i=0; i<jsonArray.length(); i++) {
-                        JSONObject obj = jsonArray.getJSONObject(i);
-                        int id = obj.getInt("id");
-                        String name = obj.getString("name");
-                        String date = obj.getString("date"); //TODO parse string
-                        float price = (float)obj.getDouble("price");
-                        shows.add(new Show(id, name, date, price));
-                    }
-                    ShowsAdapter adapter = new ShowsAdapter(shows);
-                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                    recyclerView.setLayoutManager(mLayoutManager);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
-                    recyclerView.setAdapter(adapter);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                final List<Show> showList = ShowsAdapter.parseJsonShows(json);
+                ShowsAdapter adapter = new ShowsAdapter(showList);
+                adapter.setupBoilerplate(getApplicationContext(), recyclerView, new ShowClickListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Show show = showList.get(position);
+                        Toast.makeText(getApplicationContext(), show.getName() + " is selected!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+                    }
+                });
+
+                recyclerView.setAdapter(adapter);
+
+
             }
 
             @Override
