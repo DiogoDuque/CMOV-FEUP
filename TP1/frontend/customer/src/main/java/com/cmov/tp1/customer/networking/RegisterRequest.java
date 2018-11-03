@@ -16,7 +16,7 @@ public class RegisterRequest {
 
     public RegisterRequest(Context context, String name, String username, String nif, String password,
                            String cardNumber, String cardCode, String cardValidity, String cardType,
-                           HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+                           String publicKey, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         JSONObject body = new JSONObject();
         try {
             body.put("name", name);
@@ -27,6 +27,7 @@ public class RegisterRequest {
             body.put("cardCode", cardCode);
             body.put("cardValidity", cardValidity);
             body.put("cardType", cardType);
+            body.put("publicKey", publicKey);
         } catch (JSONException e) {
             e.printStackTrace();
         }

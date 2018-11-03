@@ -24,26 +24,16 @@ import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
 import com.cmov.tp1.customer.utility.MonthYearPickerDialog;
 import com.cmov.tp1.customer.utility.RSA;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.security.KeyPair;
-import java.security.KeyStoreException;
-import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
-import java.security.cert.Certificate;
 import java.security.PublicKey;
-import java.security.cert.CertificateException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-
-import javax.crypto.SecretKey;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
@@ -103,15 +93,20 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         PublicKey pubKey = keyPair.getPublic();
-        PrivateKey privateKey = keyPair.getPrivate();
+        final PrivateKey privateKey = keyPair.getPrivate();
 
-        storeInfoKey(privateKey, "uuid");
 
-        new RegisterRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, new HTTPRequestUtility.OnRequestCompleted() {
+        new RegisterRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, pubKey.toString(), new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, "SUCCESSFUL REGISTER -> "+json.toString());
-                // TODO KEEP id smwhere
+
+                try {
+                    storeInfoKey(privateKey, json.getString("uuid"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 Toast.makeText(activity.getBaseContext(), "Registered successfully!", Toast.LENGTH_SHORT).show();
                 activity.finish();
             }
@@ -145,6 +140,8 @@ public class RegisterActivity extends AppCompatActivity {
         SharedPreferences sPrefs = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = sPrefs.edit();
         editor.putString("uuid", uuid);
-        editor.commit();
+        editor.putString("privateKey", privateKey.toString());
+        //editor.commit();
+        editor.apply();
     }
 }

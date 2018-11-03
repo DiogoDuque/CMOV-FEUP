@@ -26,8 +26,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    //Call Register.registerCostumer and then send uuid (res.send())
-    const { name, nif, username, password, cardType, cardNumber, cardValidity } = req.body;
+    const { name, nif, username, password, cardType, cardNumber, cardValidity, publicKey } = req.body;
     if(!name) {
         res.status(400).send('Name not found in request');
         return;
@@ -56,8 +55,10 @@ router.post('/register', (req, res) => {
         res.status(400).send('cardValidity not found in request');
         return;
     }
-
-    const publicKey = 'sadljfsf'; //TODO
+    if(!publicKey) {
+        res.status(400).send('publicKey not found in request');
+        return;
+    }
 
     bcrypt.genSalt(10, (saltErr, salt) => {
         if (saltErr) {
@@ -69,9 +70,9 @@ router.post('/register', (req, res) => {
               Query.register(name, nif, username, hash, cardType, cardNumber,
                             cardValidity, publicKey, (result, err) => {
                   if(result) {
-                      res.status(200).send(result);
+                      res.status(200).send(`{uuid: "${result}"}`);
                   } else {
-                      res.status(400).send(err);
+                      res.status(400).send(`{err: "${err}"}`);
                   }
               });
           }
