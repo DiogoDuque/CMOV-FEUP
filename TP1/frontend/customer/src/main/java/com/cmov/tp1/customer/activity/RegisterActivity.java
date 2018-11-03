@@ -1,35 +1,36 @@
 package com.cmov.tp1.customer.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.security.KeyPairGeneratorSpec;
+import android.security.keystore.KeyProperties;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.utility.RSA;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-
-import javax.crypto.SecretKey;
+import java.util.Calendar;
+import javax.security.auth.x500.X500Principal;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    public static final String KEY_ALGORITHM = "RSA";
+    public static final String KEY_STORE_PROVIDER = "AndroidKeyStore";
+    public static final int keySize = 512;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +45,22 @@ public class RegisterActivity extends AppCompatActivity {
                     completeRegister();
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
+                } catch (InvalidAlgorithmParameterException e) {
+                    e.printStackTrace();
+                } catch (NoSuchProviderException e) {
+                    e.printStackTrace();
+                } catch (CertificateException e) {
+                    e.printStackTrace();
+                } catch (KeyStoreException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
     }
 
-    private void completeRegister() throws NoSuchAlgorithmException {
+    private void completeRegister() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchProviderException, CertificateException, KeyStoreException, IOException {
         String name = findViewById(R.id.name_input).toString();
         String username = findViewById(R.id.username_input).toString();
         String NIF = findViewById(R.id.nif_input).toString();
@@ -60,19 +71,40 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        KeyPair keyPair = RSA.buildKeyPair();
+        KeyPair keyPair = generateKeys();
         PublicKey pubKey = keyPair.getPublic();
         PrivateKey privateKey = keyPair.getPrivate();
-
-        storeInfoKey(privateKey, "uuid");
 
         Intent intent = new Intent(this, ShowsActivity.class);
         startActivity(intent);
     }
 
-    private void storeInfoKey(PrivateKey privateKey, String uuid){
-        //keystore
+    private KeyPair generateKeys() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchProviderException, KeyStoreException, CertificateException, IOException {
+        KeyStore store = KeyStore.getInstance(KEY_STORE_PROVIDER);
+        store.load(null);
 
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(KEY_ALGORITHM, KEY_STORE_PROVIDER);
+        keyPairGenerator.initialize(keySize);
+
+        Calendar start = Calendar.getInstance();
+        Calendar end = Calendar.getInstance();
+        end.add(Calendar.YEAR, 1);
+
+        KeyPairGeneratorSpec spec = new KeyPairGeneratorSpec.Builder(this)
+                .setAlias("RSA_Keys")
+                .setKeySize(keySize)
+                .setKeyType(KeyProperties.KEY_ALGORITHM_RSA)
+                .setEndDate(end.getTime())
+                .setStartDate(start.getTime())
+                .setSerialNumber(BigInteger.ONE)
+                .setSubject(new X500Principal("CN = Secured Preference Store, O = Devliving Online"))
+                .build();
+
+        keyPairGenerator.initialize(spec);
+        return keyPairGenerator.genKeyPair();
+    }
+
+    private void saveUUID(String uuid){
         SharedPreferences sPrefs = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = sPrefs.edit();
         editor.putString("uuid", uuid);

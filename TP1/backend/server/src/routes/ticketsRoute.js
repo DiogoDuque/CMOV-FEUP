@@ -14,6 +14,40 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/used_tickets', (req, res) => {
+    const { costumer_id } = req.body;
+    Query.getUsedTickets(costumer_id, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
+router.get('/not_used_tickets', (req, res) => {
+    const { costumer_id } = req.body;
+    Query.getNotUsedTickets(costumer_id, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
+
+router.get('/all_tickets', (req, res) => {
+    const { costumer_id } = req.body;
+    Query.getAllTickets(costumer_id, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
 router.post('/buy_ticket', (req, res) => {
     const { user, show, place } = req.body;
     Query.buyTicket(user, show, place, (result, err) => {

@@ -79,7 +79,7 @@
             android:layout_height="58dp"
             android:background="@drawable/mybutton"
             android:fontFamily="@font/monserrat"
-            android:text="Validate Voucher"
+            android:text="Validate Vouchers"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16dp"
