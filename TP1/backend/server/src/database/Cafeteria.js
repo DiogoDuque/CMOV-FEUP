@@ -3,7 +3,7 @@ const execute = require('./DB');
 module.exports = {
 
     makeOrder(date, costumer, callback){
-        const baseQuery = 'INSERT cafeteria_order(date, costumer_id) VALUES(?, ?)';
+        const baseQuery = 'INSERT cafeteria_order(date, costumer_id) VALUES($1,$2)';
         execute(baseQuery, [date, costumer], (response, err) => {
             if (err) {
                 callback(null, err);
@@ -15,7 +15,7 @@ module.exports = {
     },
 
     addProductToOrder(order, product, voucher, callback){
-        const baseQuery = 'INSERT cafeteria_order_product(order_id, product_id, voucher_id) VALUES(?, ?, ?)';
+        const baseQuery = 'INSERT cafeteria_order_product(order_id, product_id, voucher_id) VALUES($1,$2,$3)';
         execute(baseQuery, [order, product, vocuher], (response, err) => {
             if (err) {
                 callback(null, err);
@@ -28,9 +28,11 @@ module.exports = {
 
     getOrders(date, callback){
         let baseQuery = "";
-        if(date !== null){
-            baseQuery = 'SELECT id, date FROM cafeteria_order WHERE date = ?';
-            execute(baseQuery, [id], (response, err) => {
+        if(date){
+            baseQuery = 'SELECT cafeteria_order.id, cafeteria_order.date FROM cafeteria_order, cafeteria_order_product, voucher'
+                + ' WHERE voucher.is_used = FALSE AND cafeteria_order_product.voucher_id = voucher.id AND cafeteria_order_product.order_id = cafeteria.id'
+                + ' ORDER BY date';
+            execute(baseQuery, [date], (response, err) => {
                 if (err) {
                     callback(null, err);
                 }
@@ -40,7 +42,8 @@ module.exports = {
             });
         }
         else{
-            baseQuery = 'SELECT id, date FROM cafeteria_order';
+            baseQuery = 'SELECT cafeteria_order.id, cafeteria_order.date FROM cafeteria_order, cafeteria_order_product, voucher'
+                + ' WHERE voucher.is_used = FALSE AND cafeteria_order_product.voucher_id = voucher.id AND cafeteria_order_product.order_id = cafeteria.id';
             execute(baseQuery, [], (response, err) => {
                 if (err) {
                     callback(null, err);
@@ -53,7 +56,7 @@ module.exports = {
     },
 
     getOrder(id, callback){
-        const baseQuery = 'SELECT id, date FROM cafeteria_order WHERE id = ?';
+        const baseQuery = 'SELECT id, date FROM cafeteria_order WHERE id = $1';
         execute(baseQuery, [id], (response, err) => {
             if (err) {
                 callback(null, err);
@@ -65,9 +68,9 @@ module.exports = {
     },
 
     getOrderProducts(id, callback){
-        const baseQuery = 'SELECT cafeteria_order.id, cafeteria_product.name, cafeteria_order_produtc.voucher_id'
+        const baseQuery = 'SELECT cafeteria_order.id, cafeteria_product.name, cafeteria_order, product.voucher_id'
             + ' FROM cafeteria_order, cafeteria_product, cafeteria_order_product'
-            + ' WHERE cafeteria_order.id = ? AND cafeteria_order_product.order_id = cafeteria_order.id'
+            + ' WHERE cafeteria_order.id = $1 AND cafeteria_order_product.order_id = cafeteria_order.id'
             + ' AND cafeteria_product = cafeteria_order_product.product.id' ;
         execute(baseQuery, [id], (response, err) => {
             if (err) {
