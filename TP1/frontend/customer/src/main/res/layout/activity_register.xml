@@ -1,192 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    tools:context=".activity.RegisterActivity">
-
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="146dp"
-        android:layout_height="122dp"
-        android:layout_margin="30dp"
-        app:srcCompat="@mipmap/ticket" />
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:background="?android:attr/listDivider" />
 
         <TextView
-            android:id="@+id/name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:fontFamily="@font/monserrat"
-            android:text="Name"
-            android:textColor="@color/light_orange"
-            android:textStyle="bold" />
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Personal Information"/>
 
-        <EditText
-            android:id="@+id/name_input"
-            android:layout_width="177dp"
+        <TableLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints="name"
-            android:ems="10"
-            android:inputType="text" />
-    </LinearLayout>
+            android:layout_marginStart="35dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal">
+            <TableRow>
+                <TextView
+                    android:id="@+id/name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="Name" />
+
+                <EditText
+                    android:id="@+id/name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="name"
+                    android:ems="10"
+                    android:inputType="text" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/username_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="Username" />
+
+                <EditText
+                    android:id="@+id/username_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="username"
+                    android:ems="10"
+                    android:inputType="text" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/nif_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="NIF" />
+
+                <EditText
+                    android:id="@+id/nif_input"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="nif"
+                    android:ems="10"
+                    android:inputType="number" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/password_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="Password" />
+
+                <EditText
+                    android:id="@+id/password_input"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="password"
+                    android:ems="10"
+                    android:inputType="textPassword" />
+            </TableRow>
+        </TableLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="?android:attr/listDivider" />
 
         <TextView
-            android:id="@+id/username_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:fontFamily="@font/monserrat"
-            android:text="Username"
-            android:textColor="@color/light_orange"
-            android:textStyle="bold" />
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Credit Card Information"/>
 
-        <EditText
-            android:id="@+id/username_input"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/monserrat"
-            android:autofillHints="username"
-            android:ems="10"
-            android:inputType="text" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/nif_label"
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:fontFamily="@font/monserrat"
-            android:text="NIF"
-            android:textColor="@color/light_orange"
-            android:textStyle="bold" />
+            android:layout_marginStart="35dp">
 
-        <EditText
-            android:id="@+id/nif_input"
-            android:layout_width="197dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints="nif"
-            android:ems="10"
-            android:fontFamily="@font/monserrat"
-            android:inputType="text" />
-    </LinearLayout>
+            <TableRow>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/card_number_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="Number" />
 
-        <TextView
-            android:id="@+id/pass_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="Password"
-            android:fontFamily="@font/monserrat"
-            android:textColor="@color/light_orange"
-            android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/card_number_input"
+                    android:layout_width="177dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="number"
+                    android:ems="10"
+                    android:inputType="number" />
+            </TableRow>
 
-        <EditText
-            android:id="@+id/pass_input"
-            android:layout_width="152dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/monserrat"
-            android:autofillHints="password"
-            android:ems="10"
-            android:inputType="textPassword" />
-    </LinearLayout>
+            <TableRow>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/card_code_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="CSC" />
+
+                <EditText
+                    android:id="@+id/card_code_input"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="csc"
+                    android:ems="10"
+                    android:inputType="textPassword" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_gravity="start"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/card_validity_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Date" />
+
+                    <EditText
+                        android:id="@+id/card_validity_input"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autofillHints="validity"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:ems="10"
+                        android:inputType="none" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/card_type_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="Card Type" />
+
+                <RadioGroup
+                    android:id="@+id/card_type_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@id/card_type_mastercard">
+
+                    <RadioButton
+                        android:id="@+id/card_type_mastercard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="MasterCard" />
+
+                    <RadioButton
+                        android:id="@+id/card_type_lvisa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Visa" />
+                </RadioGroup>
+
+            </TableRow>
+        </TableLayout>
 
         <Button
-            android:id="@+id/navigate_card"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:backgroundTint="#ffffffff"
-            android:fontFamily="@font/monserrat"
-            android:text="Credit Card"
-            android:textAllCaps="false"
-            android:textColor="@color/orange"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/mybutton"
-        android:fontFamily="@font/monserrat"
-        android:textSize="16dp"
-        android:text="Register"
-        android:textAllCaps="false"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/signin_label"
+            android:id="@+id/register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Do you have a login already?" />
-
-        <Button
-            android:id="@+id/navigate_register_button"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:fontFamily="@font/monserrat"
-            android:layout_height="38dp"
-            android:backgroundTint="#ffffffff"
-            android:text="Login here"
-            android:textAllCaps="false"
-            android:textColor="@color/orange"
-            android:textStyle="bold" />
-
+            android:layout_gravity="center"
+            android:text="Register" />
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

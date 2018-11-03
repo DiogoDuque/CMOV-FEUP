@@ -1,4 +1,4 @@
-package com.cmov.tp1.customer.utility;
+package com.cmov.tp1.customer.networking.core;
 
 import android.content.Context;
 
@@ -20,7 +20,7 @@ public class HTTPRequestUtility {
         void onError(JSONObject json);
     }
 
-    private static final String HOST = "http://10.227.156.175";
+    private static final String HOST = "http://192.168.1.247";
     private static HTTPRequestUtility instance = null;
     private RequestQueue queue;
     private static Context context;
@@ -62,9 +62,11 @@ public class HTTPRequestUtility {
             public void onErrorResponse(VolleyError error) {
                 JSONObject json = new JSONObject();
                 try {
-                    json.put("code", error.networkResponse.statusCode);
                     json.put("message", error.getMessage());
-                    json.put("data", new String(error.networkResponse.data, "UTF-8"));
+                    if(error.networkResponse != null) {
+                        json.put("code", error.networkResponse.statusCode);
+                        json.put("data", new String(error.networkResponse.data, "UTF-8"));
+                    }
                 } catch (JSONException|UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

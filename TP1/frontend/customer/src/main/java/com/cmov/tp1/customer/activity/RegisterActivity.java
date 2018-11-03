@@ -1,81 +1,147 @@
 package com.cmov.tp1.customer.activity;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.networking.RegisterRequest;
+import com.cmov.tp1.customer.networking.core.HTTPRequestUtility;
+import com.cmov.tp1.customer.utility.MonthYearPickerDialog;
 import com.cmov.tp1.customer.utility.RSA;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.KeyPair;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-
-import javax.crypto.SecretKey;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
+    private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Button registerButton = findViewById(R.id.navigate_register_button);
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        Button registerBtn = findViewById(R.id.register_button);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    completeRegister();
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
+                register();
+            }
+        });
+
+        final EditText cardDateInput = findViewById(R.id.card_validity_input);
+        cardDateInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickCardDate();
             }
         });
     }
 
-    private void completeRegister() throws NoSuchAlgorithmException {
-        String name = findViewById(R.id.name_input).toString();
-        String username = findViewById(R.id.username_input).toString();
-        String NIF = findViewById(R.id.nif_input).toString();
-        String password = findViewById(R.id.pass_input).toString();
+    private void register() {
+        EditText nameInput = findViewById(R.id.name_input);
+        EditText nifInput = findViewById(R.id.nif_input);
+        EditText usernameInput = findViewById(R.id.username_input);
+        EditText passwordInput = findViewById(R.id.password_input);
+        EditText cardCodeInput = findViewById(R.id.card_code_input);
+        EditText cardNumberInput = findViewById(R.id.card_number_input);
+        EditText cardValidityInput = findViewById(R.id.card_validity_input);
+        RadioGroup cardTypeGroup = findViewById(R.id.card_type_group);
+        RadioButton cardTypeSelected = findViewById(cardTypeGroup.getCheckedRadioButtonId());
+        String name = nameInput.getText().toString();
 
-        if(name.length() == 0 || username.length() == 0 || NIF.length() == 0 || password.length() == 0){
-            Toast.makeText(this, "Name, username, NIF or password is empty", Toast.LENGTH_SHORT).show();
+        String nif = nifInput.getText().toString();
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
+        String cardNumber = cardNumberInput.getText().toString();
+        String cardCode = cardCodeInput.getText().toString();
+        String cardValidity = cardValidityInput.getText().toString();
+        String cardType = cardTypeSelected.getText().toString();
+        final Activity activity = this; // useful for popping this activity from below callbacks
+        if(name.length() == 0 || username.length()==0 || nif.length() != 9 || password.length()==0 ||
+                cardNumber.length() != 16 || cardCode.length() != 3 || cardValidity.length()==0 || cardType.length() == 0) {
+            Toast.makeText(this, "There are empty/incorrect fields.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        KeyPair keyPair = RSA.buildKeyPair();
+        KeyPair keyPair = null;
+        try {
+            keyPair = RSA.buildKeyPair();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         PublicKey pubKey = keyPair.getPublic();
-        PrivateKey privateKey = keyPair.getPrivate();
+        final PrivateKey privateKey = keyPair.getPrivate();
 
-        storeInfoKey(privateKey, "uuid");
 
-        Intent intent = new Intent(this, ShowsActivity.class);
-        startActivity(intent);
+        new RegisterRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, pubKey.toString(), new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+                Log.i(TAG, "SUCCESSFUL REGISTER -> "+json.toString());
+
+                try {
+                    storeInfoKey(privateKey, json.getString("uuid"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(activity.getBaseContext(), "Registered successfully!", Toast.LENGTH_SHORT).show();
+                activity.finish();
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+                Toast.makeText(getBaseContext(), json.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
-    private void storeInfoKey(PrivateKey privateKey, String uuid){
+    private void pickCardDate() {
+        final EditText cardDateInput = findViewById(R.id.card_validity_input);
+        final Calendar calendar = Calendar.getInstance();
+        MonthYearPickerDialog pd = new MonthYearPickerDialog();
+        pd.setListener(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month-1);
+                // update
+                cardDateInput.setText(new SimpleDateFormat("MM/yy", Locale.UK).format(calendar.getTime()));
+            }
+        });
+        pd.show(getSupportFragmentManager(), "MonthYearPickerDialog");
+    }
+
         //keystore
+    private void storeInfoKey(PrivateKey privateKey, String uuid){
 
         SharedPreferences sPrefs = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = sPrefs.edit();
         editor.putString("uuid", uuid);
-        editor.commit();
+        editor.putString("privateKey", privateKey.toString());
+        //editor.commit();
+        editor.apply();
     }
 }
