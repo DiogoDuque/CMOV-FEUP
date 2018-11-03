@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/next_shows', (req, res) => {
     Query.getNextShows((result, err) => {
         if(result) {
-            res.status(200).send(`{${JSON.stringify(result.rows)}}`);
+            res.status(200).send(`{shows:${JSON.stringify(result.rows)}}`);
         } else {
             res.status(400).send(err);
         }

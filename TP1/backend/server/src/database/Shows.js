@@ -3,7 +3,7 @@ const execute = require('./DB');
 module.exports = {
 
     getNextShows(callback){
-        const baseQuery = 'SELECT name, "date", price FROM "event"';
+        const baseQuery = 'SELECT * FROM "event"';
         execute(baseQuery, [], (response, err) => {
             if (err) {
                 callback(null, err);
