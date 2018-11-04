@@ -3,6 +3,7 @@ package com.cmov.tp1.customer.utility;
 import android.content.Context;
 import android.security.KeyPairGeneratorSpec;
 import android.security.keystore.KeyProperties;
+import android.util.Log;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -16,6 +17,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
 import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
 import java.util.Calendar;
@@ -25,6 +28,8 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.security.auth.x500.X500Principal;
+
+import static com.android.volley.VolleyLog.TAG;
 
 public class RSA {
 
@@ -83,5 +88,32 @@ public class RSA {
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
 
         return cipher.doFinal(encrypted);
+    }
+
+    public static byte[] sign(byte[] data) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableEntryException, InvalidKeyException, SignatureException {
+        KeyStore ks = KeyStore.getInstance("ANDROID_KEY_STORE");
+        ks.load(null);
+        KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
+        if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
+            Log.w(TAG, "Not an instance of a PrivateKeyEntry");
+            return null;
+        }
+        Signature s = Signature.getInstance(SIGNATURE_ALGORITHM);
+        s.initSign(((KeyStore.PrivateKeyEntry) entry).getPrivateKey());
+        s.update(data);
+        return s.sign();
+    }
+
+    public static boolean verify(byte[] data, byte[] signature) throws KeyStoreException, UnrecoverableEntryException, NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+        KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
+        KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
+        if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
+            Log.w(TAG, "Not an instance of a PrivateKeyEntry");
+            return false;
+        }
+        Signature s = Signature.getInstance(SIGNATURE_ALGORITHM);
+        s.initVerify(((KeyStore.PrivateKeyEntry) entry).getCertificate());
+        s.update(data);
+        return s.verify(signature);
     }
 }
