@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.core.Show;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 public class ShowPageActivity extends AppCompatActivity {
+
+    private Show show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +25,10 @@ public class ShowPageActivity extends AppCompatActivity {
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
 
-        addValuesToSpinner();
+        Bundle b = getIntent().getExtras();
+        show = new Show(b.getInt("id"), b.getString("name"), b.getString("date"), b.getFloat("price"));
+
+        setShow();
 
         Button buyTicketButton = findViewById(R.id.buy_ticket_button);
         buyTicketButton.setOnClickListener(new View.OnClickListener() {
@@ -32,24 +39,25 @@ public class ShowPageActivity extends AppCompatActivity {
         });
     }
 
-    private void addValuesToSpinner(){
-        //Exemplo
-        String[] arraySpinner = new String[] {
-                "1", "2", "3", "4", "5"
-        };
-
-        Spinner s = (Spinner) findViewById(R.id.show_date_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
+    private void setShow() {
+        TextView nameLabel = findViewById(R.id.show_name_label);
+        nameLabel.setText(show.getName());
+        TextView dateLabel = findViewById(R.id.show_date_label);
+        dateLabel.setText(show.getDate());
+        TextView priceLabel = findViewById(R.id.show_price_label);
+        priceLabel.setText(Float.toString(show.getPrice()));
     }
 
     private void changeToBuy(){
-        Spinner spinner = (Spinner) findViewById(R.id.show_date_spinner);
-        int showID = Integer.valueOf(spinner.getSelectedItemPosition());
-
         Intent intent = new Intent(this, BuyTicketActivity.class);
+
+        Bundle b = new Bundle();
+        b.putInt("id", show.getId());
+        b.putString("name", show.getName());
+        b.putString("date", show.getDate());
+        b.putFloat("price", show.getPrice());
+        intent.putExtras(b); //Put your id to your next Intent
+
         startActivity(intent);
     }
 }

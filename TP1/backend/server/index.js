@@ -36,11 +36,8 @@ passport.deserializeUser((user, done) => {
 // Session
 app.use(session({
   secret: 'lalala cmov tp1',
-  resave: true,
+  resave: false,
   saveUninitialized: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
-  },
 })); // session secret
 
 app.use(passport.initialize());
