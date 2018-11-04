@@ -42,14 +42,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2" />
-          <entry key="js" value="5552" />
+          <entry key="js" value="5555" />
           <entry key="sql" value="187" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2" />
-          <entry key="JavaScript" value="5547" />
+          <entry key="JavaScript" value="5550" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="188" />
         </counts>
@@ -67,16 +67,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="57" column="21" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="21" />
+            <state relative-caret-position="369">
+              <caret line="69" column="4" selection-start-line="69" selection-start-column="4" selection-end-line="69" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="293">
@@ -127,8 +127,8 @@
         <option value="$PROJECT_DIR$/server/src/routes/voucherRoute.js" />
         <option value="$PROJECT_DIR$/server/src/database/Profile.js" />
         <option value="$PROJECT_DIR$/server/src/database/Vouchers.js" />
-        <option value="$PROJECT_DIR$/server/src/database/Cafeteria.js" />
         <option value="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" />
+        <option value="$PROJECT_DIR$/server/src/database/Cafeteria.js" />
       </list>
     </option>
   </component>
@@ -167,32 +167,7 @@
             <path>
               <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="database" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="database" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="routes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -262,12 +237,12 @@
       <workItem from="1541078448308" duration="1269000" />
       <workItem from="1541174404487" duration="1302000" />
       <workItem from="1541235229725" duration="802000" />
-      <workItem from="1541321137964" duration="270000" />
+      <workItem from="1541321137964" duration="632000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20634000" />
+    <option name="totallyTimeSpent" value="20996000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
@@ -414,13 +389,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="18" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/init.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
@@ -428,17 +396,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="57" column="21" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="68" column="18" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="69" column="4" selection-start-line="69" selection-start-column="4" selection-end-line="69" selection-end-column="6" />
         </state>
       </provider>
     </entry>
