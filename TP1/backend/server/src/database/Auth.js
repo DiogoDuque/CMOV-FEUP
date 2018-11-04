@@ -58,7 +58,7 @@ module.exports = {
    * @param {function} callback callback for the executed command.
    */
   checkIfLoginExists(username, password, callback) {
-    const baseQuery = 'SELECT password FROM customer WHERE username = $1';
+    const baseQuery = 'SELECT password, id FROM customer WHERE username = $1';
     execute(baseQuery, [username], (response, err) => {
       if (err) {
         callback(null, err);
@@ -67,7 +67,7 @@ module.exports = {
           if (err) {
             callback(null, err);
           } else if (res) {
-            callback(res);
+            callback(response.rows[0].id);
           } else {
             showHash(password, callback);
           }

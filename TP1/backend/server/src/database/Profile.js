@@ -63,7 +63,7 @@ module.exports = {
     },
 
     setBalance(id, adding, callback){
-        const baseQuery = 'UPDATE customer SET balance = balance + $1 WHERE id = $2';
+        const baseQuery = 'UPDATE customer SET balance = balance + $1 WHERE id = $2 RETURNING balance';
         execute(baseQuery, [adding, id], (response, err) => {
             if (err) {
                 callback(null, err);

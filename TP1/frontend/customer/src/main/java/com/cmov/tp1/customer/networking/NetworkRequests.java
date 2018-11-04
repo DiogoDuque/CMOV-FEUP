@@ -3,6 +3,7 @@ package com.cmov.tp1.customer.networking;
 import android.content.Context;
 
 import com.android.volley.Request;
+import com.cmov.tp1.customer.core.Show;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -210,15 +211,13 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void buyTicket(Context context, int costumer_id, int show, String place, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void buyTicket(Context context, Show show, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/tickets";
         final int METHOD = Request.Method.POST;
 
         JSONObject body = new JSONObject();
         try {
-            body.put("user", costumer_id);
-            body.put("show", show);
-            body.put("place", place);
+            body.put("showId", show.getId());
         } catch (JSONException e) {
             e.printStackTrace();
         }
