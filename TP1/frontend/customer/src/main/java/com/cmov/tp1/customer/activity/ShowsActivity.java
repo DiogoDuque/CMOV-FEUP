@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +53,16 @@ public class ShowsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position) {
                         Show show = showList.get(position);
-                        Toast.makeText(getApplicationContext(), show.getName() + " is selected!", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(ShowsActivity.this, ShowPageActivity.class);
+                        Bundle b = new Bundle();
+                        b.putInt("id", show.getId());
+                        b.putString("name", show.getName());
+                        b.putString("date", show.getDate());
+                        b.putFloat("price", show.getPrice());
+                        intent.putExtras(b); //Put your id to your next Intent
+                        startActivity(intent);
+                        finish();
                     }
 
                     @Override

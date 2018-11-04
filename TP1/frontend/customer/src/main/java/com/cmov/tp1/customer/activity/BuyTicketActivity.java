@@ -1,24 +1,26 @@
 package com.cmov.tp1.customer.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.core.Show;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 public class BuyTicketActivity extends AppCompatActivity {
 
-    private int quantity = 0;
-    private double totalToPay = 0.0;
+    private Show show;
+    private int quantity = 1;
+    private float totalToPay = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,9 @@ public class BuyTicketActivity extends AppCompatActivity {
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
 
-        addValuesToSpinner();
+        Bundle b = getIntent().getExtras();
+        show = new Show(b.getInt("id"), b.getString("name"), b.getString("date"), b.getFloat("price"));
+        setShow();
 
         Button minusButton = findViewById(R.id.minus_button);
         minusButton.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +42,7 @@ public class BuyTicketActivity extends AppCompatActivity {
             }
         });
 
-        Button plusButton = findViewById(R.id.minus_button);
+        Button plusButton = findViewById(R.id.plus_button);
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,47 +51,64 @@ public class BuyTicketActivity extends AppCompatActivity {
         });
     }
 
-    private void addValuesToSpinner(){
-        //Exemplo
-        String[] arraySpinner = new String[] {
-                "1", "2", "3", "4", "5"
-        };
+    private void setShow() {
+        TextView nameLabel = findViewById(R.id.show_label);
+        nameLabel.setText(show.getName());
+        TextView dateLabel = findViewById(R.id.show_date);
+        dateLabel.setText(show.getDate());
+        TextView priceLabel = findViewById(R.id.show_price);
+        priceLabel.setText(Float.toString(show.getPrice()));
 
-        Spinner s = (Spinner) findViewById(R.id.show_date_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
+        TextView quantityView = findViewById(R.id.quantity_label);
+        quantityView.setText("1");
+        TextView total = findViewById(R.id.total);
+        total.setText(Float.toString(show.getPrice()));
     }
 
     private void finishPurchase(){
-        Spinner spinner = (Spinner) findViewById(R.id.show_buy_spinner);
-        int showID = Integer.valueOf(spinner.getSelectedItemPosition());
-        int quantity = Integer.parseInt(findViewById(R.id.quantity_label).toString());
+        int showID = show.getId();
 
-        if(quantity < 0){
+        if(quantity <= 0){
             Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Intent intent = new Intent(this, ShowsActivity.class);
-        startActivity(intent);
+        //TODO make something here
+        return;
+
+        //Intent intent = new Intent(this, ShowsActivity.class);
+        //startActivity(intent);
     }
 
     private void changeQuantity(boolean type){
         if(type)
             quantity++;
-        else
+        else {
+            if(quantity <=1){
+                Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
+                return;
+            }
             quantity--;
+        }
 
-        totalToPay = quantity * 0;
+        totalToPay = quantity * show.getPrice();
 
         TextView quantityText = (TextView)findViewById(R.id.quantity_label);
-        quantityText.setText(quantity);
+        quantityText.setText(Integer.toString(quantity));
 
         TextView TotalText = (TextView)findViewById(R.id.total);
-        TotalText.setText((int) totalToPay);
+        TotalText.setText(Float.toString(totalToPay));
+    }
 
-        startActivity(new Intent(this, BuyTicketActivity.class));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
