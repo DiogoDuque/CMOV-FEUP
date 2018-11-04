@@ -84,6 +84,19 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
+    public static void getProfileID(Context context, String username, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/profile/user_id";
+        final int METHOD = Request.Method.GET;
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("username", username);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+    }
+
     public static void getCreditCard(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile/credit_card";
         final int METHOD = Request.Method.GET;
@@ -164,7 +177,7 @@ public abstract class NetworkRequests {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("costumer_id", costumer_id);
+            body.put("customer_id", costumer_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -177,7 +190,7 @@ public abstract class NetworkRequests {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("costumer_id", costumer_id);
+            body.put("customer_id", costumer_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -190,7 +203,7 @@ public abstract class NetworkRequests {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("costumer_id", costumer_id);
+            body.put("customer_id", costumer_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -219,7 +232,7 @@ public abstract class NetworkRequests {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("costumer_id", costumer_id);
+            body.put("customer_id", costumer_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -232,7 +245,7 @@ public abstract class NetworkRequests {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("costumer_id", costumer_id);
+            body.put("customer_id", costumer_id);
             body.put("status", status);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -342,7 +355,7 @@ public abstract class NetworkRequests {
         JSONObject body = new JSONObject();
         try {
             body.put("date", date);
-            body.put("costumer", costumer_id);
+            body.put("customer", costumer_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }

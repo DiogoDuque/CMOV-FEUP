@@ -28,7 +28,7 @@ module.exports = {
                                 else{
                                     callback(response);
                                 }
-                            }
+                            });
                         }
                     });
                 }

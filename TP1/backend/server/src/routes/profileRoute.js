@@ -14,6 +14,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/user_id', (req, res) => {
+    const { username } = req.query;
+    Query.getProfileID(username, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
 router.get('/credit_card', (req, res) => {
     const { id } = req.query;
     Query.getCreditCard(id, (result, err) => {

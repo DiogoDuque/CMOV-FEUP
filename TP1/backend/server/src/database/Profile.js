@@ -9,7 +9,19 @@ module.exports = {
                 callback(null, err);
             }
             else {
-                callback(res);
+                callback(response);
+            }
+        });
+    },
+
+    getProfileID(username, callback){
+        const baseQuery = 'SELECT id FROM customer WHERE username = $1';
+        execute(baseQuery, [username], (response, err) => {
+            if (err) {
+                callback(null, err);
+            }
+            else {
+                callback(response.rows[0].id);
             }
         });
     },
