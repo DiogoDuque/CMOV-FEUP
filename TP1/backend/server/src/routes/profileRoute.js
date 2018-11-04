@@ -4,7 +4,7 @@ const Query = require('../database/Profile');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const { id } = req.body;
+    const { id } = req.query;
     Query.getProfileInfo(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
@@ -14,8 +14,19 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/user_id', (req, res) => {
+    const { username } = req.query;
+    Query.getProfileID(username, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
 router.get('/credit_card', (req, res) => {
-    const { id } = req.body;
+    const { id } = req.query;
     Query.getCreditCard(id, (result, err) => {
         if(result) {
             res.status(200).send(result);

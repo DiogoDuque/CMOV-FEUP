@@ -4,8 +4,8 @@ const Query = require('../database/Vouchers');
 const router = express.Router();
 
 router.get('/my_vouchers', (req, res) => {
-    const { costumer_id } = req.body;
-    Query.getMyVouchers(costumer_id, (result, err) => {
+    const { customer_id } = req.query;
+    Query.getMyVouchers(customer_id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -15,8 +15,8 @@ router.get('/my_vouchers', (req, res) => {
 });
 
 router.get('/my_vouchers_by_status', (req, res) => {
-    const { costumer_id, status } = req.body;
-    Query.getMyVouchersByStatus(costumer_id, status, (result, err) => {
+    const { customer_id, status } = req.query;
+    Query.getMyVouchersByStatus(customer_id, status, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -26,7 +26,7 @@ router.get('/my_vouchers_by_status', (req, res) => {
 });
 
 router.get('/voucher_info', (req, res) => {
-    const { id } = req.body;
+    const { id } = req.query;
     Query.getVoucherInfo(id, (result, err) => {
         if(result) {
             res.status(200).send(result);

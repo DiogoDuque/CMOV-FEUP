@@ -4,8 +4,7 @@ const Query = require('../database/Cafeteria');
 const router = express.Router();
 
 router.get('/orders', (req, res) => {
-    const { date} = req.body;
-    Query.getOrders(date, (result, err) => {
+    Query.getOrders((result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -15,8 +14,8 @@ router.get('/orders', (req, res) => {
 });
 
 router.get('/orders_costumer', (req, res) => {
-    const { id, is_used} = req.body;
-    Query.getOrdersCostumer(id, is_used, (result, err) => {
+    const { id } = req.query;
+    Query.getOrdersCostumer(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -26,7 +25,7 @@ router.get('/orders_costumer', (req, res) => {
 });
 
 router.get('/order', (req, res) => {
-    const { id } = req.body;
+    const { id } = req.query;
     Query.getOrderProducts(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
@@ -37,8 +36,19 @@ router.get('/order', (req, res) => {
 });
 
 router.get('/order_products', (req, res) => {
-    const { id } = req.body;
-    Query.getOrder(id, (result, err) => {
+    const { id } = req.query;
+    Query.getOrderProducts(id, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
+router.get('/order_vouchers', (req, res) => {
+    const { id } = req.query;
+    Query.getOrderVouchers(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -48,8 +58,8 @@ router.get('/order_products', (req, res) => {
 });
 
 router.post('/make_order', (req, res) => {
-    const { date, costumer } = req.body;
-    Query.makeOrder(date, costumer, (result, err) => {
+    const { date, customer } = req.body;
+    Query.makeOrder(date, customer, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

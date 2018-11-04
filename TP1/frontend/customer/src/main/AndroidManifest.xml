@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashScreenActivity">
+        <activity android:name=".activity.ShowPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,7 +23,6 @@
         <activity android:name=".activity.MyShowsActivity" />
         <activity android:name=".activity.VouchersActivity" />
         <activity android:name=".activity.VoucherPageActivity" />
-        <activity android:name=".activity.ShowPageActivity"/>
         <activity android:name=".activity.PurchaseFinishedActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.OrderFinishedActivity" />
