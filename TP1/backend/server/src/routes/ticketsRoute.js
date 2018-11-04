@@ -49,10 +49,12 @@ router.get('/all_tickets', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { user, show, place } = req.body;
-    Query.buyTicket(user, show, place, (result, err) => {
+    const { userId } = req.session;
+    const { showId } = req.body;
+    place = Math.floor(Math.random() * 100) + 1;
+    Query.buyTicket(userId, showId, place, (result, err) => {
         if(result) {
-            res.status(200).send(result);
+            res.status(200).send(JSON.stringify(result.rows[0]));
         } else {
             res.status(400).send(err);
         }

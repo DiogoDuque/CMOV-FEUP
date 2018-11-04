@@ -61,7 +61,7 @@ module.exports = {
                 callback(null, errBegin);
                 return;
             }
-            let baseQuery = 'INSERT INTO ticket(place, is_used, customer_id, event_id) VALUES ($1, FALSE, $2, $3)';
+            let baseQuery = 'INSERT INTO ticket(place, customer_id, event_id) VALUES ($1, $2, $3)';
             execute(baseQuery, [place, user_id, show_id], (response, err) => {
                 if (err) {
                     execute("ROLLBACK", [], () => callback(null, err));

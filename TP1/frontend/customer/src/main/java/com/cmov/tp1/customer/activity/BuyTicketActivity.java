@@ -14,7 +14,12 @@ import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.Show;
+import com.cmov.tp1.customer.networking.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class BuyTicketActivity extends AppCompatActivity {
 
@@ -49,6 +54,14 @@ public class BuyTicketActivity extends AppCompatActivity {
                 changeQuantity(true);
             }
         });
+
+        Button finishButton = findViewById(R.id.finish_button);
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishPurchase();
+            }
+        });
     }
 
     private void setShow() {
@@ -66,18 +79,33 @@ public class BuyTicketActivity extends AppCompatActivity {
     }
 
     private void finishPurchase(){
-        int showID = show.getId();
-
         if(quantity <= 0){
             Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        //TODO make something here
-        return;
+        NetworkRequests.buyTicket(this, show, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+                Intent intent = new Intent(BuyTicketActivity.this, PurchaseFinishedActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-        //Intent intent = new Intent(this, ShowsActivity.class);
-        //startActivity(intent);
+                Bundle b = new Bundle();
+                try {
+                    b.putFloat("balance", (float)json.getDouble("balance"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+                //TODO handle error
+            }
+        });
     }
 
     private void changeQuantity(boolean type){
