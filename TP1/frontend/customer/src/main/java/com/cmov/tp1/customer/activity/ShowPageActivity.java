@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 public class ShowPageActivity extends AppCompatActivity {
 
@@ -16,6 +17,9 @@ public class ShowPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_info);
+
+        ToolbarUtility.setupToolbar(this);
+        ToolbarUtility.setupDrawer(this);
 
         addValuesToSpinner();
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 public class PurchaseFinishedActivity extends AppCompatActivity {
 
@@ -14,6 +15,9 @@ public class PurchaseFinishedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_finished);
+
+        ToolbarUtility.setupToolbar(this);
+        ToolbarUtility.setupDrawer(this);
 
         Button makeOrderButton = findViewById(R.id.make_order);
         makeOrderButton.setOnClickListener(new View.OnClickListener() {

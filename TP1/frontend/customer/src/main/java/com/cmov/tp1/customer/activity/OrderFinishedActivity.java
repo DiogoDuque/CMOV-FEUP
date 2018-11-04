@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 public class OrderFinishedActivity extends AppCompatActivity {
 
@@ -14,6 +15,9 @@ public class OrderFinishedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_finished_cafeteria);
+
+        ToolbarUtility.setupToolbar(this);
+        ToolbarUtility.setupDrawer(this);
 
         Button noButton = findViewById(R.id.no_button);
         noButton.setOnClickListener(new View.OnClickListener() {

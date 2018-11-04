@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 public class VoucherPageActivity extends AppCompatActivity {
 
@@ -14,6 +15,9 @@ public class VoucherPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voucher_info);
+
+        ToolbarUtility.setupToolbar(this);
+        ToolbarUtility.setupDrawer(this);
 
         Button useVoucherButton = findViewById(R.id.use_voucher);
         useVoucherButton.setOnClickListener(new View.OnClickListener() {
