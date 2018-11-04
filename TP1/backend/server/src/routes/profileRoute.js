@@ -4,8 +4,8 @@ const Query = require('../database/Profile');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const { id } = req.query;
-    Query.getProfileInfo(id, (result, err) => {
+    const { userId } = req.session;
+    Query.getProfileInfo(userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -26,8 +26,8 @@ router.get('/user_id', (req, res) => {
 });
 
 router.get('/credit_card', (req, res) => {
-    const { id } = req.query;
-    Query.getCreditCard(id, (result, err) => {
+    const { userId } = req.session;
+    Query.getCreditCard(userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -37,8 +37,9 @@ router.get('/credit_card', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-    const { id, name, username, nif, password } = req.body;
-    Query.setMyProfile(id, name, username, nif, password, (result, err) => {
+    const { name, username, nif, password } = req.body;
+    const { userId } = req.session;
+    Query.setMyProfile(userId, name, username, nif, password, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -48,8 +49,9 @@ router.put('/', (req, res) => {
 });
 
 router.put('/credit_card', (req, res) => {
-    const { id, card_type, card_number, card_validity } = req.body;
-    Query.setCreditCard(id, card_type, card_number, card_validity, (result, err) => {
+    const { card_type, card_number, card_validity } = req.body;
+    const { userId } = req.session;
+    Query.setCreditCard(userId, card_type, card_number, card_validity, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

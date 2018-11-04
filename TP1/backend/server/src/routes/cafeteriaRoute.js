@@ -14,8 +14,8 @@ router.get('/orders', (req, res) => {
 });
 
 router.get('/orders_costumer', (req, res) => {
-    const { id } = req.query;
-    Query.getOrdersCostumer(id, (result, err) => {
+    const { userId } = req.session;
+    Query.getOrdersCostumer(userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -58,8 +58,9 @@ router.get('/order_vouchers', (req, res) => {
 });
 
 router.post('/make_order', (req, res) => {
-    const { date, customer } = req.body;
-    Query.makeOrder(date, customer, (result, err) => {
+    const { date } = req.body;
+    const { userId } = req.session;
+    Query.makeOrder(date, userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

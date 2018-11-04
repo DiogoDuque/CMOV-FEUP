@@ -72,17 +72,11 @@ public abstract class NetworkRequests {
     }
 
     //PROFILE REQUESTS
-    public static void getProfileInfo(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getProfileInfo(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
     public static void getProfileID(Context context, String username, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
@@ -98,26 +92,19 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void getCreditCard(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getCreditCard(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile/credit_card";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void updateProfileInfo(Context context, int id, String name, String username, String nif, String password, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void updateProfileInfo(Context context, String name, String username, String nif, String password, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile";
         final int METHOD = Request.Method.PUT;
 
         JSONObject body = new JSONObject();
         try {
-            body.put("id", id);
             body.put("name", name);
             body.put("username", username);
             body.put("nif", nif);
@@ -128,13 +115,12 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void updateCreditCardInfo(Context context, int id, String card_type, String card_number, Date card_validity, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void updateCreditCardInfo(Context context, String card_type, String card_number, Date card_validity, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile/credit_card";
         final int METHOD = Request.Method.PUT;
 
         JSONObject body = new JSONObject();
         try {
-            body.put("id", id);
             body.put("card_type", card_type);
             body.put("card_number", card_number);
             body.put("card_validity", card_validity);
@@ -144,13 +130,12 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void updateBalance(Context context, int id, double adding, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void updateBalance(Context context, double adding, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile/credit_card";
         final int METHOD = Request.Method.PUT;
 
         JSONObject body = new JSONObject();
         try {
-            body.put("id", id);
             body.put("adding", adding);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -172,43 +157,25 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void getUsedTickets(Context context, int costumer_id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getUsedTickets(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/tickets/used_tickets";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("customer_id", costumer_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void getNotUsedTickets(Context context, int costumer_id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getNotUsedTickets(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/tickets/not_used_tickets";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("customer_id", costumer_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void getAllTickets(Context context, int costumer_id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getAllTickets(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/tickets/all_tickets";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("customer_id", costumer_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
     public static void buyTicket(Context context, Show show, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
@@ -225,26 +192,19 @@ public abstract class NetworkRequests {
     }
 
     //VOUCHERS REQUESTS
-    public static void getMyVouchers(Context context, int costumer_id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getMyVouchers(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/vouchers/my_vouchers";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("customer_id", costumer_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void getMyVouchersByStatus(Context context, int costumer_id, boolean status, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getMyVouchersByStatus(Context context, boolean status, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/vouchers/my_vouchers_by_status";
         final int METHOD = Request.Method.GET;
 
         JSONObject body = new JSONObject();
         try {
-            body.put("customer_id", costumer_id);
             body.put("status", status);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -294,24 +254,18 @@ public abstract class NetworkRequests {
     }
 
     //CAFETERIA REQUESTS
-    public static void getOrders(Context context, boolean date, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getOrders(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/orders";
         final int METHOD = Request.Method.GET;
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void getOrdersCostumer(Context context, int costumer_id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getOrdersCostumer(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/orders_costumer";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", costumer_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
     public static void getOrderInfo(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
@@ -340,18 +294,11 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void makeOrder(Context context, Date date, int costumer_id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void makeOrder(Context context, Date date, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/make_order";
         final int METHOD = Request.Method.POST;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("date", date);
-            body.put("customer", costumer_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
     public static void addProductToOrder(Context context, int order, int product, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {

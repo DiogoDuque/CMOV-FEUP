@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/used_tickets', (req, res) => {
-    const { customer_id } = req.query;
-    Query.getUsedTickets(customer_id, (result, err) => {
+    const { userId } = req.session;
+    Query.getUsedTickets(userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -26,8 +26,8 @@ router.get('/used_tickets', (req, res) => {
 });
 
 router.get('/not_used_tickets', (req, res) => {
-    const { customer_id } = req.query;
-    Query.getNotUsedTickets(customer_id, (result, err) => {
+    const { userId } = req.session;
+    Query.getNotUsedTickets(userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -38,8 +38,8 @@ router.get('/not_used_tickets', (req, res) => {
 
 
 router.get('/all_tickets', (req, res) => {
-    const { customer_id } = req.query;
-    Query.getAllTickets(customer_id, (result, err) => {
+    const { userId } = req.session;
+    Query.getAllTickets(userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

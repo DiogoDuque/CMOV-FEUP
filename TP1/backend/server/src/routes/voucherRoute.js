@@ -4,8 +4,8 @@ const Query = require('../database/Vouchers');
 const router = express.Router();
 
 router.get('/my_vouchers', (req, res) => {
-    const { customer_id } = req.query;
-    Query.getMyVouchers(customer_id, (result, err) => {
+    const { userId } = req.session;
+    Query.getMyVouchers(userId, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -15,8 +15,9 @@ router.get('/my_vouchers', (req, res) => {
 });
 
 router.get('/my_vouchers_by_status', (req, res) => {
-    const { customer_id, status } = req.query;
-    Query.getMyVouchersByStatus(customer_id, status, (result, err) => {
+    const { status } = req.query;
+    const { userId } = req.session;
+    Query.getMyVouchersByStatus(userId, status, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
