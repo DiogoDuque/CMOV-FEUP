@@ -3,7 +3,7 @@ const execute = require('./DB');
 module.exports = {
 
     getProfileInfo(id, callback){
-        const baseQuery = 'SELECT id, name, username, nif, password, balance FROM customer WHERE id = $1';
+        const baseQuery = 'SELECT id, name, username, nif, password, balance FROM customer WHERE username = $1';
         execute(baseQuery, [id], (response, err) => {
             if (err) {
                 callback(null, err);
@@ -21,7 +21,7 @@ module.exports = {
                 callback(null, err);
             }
             else {
-                callback(response.rows[0].id);
+                callback(response.rows[0]);
             }
         });
     },
