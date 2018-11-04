@@ -1,4 +1,7 @@
 const execute = require('./DB');
+const crypto = require('crypto');
+const verify = crypto.createVerify('RSA-SHA256');
+
 
 module.exports = {
 
@@ -86,6 +89,22 @@ module.exports = {
             }
             else {
                 callback(response);
+            }
+        });
+    },
+
+    verifyOrderSignature(user_id, signature, message, callback){
+        const baseQuery = 'SELECT public_key FROM customer WHERE id = $1';
+        execute(baseQuery, [user_id], (response, err) => {
+            if (err) {
+                callback(null, err);
+            }
+            else {
+                const publicKey = response.rows[0].public_key;
+                verify.write(message);
+                verify.end();
+
+                callback(verify.verify(publicKey, signature));
             }
         });
     }
