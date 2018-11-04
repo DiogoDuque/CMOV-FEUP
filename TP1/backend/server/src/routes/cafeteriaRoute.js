@@ -4,7 +4,7 @@ const Query = require('../database/Cafeteria');
 const router = express.Router();
 
 router.get('/orders', (req, res) => {
-    const { date} = req.body;
+    const { date } = req.body;
     Query.getOrders(date, (result, err) => {
         if(result) {
             res.status(200).send(result);
@@ -48,8 +48,8 @@ router.get('/order_products', (req, res) => {
 });
 
 router.post('/make_order', (req, res) => {
-    const { date, costumer } = req.body;
-    Query.makeOrder(date, costumer, (result, err) => {
+    const { date, customer } = req.body;
+    Query.makeOrder(date, customer, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

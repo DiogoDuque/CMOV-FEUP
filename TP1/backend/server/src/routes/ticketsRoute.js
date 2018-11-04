@@ -4,7 +4,7 @@ const Query = require('../database/Tickets');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const { id } = req.body;
+    const { id } = req.query;
     Query.getTicket(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/used_tickets', (req, res) => {
-    const { costumer_id } = req.body;
-    Query.getUsedTickets(costumer_id, (result, err) => {
+    const { customer_id } = req.query;
+    Query.getUsedTickets(customer_id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -26,8 +26,8 @@ router.get('/used_tickets', (req, res) => {
 });
 
 router.get('/not_used_tickets', (req, res) => {
-    const { costumer_id } = req.body;
-    Query.getNotUsedTickets(costumer_id, (result, err) => {
+    const { customer_id } = req.query;
+    Query.getNotUsedTickets(customer_id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -38,8 +38,8 @@ router.get('/not_used_tickets', (req, res) => {
 
 
 router.get('/all_tickets', (req, res) => {
-    const { costumer_id } = req.body;
-    Query.getAllTickets(costumer_id, (result, err) => {
+    const { customer_id } = req.query;
+    Query.getAllTickets(customer_id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
@@ -49,7 +49,7 @@ router.get('/all_tickets', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { user, show, place } = req.body;
+    const { user, show, place } = req.query;
     Query.buyTicket(user, show, place, (result, err) => {
         if(result) {
             res.status(200).send(result);
