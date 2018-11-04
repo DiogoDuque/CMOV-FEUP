@@ -178,13 +178,14 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void buyTicket(Context context, Show show, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void buyTickets(Context context, Show show, int quantity, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/tickets";
         final int METHOD = Request.Method.POST;
 
         JSONObject body = new JSONObject();
         try {
             body.put("showId", show.getId());
+            body.put("quantity", quantity);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +17,7 @@ import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,7 +84,7 @@ public class BuyTicketActivity extends AppCompatActivity {
             return;
         }
 
-        NetworkRequests.buyTicket(this, show, new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.buyTickets(this, show, quantity, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 Intent intent = new Intent(BuyTicketActivity.this, PurchaseFinishedActivity.class);
@@ -92,7 +92,11 @@ public class BuyTicketActivity extends AppCompatActivity {
 
                 Bundle b = new Bundle();
                 try {
-                    b.putFloat("balance", (float)json.getDouble("balance"));
+                    JSONArray jsonArray = json.getJSONArray("result");
+                    JSONObject ticketJson = jsonArray.getJSONObject(0);
+                    b.putFloat("balance", (float)ticketJson.getDouble("balance"));
+                    b.putString("type", ticketJson.getString("type"));
+                    b.putString("product", ticketJson.getString("product"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

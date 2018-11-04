@@ -50,11 +50,11 @@ router.get('/all_tickets', (req, res) => {
 
 router.post('/', (req, res) => {
     const { userId } = req.session;
-    const { showId } = req.body;
-    place = Math.floor(Math.random() * 100) + 1;
-    Query.buyTicket(userId, showId, place, (result, err) => {
+    const { showId, quantity } = req.body;
+    Query.buyTickets(userId, showId, quantity, (result, err) => {
         if(result) {
-            res.status(200).send(JSON.stringify(result.rows[0]));
+            console.log(result);
+            res.status(200).send(`{result:${JSON.stringify(result)}}`);
         } else {
             res.status(400).send(err);
         }
