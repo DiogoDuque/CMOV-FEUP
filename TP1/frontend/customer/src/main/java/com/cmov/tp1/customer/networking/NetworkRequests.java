@@ -299,23 +299,16 @@ public abstract class NetworkRequests {
         final String PATH = "/cafeteria/orders";
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("date", date);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void getOrdersCostumer(Context context, int costumer_id, boolean is_used, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void getOrdersCostumer(Context context, int costumer_id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/orders_costumer";
         final int METHOD = Request.Method.GET;
 
         JSONObject body = new JSONObject();
         try {
             body.put("id", costumer_id);
-            body.put("is_used", is_used);
         } catch (JSONException e) {
             e.printStackTrace();
         }
