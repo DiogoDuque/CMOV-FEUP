@@ -39,7 +39,7 @@ module.exports = {
     },
 
     setMyProfile(id, name, username, nif, password, callback){
-        const baseQuery = 'UPDATE customer SET name = ?, username = ?, nif = ?, password = ? WHERE id = $1';
+        const baseQuery = 'UPDATE customer SET name = $1, username = $2, nif = $3, password = $4 WHERE id = $5';
         execute(baseQuery, [name, username, nif, password, id], (response, err) => {
             if (err) {
                 callback(null, err);
