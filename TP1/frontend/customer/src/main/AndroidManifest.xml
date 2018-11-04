@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ShowPageActivity">
+        <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,6 +28,7 @@
         <activity android:name=".activity.OrderFinishedActivity" />
         <activity android:name=".activity.MakeOrderActivity" />
         <activity android:name=".activity.BuyTicketActivity" />
+        <activity android:name=".activity.ShowPageActivity" />
     </application>
 
 </manifest>

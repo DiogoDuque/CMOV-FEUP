@@ -2,7 +2,10 @@ package com.cmov.tp1.customer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -49,11 +52,11 @@ public class BuyTicketActivity extends AppCompatActivity {
     }
 
     private void setShow() {
-        TextView nameLabel = findViewById(R.id.show_name_label);
+        TextView nameLabel = findViewById(R.id.show_label);
         nameLabel.setText(show.getName());
-        TextView dateLabel = findViewById(R.id.show_date_label);
+        TextView dateLabel = findViewById(R.id.show_date);
         dateLabel.setText(show.getDate());
-        TextView priceLabel = findViewById(R.id.show_price_label);
+        TextView priceLabel = findViewById(R.id.show_price);
         priceLabel.setText(Float.toString(show.getPrice()));
 
         TextView quantityView = findViewById(R.id.quantity_label);
@@ -95,5 +98,17 @@ public class BuyTicketActivity extends AppCompatActivity {
 
         TextView TotalText = (TextView)findViewById(R.id.total);
         TotalText.setText(Float.toString(totalToPay));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
