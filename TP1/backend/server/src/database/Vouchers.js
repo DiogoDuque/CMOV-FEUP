@@ -8,7 +8,7 @@ module.exports = {
                 callback(null, errBegin);
                 return;
             }
-            let baseQuery = 'INSERT INTO voucher(is_used, type, product_id) WHERE (FALSE, $1, $2)';
+            let baseQuery = 'INSERT INTO voucher(is_used, type, product_id) VALUES (FALSE, $1, $2)';
             execute(baseQuery, [type, product], (response, err) => {
                 if (err) {
                     execute("ROLLBACK", [], () => callback(null, err));
@@ -20,7 +20,7 @@ module.exports = {
                             execute("ROLLBACK", [], () => callback(null, err));
                         }
                         else {
-                            baseQuery = 'INSERT INTO voucher_ticket(voucher_id, ticket_id) WHERE ($1, $2)';
+                            baseQuery = 'INSERT INTO voucher_ticket(voucher_id, ticket_id) VALUES ($1, $2)';
                             execute(baseQuery, [response.rows[0].id, ticket_id], (response, err) => {
                                 if (err) {
                                     execute("ROLLBACK", [], () => callback(null, err));
@@ -39,7 +39,7 @@ module.exports = {
     getMyVouchers(customer_id, callback){
         const baseQuery = 'SELECT voucher.id, voucher.type, voucher.is_used FROM customer, ticket, voucher, voucher_ticket'
             + ' WHERE customer.id = $1 AND ticket.customer_id = customer.id AND voucher_ticket.ticket_id = ticket.id'
-            + ' AND voucher.id = voucher_ticket.voucher.id';
+            + ' AND voucher.id = voucher_ticket.voucher_id';
         execute(baseQuery, [customer_id], (response, err) => {
             if (err) {
                 callback(null, err);
@@ -53,7 +53,7 @@ module.exports = {
     getMyVouchersByStatus(customer_id, status, callback){
         const baseQuery = 'SELECT voucher.id, voucher.type, voucher.is_used FROM customer, ticket, voucher, voucher_ticket'
             + ' WHERE customer.id = $1 AND ticket.customer_id = customer.id AND voucher_ticket.ticket_id = ticket.id'
-            + ' AND voucher.id = voucher_ticket.voucher.id AND voucher.is_used = ?';
+            + ' AND voucher.id = voucher_ticket.voucher_id AND voucher.is_used = $2';
         execute(baseQuery, [customer_id, status], (response, err) => {
             if (err) {
                 callback(null, err);
@@ -65,15 +65,33 @@ module.exports = {
     },
 
     getVoucherInfo(id, callback){
-        const baseQuery = 'SELECT cafeteria_product.name, cafeteria_product.price FROM voucher, cafeteria_product'
-            + ' WHERE voucher.id = $1 AND cafeteria_product.id = voucher.product_id';
-        execute(baseQuery, [id], (response, err) => {
-            if (err) {
-                callback(null, err);
+        execute("BEGIN", [], (resBegin, errBegin) => {
+            if (errBegin) {
+                callback(null, errBegin);
+                return;
             }
-            else {
-                callback(response);
-            }
+            let baseQuery = 'SELECT type FROM voucher WHERE id = $1';
+            execute(baseQuery, [id], (response, err) => {
+                if (err) {
+                    execute("ROLLBACK", [], () => callback(null, err));
+                }
+                else {
+                    if(response.rows[0].type === "Free Product"){
+                        baseQuery = 'SELECT cafeteria_product.name, cafeteria_product.price FROM voucher, cafeteria_product'
+                            + ' WHERE voucher.id = $1 AND cafeteria_product.id = voucher.product_id';
+                        execute(baseQuery, [], (response, err) => {
+                            if (err) {
+                                execute("ROLLBACK", [], () => callback(null, err));
+                            }
+                            else {
+                                callback(response);
+
+                            }
+                        });
+                    }
+                    callback(response);
+                }
+            });
         });
     },
 
