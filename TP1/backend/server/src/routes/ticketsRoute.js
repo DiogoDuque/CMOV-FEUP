@@ -49,7 +49,7 @@ router.get('/all_tickets', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { user, show, place } = req.query;
+    const { user, show, place } = req.body;
     Query.buyTicket(user, show, place, (result, err) => {
         if(result) {
             res.status(200).send(result);

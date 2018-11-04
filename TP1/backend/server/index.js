@@ -61,8 +61,8 @@ app.get('/', (req, res) => {
 app.use('/auth',      authRoute);
 app.use('/user',      isLoggedIn, userRoute);
 app.use('/cafeteria', cafeteriaRoute);
-app.use('/show',      isLoggedIn, showRoute);
-app.use('/tickets',   isLoggedIn, ticketsRoute);
+app.use('/show',      showRoute);
+app.use('/tickets',   ticketsRoute);
 app.use('/vouchers',  isLoggedIn, vouchersRoute);
 app.use('/profile',   profileRoute);
 

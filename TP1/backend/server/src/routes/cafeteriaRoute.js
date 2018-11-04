@@ -26,7 +26,7 @@ router.get('/orders_costumer', (req, res) => {
 
 router.get('/order', (req, res) => {
     const { id } = req.query;
-    Query.getOrderProducts(id, (result, err) => {
+    Query.getOrder(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {
