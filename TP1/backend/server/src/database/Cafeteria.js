@@ -55,6 +55,21 @@ module.exports = {
         }
     },
 
+    getOrdersCostumer(id, is_used, callback){
+        const baseQuery = 'SELECT cafeteria_order.id, cafeteria_order.date FROM cafeteria_order, cafeteria_order_product, voucher'
+                + ' WHERE cafeteria.costumer_id = $1 AND voucher.is_used = $2 AND cafeteria_order_product.voucher_id = voucher.id'
+                + ' AND cafeteria_order_product.order_id = cafeteria.id ORDER BY date';
+            execute(baseQuery, [id, is_used], (response, err) => {
+                if (err) {
+                    callback(null, err);
+                }
+                else {
+                    callback(res);
+                }
+            });
+        },
+    },
+
     getOrder(id, callback){
         const baseQuery = 'SELECT id, date FROM cafeteria_order WHERE id = $1';
         execute(baseQuery, [id], (response, err) => {

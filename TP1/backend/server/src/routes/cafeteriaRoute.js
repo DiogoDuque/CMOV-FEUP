@@ -14,6 +14,17 @@ router.get('/orders', (req, res) => {
     });
 });
 
+router.get('/orders_costumer', (req, res) => {
+    const { id, is_used} = req.body;
+    Query.getOrdersCostumer(id, is_used, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
 router.get('/order', (req, res) => {
     const { id } = req.body;
     Query.getOrderProducts(id, (result, err) => {
