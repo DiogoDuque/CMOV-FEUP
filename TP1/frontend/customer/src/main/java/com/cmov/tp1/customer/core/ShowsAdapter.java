@@ -6,12 +6,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 
@@ -31,12 +29,12 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
 
     private List<Show> shows;
 
-    public void setupBoilerplate(Context context, RecyclerView recyclerView, ShowClickListener.ClickListener clickListener) {
+    public void setupBoilerplate(Context context, RecyclerView recyclerView, MyClickListener.ClickListener clickListener) {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayoutManager.VERTICAL));
-        recyclerView.addOnItemTouchListener(new ShowClickListener(context, recyclerView, clickListener));
+        recyclerView.addOnItemTouchListener(new MyClickListener(context, recyclerView, clickListener));
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -36,7 +36,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                Log.i(TAG, "Error -> "+json.toString());
                 try {
                     if(json.getInt("code") == 401) {
                         Intent intent = new Intent(activity.getBaseContext(), LoginActivity.class);

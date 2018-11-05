@@ -5,17 +5,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.Show;
-import com.cmov.tp1.customer.core.ShowClickListener;
+import com.cmov.tp1.customer.core.MyClickListener;
 import com.cmov.tp1.customer.core.ShowsAdapter;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
-import com.cmov.tp1.customer.networking.MyCookieManager;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
@@ -41,7 +39,7 @@ public class MyShowsActivity extends AppCompatActivity {
             public void onSuccess(JSONObject json) {
                 final List<Show> showList = ShowsAdapter.parseJsonShows(json);
                 ShowsAdapter adapter = new ShowsAdapter(showList);
-                adapter.setupBoilerplate(getApplicationContext(), recyclerView, new ShowClickListener.ClickListener() {
+                adapter.setupBoilerplate(getApplicationContext(), recyclerView, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
                         Show show = showList.get(position);
@@ -60,6 +58,7 @@ public class MyShowsActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
+                //TODO handle error
             }
         });
     }
