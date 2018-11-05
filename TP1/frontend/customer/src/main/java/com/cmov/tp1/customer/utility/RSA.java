@@ -91,7 +91,7 @@ public class RSA {
     }
 
     public static byte[] sign(byte[] data) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableEntryException, InvalidKeyException, SignatureException {
-        KeyStore ks = KeyStore.getInstance("ANDROID_KEY_STORE");
+        KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
         ks.load(null);
         KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
         if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
