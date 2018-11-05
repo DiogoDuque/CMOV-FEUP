@@ -32,7 +32,7 @@ public class HTTPRequestUtility {
         this.queue = getRequestQueue();
     }
 
-    public static synchronized HTTPRequestUtility getInstance(Context context) {
+    static synchronized HTTPRequestUtility getInstance(Context context) {
         if(instance == null)
             instance = new HTTPRequestUtility(context);
         return instance;
@@ -47,11 +47,12 @@ public class HTTPRequestUtility {
         return queue;
     }
 
-    public void addToRequestQueue(String path, int method, OnRequestCompleted onRequestCompleted) {
+    void addToRequestQueue(String path, int method, OnRequestCompleted onRequestCompleted) {
         addToRequestQueue(path, method, null, onRequestCompleted);
     }
 
-    public void addToRequestQueue(String path, int method, JSONObject body, final OnRequestCompleted onRequestCompleted) {
+    void addToRequestQueue(String path, int method, JSONObject body, final OnRequestCompleted onRequestCompleted) {
+        Log.d(TAG, "Requesting from "+HOST+path);
         JsonObjectRequest request = new JsonObjectRequest(method, HOST+path, body,
                 new Response.Listener<JSONObject>() {
                     @Override

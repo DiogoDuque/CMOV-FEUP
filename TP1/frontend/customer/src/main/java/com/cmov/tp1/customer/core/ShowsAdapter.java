@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * With help from: https://www.androidhive.info/2016/01/android-working-with-recycler-view/
@@ -80,7 +83,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
                 JSONObject obj = jsonArray.getJSONObject(i);
                 int id = obj.getInt("id");
                 String name = obj.getString("name");
-                String date = obj.getString("date"); //TODO parse string correctly
+                String date = reformatDateStr(obj.getString("date"));
                 float price = (float)obj.getDouble("price");
                 shows.add(new Show(id, name, date, price));
             }
@@ -88,5 +91,20 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             e.printStackTrace();
         }
         return shows;
+    }
+
+    private static String reformatDateStr(String oldDate) {
+        Pattern pattern = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})\\.000Z");
+        Matcher matcher = pattern.matcher(oldDate);
+        if(matcher.find()) {
+            String year = matcher.group(1);
+            String month = matcher.group(2);
+            String day = matcher.group(3);
+            String hour = matcher.group(4);
+            String minute = matcher.group(5);
+            return String.format("%s/%s/%s %s:%s", day, month, year, hour, minute);
+        }
+        return "No date parsed";
+
     }
 }
