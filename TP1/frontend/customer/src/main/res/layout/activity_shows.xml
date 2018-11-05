@@ -24,7 +24,6 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:layout_below="@+id/toolbar"/>
-
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
@@ -34,6 +33,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_menu"
-        app:headerLayout="@layout/nav_header" />
-
+        app:headerLayout="@layout/nav_header"
+        app:itemIconTint="@drawable/drawer_item"
+        app:itemTextColor="@drawable/drawer_item"/>
 </android.support.v4.widget.DrawerLayout>

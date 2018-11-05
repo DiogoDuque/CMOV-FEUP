@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +17,8 @@ import com.cmov.tp1.customer.activity.ShowsActivity;
 import com.cmov.tp1.customer.activity.VouchersActivity;
 
 public abstract class ToolbarUtility {
+    private static final String TAG = "ToolbarUtil";
+
     private static void changeActivity(Context context, Class activity) {
         Intent intent = new Intent(context, activity);
         context.startActivity(intent);
@@ -65,7 +68,7 @@ public abstract class ToolbarUtility {
                                 !(app instanceof VouchersActivity))
                             changeActivity(app, VouchersActivity.class);
 
-                        else System.out.println("Toolbar error: "+menuItem.getTitle());
+                        else Log.e(TAG,"Toolbar error: "+menuItem.getTitle());
 
                         return true;
                     }
