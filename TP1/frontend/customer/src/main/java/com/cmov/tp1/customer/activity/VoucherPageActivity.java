@@ -26,7 +26,8 @@ public class VoucherPageActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         TextView productLabel = findViewById(R.id.product_label);
-        productLabel.setText(bundle.getString("product"));
+        String product = bundle.getString("product");
+        productLabel.setText(product == null ? "" : product);
         TextView typeLabel = findViewById(R.id.type_discount_label);
         typeLabel.setText(bundle.getString("type"));
         TextView statusLabel = findViewById(R.id.status_label);

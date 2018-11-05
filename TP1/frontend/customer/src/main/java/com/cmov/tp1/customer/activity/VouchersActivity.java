@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,14 @@ public class VouchersActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position) {
                         Voucher voucher = voucherList.get(position);
-                        Toast.makeText(getApplicationContext(), voucher.getType() + " is selected!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(VouchersActivity.this, VoucherPageActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("type", voucher.getType());
+                        b.putString("isUsed",Boolean.toString(voucher.isUsed()));
+                        if(voucher.isFreeProduct())
+                            b.putString("product", voucher.getProduct());
+                        intent.putExtras(b);
+                        startActivity(intent);
                     }
 
                     @Override
