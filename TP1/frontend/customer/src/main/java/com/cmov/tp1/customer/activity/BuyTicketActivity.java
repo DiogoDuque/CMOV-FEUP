@@ -87,20 +87,23 @@ public class BuyTicketActivity extends AppCompatActivity {
         NetworkRequests.buyTickets(this, show, quantity, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
-                Intent intent = new Intent(BuyTicketActivity.this, PurchaseFinishedActivity.class);
+                Intent intent = new Intent(BuyTicketActivity.this, MyShowsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-                Bundle b = new Bundle();
                 try {
                     JSONArray jsonArray = json.getJSONArray("result");
-                    JSONObject ticketJson = jsonArray.getJSONObject(0);
-                    b.putFloat("balance", (float)ticketJson.getDouble("balance"));
-                    b.putString("type", ticketJson.getString("type"));
-                    b.putString("product", ticketJson.getString("product"));
+                    StringBuilder sb = new StringBuilder("Received vouchers for: "+jsonArray.getJSONObject(0).getString("product"));
+                    for(int i=1; i<jsonArray.length(); i++) {
+                        JSONObject ticketJson = jsonArray.getJSONObject(i);
+                        sb.append(", ").append(ticketJson.getString("product"));
+                        if(i+1==jsonArray.length()) {
+                            sb.append(". Your balance is ").append(ticketJson.getDouble("balance")).append(".");
+                        }
+                    }
+                    Toast.makeText(BuyTicketActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
                 finish();
             }
