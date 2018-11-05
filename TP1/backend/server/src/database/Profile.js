@@ -1,4 +1,5 @@
 const execute = require('./DB');
+const Vouchers = require('./Vouchers');
 
 module.exports = {
 
@@ -69,7 +70,9 @@ module.exports = {
                 callback(null, err);
             }
             else {
-                callback(response);
+                if((adding - (response.rows[0].balance % 100)) > 0) {
+                    Vouchers.createVoucher(id, null, 'Discount', callback);
+                } else callback(response);
             }
         });
     }

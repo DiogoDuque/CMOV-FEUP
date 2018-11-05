@@ -20,26 +20,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity"
             android:parentActivityName=".activity.LoginActivity"/>
-        <activity android:name=".activity.LoginActivity"
-            android:noHistory="true"/>
-        <activity android:name=".activity.ShowsActivity"
-            android:noHistory="true"/>
-        <activity android:name=".activity.MyShowsActivity"
-            android:noHistory="true"/>
+        <activity android:name=".activity.ShowsActivity"/>
+        <activity android:name=".activity.MyShowsActivity"/>
         <activity android:name=".activity.ShowPageActivity"/> <!--No default parent bcz has 2 possible parents-->
         <activity android:name=".activity.BuyTicketActivity"
+            android:noHistory="true"
             android:parentActivityName=".activity.ShowPageActivity"/>
-        <activity android:name=".activity.VouchersActivity"
-            android:noHistory="true"/>
+        <activity android:name=".activity.VouchersActivity"/>
         <activity android:name=".activity.VoucherPageActivity"
+            android:noHistory="true"
             android:parentActivityName=".activity.VouchersActivity"/>
         <activity android:name=".activity.MakeOrderActivity"/>
         <activity android:name=".activity.PurchaseFinishedActivity"
+            android:noHistory="true"
             android:parentActivityName=".activity.MakeOrderActivity"/>
         <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.OrderFinishedActivity" />
+        <activity android:name=".activity.OrderFinishedActivity"
+            android:noHistory="true"
+            android:parentActivityName=".activity.MakeOrderActivity"/>
     </application>
 
 </manifest>

@@ -119,8 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
         NetworkRequests.registerRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, pubKey.toString(), new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
-                Log.i(TAG, "SUCCESSFUL REGISTER -> "+json.toString());
-
                 try {
                     storeInfoKey(privateKey, json.getString("uuid"));
                 } catch (JSONException e) {

@@ -2,34 +2,36 @@ const execute = require('./DB');
 
 module.exports = {
 
-    createVoucher(ticket_id, type, callback){
+    createVoucher(userId, ticket_id, type, callback){
         let baseQuery = '';
         let argsQuery = [];
         let product = '';
         let productId=-1;
         if(type == 'Discount') {
-            baseQuery = 'INSERT INTO voucher(type) VALUES($1) RETURNING id';
-            argsQuery = [type];
+            baseQuery = 'INSERT INTO voucher(type, customer_id) VALUES($1, $2) RETURNING id';
+            argsQuery = [type, userId];
         } else {
-            baseQuery = 'INSERT INTO voucher(type, product_id) VALUES ($1, $2) RETURNING id';
+            baseQuery = 'INSERT INTO voucher(type, product_id, customer_id) VALUES ($1, $2, $3) RETURNING id';
             product = Math.floor(Math.random() * 2) == 1 ? 'Coffee' : 'Popcorn';
             productId = product=='Coffee' ? 1 : 3;
-            argsQuery = [type, productId];
+            argsQuery = [type, productId, userId];
         }
+        const obj = {
+            type,
+            product,
+        };
         execute(baseQuery, argsQuery, (response, err) => {
             if (err) {
                 callback(null, err);
             }
-            else {
+            else if (type == 'Discount'){
+                callback(obj);
+            } else {
                 baseQuery = 'INSERT INTO voucher_ticket(voucher_id, ticket_id) VALUES ($1, $2)';
                 execute(baseQuery, [response.rows[0].id, ticket_id], (response, err) => {
                     if (err) {
                         callback(null, err);
                     } else {
-                        const obj = {
-                            type,
-                            product,
-                        };
                         callback(obj);
                     }
                 });
@@ -41,9 +43,8 @@ module.exports = {
         const baseQuery = 'SELECT voucher.id, voucher.type, voucher.is_used, cafeteria_product.name AS product ' +
             'FROM voucher INNER JOIN voucher_ticket ON voucher.id = voucher_ticket.voucher_id ' +
             'INNER JOIN ticket ON ticket.id = voucher_ticket.ticket_id ' +
-            'INNER JOIN customer ON ticket.customer_id = customer.id ' +
-            'INNER JOIN cafeteria_product ON voucher.product_id = cafeteria_product.id ' +
-            'WHERE customer.id = $1';
+            'INNER JOIN cafeteria_product ON (voucher.product_id = cafeteria_product.id OR voucher.product_id = NULL) ' +
+            'WHERE voucher.customer_id = $1';
         execute(baseQuery, [customer_id], (response, err) => {
             if (err) {
                 callback(null, err);

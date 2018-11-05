@@ -94,7 +94,7 @@ module.exports = {
                                 callback(null, balanceErr);
                             } else {
                                 const balance = balanceRes.rows[0].balance;
-                                Vouchers.createVoucher(ticketId, 'Free Product',
+                                Vouchers.createVoucher(user_id, ticketId, 'Free Product',
                                     (voucherRes, voucherErr) => {
                                         if(voucherErr) {
                                             callback(null, voucherErr);

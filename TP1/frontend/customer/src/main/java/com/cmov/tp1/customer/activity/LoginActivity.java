@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(json.getBoolean("result")) {
                         Intent intent = new Intent(activity.getBaseContext(), ShowsActivity.class);
                         activity.getBaseContext().startActivity(intent);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

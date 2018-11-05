@@ -39,7 +39,8 @@ router.get('/voucher_info', (req, res) => {
 
 router.post('/create_voucher', (req, res) => {
     const { ticket, type, product } = req.body;
-    Query.createVoucher(ticket, type, product, (result, err) => {
+    const { userId } = req.session;
+    Query.createVoucher(userId, ticket, type, product, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

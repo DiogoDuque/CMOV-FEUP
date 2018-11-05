@@ -87,6 +87,7 @@ CREATE TABLE voucher
   id SERIAL PRIMARY KEY,
   is_used BOOLEAN NOT NULL DEFAULT FALSE,
   "type" voucher_type NOT NULL,
+  customer_id INTEGER REFERENCES customer(id) NOT NULL,
   product_id INTEGER REFERENCES cafeteria_product(id)
 );
 
