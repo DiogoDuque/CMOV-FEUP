@@ -18,7 +18,6 @@ import com.cmov.tp1.customer.activity.VouchersActivity;
 public abstract class ToolbarUtility {
     private static void changeActivity(Context context, Class activity) {
         Intent intent = new Intent(context, activity);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         context.startActivity(intent);
     }
 

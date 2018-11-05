@@ -88,7 +88,6 @@ public class BuyTicketActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject json) {
                 Intent intent = new Intent(BuyTicketActivity.this, MyShowsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
                 try {
                     JSONArray jsonArray = json.getJSONArray("result");
