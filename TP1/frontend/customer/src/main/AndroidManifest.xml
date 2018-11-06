@@ -24,6 +24,7 @@
         <activity android:name=".activity.RegisterActivity"
             android:parentActivityName=".activity.LoginActivity"/>
         <activity android:name=".activity.ShowsActivity"/>
+        <activity android:name=".activity.TicketsActivity"/>
         <activity android:name=".activity.MyShowsActivity"/>
         <activity android:name=".activity.ShowPageActivity"
             android:noHistory="true"/>

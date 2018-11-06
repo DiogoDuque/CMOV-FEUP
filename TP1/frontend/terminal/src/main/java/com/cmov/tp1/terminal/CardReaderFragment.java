@@ -44,10 +44,10 @@ public class CardReaderFragment extends Fragment implements CardReader.CardReade
 
         String[] strings = accNr.split("/");
         Integer userId = Integer.parseInt(strings[0]);
-        Integer quantity = Integer.parseInt(strings[1]);
-        String show_Name = strings[2];
-        String show_Date = strings[3];
-        showName.setText(show_Name);
+        Integer quantity = Integer.parseInt(strings[3]);
+        Integer showId = Integer.parseInt(strings[1]);
+        String show_Date = strings[2];
+        showName.setText("Show name");
         showDate.setText(show_Date);
       }
     });

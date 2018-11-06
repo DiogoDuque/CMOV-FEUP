@@ -9,37 +9,6 @@
     android:orientation="vertical"
     tools:context=".ValidateTicketActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="20dp">
-
-        <TextView
-            android:id="@+id/card_validity_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/monserrat"
-            android:padding="10dp"
-            android:text="Date"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/card_validity_input"
-            android:layout_width="115dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints="validity"
-            android:clickable="true"
-            android:ems="10"
-            android:focusable="false"
-            android:inputType="none" />
-
-    </LinearLayout>
-
     <FrameLayout
         android:id="@+id/content_fragment"
         android:layout_width="match_parent"

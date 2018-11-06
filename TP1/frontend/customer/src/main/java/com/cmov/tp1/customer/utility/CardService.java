@@ -4,6 +4,7 @@ import android.nfc.cardemulation.HostApduService;
 import android.os.Bundle;
 
 import com.cmov.tp1.customer.core.Show;
+import com.cmov.tp1.customer.core.Ticket;
 
 import java.util.Arrays;
 
@@ -17,8 +18,8 @@ public class CardService extends HostApduService {
   @Override
   public byte[] processCommandApdu(byte[] command, Bundle bundle) {  // return card account on Select command (with correct AID)
     if (Arrays.equals(SELECT_APDU, command)) {
-      String showInfo = "userID" + "/" + "numberTickets" + "/" + "showID" + "/" + "showDate";
-      byte[] accountBytes = showInfo.getBytes();
+      String ticketInfo = Ticket.getTicket() + "/" + TicketsQuantity.getQuantity();
+      byte[] accountBytes = ticketInfo.getBytes();
       return ConcatArrays(accountBytes, SELECT_OK_SW);
     }
     else
