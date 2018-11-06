@@ -61,7 +61,7 @@ public class MakeOrderActivity extends AppCompatActivity {
     private void addValuesToSpinner(){
         Spinner spinner = (Spinner) findViewById(R.id.products);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.products, android.R.layout.activity_list_item);
+                R.array.products, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
