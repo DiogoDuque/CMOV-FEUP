@@ -1,0 +1,20 @@
+{
+    "globals": {
+        "it": true
+    },
+    "env": {
+        "node": true,
+        "browser": true,
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules":{
+        "function-paren-newline": "warn",
+        "react/prefer-stateless-function": "off",
+        "react/jsx-filename-extension": ["off", { "extensions": [".js", ".jsx"] }],
+        "react/jsx-no-bind": "off",
+        "no-plusplus": "off",
+        "max-len": "off"
+    }
+}
