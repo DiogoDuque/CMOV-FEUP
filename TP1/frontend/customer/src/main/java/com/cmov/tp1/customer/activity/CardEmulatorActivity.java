@@ -5,12 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.cmov.tp1.customer.R;
-import com.cmov.tp1.customer.core.Ticket;
-import com.cmov.tp1.customer.utility.TicketsQuantity;
+import com.cmov.tp1.customer.core.TicketTerminal;
 
 public class CardEmulatorActivity extends AppCompatActivity {
-    private Ticket ticket;
-    private TicketsQuantity quantities;
+    private TicketTerminal ticket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +16,12 @@ public class CardEmulatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card_emulator);
 
         Bundle b = getIntent().getExtras();
-        ticket = Ticket.setTicket(b.getInt("userId"), b.getInt("id"), b.getInt("eventId"), b.getString("name"), b.getString("date"), b.getDouble("price"));
 
-        int quantity = b.getInt("quantity");
-        quantities.setQuantity(quantity);
+        if(b.getIntegerArrayList("ticketsID").size() > 0)
+            ticket = TicketTerminal.setTicket(b.getInt("userId"), b.getInt("eventId"), b.getIntegerArrayList("ticketsID"), b.getString("name"), b.getString("date"), b.getDouble("price"));
+
+        else
+            ticket = TicketTerminal.setTicket(b.getInt("userId"), b.getInt("eventId"), b.getInt("id"), b.getString("name"), b.getString("date"), b.getDouble("price"));
 
         TextView dateLabel = findViewById(R.id.show_date);
         dateLabel.setText(ticket.getDate());
@@ -30,6 +30,7 @@ public class CardEmulatorActivity extends AppCompatActivity {
         priceLabel.setText(Double.toString(ticket.getPrice()));
 
         TextView showLabel = findViewById(R.id.show_name);
-        priceLabel.setText(ticket.getName());
+        showLabel.setText(ticket.getName());
+
     }
 }

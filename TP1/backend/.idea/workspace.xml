@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/database/Tickets.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/database/Tickets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/CardEmulatorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/CardEmulatorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/utility/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/utility/CardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReaderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReaderFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/TicketsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/TicketsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/core/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/core/Ticket.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +17,7 @@
     <session id="1615718789">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
@@ -96,7 +94,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/database/Tickets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-789">
+            <state relative-caret-position="570">
               <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
             </state>
           </provider>
@@ -331,16 +329,15 @@
       <workItem from="1541321137964" duration="632000" />
       <workItem from="1541332942244" duration="14190000" />
       <workItem from="1541491710088" duration="798000" />
-      <workItem from="1541530045094" duration="1500000" />
+      <workItem from="1541530045094" duration="1791000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37484000" />
+    <option name="totallyTimeSpent" value="37775000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28540772" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -537,7 +534,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/database/Tickets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-789">
+        <state relative-caret-position="570">
           <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
         </state>
       </provider>

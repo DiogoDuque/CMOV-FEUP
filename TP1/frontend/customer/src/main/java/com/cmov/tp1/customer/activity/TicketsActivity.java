@@ -13,12 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.MyClickListener;
-import com.cmov.tp1.customer.core.Ticket;
+import com.cmov.tp1.customer.core.TicketTerminal;
 import com.cmov.tp1.customer.core.TicketsAdapter;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
@@ -32,6 +31,8 @@ import java.util.List;
 public class TicketsActivity extends AppCompatActivity {
     static private final String TAG = "TicketsActivity";
     private List<CheckBox> checkboxes = new ArrayList<>();
+    private ArrayList<Integer> ticketsID = new ArrayList<>();
+    private List<TicketTerminal> ticketList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,19 @@ public class TicketsActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
-        Button validate = findViewById(R.id.validate_button);
-        validate.setOnClickListener(new View.OnClickListener() {
+        Button selectBtn = findViewById(R.id.select_tickets);
+        selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeToSelects();
+            }
+        });
+
+        Button validateBtn = findViewById(R.id.validate_button);
+        validateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateTickets();
             }
         });
 
@@ -55,13 +64,13 @@ public class TicketsActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(JSONObject json) {
-                final List<Ticket> ticketList = TicketsAdapter.parseJsonTickets(json);
+                ticketList = TicketsAdapter.parseJsonTickets(json);
                 createCheckBoxes(ticketList);
                 TicketsAdapter adapter = new TicketsAdapter(ticketList);
                 adapter.setupBoilerplate(getApplicationContext(), recyclerView, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        Ticket ticket = ticketList.get(position);
+                        TicketTerminal ticket = ticketList.get(position);
 
                         Intent intent = new Intent(TicketsActivity.this, CardEmulatorActivity.class);
                         Bundle b = new Bundle();
@@ -108,7 +117,7 @@ public class TicketsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createCheckBoxes(List<Ticket> tickets){
+    public void createCheckBoxes(List<TicketTerminal> tickets){
         for(int i = 0; i < tickets.size(); i++){
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(tickets.get(i).getName() + " - " + tickets.get(i).getDate());
@@ -133,7 +142,31 @@ public class TicketsActivity extends AppCompatActivity {
 
         for(int i = 0; i < checkboxes.size(); i++)
             linear2.addView(checkboxes.get(i));
+    }
 
-        
+    public void validateTickets(){
+        for(int i = 0; i < checkboxes.size(); i++){
+            CheckBox checkBox = (CheckBox)checkboxes.get(i);
+            if(checkBox.isChecked() && i < 4)
+                ticketsID.add(checkBox.getId());
+            else{
+                Toast.makeText(this, "You only are allowed to select 4 tickets to validate", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        Intent intent = new Intent(TicketsActivity.this, CardEmulatorActivity.class);
+        Bundle b = new Bundle();
+        b.putIntegerArrayList("ticketsID", ticketsID);
+
+        b.putInt("userId", ticketList.get(0).getUserId());
+        b.putInt("eventId", ticketList.get(0).getEventId());
+        b.putString("name", ticketList.get(0).getName());
+        b.putString("date", ticketList.get(0).getDate());
+        b.putDouble("price", ticketList.get(0).getPrice());
+        b.putInt("quantity", ticketsID.size());
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
+        finish();
     }
 }

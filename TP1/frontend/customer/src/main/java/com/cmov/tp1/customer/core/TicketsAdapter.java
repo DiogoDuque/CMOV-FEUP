@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  */
 public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHolder> {
 
-    private List<Ticket> tickets;
+    private List<TicketTerminal> tickets;
 
     public void setupBoilerplate(Context context, RecyclerView recyclerView, MyClickListener.ClickListener clickListener) {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
@@ -47,7 +47,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
         }
     }
 
-    public TicketsAdapter(List<Ticket> tickets) {
+    public TicketsAdapter(List<TicketTerminal> tickets) {
         this.tickets = tickets;
     }
 
@@ -61,7 +61,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Ticket ticket = tickets.get(position);
+        TicketTerminal ticket = tickets.get(position);
         holder.name.setText(ticket.getName());
         holder.date.setText(ticket.getDate());
     }
@@ -71,8 +71,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
         return tickets.size();
     }
 
-    public static List<Ticket> parseJsonTickets(JSONObject jsonObject) {
-        List<Ticket> ticketsNew = new ArrayList<>();
+    public static List<TicketTerminal> parseJsonTickets(JSONObject jsonObject) {
+        List<TicketTerminal> ticketsNew = new ArrayList<>();
         try {
             JSONArray jsonArray = jsonObject.getJSONArray("tickets");
             for(int i=0; i<jsonArray.length(); i++) {
@@ -83,8 +83,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
                 int eventId = obj.getInt("eventId");
                 String date = reformatDateStr(obj.getString("date"));
                 double price = obj.getDouble("price");
-                int quantity = obj.getInt("quantity");
-                ticketsNew.add(new Ticket(userId, id, eventId, name, date, price));
+                ticketsNew.add(new TicketTerminal(userId, id, eventId, name, date, price));
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -31,7 +31,7 @@ module.exports = {
   },
 
   getNotUsedTickets(user_id, callback) {
-    const baseQuery = 'SELECT ticket.place, ticket.id AS id, customer.id AS userId, customer.name, event.id AS eventId, event.price AS price, event.date AS date, count(*) AS quantity'
+    const baseQuery = 'SELECT ticket.place, ticket.id AS id, customer.id AS userId, customer.name, event.id AS eventId, event.price AS price, event.date AS date'
       + ' FROM ticket, customer, event WHERE ticket.customer_id = $1 AND ticket.is_used = FALSE AND event.id = ticket.event_id AND customer.id = ticket.customer_id';
     execute(baseQuery, [user_id], (response, err) => {
       if (err) {
