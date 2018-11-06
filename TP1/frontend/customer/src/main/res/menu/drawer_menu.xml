@@ -13,5 +13,13 @@
             android:id="@+id/nav_menu_vouchers"
             android:checkable="true"
             android:title="@string/drawer_main_menu_vouchers" />
+        <item
+            android:id="@+id/nav_menu_make_order"
+            android:checkable="true"
+            android:title="@string/drawer_main_menu_make_order" />
+        <item
+            android:id="@+id/nav_menu_profile"
+            android:checkable="true"
+            android:title="@string/drawer_main_menu_profile" />
     </group>
 </menu>

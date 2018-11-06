@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,11 +18,13 @@ import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 public class MakeOrderActivity extends AppCompatActivity {
 
+    private static final String TAG = "MakeOrderActivity";
     private int quantity = 0;
     private double totalToPay = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "????");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_order);
 
@@ -38,7 +41,7 @@ public class MakeOrderActivity extends AppCompatActivity {
             }
         });
 
-        Button plusButton = findViewById(R.id.minus_button);
+        Button plusButton = findViewById(R.id.plus_button);
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button creditcardButton = findViewById(R.id.minus_button);
+        Button creditcardButton = findViewById(R.id.associate_button);
         creditcardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

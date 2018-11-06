@@ -25,7 +25,8 @@
             android:parentActivityName=".activity.LoginActivity"/>
         <activity android:name=".activity.ShowsActivity"/>
         <activity android:name=".activity.MyShowsActivity"/>
-        <activity android:name=".activity.ShowPageActivity"/> <!--No default parent bcz has 2 possible parents-->
+        <activity android:name=".activity.ShowPageActivity"
+            android:noHistory="true"/>
         <activity android:name=".activity.BuyTicketActivity"
             android:noHistory="true"
             android:parentActivityName=".activity.ShowPageActivity"/>
