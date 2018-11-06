@@ -16,7 +16,7 @@ public class CardReader implements ReaderCallback {
   private CardReaderCallback accNrCallback;
 
   public interface CardReaderCallback {
-    void onCardNrReceived(String account);
+    void onCardNrReceived(String info);
   }
 
   CardReader(CardReaderCallback callback) {
@@ -35,8 +35,8 @@ public class CardReader implements ReaderCallback {
         byte[] status = {result[rLen - 2], result[rLen - 1]};
         byte[] payload = Arrays.copyOf(result, rLen - 2);
         if (Arrays.equals(SELECT_OK_SW, status)) {
-          String accNumber = new String(payload, "UTF-8");
-          accNrCallback.onCardNrReceived(accNumber);
+          String info = new String(payload, "UTF-8");
+          accNrCallback.onCardNrReceived(info);
         }
       } catch (IOException e) {
         Log.e(TAG, "Error communicating with card: " + e.toString());

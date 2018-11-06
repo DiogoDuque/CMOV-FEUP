@@ -49,8 +49,8 @@ router.get('/all_tickets', (req, res) => {
 });
 
 router.get('/check_tickets', (req, res) => {
-    const { userId, showName, showDate } = req.session;
-    Query.checkTicket(userId, showName, showDate (result, err) => {
+    const { userId, showName, showDate, quantity } = req.session;
+    Query.checkTicket(userId, showName, showDate, quantity (result, err) => {
         if (result) {
             res.status(200).send(result);
         } else {

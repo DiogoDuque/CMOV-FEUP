@@ -14,15 +14,19 @@ import android.widget.TextView;
 
 public class CardReaderFragment extends Fragment implements CardReader.CardReaderCallback {
   public static int READER_FLAGS = NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
-  private TextView tv_accNr;
+  private TextView showName;
+  private TextView showDate;
   public CardReader cardReader;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View v = inflater.inflate(R.layout.fragment_card_reader, container, false);
     if (v != null) {
-      /**tv_accNr = v.findViewById(R.id.card_account_field);
-      tv_accNr.setText(R.string.tv_accnr);**/
+      showName = v.findViewById(R.id.show_name);
+      showName.setText("Waiting...");
+
+      showDate = v.findViewById(R.id.show_date);
+      showDate.setText("Waiting...");
 
       cardReader = new CardReader(this);
       enableReaderMode();
@@ -37,7 +41,14 @@ public class CardReaderFragment extends Fragment implements CardReader.CardReade
       act.runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        tv_accNr.setText(accNr);
+
+        String[] strings = accNr.split("/");
+        Integer userId = Integer.parseInt(strings[0]);
+        Integer quantity = Integer.parseInt(strings[1]);
+        String show_Name = strings[2];
+        String show_Date = strings[3];
+        showName.setText(show_Name);
+        showDate.setText(show_Date);
       }
     });
   }

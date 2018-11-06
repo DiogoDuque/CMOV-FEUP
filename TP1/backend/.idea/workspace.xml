@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/database/Tickets.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/database/Tickets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/ValidateTicketActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/ValidateTicketActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/activity_validate_ticket.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/activity_validate_ticket.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/ticketsRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/ticketsRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/utility/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/utility/CardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReaderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReaderFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/fragment_card_reader.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/fragment_card_reader.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,14 +50,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2" />
-          <entry key="js" value="7186" />
+          <entry key="js" value="7400" />
           <entry key="sql" value="187" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2" />
-          <entry key="JavaScript" value="7181" />
+          <entry key="JavaScript" value="7395" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="188" />
         </counts>
@@ -96,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/database/Tickets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="117" column="52" selection-start-line="117" selection-start-column="52" selection-end-line="117" selection-end-column="52" />
+            <state relative-caret-position="571">
+              <caret line="122" column="54" lean-forward="true" selection-start-line="122" selection-start-column="54" selection-end-line="122" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -132,8 +132,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/routes/showRoute.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="37" />
+            <state relative-caret-position="330">
+              <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -141,8 +141,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/routes/ticketsRoute.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+            <state relative-caret-position="503">
+              <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -197,8 +197,8 @@
         <option value="$PROJECT_DIR$/server/src/database/Cafeteria.js" />
         <option value="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" />
         <option value="$PROJECT_DIR$/server/src/routes/profileRoute.js" />
-        <option value="$PROJECT_DIR$/server/src/routes/ticketsRoute.js" />
         <option value="$PROJECT_DIR$/server/src/routes/voucherRoute.js" />
+        <option value="$PROJECT_DIR$/server/src/routes/ticketsRoute.js" />
         <option value="$PROJECT_DIR$/server/src/database/Tickets.js" />
       </list>
     </option>
@@ -253,6 +253,13 @@
               <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="database" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="routes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -323,12 +330,12 @@
       <workItem from="1541235229725" duration="802000" />
       <workItem from="1541321137964" duration="632000" />
       <workItem from="1541332942244" duration="14190000" />
-      <workItem from="1541491710088" duration="174000" />
+      <workItem from="1541491710088" duration="768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35360000" />
+    <option name="totallyTimeSpent" value="35954000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
@@ -499,20 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/showRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/ticketsRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/routes/authRoute.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -527,10 +520,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/showRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/ticketsRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/database/Tickets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="117" column="52" selection-start-line="117" selection-start-column="52" selection-end-line="117" selection-end-column="52" />
+        <state relative-caret-position="571">
+          <caret line="122" column="54" lean-forward="true" selection-start-line="122" selection-start-column="54" selection-end-line="122" selection-end-column="54" />
         </state>
       </provider>
     </entry>
