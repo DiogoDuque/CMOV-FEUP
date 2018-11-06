@@ -52,7 +52,6 @@ router.post('/', (req, res) => {
   const { userId } = req.session;
   const { showId, quantity } = req.body;
   Query.buyTickets(userId, showId, quantity, (result, err) => {
-    console.log('RIGHT AT THE END!');
     if (result) {
       res.status(200).send(`{result:${JSON.stringify(result)}}`);
     } else {

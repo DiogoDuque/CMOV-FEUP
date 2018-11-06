@@ -16,21 +16,14 @@ module.exports = {
       productId = product === 'Coffee' ? 1 : 3;
       argsQuery = [type, productId, userId];
     }
-    console.log(1);
     execute(baseQuery, argsQuery, (response, err) => {
-      console.log(2);
       if (err) {
-        console.log(3.1);
-        console.log(err);
         callback(null, err);
       } else if (type === 'Discount') {
-        console.log(3.2);
         callback({ type });
       } else {
-        console.log(3.3);
         baseQuery = 'INSERT INTO voucher_ticket(voucher_id, ticket_id) VALUES ($1, $2)';
         execute(baseQuery, [response.rows[0].id, ticketId], (res, err2) => {
-          console.log(4);
           if (err2) {
             callback(null, err2);
           } else {

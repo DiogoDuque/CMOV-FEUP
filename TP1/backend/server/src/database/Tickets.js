@@ -89,23 +89,18 @@ module.exports = {
             callback(null, err2);
           } else {
             Profile.setBalance(userId, response2.rows[0].price, (balanceRes, balanceErr) => {
-              console.log('entered balance callback');
               if (balanceErr) {
                 callback(null, balanceErr);
               } else {
-                console.log(`balanceRes = ${JSON.stringify(balanceRes)}`);
-                const { balance } = balanceRes.rows[0];
                 Vouchers.createVoucher(userId, ticketId, 'Free Product',
                   (voucherRes, voucherErr) => {
-                    console.log('Tickets here again?');
                     if (voucherErr) {
                       callback(null, voucherErr);
                     } else {
                       const obj = {
-                        balance,
+                        ...balanceRes,
                         ...voucherRes,
                       };
-                      console.log('yello');
                       callback(obj);
                     }
                   });

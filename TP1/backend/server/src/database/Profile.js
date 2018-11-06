@@ -68,7 +68,16 @@ module.exports = {
       if (err) {
         callback(null, err);
       } else if ((adding - (parseInt(response.rows[0].balance, 10) % 100)) > 0) {
-        Vouchers.createVoucher(id, null, 'Discount', callback);
+        Vouchers.createVoucher(id, null, 'Discount', (resV, errV) => {
+          if(errV) {
+            callback(null, errV);
+          } else {
+            callback({
+              balance: response.rows[0].balance,
+              ...resV,
+            });
+          }
+        });
       } else callback(response);
     });
   },
