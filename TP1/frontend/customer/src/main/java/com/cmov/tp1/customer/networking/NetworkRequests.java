@@ -305,8 +305,14 @@ public abstract class NetworkRequests {
     public static void makeOrder(Context context, Date date, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/make_order";
         final int METHOD = Request.Method.POST;
+        JSONObject body = new JSONObject();
+        try {
+            body.put("date", date);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
     public static void addProductToOrder(Context context, int order, int product, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {

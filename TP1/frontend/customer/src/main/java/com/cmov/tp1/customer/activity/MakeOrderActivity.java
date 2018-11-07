@@ -72,6 +72,14 @@ public class MakeOrderActivity extends AppCompatActivity {
                 addProduct();
             }
         });
+
+        Button finishButton = findViewById(R.id.finish_button);
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishPurchase();
+            }
+        });
     }
 
     private void setupSelectedProductsList() {

@@ -73,7 +73,7 @@ router.post('/make_order', (req, res) => {
   const { userId } = req.session;
   Query.makeOrder(date, userId, (result, err) => {
     if (result) {
-      res.status(200).send(result);
+      res.status(200).send(JSON.stringify(result));
     } else {
       res.status(400).send(err);
     }

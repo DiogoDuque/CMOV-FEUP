@@ -7,20 +7,12 @@ const execute = require('./DB');
 module.exports = {
 
   makeOrder(date, costumer, callback) {
-    const baseQuery = 'INSERT INTO cafeteria_order(date, customer_id) VALUES($1,$2)';
+    const baseQuery = 'INSERT INTO cafeteria_order(date, customer_id) VALUES($1,$2) RETURNING id';
     execute(baseQuery, [date, costumer], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
-        const baseQuery2 = 'SELECT id FROM cafeteria_order ORDER BY id DESC LIMIT 1';
-        execute(baseQuery2, [], (response, err) => {
-          if (err) {
-            callback(null, err);
-          } else {
-            callback(response.rows[0].id);
-          }
-        });
+      } else {
+        callback(response.rows[0]);
       }
     });
   },
