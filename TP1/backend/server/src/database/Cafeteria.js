@@ -6,13 +6,21 @@ const verify = crypto.createVerify('RSA-SHA256');
 module.exports = {
 
     makeOrder(date, costumer, callback){
-        const baseQuery = 'INSERT INTO cafeteria_order(date, customer_id) VALUES($1,$2)';
+        let baseQuery = 'INSERT INTO cafeteria_order(date, customer_id) VALUES($1,$2)';
         execute(baseQuery, [date, costumer], (response, err) => {
             if (err) {
                 callback(null, err);
             }
             else {
-                callback(response);
+                let baseQuery = 'SELECT id FROM cafeteria_order ORDER BY id DESC LIMIT 1';
+                execute(baseQuery, [], (response, err) => {
+                    if (err) {
+                        callback(null, err);
+                    }
+                    else {
+                        callback(response.rows[0].id);
+                    }
+                });
             }
         });
     },
@@ -92,6 +100,18 @@ module.exports = {
             }
         });
     },
+
+    getProductPrice(id, callback){
+        const baseQuery = 'SELECT price FROM cafeteria_product WHERE id = $1';
+        execute(baseQuery, [id], (response, err) => {
+            if (err) {
+                callback(null, err);
+            }
+            else {
+                callback(response);
+            }
+        });
+    }
 
     verifyOrderSignature(user_id, signature, message, callback){
         const baseQuery = 'SELECT public_key FROM customer WHERE id = $1';

@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/database/Tickets.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/database/Tickets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/ticketsRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/ticketsRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/cafeteria/cafeteria.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/cafeteria/cafeteria.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/customer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/customer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/TicketsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/TicketsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/CardReaderFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/java/com/cmov/tp1/terminal/ValidateTicketActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/activity_validate_ticket.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/src/main/res/layout/activity_validate_ticket.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/terminal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/terminal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/database/Cafeteria.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/database/Cafeteria.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/MakeOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/MakeOrderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_make_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_make_order.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,31 +32,31 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="java" value="4" />
-          <entry key="js" value="158" />
+          <entry key="js" value="160" />
           <entry key="json" value="2" />
-          <entry key="sql" value="13" />
+          <entry key="sql" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="4" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="154" />
+          <entry key="JavaScript" value="156" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="SQL" value="13" />
+          <entry key="SQL" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2" />
-          <entry key="js" value="7843" />
+          <entry key="js" value="7985" />
           <entry key="sql" value="187" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2" />
-          <entry key="JavaScript" value="7838" />
+          <entry key="JavaScript" value="7980" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="188" />
         </counts>
@@ -76,6 +65,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/routes/profileRoute.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,15 +84,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/routes/voucherRoute.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="60" column="3" selection-start-line="60" selection-start-column="3" selection-end-line="60" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/database/Tickets.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="487">
@@ -104,28 +93,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/init.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="503">
+              <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/database/Profile.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
               <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/database/Shows.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/database/Vouchers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1095">
-              <caret line="73" column="61" selection-start-line="73" selection-start-column="61" selection-end-line="73" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -203,13 +192,13 @@
         <option value="$PROJECT_DIR$/server/src/database/Auth.js" />
         <option value="$PROJECT_DIR$/server/src/database/Profile.js" />
         <option value="$PROJECT_DIR$/server/src/database/Vouchers.js" />
-        <option value="$PROJECT_DIR$/server/src/database/Cafeteria.js" />
-        <option value="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" />
         <option value="$PROJECT_DIR$/server/src/routes/profileRoute.js" />
         <option value="$PROJECT_DIR$/server/src/routes/voucherRoute.js" />
         <option value="$PROJECT_DIR$/server/index.js" />
         <option value="$PROJECT_DIR$/server/src/routes/ticketsRoute.js" />
         <option value="$PROJECT_DIR$/server/src/database/Tickets.js" />
+        <option value="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" />
+        <option value="$PROJECT_DIR$/server/src/database/Cafeteria.js" />
       </list>
     </option>
   </component>
@@ -267,6 +256,11 @@
             <path>
               <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="database" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -342,12 +336,12 @@
       <workItem from="1541332942244" duration="14190000" />
       <workItem from="1541491710088" duration="798000" />
       <workItem from="1541530045094" duration="1791000" />
-      <workItem from="1541578322425" duration="2116000" />
+      <workItem from="1541578322425" duration="2483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39891000" />
+    <option name="totallyTimeSpent" value="40258000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
@@ -455,31 +449,10 @@
     <entry file="file://$PROJECT_DIR$/server/src/routes/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/init.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="99" column="36" lean-forward="true" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/database/Auth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="60" column="38" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -550,6 +523,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
           <caret line="129" column="39" selection-start-line="129" selection-start-column="39" selection-end-line="129" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/init.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
         </state>
       </provider>
     </entry>

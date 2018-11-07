@@ -57,6 +57,17 @@ router.get('/order_vouchers', (req, res) => {
     });
 });
 
+router.get('/product_price', (req, res) => {
+    const { id } = req.query;
+    Query.getProductPrice(id, (result, err) => {
+        if(result) {
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
 router.post('/make_order', (req, res) => {
     const { date } = req.body;
     const { userId } = req.session;

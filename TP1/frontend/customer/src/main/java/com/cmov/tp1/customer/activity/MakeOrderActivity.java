@@ -11,14 +11,25 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.networking.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MakeOrderActivity extends AppCompatActivity {
 
     private static final String TAG = "MakeOrderActivity";
+    private ArrayList<Integer> products = new ArrayList<>();
+    private ArrayList<Integer> quantities = new ArrayList<>();
     private int quantity = 0;
     private double totalToPay = 0.0;
 
@@ -68,28 +79,80 @@ public class MakeOrderActivity extends AppCompatActivity {
 
 
     private void finishPurchase(){
-        Intent intent = new Intent(this, ShowsActivity.class);
+        Date date = new Date();
+        final int[] orderId = new int[1];
+        NetworkRequests.makeOrder(this, date, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+                try {
+                    orderId[0] = json.getInt("id");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+            }
+        });
+
+        Intent intent = new Intent(this, OrderFinishedActivity.class);
+
+        Bundle b = new Bundle();
+        b.putInt("orderID", orderId[0]);
+        b.putIntegerArrayList("products", products);
+        b.putIntegerArrayList("quantities", quantities);
+        intent.putExtras(b); //Put your id to your next Intent
+
         startActivity(intent);
     }
 
     private void addProduct(){
         Spinner spinner = (Spinner) findViewById(R.id.products);
         int productID = Integer.valueOf(spinner.getSelectedItemPosition());
-        int quantity = Integer.parseInt(findViewById(R.id.quantity_label).toString());
+        final int quantity = Integer.parseInt(findViewById(R.id.quantity_label).toString());
 
         if(quantity < 0){
             Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        totalToPay += quantity * 0;
+        products.add(productID);
+        quantities.add(quantity);
+
+        NetworkRequests.getProductPrice(this, productID, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+                try {
+                    final double price = json.getDouble("price");
+                    totalToPay += quantity * price;
+                    TextView total = findViewById(R.id.total);
+                    total.setText(Double.toString(totalToPay));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+            }
+        });
     }
 
     private void changeQuantity(boolean type){
         if(type)
             quantity++;
-        else
+        else{
+            if(quantity == 0){
+                Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             quantity--;
+        }
+
+        TextView quant = findViewById(R.id.quantity_label);
+        quant.setText(Integer.toString(quantity));
     }
 
     @Override

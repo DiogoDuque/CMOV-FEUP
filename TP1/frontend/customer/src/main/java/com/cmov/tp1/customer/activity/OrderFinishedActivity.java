@@ -12,7 +12,12 @@ import android.widget.Button;
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
+import java.util.ArrayList;
+
 public class OrderFinishedActivity extends AppCompatActivity {
+    private int orderId;
+    private ArrayList<Integer> products;
+    private ArrayList<Integer> quantities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,11 @@ public class OrderFinishedActivity extends AppCompatActivity {
 
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
+
+        Bundle b = getIntent().getExtras();
+        orderId = b.getInt("orderId");
+        products = b.getIntegerArrayList("products");
+        quantities = b.getIntegerArrayList("quantities");
 
         Button noButton = findViewById(R.id.no_button);
         noButton.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +55,12 @@ public class OrderFinishedActivity extends AppCompatActivity {
             intent = new Intent(this, VoucherPageActivity.class);
         else
             intent = new Intent(this, OrderFinishedActivity.class);
+
+        Bundle b = new Bundle();
+        b.putInt("orderID", orderId);
+        b.putIntegerArrayList("products", products);
+        b.putIntegerArrayList("quantities", quantities);
+        intent.putExtras(b); //Put your id to your next Intent
 
         startActivity(intent);
     }

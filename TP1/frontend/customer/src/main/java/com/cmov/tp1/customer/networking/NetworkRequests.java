@@ -295,6 +295,19 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
+    public static void getProductPrice(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/cafeteria/product_price";
+        final int METHOD = Request.Method.GET;
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("id", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+    }
+
     public static void makeOrder(Context context, Date date, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/make_order";
         final int METHOD = Request.Method.POST;
