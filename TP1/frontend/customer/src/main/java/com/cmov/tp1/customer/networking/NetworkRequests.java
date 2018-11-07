@@ -295,17 +295,11 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void getProductPrice(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/product_price";
+    public static void getProductPrice(Context context, String product, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = String.format("/cafeteria/product_price?product=%s", product);
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, null, onRequestCompleted);
     }
 
     public static void makeOrder(Context context, Date date, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {

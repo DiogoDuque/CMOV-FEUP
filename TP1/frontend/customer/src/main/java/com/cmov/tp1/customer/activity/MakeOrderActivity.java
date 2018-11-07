@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,19 +24,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class MakeOrderActivity extends AppCompatActivity {
 
     private static final String TAG = "MakeOrderActivity";
-    private ArrayList<Integer> products = new ArrayList<>();
+    private ArrayList<String> products = new ArrayList<>();
     private ArrayList<Integer> quantities = new ArrayList<>();
+    private String[] productsStrList = new String[0];
     private int quantity = 0;
     private double totalToPay = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "????");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_order);
 
@@ -43,6 +46,8 @@ public class MakeOrderActivity extends AppCompatActivity {
         ToolbarUtility.setupDrawer(this);
 
         addValuesToSpinner();
+
+        setupSelectedProductsList();
 
         Button minusButton = findViewById(R.id.minus_button);
         minusButton.setOnClickListener(new View.OnClickListener() {
@@ -69,14 +74,20 @@ public class MakeOrderActivity extends AppCompatActivity {
         });
     }
 
+    private void setupSelectedProductsList() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                android.R.id.text1, productsStrList);
+        ListView listView = findViewById(R.id.product_list);
+        listView.setAdapter(adapter);
+    }
+
     private void addValuesToSpinner(){
-        Spinner spinner = (Spinner) findViewById(R.id.products);
+        Spinner spinner = findViewById(R.id.products);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.products, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-
 
     private void finishPurchase(){
         Date date = new Date();
@@ -100,34 +111,39 @@ public class MakeOrderActivity extends AppCompatActivity {
 
         Bundle b = new Bundle();
         b.putInt("orderID", orderId[0]);
-        b.putIntegerArrayList("products", products);
+        b.putStringArrayList("products", products);
         b.putIntegerArrayList("quantities", quantities);
-        intent.putExtras(b); //Put your id to your next Intent
+        intent.putExtras(b);
 
         startActivity(intent);
     }
 
     private void addProduct(){
-        Spinner spinner = (Spinner) findViewById(R.id.products);
-        int productID = Integer.valueOf(spinner.getSelectedItemPosition());
-        final int quantity = Integer.parseInt(findViewById(R.id.quantity_label).toString());
+        Spinner spinner = findViewById(R.id.products);
+        final String product = spinner.getSelectedItem().toString();
+        TextView quantityLabel = findViewById(R.id.quantity_label);
+        final int quantity = Integer.parseInt(quantityLabel.getText().toString());
 
-        if(quantity < 0){
+        if(quantity <= 0){
             Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        products.add(productID);
-        quantities.add(quantity);
-
-        NetworkRequests.getProductPrice(this, productID, new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.getProductPrice(this, product, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 try {
-                    final double price = json.getDouble("price");
+                    final double price = Double.parseDouble(json.getString("price"));
                     totalToPay += quantity * price;
                     TextView total = findViewById(R.id.total);
-                    total.setText(Double.toString(totalToPay));
+                    total.setText(String.format("%.2f", totalToPay));
+
+                    products.add(product);
+                    quantities.add(quantity);
+                    List<String> productsStrListTmp = new ArrayList<>(Arrays.asList(productsStrList));
+                    productsStrListTmp.add(String.format("%dx %.2f - %s", quantity, price, product));
+                    productsStrList = productsStrListTmp.toArray(new String[productsStrListTmp.size()]);
+                    Log.d(TAG, productsStrListTmp.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -135,6 +151,7 @@ public class MakeOrderActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
+                //TODO handle
             }
         });
     }
