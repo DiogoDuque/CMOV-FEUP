@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/monserrat"
             android:text="Ticket Information"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/monserrat"
             android:text="Show Name"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/monserrat"
             android:text="Show Date"
             android:textSize="20sp"
             android:textStyle="bold" />

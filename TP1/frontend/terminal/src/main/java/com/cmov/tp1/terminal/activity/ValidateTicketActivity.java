@@ -1,17 +1,11 @@
-package com.cmov.tp1.terminal;
+package com.cmov.tp1.terminal.activity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+import com.cmov.tp1.terminal.utility.CardReaderFragment;
+import com.cmov.tp1.terminal.R;
 
 public class ValidateTicketActivity extends AppCompatActivity {
 

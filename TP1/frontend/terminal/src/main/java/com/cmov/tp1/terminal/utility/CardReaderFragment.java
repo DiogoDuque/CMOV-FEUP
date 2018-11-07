@@ -1,6 +1,7 @@
-package com.cmov.tp1.terminal;
+package com.cmov.tp1.terminal.utility;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.cmov.tp1.terminal.R;
+import com.cmov.tp1.terminal.activity.ResultActivity;
+import com.cmov.tp1.terminal.utility.CardReader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class CardReaderFragment extends Fragment implements CardReader.CardReaderCallback {
@@ -46,6 +55,7 @@ public class CardReaderFragment extends Fragment implements CardReader.CardReade
         Integer userId = Integer.parseInt(strings[0]);
         Integer quantity = Integer.parseInt(strings[1]);
         String show_Date = strings[3];
+        String show_name = "";
         Integer showId = 0;
         String[] shows = null;
 
@@ -54,8 +64,44 @@ public class CardReaderFragment extends Fragment implements CardReader.CardReade
         else
             shows = strings[2].split("-");
 
-        showName.setText("Show name");
-        showDate.setText(show_Date);
+        /**if(quantity == 1){
+          NetworkRequests.checkTickets(this, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+              show_name = json.getString("showName");
+              Toast.makeText(activity.getBaseContext(), "Ticket validated successfully", Toast.LENGTH_SHORT).show();
+              activity.finish();
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+              Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
+            }
+          });
+        }
+        else{
+          for(int i = 0; i < shows.length; i++){
+            NetworkRequests.checkTickets(this, shows[i], show_Date, new HTTPRequestUtility.OnRequestCompleted() {
+              @Override
+              public void onSuccess(JSONObject json) {
+                show_name = json.getString("showName");
+              }
+
+              @Override
+              public void onError(JSONObject json) {
+                Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
+              }
+            });
+          }
+
+        }**/
+
+        Intent intent = new Intent(getActivity(), ResultActivity.class);
+        Bundle b = new Bundle();
+        b.putBoolean("result", true);
+
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
       }
     });
   }

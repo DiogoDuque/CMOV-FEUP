@@ -1,4 +1,4 @@
-package com.cmov.tp1.terminal;
+package com.cmov.tp1.terminal.utility;
 
 import android.nfc.NfcAdapter.ReaderCallback;
 import android.nfc.Tag;

@@ -112,17 +112,24 @@ module.exports = {
     });
   },
 
-  checkTicket(userId, showName, showDate, quantity, callback){
-      const baseQuery = 'SELECT count(*) AS counter'
-          + ' FROM ticket, event WHERE ticket.customer_id = $1 AND event.name = $2 AND ticket.event_id = event.id AND event.date = $3 AND ticket.is_used = FALSE';
-      execute(baseQuery, [userId, showName, showDate], (response, err) => {
+  checkTicket(userId, ticketId, showDate, callback){
+      let baseQuery = 'SELECT event.name AS showName'
+          + ' FROM ticket, event WHERE ticket.customer_id = $1 AND ticket.id = $2 AND ticket.is_used = FALSE AND event.date = $3 AND ticket.event_id = event.id';
+      execute(baseQuery, [userId, ticketId, showDate], (response, err) => {
           if (err) {
               callback(null, err);
           }
           else {
-              if(response.rows[0].counter >= quantity)
-                callback(true);
-              callback(false);
+            var showName = response.rows[0].showName;
+              baseQuery = "UPDATE ticket set is_used = TRUE WHERE id = $1";
+              execute(baseQuery, [userId, ticketId, showDate], (response, err) => {
+                  if (err) {
+                      callback(null, err);
+                  }
+                  else {
+                      callback(showName);
+                  }
+              });
           }
       });
   }

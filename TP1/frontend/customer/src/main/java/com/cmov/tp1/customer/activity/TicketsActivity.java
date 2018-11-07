@@ -32,6 +32,7 @@ public class TicketsActivity extends AppCompatActivity {
     static private final String TAG = "TicketsActivity";
     private List<CheckBox> checkboxes = new ArrayList<>();
     private ArrayList<Integer> ticketsID = new ArrayList<>();
+    private ArrayList<String> dates = new ArrayList<>();
     private List<TicketTerminal> ticketList = new ArrayList<>();
 
     @Override
@@ -147,8 +148,17 @@ public class TicketsActivity extends AppCompatActivity {
     public void validateTickets(){
         for(int i = 0; i < checkboxes.size(); i++){
             CheckBox checkBox = (CheckBox)checkboxes.get(i);
-            if(checkBox.isChecked() && i < 4)
+            if(checkBox.isChecked() && i < 4){
+                String date = checkBox.getText().toString().split(" - ")[1];
+                if(ticketsID.size() != 0){
+                    if(!dates.get(dates.size() - 1).equals(date)){
+                        Toast.makeText(this, "Select only tickets with the same date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 ticketsID.add(checkBox.getId());
+                dates.add(date);
+            }
             else{
                 Toast.makeText(this, "You only are allowed to select 4 tickets to validate", Toast.LENGTH_SHORT).show();
                 return;
