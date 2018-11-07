@@ -34,7 +34,7 @@ public class MakeOrderActivity extends AppCompatActivity {
     private ArrayList<String> products = new ArrayList<>();
     private ArrayList<Integer> quantities = new ArrayList<>();
     private String[] productsStrList = new String[0];
-    private int quantity = 0;
+    private int quantity = 1;
     private double totalToPay = 0.0;
 
     @Override
@@ -144,6 +144,8 @@ public class MakeOrderActivity extends AppCompatActivity {
                     productsStrListTmp.add(String.format("%dx %.2f - %s", quantity, price, product));
                     productsStrList = productsStrListTmp.toArray(new String[productsStrListTmp.size()]);
                     Log.d(TAG, productsStrListTmp.toString());
+                    setupSelectedProductsList();
+                    resetQuantity();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -160,7 +162,7 @@ public class MakeOrderActivity extends AppCompatActivity {
         if(type)
             quantity++;
         else{
-            if(quantity == 0){
+            if(quantity <= 1){
                 Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -170,6 +172,12 @@ public class MakeOrderActivity extends AppCompatActivity {
 
         TextView quant = findViewById(R.id.quantity_label);
         quant.setText(Integer.toString(quantity));
+    }
+
+    private void resetQuantity() {
+        TextView quant = findViewById(R.id.quantity_label);
+        quant.setText("1");
+        quantity = 1;
     }
 
     @Override
