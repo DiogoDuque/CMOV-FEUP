@@ -166,7 +166,7 @@
                 android:background="@drawable/mybutton"
                 android:fontFamily="@font/monserrat"
                 android:textSize="16dp"
-                android:text="Finish"
+                android:text="Continue"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@android:color/background_light"

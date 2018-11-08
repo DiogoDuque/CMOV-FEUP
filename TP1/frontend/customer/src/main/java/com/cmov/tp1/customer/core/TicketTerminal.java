@@ -80,7 +80,7 @@ public class TicketTerminal {
 
     public ArrayList<Integer> getTickets() { return ticketsIDs; }
 
-    public String getTicket(){
+    public static String getTicket(){
         if(!isMultiple)
             return Integer.toString(userId) + "/1/" + Integer.toString(eventId) + "/" + date ;
         else{

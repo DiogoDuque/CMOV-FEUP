@@ -25,26 +25,21 @@ public class VoucherPageActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        TextView productLabel = findViewById(R.id.product_label);
+        /*TextView productLabel = findViewById(R.id.product_label);
         String product = bundle.getString("product");
         productLabel.setText(product == null ? "" : product);
         TextView typeLabel = findViewById(R.id.type_discount_label);
         typeLabel.setText(bundle.getString("type"));
         TextView statusLabel = findViewById(R.id.status_label);
-        statusLabel.setText(Boolean.parseBoolean(bundle.getString("isUsed")) ? "Used" : "Not used");
+        statusLabel.setText(Boolean.parseBoolean(bundle.getString("isUsed")) ? "Used" : "Not used");*/
 
         Button useVoucherButton = findViewById(R.id.use_voucher);
         useVoucherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeOrder();
+                //makeOrder();
             }
         });
-    }
-
-    private void makeOrder(){
-        Intent intent = new Intent(this, MakeOrderActivity.class);
-        startActivity(intent);
     }
 
     @Override

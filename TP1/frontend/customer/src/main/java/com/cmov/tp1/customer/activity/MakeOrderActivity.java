@@ -98,13 +98,24 @@ public class MakeOrderActivity extends AppCompatActivity {
     }
 
     private void finishPurchase(){
+        if(products.size()==0) {
+            Toast.makeText(this, "No product selected.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Date date = new Date();
-        final int[] orderId = new int[1];
         NetworkRequests.makeOrder(this, date, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 try {
-                    orderId[0] = json.getInt("id");
+                    int orderId = json.getInt("id");
+                    Intent intent = new Intent(MakeOrderActivity.this, OrderFinishedActivity.class);
+                    Bundle b = new Bundle();
+                    b.putInt("orderID", orderId);
+                    b.putStringArrayList("products", products);
+                    b.putIntegerArrayList("quantities", quantities);
+                    intent.putExtras(b);
+                    startActivity(intent);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -112,18 +123,9 @@ public class MakeOrderActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
+                //TODO handle
             }
         });
-
-        Intent intent = new Intent(this, OrderFinishedActivity.class);
-
-        Bundle b = new Bundle();
-        b.putInt("orderID", orderId[0]);
-        b.putStringArrayList("products", products);
-        b.putIntegerArrayList("quantities", quantities);
-        intent.putExtras(b);
-
-        startActivity(intent);
     }
 
     private void addProduct(){
