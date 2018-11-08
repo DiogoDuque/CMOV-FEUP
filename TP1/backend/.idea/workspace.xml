@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/server/src/database/Cafeteria.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/database/Cafeteria.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/cafeteriaRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/MakeOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/MakeOrderActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_make_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_make_order.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +12,7 @@
     <session id="1615718789">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
@@ -336,12 +331,12 @@
       <workItem from="1541332942244" duration="14190000" />
       <workItem from="1541491710088" duration="798000" />
       <workItem from="1541530045094" duration="1791000" />
-      <workItem from="1541578322425" duration="2483000" />
+      <workItem from="1541578322425" duration="2759000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40258000" />
+    <option name="totallyTimeSpent" value="40534000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />

@@ -165,7 +165,7 @@ public class TicketsActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(TicketsActivity.this, CardEmulatorActivity.class);
+        Intent intent = new Intent(TicketsActivity.this, QrGeneratorActivity.class);
         Bundle b = new Bundle();
         b.putIntegerArrayList("ticketsID", ticketsID);
 

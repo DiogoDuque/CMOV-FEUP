@@ -13,9 +13,9 @@ public class CardEmulatorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card_emulator);
+        setContentView(R.layout.activity_generate_qr);
 
-        Bundle b = getIntent().getExtras();
+        /**Bundle b = getIntent().getExtras();
 
         if(b.getIntegerArrayList("ticketsID").size() > 0)
             ticket = TicketTerminal.setTicket(b.getInt("userId"), b.getInt("eventId"), b.getIntegerArrayList("ticketsID"), b.getString("name"), b.getString("date"), b.getDouble("price"));
@@ -30,7 +30,7 @@ public class CardEmulatorActivity extends AppCompatActivity {
         priceLabel.setText(Double.toString(ticket.getPrice()));
 
         TextView showLabel = findViewById(R.id.show_name);
-        showLabel.setText(ticket.getName());
+        showLabel.setText(ticket.getName());**/
 
     }
 }
