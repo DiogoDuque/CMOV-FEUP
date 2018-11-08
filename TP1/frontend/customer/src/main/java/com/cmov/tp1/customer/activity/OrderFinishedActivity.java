@@ -28,7 +28,7 @@ public class OrderFinishedActivity extends AppCompatActivity {
         ToolbarUtility.setupDrawer(this);
 
         Bundle b = getIntent().getExtras();
-        orderId = b.getInt("orderId");
+        orderId = b.getInt("orderID");
         products = b.getIntegerArrayList("products");
         quantities = b.getIntegerArrayList("quantities");
 
@@ -60,7 +60,7 @@ public class OrderFinishedActivity extends AppCompatActivity {
         b.putInt("orderID", orderId);
         b.putIntegerArrayList("products", products);
         b.putIntegerArrayList("quantities", quantities);
-        intent.putExtras(b); //Put your id to your next Intent
+        intent.putExtras(b);
 
         startActivity(intent);
     }
