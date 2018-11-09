@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
@@ -33,11 +35,20 @@ public class VouchersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vouchers);
 
+        Bundle bundle = getIntent().getExtras();
+        ArrayList<String> productsStr = bundle.getStringArrayList("strings");
+        int orderId = bundle.getInt("orderID");
+
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
 
         final RecyclerView unusedVouchers = findViewById(R.id.unused_vouchers);
         final RecyclerView usingVouchers = findViewById(R.id.using_vouchers);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                android.R.id.text1, productsStr);
+        ListView listView = findViewById(R.id.products);
+        listView.setAdapter(adapter);
 
         NetworkRequests.getMyVouchers(this, new HTTPRequestUtility.OnRequestCompleted() {
             @Override

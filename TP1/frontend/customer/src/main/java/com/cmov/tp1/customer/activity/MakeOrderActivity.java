@@ -111,8 +111,9 @@ public class MakeOrderActivity extends AppCompatActivity {
                     Intent intent = new Intent(MakeOrderActivity.this, OrderFinishedActivity.class);
                     Bundle b = new Bundle();
                     b.putInt("orderID", orderId);
-                    b.putStringArrayList("products", products);
+                    b.putStringArrayList("products", products); //TODO isto e as quantities nao deveriam ser resolvido aqui?
                     b.putIntegerArrayList("quantities", quantities);
+                    b.putStringArrayList("strings", new ArrayList<>(Arrays.asList(productsStrList)));
                     intent.putExtras(b);
                     startActivity(intent);
 
