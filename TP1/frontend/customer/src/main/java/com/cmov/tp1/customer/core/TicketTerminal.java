@@ -82,15 +82,15 @@ public class TicketTerminal {
 
     public String getTicket(){
         if(!isMultiple)
-            return Integer.toString(userId) + "/1/" + Integer.toString(eventId) + "/" + date ;
+            return Integer.toString(userId) + "-1-" + Integer.toString(eventId) + "-" + date ;
         else{
-            String ticketsInfo = Integer.toString(userId) + "/" + Integer.toString(ticketsIDs.size()) + "/";
+            String ticketsInfo = Integer.toString(userId) + "-" + Integer.toString(ticketsIDs.size()) + "-";
             for(int i = 0; i < ticketsIDs.size(); i++){
                 ticketsInfo += Integer.toString(ticketsIDs.get(i));
                 if(i < (ticketsIDs.size() -1))
-                    ticketsInfo += "-";
+                    ticketsInfo += "+";
             }
-            ticketsInfo += Integer.toString(eventId) + "/" + date;
+            ticketsInfo += "-"+Integer.toString(eventId) + "-" + date;
             return ticketsInfo;
         }
     }

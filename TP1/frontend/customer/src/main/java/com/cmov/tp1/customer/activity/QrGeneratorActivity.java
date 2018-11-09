@@ -3,6 +3,7 @@ package com.cmov.tp1.customer.activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ public class QrGeneratorActivity extends AppCompatActivity {
     }
 
     void generate() {
-        new Thread(new convertToQR(ticket.getTicket())).start();
+        Log.d("QR", "tickets: "+ticket.getTicket());new Thread(new convertToQR(ticket.getTicket())).start();
     }
 
     class convertToQR implements Runnable {

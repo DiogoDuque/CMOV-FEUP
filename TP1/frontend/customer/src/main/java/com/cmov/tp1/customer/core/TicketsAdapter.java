@@ -86,7 +86,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
                 int eventId = obj.getInt("eventid");
                 String date = reformatDateStr(obj.getString("date"));
                 double price = obj.getDouble("price");
-                ticketsNew.add(new TicketTerminal(userId, id, eventId, name, date, price));
+                ticketsNew.add(new TicketTerminal(userId, eventId, id, name, date, price));
             }
         } catch (JSONException e) {
             e.printStackTrace();

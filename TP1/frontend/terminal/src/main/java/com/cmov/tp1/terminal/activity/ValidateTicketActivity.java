@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -68,16 +69,19 @@ public class ValidateTicketActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 String contents = data.getStringExtra("SCAN_RESULT");
+                Log.d("Validate", contents);
                 String format = data.getStringExtra("SCAN_RESULT_FORMAT");
 
-                message = "Format: " + format + "\nMessage: " + contents;
-                getResultScan(message);
+                getResultScan(contents);
             }
         }
     }
 
     public void getResultScan(String message){
-        String[] strings = message.split("/");
+        String[] strings = message.split("-");
+        for(String s: strings) {
+            Log.d("Validate", "splitted: "+s);
+        }
         Integer userId = Integer.parseInt(strings[0]);
         Integer quantity = Integer.parseInt(strings[1]);
         String show_Date = strings[3];
@@ -88,7 +92,8 @@ public class ValidateTicketActivity extends AppCompatActivity {
         if(strings.length == 4)
             showId = Integer.parseInt(strings[2]);
         else
-            shows = strings[2].split("-");
+            shows = strings[2].split("\\+");
+        Log.d("Validate","1st show: "+shows[0]);
 
         if(quantity == 1){
          NetworkRequests.checkTickets(this, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {

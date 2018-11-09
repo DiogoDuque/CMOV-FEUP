@@ -127,6 +127,9 @@ public class TicketsActivity extends AppCompatActivity {
                     b.putInt("quantity", 1);
                 } else {
                     ArrayList<Integer> ticketIds = new ArrayList<>();
+                    for(TicketTerminal t: tickets) {
+                        ticketIds.add(t.getTicketId());
+                    }
                     b.putIntegerArrayList("ticketsID", ticketIds);
                     b.putInt("quantity", tickets.size());
                 }
