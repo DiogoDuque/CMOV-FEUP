@@ -6,14 +6,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.cmov.tp1.terminal.networking.HTTPRequestUtility;
+import com.cmov.tp1.terminal.networking.NetworkRequests;
 import com.cmov.tp1.terminal.utility.CardReaderFragment;
 import com.cmov.tp1.terminal.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class ValidateTicketActivity extends AppCompatActivity {
 
@@ -77,7 +82,7 @@ public class ValidateTicketActivity extends AppCompatActivity {
         Integer userId = Integer.parseInt(strings[0]);
         Integer quantity = Integer.parseInt(strings[1]);
         String show_Date = strings[3];
-        String show_name = "";
+        final String[] show_name = {""};
         Integer showId = 0;
         String[] shows = null;
 
@@ -86,26 +91,25 @@ public class ValidateTicketActivity extends AppCompatActivity {
         else
             shows = strings[2].split("-");
 
-        /**if(quantity == 1){
+        if(quantity == 1){
          NetworkRequests.checkTickets(this, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
-            public void onSuccess(JSONObject json) {
-                show_name = json.getString("showName");
-                Toast.makeText(activity.getBaseContext(), "Ticket validated successfully", Toast.LENGTH_SHORT).show();
-                activity.finish();
+            public void onSuccess(JSONObject json) throws JSONException {
+                show_name[0] = json.getString("showName");
+                Toast.makeText(getBaseContext(), "Ticket validated successfully", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(JSONObject json) {
                 Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
             }
-        });
-         }else{
+        }); }
+        else{
          for(int i = 0; i < shows.length; i++){
-         NetworkRequests.checkTickets(this, shows[i], show_Date, new HTTPRequestUtility.OnRequestCompleted() {
+         NetworkRequests.checkTickets(this, Integer.parseInt(shows[i]), show_Date, new HTTPRequestUtility.OnRequestCompleted() {
         @Override
-        public void onSuccess(JSONObject json) {
-        show_name = json.getString("showName");
+        public void onSuccess(JSONObject json) throws JSONException {
+            show_name[0] = json.getString("showName");
         }
 
         @Override
@@ -115,7 +119,7 @@ public class ValidateTicketActivity extends AppCompatActivity {
         });
          }
 
-         }**/
+         }
 
         Intent intent = new Intent(this, ResultActivity.class);
         Bundle b = new Bundle();

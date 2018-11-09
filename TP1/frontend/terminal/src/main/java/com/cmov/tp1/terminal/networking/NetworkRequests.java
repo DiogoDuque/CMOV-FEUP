@@ -2,7 +2,7 @@ package com.cmov.tp1.terminal.networking;
 
 import android.content.Context;
 
-/**import com.android.volley.Request;
+import com.android.volley.Request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,4 +27,4 @@ public abstract class NetworkRequests {
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
-}**/
+}

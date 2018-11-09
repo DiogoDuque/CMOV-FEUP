@@ -1,6 +1,6 @@
 package com.cmov.tp1.terminal.networking;
 
-/**import android.content.Context;
+import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
@@ -18,7 +18,7 @@ public class HTTPRequestUtility {
     private static final String TAG = "HttpReqUtil";
 
     public interface OnRequestCompleted{
-        void onSuccess(JSONObject json);
+        void onSuccess(JSONObject json) throws JSONException;
         void onError(JSONObject json);
     }
 
@@ -80,4 +80,4 @@ public class HTTPRequestUtility {
 
         getRequestQueue().add(request);
     }
-}**/
+}
