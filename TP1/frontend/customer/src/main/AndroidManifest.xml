@@ -42,8 +42,9 @@
         <activity android:name=".activity.OrderFinishedActivity"
             android:noHistory="true"
             android:parentActivityName=".activity.MakeOrderActivity"/>
+        <activity android:name=".activity.QrGeneratorActivity"/>
 
-        <service
+        <!--<service
             android:name=".utility.CardService"
             android:enabled="true"
             android:exported="true"
@@ -54,7 +55,7 @@
             </intent-filter>
             <meta-data android:name="android.nfc.cardemulation.host_apdu_service"
                 android:resource="@xml/aid_list"/>
-        </service>
+        </service>-->
     </application>
 
 </manifest>

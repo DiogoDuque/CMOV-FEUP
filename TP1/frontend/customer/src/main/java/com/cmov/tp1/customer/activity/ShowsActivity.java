@@ -33,7 +33,7 @@ public class ShowsActivity extends AppCompatActivity {
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
 
-        final RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = findViewById(R.id.unused_tickets_list);
 
         NetworkRequests.getShowsRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
 

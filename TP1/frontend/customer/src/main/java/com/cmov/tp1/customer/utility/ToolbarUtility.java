@@ -16,6 +16,7 @@ import com.cmov.tp1.customer.activity.MakeOrderActivity;
 import com.cmov.tp1.customer.activity.MyShowsActivity;
 import com.cmov.tp1.customer.activity.ProfileActivity;
 import com.cmov.tp1.customer.activity.ShowsActivity;
+import com.cmov.tp1.customer.activity.TicketsActivity;
 import com.cmov.tp1.customer.activity.VouchersActivity;
 
 public abstract class ToolbarUtility {
@@ -46,6 +47,9 @@ public abstract class ToolbarUtility {
         else if(app instanceof MyShowsActivity)
             menu.findItem(R.id.nav_menu_my_shows).setChecked(true);
 
+        else if(app instanceof TicketsActivity)
+            menu.findItem(R.id.unused_tickets).setChecked(true);
+
         else if(app instanceof MakeOrderActivity)
             menu.findItem(R.id.nav_menu_make_order).setChecked(true);
 
@@ -68,6 +72,10 @@ public abstract class ToolbarUtility {
                         else if(selection.equals(res.getString(R.string.drawer_main_menu_my_shows)) &&
                                 !(app instanceof MyShowsActivity))
                             changeActivity(app, MyShowsActivity.class);
+
+                        else if(selection.equals(res.getString(R.string.my_unused_tickets)) &&
+                                !(app instanceof TicketsActivity))
+                            changeActivity(app, TicketsActivity.class);
 
                         else if(selection.equals(res.getString(R.string.drawer_main_menu_make_order)) &&
                                 !(app instanceof MakeOrderActivity))

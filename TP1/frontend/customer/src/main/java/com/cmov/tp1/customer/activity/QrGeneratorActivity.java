@@ -32,11 +32,11 @@ public class QrGeneratorActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-        if(b.getIntegerArrayList("ticketsID").size() > 0)
-            ticket = TicketTerminal.setTicket(b.getInt("userId"), b.getInt("eventId"), b.getIntegerArrayList("ticketsID"), b.getString("name"), b.getString("date"), b.getDouble("price"));
+        if(b.getIntegerArrayList("ticketsID") != null)
+            ticket = new TicketTerminal(b.getInt("userId"), b.getInt("eventId"), b.getIntegerArrayList("ticketsID"), b.getString("name"), b.getString("date"), b.getDouble("price"));
 
         else
-            ticket = TicketTerminal.setTicket(b.getInt("userId"), b.getInt("eventId"), b.getInt("id"), b.getString("name"), b.getString("date"), b.getDouble("price"));
+            ticket = new TicketTerminal(b.getInt("userId"), b.getInt("eventId"), b.getInt("id"), b.getString("name"), b.getString("date"), b.getDouble("price"));
 
         generate();
     }

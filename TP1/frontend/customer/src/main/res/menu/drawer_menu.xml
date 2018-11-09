@@ -10,6 +10,10 @@
             android:checkable="true"
             android:title="@string/drawer_main_menu_my_shows" />
         <item
+            android:id="@+id/unused_tickets"
+            android:checkable="true"
+            android:title="@string/my_unused_tickets"/>
+        <item
             android:id="@+id/nav_menu_make_order"
             android:checkable="true"
             android:title="@string/drawer_main_menu_make_order" />

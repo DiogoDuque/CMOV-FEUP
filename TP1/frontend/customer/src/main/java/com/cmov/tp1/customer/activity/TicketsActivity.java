@@ -9,10 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
@@ -33,7 +31,8 @@ public class TicketsActivity extends AppCompatActivity {
     private List<CheckBox> checkboxes = new ArrayList<>();
     private ArrayList<Integer> ticketsID = new ArrayList<>();
     private ArrayList<String> dates = new ArrayList<>();
-    private List<TicketTerminal> ticketList = new ArrayList<>();
+    private TicketsAdapter unusedTicketsAdapter;
+    private TicketsAdapter selectedTicketsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,56 +42,46 @@ public class TicketsActivity extends AppCompatActivity {
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
 
-        final RecyclerView recyclerView = findViewById(R.id.recycler_view);
-
-        Button selectBtn = findViewById(R.id.select_tickets);
-        selectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeToSelects();
-            }
-        });
-
-        Button validateBtn = findViewById(R.id.validate_button);
-        validateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validateTickets();
-            }
-        });
+        final RecyclerView unusedTicketsView = findViewById(R.id.unused_tickets_list);
+        final RecyclerView selectedTicketsView = findViewById(R.id.selected_tickets_list);
 
         NetworkRequests.getNotUsedTickets(this, new HTTPRequestUtility.OnRequestCompleted() {
 
             @Override
             public void onSuccess(JSONObject json) {
-                ticketList = TicketsAdapter.parseJsonTickets(json);
-                createCheckBoxes(ticketList);
-                TicketsAdapter adapter = new TicketsAdapter(ticketList);
-                adapter.setupBoilerplate(getApplicationContext(), recyclerView, new MyClickListener.ClickListener() {
+                List<TicketTerminal> unusedTicketList = TicketsAdapter.parseJsonTickets(json);
+                unusedTicketsAdapter = new TicketsAdapter(unusedTicketList);
+                selectedTicketsAdapter = new TicketsAdapter(new ArrayList<TicketTerminal>());
+
+                unusedTicketsAdapter.setupBoilerplate(getApplicationContext(), unusedTicketsView, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        TicketTerminal ticket = ticketList.get(position);
-
-                        Intent intent = new Intent(TicketsActivity.this, CardEmulatorActivity.class);
-                        Bundle b = new Bundle();
-                        b.putInt("id", ticket.getTicketId());
-                        b.putInt("userId", ticket.getUserId());
-                        b.putInt("eventId", ticket.getEventId());
-                        b.putString("name", ticket.getName());
-                        b.putString("date", ticket.getDate());
-                        b.putDouble("price", ticket.getPrice());
-                        b.putInt("quantity", 1);
-                        intent.putExtras(b); //Put your id to your next Intent
-                        startActivity(intent);
-                        finish();
+                        if(selectedTicketsAdapter.getItemCount() >= 4) {
+                            Toast.makeText(TicketsActivity.this, "No more than 4 tickets may be validated!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        TicketTerminal ticket = unusedTicketsAdapter.removeTicket(position);
+                        selectedTicketsAdapter.addTicket(ticket);
                     }
 
                     @Override
                     public void onLongClick(View view, int position) {
                     }
                 });
+            unusedTicketsView.setAdapter(unusedTicketsAdapter);
 
-                recyclerView.setAdapter(adapter);
+            selectedTicketsAdapter.setupBoilerplate(getApplicationContext(), selectedTicketsView, new MyClickListener.ClickListener() {
+                @Override
+                public void onClick(View view, int position) {
+                    TicketTerminal t = selectedTicketsAdapter.removeTicket(position);
+                    unusedTicketsAdapter.addTicket(t);
+                }
+
+                @Override
+                public void onLongClick(View view, int position) {
+
+                }
+            });
 
 
             }
@@ -100,6 +89,50 @@ public class TicketsActivity extends AppCompatActivity {
             @Override
             public void onError(JSONObject json) {
                 Log.e(TAG, json.toString()); //TODO handle error
+            }
+        });
+
+        Button finishButton = findViewById(R.id.finish_button);
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedTicketsAdapter.getItemCount() == 0) {
+                    Toast.makeText(TicketsActivity.this, "You must select ticket to validade.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(selectedTicketsAdapter.getItemCount() > 4) {
+                    Toast.makeText(TicketsActivity.this, "No more than 4 tickets may be validated!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<TicketTerminal> tickets = selectedTicketsAdapter.getTickets();
+                String date = tickets.get(0).getDate();
+                for(int i=1; i<selectedTicketsAdapter.getItemCount(); i++){
+                    if(!tickets.get(i).getDate().equals(date)){
+                        Toast.makeText(TicketsActivity.this, "The tickets' date must be the same.",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
+                Intent intent = new Intent(TicketsActivity.this, QrGeneratorActivity.class);
+                Bundle b = new Bundle();
+                TicketTerminal ticket = tickets.get(0);
+                b.putInt("userId", ticket.getUserId());
+                b.putInt("eventId", ticket.getEventId());
+                b.putString("name", ticket.getName());
+                b.putString("date", ticket.getDate());
+                b.putDouble("price", ticket.getPrice());
+                if(tickets.size() == 1) {
+                    b.putInt("id", ticket.getTicketId());
+                    b.putInt("quantity", 1);
+                } else {
+                    ArrayList<Integer> ticketIds = new ArrayList<>();
+                    b.putIntegerArrayList("ticketsID", ticketIds);
+                    b.putInt("quantity", tickets.size());
+                }
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -116,67 +149,5 @@ public class TicketsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void createCheckBoxes(List<TicketTerminal> tickets){
-        for(int i = 0; i < tickets.size(); i++){
-            CheckBox checkBox = new CheckBox(this);
-            checkBox.setText(tickets.get(i).getName() + " - " + tickets.get(i).getDate());
-            checkBox.setId(tickets.get(i).getTicketId());
-            checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            checkboxes.add(checkBox);
-        }
-    }
-
-    public void changeToSelects(){
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setVisibility(View.INVISIBLE);
-
-        LinearLayout linear1 = (LinearLayout)findViewById(R.id.linear1);
-        linear1.setVisibility(View.INVISIBLE);
-
-        LinearLayout linear2 = (LinearLayout)findViewById(R.id.linear2);
-        linear2.setVisibility(View.VISIBLE);
-
-        LinearLayout linear3 = (LinearLayout)findViewById(R.id.linear3);
-        linear3.setVisibility(View.VISIBLE);
-
-        for(int i = 0; i < checkboxes.size(); i++)
-            linear2.addView(checkboxes.get(i));
-    }
-
-    public void validateTickets(){
-        for(int i = 0; i < checkboxes.size(); i++){
-            CheckBox checkBox = (CheckBox)checkboxes.get(i);
-            if(checkBox.isChecked() && i < 4){
-                String date = checkBox.getText().toString().split(" - ")[1];
-                if(ticketsID.size() != 0){
-                    if(!dates.get(dates.size() - 1).equals(date)){
-                        Toast.makeText(this, "Select only tickets with the same date", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                ticketsID.add(checkBox.getId());
-                dates.add(date);
-            }
-            else{
-                Toast.makeText(this, "You only are allowed to select 4 tickets to validate", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-
-        Intent intent = new Intent(TicketsActivity.this, QrGeneratorActivity.class);
-        Bundle b = new Bundle();
-        b.putIntegerArrayList("ticketsID", ticketsID);
-
-        b.putInt("userId", ticketList.get(0).getUserId());
-        b.putInt("eventId", ticketList.get(0).getEventId());
-        b.putString("name", ticketList.get(0).getName());
-        b.putString("date", ticketList.get(0).getDate());
-        b.putDouble("price", ticketList.get(0).getPrice());
-        b.putInt("quantity", ticketsID.size());
-        intent.putExtras(b); //Put your id to your next Intent
-        startActivity(intent);
-        finish();
     }
 }

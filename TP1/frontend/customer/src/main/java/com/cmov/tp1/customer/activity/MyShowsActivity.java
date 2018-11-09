@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +32,7 @@ public class MyShowsActivity extends AppCompatActivity {
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
 
-        final RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = findViewById(R.id.unused_tickets_list);
 
         NetworkRequests.getMyShowsRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
 
@@ -43,6 +44,7 @@ public class MyShowsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position) {
                         Show show = showList.get(position);
+                        Intent intent = new Intent(MyShowsActivity.this, QrGeneratorActivity.class);
                         Toast.makeText(getApplicationContext(), show.getName() + " is selected!", Toast.LENGTH_SHORT).show();
                     }
 

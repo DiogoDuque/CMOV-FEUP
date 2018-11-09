@@ -29,7 +29,7 @@ router.get('/not_used_tickets', (req, res) => {
   const { userId } = req.session;
   Query.getNotUsedTickets(userId, (result, err) => {
     if (result) {
-      res.status(200).send(result);
+      res.status(200).send(`{result:${JSON.stringify(result)}}`);
     } else {
       res.status(400).send(err);
     }

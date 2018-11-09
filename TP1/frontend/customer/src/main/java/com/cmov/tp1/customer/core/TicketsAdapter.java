@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,11 @@ import java.util.regex.Pattern;
  */
 public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHolder> {
 
+    private RecyclerView view;
     private List<TicketTerminal> tickets;
 
     public void setupBoilerplate(Context context, RecyclerView recyclerView, MyClickListener.ClickListener clickListener) {
+        this.view = recyclerView;
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -74,13 +77,13 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
     public static List<TicketTerminal> parseJsonTickets(JSONObject jsonObject) {
         List<TicketTerminal> ticketsNew = new ArrayList<>();
         try {
-            JSONArray jsonArray = jsonObject.getJSONArray("tickets");
+            JSONArray jsonArray = jsonObject.getJSONArray("result");
             for(int i=0; i<jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
-                int userId = obj.getInt("userId");
+                int userId = obj.getInt("userid");
                 int id = obj.getInt("id");
                 String name = obj.getString("name");
-                int eventId = obj.getInt("eventId");
+                int eventId = obj.getInt("eventid");
                 String date = reformatDateStr(obj.getString("date"));
                 double price = obj.getDouble("price");
                 ticketsNew.add(new TicketTerminal(userId, id, eventId, name, date, price));
@@ -103,6 +106,20 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
             return String.format("%s/%s/%s %s:%s", day, month, year, hour, minute);
         }
         return "No date parsed";
+    }
 
+    public TicketTerminal removeTicket(int index) {
+        TicketTerminal t = tickets.remove(index);
+        view.setAdapter(this);
+        return t;
+    }
+
+    public void addTicket(TicketTerminal t) {
+        tickets.add(t);
+        view.setAdapter(this);
+    }
+
+    public List<TicketTerminal> getTickets() {
+        return tickets;
     }
 }

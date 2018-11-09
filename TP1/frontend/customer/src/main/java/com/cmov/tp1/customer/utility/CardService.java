@@ -7,7 +7,7 @@ import com.cmov.tp1.customer.core.TicketTerminal;
 
 import java.util.Arrays;
 
-public class CardService extends HostApduService {
+/*public class CardService extends HostApduService {
   private static final String LOYALTY_CARD_AID = "F222222222";  // AID for this applet service.
   private static final String SELECT_APDU_HEADER = "00A40400";  // SmartCard select AID command
   private static final byte[] SELECT_OK_SW = HexStringToByteArray("9000");  // "OK" status word (0x9000)
@@ -56,4 +56,4 @@ public class CardService extends HostApduService {
     }
     return result;
   }
-}
+}*/

@@ -58,7 +58,11 @@ public class HTTPRequestUtility {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.i(TAG, "Success response: "+response.toString());
-                        onRequestCompleted.onSuccess(response);
+                        try {
+                            onRequestCompleted.onSuccess(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

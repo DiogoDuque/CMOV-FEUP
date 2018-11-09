@@ -5,7 +5,7 @@ const Vouchers = require('./Vouchers');
 module.exports = {
 
   getTicket(id, callback) {
-    const baseQuery = 'SELECT ticket.is_used, ticket.place, customer.name, event.name, event.price, event.date'
+    const baseQuery = 'SELECT ticket.is_used, ticket.place, event.name, event.price, event.date'
       + ' FROM ticket, customer, event WHERE ticket.id = $1 AND event.id = ticket.event_id AND customer.id = ticket.customer_id';
     execute(baseQuery, [id], (response, err) => {
       if (err) {
@@ -18,7 +18,7 @@ module.exports = {
   },
 
   getUsedTickets(user_id, callback) {
-    const baseQuery = 'SELECT ticket.place, customer.name, event.name, event.price, event.date'
+    const baseQuery = 'SELECT ticket.place, event.name, event.price, event.date'
       + ' FROM ticket, customer, event WHERE ticket.customer_id = $1 AND ticket.is_used = TRUE AND event.id = ticket.event_id AND customer.id = ticket.customer_id';
     execute(baseQuery, [user_id], (response, err) => {
       if (err) {
@@ -31,20 +31,20 @@ module.exports = {
   },
 
   getNotUsedTickets(user_id, callback) {
-    const baseQuery = 'SELECT ticket.place, ticket.id AS id, customer.id AS userId, customer.name, event.id AS eventId, event.price AS price, event.date AS date'
+    const baseQuery = 'SELECT ticket.place, ticket.id AS id, customer.id AS userId, event.name as name, event.id AS eventId, event.price AS price, event.date AS date'
       + ' FROM ticket, customer, event WHERE ticket.customer_id = $1 AND ticket.is_used = FALSE AND event.id = ticket.event_id AND customer.id = ticket.customer_id';
     execute(baseQuery, [user_id], (response, err) => {
       if (err) {
         callback(null, err);
       }
       else {
-        callback(response);
+        callback(response.rows);
       }
     });
   },
 
   getAllTickets(user_id, callback) {
-    const baseQuery = 'SELECT ticket.is_used, ticket.place, customer.name, event.name, event.price, event.date'
+    const baseQuery = 'SELECT ticket.is_used, ticket.place, event.name, event.price, event.date'
       + ' FROM ticket, customer, event WHERE ticket.customer_id = $1 AND event.id = ticket.event_id AND customer.id = ticket.customer_id';
     execute(baseQuery, [user_id], (response, err) => {
       if (err) {
