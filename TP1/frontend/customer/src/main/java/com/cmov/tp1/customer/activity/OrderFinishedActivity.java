@@ -52,9 +52,9 @@ public class OrderFinishedActivity extends AppCompatActivity {
     private void wantVoucher(Boolean answer){
         Intent intent;
         if(answer)
-            intent = new Intent(this, VoucherPageActivity.class);
+            intent = new Intent(this, VouchersActivity.class);
         else
-            intent = new Intent(this, OrderFinishedActivity.class);
+            intent = new Intent(this, MakeOrderActivity.class);
 
         Bundle b = new Bundle();
         b.putInt("orderID", orderId);

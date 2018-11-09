@@ -46,10 +46,9 @@ public abstract class ToolbarUtility {
         else if(app instanceof MyShowsActivity)
             menu.findItem(R.id.nav_menu_my_shows).setChecked(true);
 
-        else if(app instanceof VouchersActivity)
-            menu.findItem(R.id.nav_menu_vouchers).setChecked(true);
         else if(app instanceof MakeOrderActivity)
             menu.findItem(R.id.nav_menu_make_order).setChecked(true);
+
         else if(app instanceof ProfileActivity)
             menu.findItem(R.id.nav_menu_profile).setChecked(true);
 
@@ -69,10 +68,6 @@ public abstract class ToolbarUtility {
                         else if(selection.equals(res.getString(R.string.drawer_main_menu_my_shows)) &&
                                 !(app instanceof MyShowsActivity))
                             changeActivity(app, MyShowsActivity.class);
-
-                        else if(selection.equals(res.getString(R.string.drawer_main_menu_vouchers)) &&
-                                !(app instanceof VouchersActivity))
-                            changeActivity(app, VouchersActivity.class);
 
                         else if(selection.equals(res.getString(R.string.drawer_main_menu_make_order)) &&
                                 !(app instanceof MakeOrderActivity))

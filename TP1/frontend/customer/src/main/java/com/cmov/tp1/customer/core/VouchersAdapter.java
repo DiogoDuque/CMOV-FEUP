@@ -25,8 +25,10 @@ public class VouchersAdapter extends RecyclerView.Adapter<VouchersAdapter.MyView
 
     private static final String TAG = "VouchersAdapter";
     private List<Voucher> vouchers;
+    private RecyclerView view;
 
     public void setupBoilerplate(Context context, RecyclerView recyclerView, MyClickListener.ClickListener clickListener) {
+        view = recyclerView;
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -90,4 +92,22 @@ public class VouchersAdapter extends RecyclerView.Adapter<VouchersAdapter.MyView
         return vouchers;
     }
 
+    public Voucher removeVoucher(int index) {
+        Voucher v = vouchers.remove(index);
+        view.setAdapter(this);
+        return v;
+    }
+
+    public void addVoucher(Voucher voucher) {
+        vouchers.add(voucher);
+        view.setAdapter(this);
+    }
+
+    public Voucher getVoucherAtPosition(int index) {
+        return vouchers.get(index);
+    }
+
+    public int getVouchersSize() {
+        return vouchers.size();
+    }
 }

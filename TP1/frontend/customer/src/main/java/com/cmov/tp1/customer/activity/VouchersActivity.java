@@ -20,9 +20,13 @@ import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VouchersActivity extends AppCompatActivity {
+
+    VouchersAdapter unusedVouchersAdapter;
+    VouchersAdapter usingVouchersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,25 +36,36 @@ public class VouchersActivity extends AppCompatActivity {
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
 
-        final RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        final RecyclerView unusedVouchers = findViewById(R.id.unused_vouchers);
+        final RecyclerView usingVouchers = findViewById(R.id.using_vouchers);
 
         NetworkRequests.getMyVouchers(this, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 final List<Voucher> voucherList = VouchersAdapter.parseJsonVouchers(json);
-                VouchersAdapter adapter = new VouchersAdapter(voucherList);
-                adapter.setupBoilerplate(getApplicationContext(), recyclerView, new MyClickListener.ClickListener() {
+                unusedVouchersAdapter = new VouchersAdapter(voucherList);
+                unusedVouchersAdapter.setupBoilerplate(getApplicationContext(), unusedVouchers, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        Voucher voucher = voucherList.get(position);
-                        Intent intent = new Intent(VouchersActivity.this, VoucherPageActivity.class);
-                        Bundle b = new Bundle();
-                        b.putString("type", voucher.getType());
-                        b.putString("isUsed",Boolean.toString(voucher.isUsed()));
-                        if(voucher.isFreeProduct())
-                            b.putString("product", voucher.getProduct());
-                        intent.putExtras(b);
-                        startActivity(intent);
+                        if(usingVouchersAdapter.getVouchersSize() >= 2) {
+                            Toast.makeText(VouchersActivity.this,
+                                    "Cannot use more than 2 vouchers in a single order!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        Voucher voucher = unusedVouchersAdapter.removeVoucher(position);
+                        usingVouchersAdapter.addVoucher(voucher);
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+                    }
+                });
+                usingVouchersAdapter = new VouchersAdapter(new ArrayList<Voucher>());
+                usingVouchersAdapter.setupBoilerplate(getApplicationContext(), usingVouchers, new MyClickListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Voucher voucher = usingVouchersAdapter.removeVoucher(position);
+                        unusedVouchersAdapter.addVoucher(voucher);
                     }
 
                     @Override
@@ -58,7 +73,8 @@ public class VouchersActivity extends AppCompatActivity {
                     }
                 });
 
-                recyclerView.setAdapter(adapter);
+                unusedVouchers.setAdapter(unusedVouchersAdapter);
+                usingVouchers.setAdapter(usingVouchersAdapter);
             }
 
             @Override
