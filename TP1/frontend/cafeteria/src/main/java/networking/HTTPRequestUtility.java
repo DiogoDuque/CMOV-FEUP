@@ -1,4 +1,4 @@
-package com.cmov.tp1.customer.networking;
+package networking;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,11 +18,11 @@ public class HTTPRequestUtility {
     private static final String TAG = "HttpReqUtil";
 
     public interface OnRequestCompleted{
-        void onSuccess(JSONObject json);
+        void onSuccess(JSONObject json) throws JSONException;
         void onError(JSONObject json);
     }
 
-    private static final String HOST = "http://192.168.1.247/customer";
+    private static final String HOST = "http://192.168.1.247/cafeteria";
     private static HTTPRequestUtility instance = null;
     private RequestQueue queue;
     private static Context context;
@@ -58,7 +58,11 @@ public class HTTPRequestUtility {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.i(TAG, "Success response: "+response.toString());
-                        onRequestCompleted.onSuccess(response);
+                        try {
+                            onRequestCompleted.onSuccess(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -1,5 +1,5 @@
 const express = require('express');
-const Query = require('../database/Vouchers');
+const Query = require('../../database/Vouchers');
 
 const router = express.Router();
 
@@ -41,17 +41,6 @@ router.post('/create_voucher', (req, res) => {
     const { ticket, type, product } = req.body;
     const { userId } = req.session;
     Query.createVoucher(userId, ticket, type, product, (result, err) => {
-        if(result) {
-            res.status(200).send(result);
-        } else {
-            res.status(400).send(err);
-        }
-    });
-});
-
-router.put('/change_voucher', (req, res) => {
-    const { id } = req.body;
-    Query.changeStatus(id, (result, err) => {
         if(result) {
             res.status(200).send(result);
         } else {

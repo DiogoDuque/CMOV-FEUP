@@ -1,7 +1,9 @@
-package com.cmov.tp1.cafeteria;
+package com.cmov.tp1.cafeteria.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.cmov.tp1.cafeteria.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,7 +1,9 @@
-package com.cmov.tp1.cafeteria;
+package com.cmov.tp1.cafeteria.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.cmov.tp1.cafeteria.R;
 
 public class VouchersPageActivity extends AppCompatActivity {
 

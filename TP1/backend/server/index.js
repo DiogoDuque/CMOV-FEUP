@@ -4,7 +4,9 @@ const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
 const AuthQuery = require('./src/database/Auth');
-const { userRoute, cafeteriaRoute, showRoute, authRoute, profileRoute, ticketsRoute, vouchersRoute } = require('./src/routes');
+const { cafeteriaRouteCustomer, showRoute, authRoute, profileRoute, ticketsRoute, vouchersRouteCustomer } = require('./src/routes/customer/index');
+const { cafeteriaRoute, vouchersRoute } = require('./src/routes/cafeteria/index');
+const { ticketsRouteTerminal } = require('./src/routes/terminal/index');
 
 const PORT = 3000;
 const app = express();
@@ -58,12 +60,17 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-app.use('/auth',      authRoute);
-app.use('/user',      isLoggedIn, userRoute);
-app.use('/cafeteria', isLoggedIn, cafeteriaRoute);
-app.use('/show',      isLoggedIn, showRoute);
-app.use('/tickets',   isLoggedIn, ticketsRoute);
-app.use('/vouchers',  isLoggedIn, vouchersRoute);
-app.use('/profile',   isLoggedIn, profileRoute);
+app.use('/customer/auth',      authRoute);
+app.use('/customer/cafeteria', isLoggedIn, cafeteriaRouteCustomer);
+app.use('/customer/show',      isLoggedIn, showRoute);
+app.use('/customer/tickets',   isLoggedIn, ticketsRoute);
+app.use('/customer/vouchers',  isLoggedIn, vouchersRouteCustomer);
+app.use('/customer/profile',   isLoggedIn, profileRoute);
+
+app.use('/cafeteria', cafeteriaRoute);
+app.use('/cafeteria/vouchers',  vouchersRoute);
+
+app.use('/terminal',  ticketsRouteTerminal);
+
 
 app.listen(PORT, () => console.log('Started Tickets and Payment System API...'));

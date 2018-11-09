@@ -1,4 +1,4 @@
-package com.cmov.tp1.cafeteria;
+package com.cmov.tp1.cafeteria.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import com.cmov.tp1.cafeteria.R;
 
 import java.util.ArrayList;
 import java.util.List;

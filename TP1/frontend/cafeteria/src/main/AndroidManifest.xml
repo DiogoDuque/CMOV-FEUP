@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeCafeteria">
         <activity
-            android:name=".MainActivity">
+            android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrdersActivity" />
-        <activity android:name=".OrderPageActivity"/>
-        <activity android:name=".VouchersPageActivity" />
+        <activity android:name=".activity.OrdersActivity" />
+        <activity android:name=".activity.OrderPageActivity"/>
+        <activity android:name=".activity.VouchersPageActivity" />
     </application>
 
 </manifest>

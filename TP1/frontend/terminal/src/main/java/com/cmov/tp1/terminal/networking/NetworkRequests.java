@@ -13,7 +13,7 @@ public abstract class NetworkRequests {
 
     //TICKETS REQUESTS
     public static void checkTickets(Context context, int ticketId, String showDate, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/tickets/check_tickets";
+        final String PATH = "/";
         final int METHOD = Request.Method.GET;
 
 
