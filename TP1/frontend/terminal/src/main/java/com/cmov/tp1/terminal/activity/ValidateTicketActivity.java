@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.cmov.tp1.terminal.networking.HTTPRequestUtility;
 import com.cmov.tp1.terminal.networking.NetworkRequests;
-import com.cmov.tp1.terminal.utility.CardReaderFragment;
 import com.cmov.tp1.terminal.R;
 
 import org.json.JSONException;
