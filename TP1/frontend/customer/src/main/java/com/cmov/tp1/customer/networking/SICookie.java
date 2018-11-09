@@ -10,12 +10,12 @@ import java.net.HttpCookie;
  * Copied from https://gist.github.com/manishk3008/2a2373c6c155a5df6326
  *
  * Taken from https://github.com/loopj/android-async-http
- * A simple wrapper for {@link HttpCookie} to work with {@link SiCookieStore2}
+ * A simple wrapper for {@link HttpCookie} to work with {@link SiCookieStore}
  * Gives power of serialization-deserialization to {@link HttpCookie}
  * @author Manish
  *
  */
-public class SICookie2 implements Serializable {
+public class SICookie implements Serializable {
 
     private HttpCookie mHttpCookie;
     /**
@@ -26,7 +26,7 @@ public class SICookie2 implements Serializable {
     /**
      *
      */
-    public SICookie2(HttpCookie cookie) {
+    public SICookie(HttpCookie cookie) {
         this.mHttpCookie = cookie;
     }
 

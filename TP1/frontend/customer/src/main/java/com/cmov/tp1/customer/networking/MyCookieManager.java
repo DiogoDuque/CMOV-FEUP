@@ -12,7 +12,7 @@ public class MyCookieManager {
 
     private MyCookieManager(Context context) {
         Log.i(TAG, "Starting my cookie manager...");
-        SiCookieStore2 siCookieStore = new SiCookieStore2(context);
+        SiCookieStore siCookieStore = new SiCookieStore(context);
         java.net.CookieManager cookieManager = new java.net.CookieManager(siCookieStore, CookiePolicy.ACCEPT_ALL);
         CookieHandler.setDefault(cookieManager);
     }

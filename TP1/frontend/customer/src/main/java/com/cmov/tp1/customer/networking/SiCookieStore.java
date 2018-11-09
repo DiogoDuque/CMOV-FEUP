@@ -36,7 +36,7 @@ import android.util.Log;
  * @author Manish
  *
  */
-public class SiCookieStore2 implements CookieStore {
+public class SiCookieStore implements CookieStore {
     private static final String LOG_TAG = "SICookieStore2";
     private static final String COOKIE_PREFS = "com.orb.net.cookieprefs";
     private static final String COOKIE_DOMAINS_STORE = "com.orb.net.CookieStore.domain";
@@ -54,7 +54,7 @@ public class SiCookieStore2 implements CookieStore {
      * @param context
      *            Context to attach cookie store to
      */
-    public SiCookieStore2(Context context) {
+    public SiCookieStore(Context context) {
         cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, 0);
         map = new CookieMap();
 
@@ -111,7 +111,7 @@ public class SiCookieStore2 implements CookieStore {
         for (HttpCookie cookie2 : cookies) {
             names.add(cookie2.getName());
             prefsWriter.putString(COOKIE_NAME_PREFIX + uri + cookie2.getName(),
-                    encodeCookie(new SICookie2(cookie2)));
+                    encodeCookie(new SICookie(cookie2)));
         }
         prefsWriter.putString(COOKIE_DOMAIN_PREFIX + uri, TextUtils.join(",", names));
 
@@ -214,7 +214,7 @@ public class SiCookieStore2 implements CookieStore {
      *            cookie to be encoded, can be null
      * @return cookie encoded as String
      */
-    protected String encodeCookie(SICookie2 cookie) {
+    protected String encodeCookie(SICookie cookie) {
         if (cookie == null)
             return null;
 
@@ -244,7 +244,7 @@ public class SiCookieStore2 implements CookieStore {
         HttpCookie cookie = null;
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-            cookie = ((SICookie2) objectInputStream.readObject()).getCookie();
+            cookie = ((SICookie) objectInputStream.readObject()).getCookie();
         } catch (IOException e) {
             Log.e(LOG_TAG, "IOException in decodeCookie", e);
         } catch (ClassNotFoundException e) {
