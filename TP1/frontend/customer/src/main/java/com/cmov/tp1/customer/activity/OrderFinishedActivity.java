@@ -56,11 +56,7 @@ public class OrderFinishedActivity extends AppCompatActivity {
         else
             intent = new Intent(this, MakeOrderActivity.class);
 
-        Bundle b = new Bundle();
-        b.putInt("orderID", orderId);
-        b.putIntegerArrayList("products", products);
-        b.putIntegerArrayList("quantities", quantities);
-        intent.putExtras(b);
+        intent.putExtras(getIntent().getExtras()); // use the same received bundle
 
         startActivity(intent);
     }
