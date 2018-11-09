@@ -20,7 +20,6 @@ import java.util.Hashtable;
 public class QrGeneratorActivity extends AppCompatActivity {
     ImageView qrCodeImageview;
     TextView errorTv;
-    EditText edMessage;
     public final static int DIMENSION=500;
     private TicketTerminal ticket;
 
@@ -28,6 +27,9 @@ public class QrGeneratorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr);
+
+        qrCodeImageview = findViewById(R.id.img_qr_code);
+        errorTv = findViewById(R.id.tv_error);
 
         Bundle b = getIntent().getExtras();
 
