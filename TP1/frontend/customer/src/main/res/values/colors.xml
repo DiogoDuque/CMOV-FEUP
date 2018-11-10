@@ -7,4 +7,5 @@
     <color name="light_grey">#BDBDBD</color>
     <color name="background_material_light">#e9fafafa</color>
     <color name="black">#191919</color>
+    <color name="text_color_primary">#ffffff</color>
 </resources>

@@ -19,7 +19,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/card_background"
+            android:src="@drawable/card_background"
             />
 
     </LinearLayout>
@@ -40,6 +40,7 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/monserrat"
             android:text="Result"
+            android:textAlignment="center"
             android:textSize="28sp"
             android:textStyle="bold" />
 
