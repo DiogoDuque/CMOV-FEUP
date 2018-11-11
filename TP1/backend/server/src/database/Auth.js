@@ -1,16 +1,15 @@
-const execute = require('./DB');
 const bcrypt = require('bcrypt-nodejs');
 const uuidv4 = require('uuid/v4');
+const execute = require('./DB');
 
 function createUUID(public_key, callback) {
-  let uuid = uuidv4();
+  const uuid = uuidv4();
   const baseQuery = 'INSERT INTO encryption(uuid, public_key) VALUES($1,$2)';
   execute(baseQuery, [uuid, public_key], (response, err) => {
-    if(err) {
-      execute("ROLLBACK", [], () => callback(null, err));
-    }
-    else {
-      execute("COMMIT", [], () => callback(uuid));
+    if (err) {
+      execute('ROLLBACK', [], () => callback(null, err));
+    } else {
+      execute('COMMIT', [], () => callback(uuid));
     }
   });
 }
@@ -18,31 +17,33 @@ function createUUID(public_key, callback) {
 // function used for debugging, and a starting point for create login
 function showHash(password, callback) {
   bcrypt.genSalt(10, (saltErr, salt) => {
-    if(saltErr) {
-      callback(null, err);
-    } else bcrypt.hash(password, salt, null, (err, res) => {
-      console.log("Password mismatch!");
-      console.log(`Error: ${err}`);
-      console.log(`Hash for the wrong password is ${res}`);
-      console.log();
-      callback(false);
-    });
+    if (saltErr) {
+      callback(null);
+    } else {
+      bcrypt.hash(password, salt, null, (err, res) => {
+        console.log('Password mismatch!');
+        console.log(`Error: ${err}`);
+        console.log(`Hash for the wrong password is ${res}`);
+        console.log();
+        callback(false);
+      });
+    }
   });
 }
 
 module.exports = {
   register(name, nif, username, password, cardType, cardNumber, cardValidity, publicKey, callback) {
-    execute("BEGIN", [], (resBegin, errBegin) => {
-      if(errBegin) {
+    execute('BEGIN', [], (resBegin, errBegin) => {
+      if (errBegin) {
         callback(null, errBegin);
         return;
       }
-      const baseQuery = 'INSERT INTO customer(name, nif, username, password, card_type, ' +
-        'card_number, card_validity, public_key) VALUES($1, $2, $3, $4, $5, $6, $7, $8)';
+      const baseQuery = 'INSERT INTO customer(name, nif, username, password, card_type, '
+        + 'card_number, card_validity, public_key) VALUES($1, $2, $3, $4, $5, $6, $7, $8)';
       execute(baseQuery, [name, nif, username, password, cardType, cardNumber, cardValidity, publicKey],
         (response, err) => {
-          if(err) {
-            execute("ROLLBACK", [], () => callback(null, err));
+          if (err) {
+            execute('ROLLBACK', [], () => callback(null, err));
           } else {
             createUUID(publicKey, callback);
           }
@@ -75,6 +76,6 @@ module.exports = {
       } else {
         showHash(password, callback);
       }
-    })
+    });
   },
 };

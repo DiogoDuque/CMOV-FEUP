@@ -18,14 +18,13 @@ module.exports = function execute(text, values, callback) {
   const { pool } = config;
   const p = pool.connect();
 
-  p.then(client =>
-    client.query(text, values)
-      .then((result, error) => {
-        client.end();
-        pool.end();
-        callback(result, error);
-      })).catch((error) => {
+  p.then(client => client.query(text, values)
+    .then((result, error) => {
+      client.end();
+      pool.end();
+      callback(result, error);
+    })).catch((error) => {
     pool.end();
     callback(undefined, error);
   });
-}
+};

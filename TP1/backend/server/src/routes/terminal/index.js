@@ -1,5 +1,8 @@
-const vouchersRouteTerminal = require('./voucherRoute');
+const express = require('express');
+const ticketsRoute = require('./ticketsRoute');
 
-module.exports = {
-    vouchersRouteTerminal,
-};
+const router = express.Router();
+
+router.use('', ticketsRoute);
+
+module.exports = router;

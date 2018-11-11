@@ -22,8 +22,7 @@ module.exports = {
     execute(baseQuery, [order, product, voucher], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -34,8 +33,7 @@ module.exports = {
     execute(baseQuery, [], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -47,8 +45,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -59,8 +56,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -74,8 +70,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -86,8 +81,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -98,8 +92,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response.rows[0]);
       }
     });
@@ -110,8 +103,7 @@ module.exports = {
     execute(baseQuery, [user_id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         const publicKey = response.rows[0].public_key;
         verify.write(message);
         verify.end();
@@ -119,5 +111,5 @@ module.exports = {
         callback(verify.verify(publicKey, signature));
       }
     });
-  }
+  },
 };

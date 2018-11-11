@@ -63,7 +63,7 @@ module.exports = {
   },
 
   getVoucherInfo(id, callback) {
-    execute("BEGIN", [], (resBegin, errBegin) => {
+    execute('BEGIN', [], (resBegin, errBegin) => {
       if (errBegin) {
         callback(null, errBegin);
         return;
@@ -71,19 +71,16 @@ module.exports = {
       let baseQuery = 'SELECT type FROM voucher WHERE id = $1';
       execute(baseQuery, [id], (response, err) => {
         if (err) {
-          execute("ROLLBACK", [], () => callback(null, err));
-        }
-        else {
-          if (response.rows[0].type === "Free Product") {
+          execute('ROLLBACK', [], () => callback(null, err));
+        } else {
+          if (response.rows[0].type === 'Free Product') {
             baseQuery = 'SELECT cafeteria_product.name, cafeteria_product.price FROM voucher, cafeteria_product'
               + ' WHERE voucher.id = $1 AND cafeteria_product.id = voucher.product_id';
             execute(baseQuery, [], (response, err) => {
               if (err) {
-                execute("ROLLBACK", [], () => callback(null, err));
-              }
-              else {
+                execute('ROLLBACK', [], () => callback(null, err));
+              } else {
                 callback(response);
-
               }
             });
           }
@@ -98,8 +95,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });

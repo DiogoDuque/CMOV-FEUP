@@ -8,8 +8,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -20,8 +19,7 @@ module.exports = {
     execute(baseQuery, [username], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response.rows[0]);
       }
     });
@@ -32,8 +30,7 @@ module.exports = {
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -55,8 +52,7 @@ module.exports = {
     execute(baseQuery, [card_type, card_number, card_validity, id], (response, err) => {
       if (err) {
         callback(null, err);
-      }
-      else {
+      } else {
         callback(response);
       }
     });
@@ -69,7 +65,7 @@ module.exports = {
         callback(null, err);
       } else if ((adding - (parseInt(response.rows[0].balance, 10) % 100)) > 0) {
         Vouchers.createVoucher(id, null, 'Discount', (resV, errV) => {
-          if(errV) {
+          if (errV) {
             callback(null, errV);
           } else {
             callback({

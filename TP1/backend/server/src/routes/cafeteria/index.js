@@ -1,7 +1,11 @@
+const express = require('express');
+
 const cafeteriaRoute = require('./cafeteriaRoute');
 const vouchersRoute = require('./voucherRoute');
 
-module.exports = {
-    cafeteriaRoute,
-    vouchersRoute,
-};
+const router = express.Router();
+
+router.use('', cafeteriaRoute);
+router.use('/vouchers', vouchersRoute);
+
+module.exports = router;

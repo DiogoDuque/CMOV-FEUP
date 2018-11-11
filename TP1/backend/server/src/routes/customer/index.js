@@ -1,15 +1,17 @@
-const cafeteriaRouteCustomer = require('./cafeteriaRoute');
+const express = require('express');
+
+const cafeteriaRoute = require('./cafeteriaRoute');
 const showRoute = require('./showRoute');
-const authRoute = require('./authRoute');
 const profileRoute = require('./profileRoute');
 const ticketsRoute = require('./ticketsRoute');
-const vouchersRouteCustomer = require('./voucherRoute');
+const vouchersRoute = require('./voucherRoute');
 
-module.exports = {
-    authRouteCustomer,
-    cafeteriaRoute,
-    showRoute,
-    profileRoute,
-    ticketsRoute,
-    vouchersRouteCustomer,
-};
+const router = express.Router();
+
+router.use('/cafeteria', cafeteriaRoute);
+router.use('/show', showRoute);
+router.use('/tickets', ticketsRoute);
+router.use('/voucher', vouchersRoute);
+router.use('/profile', profileRoute);
+
+module.exports = router;
