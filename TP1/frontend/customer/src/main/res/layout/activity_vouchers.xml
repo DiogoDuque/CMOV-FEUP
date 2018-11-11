@@ -21,18 +21,18 @@
         <ListView
             android:id="@+id/products"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="105dp"
             android:layout_below="@id/toolbar"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/black_border" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/unused_vouchers"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="155dp"
             android:scrollbars="vertical"
             android:background="@drawable/black_border"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_below="@+id/products"/>
 
         <ImageView
@@ -67,9 +67,11 @@
             android:scrollbars="vertical" />
 
         <Button
+            android:id="@+id/cafeteria_buy_button"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
             android:background="@drawable/mybutton"
             android:fontFamily="@font/monserrat"

@@ -3,12 +3,17 @@ package com.cmov.tp1.customer.networking;
 import android.content.Context;
 
 import com.android.volley.Request;
+import com.cmov.tp1.customer.core.CafeteriaOrderProduct;
 import com.cmov.tp1.customer.core.Show;
+import com.cmov.tp1.customer.core.Voucher;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public abstract class NetworkRequests {
 
@@ -328,29 +333,29 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void addProductToOrder(Context context, int order, int product, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void addToOrder(Context context, int order, List<CafeteriaOrderProduct> products,
+                                  List<Voucher> vouchers, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/add_products";
         final int METHOD = Request.Method.POST;
 
         JSONObject body = new JSONObject();
         try {
             body.put("order", order);
-            body.put("product", product);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
-    public static void addProductToOrder(Context context, int order, int product, int voucher, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/add_products";
-        final int METHOD = Request.Method.POST;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("order", order);
-            body.put("product", product);
-            body.put("voucher", voucher);
+            JSONArray jsonProducts = new JSONArray();
+            for(CafeteriaOrderProduct prod: products) {
+                JSONObject obj = new JSONObject();
+                obj.put("name", prod.getName());
+                obj.put("quantity", prod.getQuantity());
+                jsonProducts.put(obj);
+            }
+            body.put("products", jsonProducts);
+            if(vouchers != null && vouchers.size()>0) {
+                JSONArray jsonVouchersIds = new JSONArray();
+                for(Voucher v: vouchers) {
+                    jsonVouchersIds.put(v.getId());
+                }
+                body.put("vouchersIds", jsonVouchersIds);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -36,6 +36,10 @@ public class VouchersAdapter extends RecyclerView.Adapter<VouchersAdapter.MyView
         recyclerView.addOnItemTouchListener(new MyClickListener(context, recyclerView, clickListener));
     }
 
+    public List<Voucher> getVouchers() {
+        return vouchers;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView type, isUsed;
 

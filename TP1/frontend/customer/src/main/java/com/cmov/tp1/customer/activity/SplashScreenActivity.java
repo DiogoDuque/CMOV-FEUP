@@ -41,7 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void onError(JSONObject json) {
                 final String WEIRD_ERROR = "java.net.NoRouteToHostException: No route to host";
                 try {
-                    if(json.getInt("code") == 401) {
+                    if(json.has("code") && json.getInt("code") == 401) {
                         Intent intent = new Intent(getBaseContext(), LoginActivity.class);
                         getBaseContext().startActivity(intent);
                     } else if(json.getString("message").equals(WEIRD_ERROR)) {
