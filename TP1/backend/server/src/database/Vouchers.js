@@ -36,9 +36,7 @@ module.exports = {
 
   getMyVouchers(customerId, callback) {
     const baseQuery = 'SELECT voucher.id, voucher.type, voucher.is_used, cafeteria_product.name AS product '
-      + 'FROM voucher INNER JOIN voucher_ticket ON voucher.id = voucher_ticket.voucher_id '
-      + 'INNER JOIN ticket ON ticket.id = voucher_ticket.ticket_id '
-      + 'INNER JOIN cafeteria_product ON (voucher.product_id = cafeteria_product.id OR voucher.product_id = NULL) '
+      + 'FROM voucher LEFT JOIN cafeteria_product ON voucher.product_id = cafeteria_product.id '
       + 'WHERE voucher.customer_id = $1';
     execute(baseQuery, [customerId], (response, err) => {
       if (err) {

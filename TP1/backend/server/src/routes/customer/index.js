@@ -11,7 +11,7 @@ const router = express.Router();
 router.use('/cafeteria', cafeteriaRoute);
 router.use('/show', showRoute);
 router.use('/tickets', ticketsRoute);
-router.use('/voucher', vouchersRoute);
+router.use('/vouchers', vouchersRoute);
 router.use('/profile', profileRoute);
 
 module.exports = router;

@@ -5,7 +5,7 @@ const vouchersRoute = require('./voucherRoute');
 
 const router = express.Router();
 
-router.use('', cafeteriaRoute);
 router.use('/vouchers', vouchersRoute);
+router.use('', cafeteriaRoute);
 
 module.exports = router;

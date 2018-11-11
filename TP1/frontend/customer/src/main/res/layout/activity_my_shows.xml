@@ -21,9 +21,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/unused_tickets_list"
             android:layout_width="match_parent"
-            android:layout_height="458dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
-            android:layout_marginTop="53dp"
             android:scrollbars="vertical" />
     </RelativeLayout>
 
