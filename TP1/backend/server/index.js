@@ -59,8 +59,8 @@ app.get('/', (req, res) => {
 });
 
 // Routes
+app.use('/customer/auth', customerAuthRoute); // needs to be before customerRoutes, to override them
 app.use('/customer', isLoggedIn, customerRoutes);
-app.use('/customer/auth', customerAuthRoute);
 
 app.use('/cafeteria', cafeteriaRoutes);
 
