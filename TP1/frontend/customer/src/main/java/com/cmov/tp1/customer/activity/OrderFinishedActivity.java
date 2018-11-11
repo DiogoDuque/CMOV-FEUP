@@ -10,14 +10,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.core.CafeteriaOrderProduct;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
 import java.util.ArrayList;
 
 public class OrderFinishedActivity extends AppCompatActivity {
     private int orderId;
-    private ArrayList<Integer> products;
-    private ArrayList<Integer> quantities;
+    private ArrayList<CafeteriaOrderProduct> products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,7 @@ public class OrderFinishedActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         orderId = b.getInt("orderID");
-        products = b.getIntegerArrayList("products");
-        quantities = b.getIntegerArrayList("quantities");
+        products = CafeteriaOrderProduct.jsonToProducts(b.getString("products"));
 
         Button noButton = findViewById(R.id.no_button);
         noButton.setOnClickListener(new View.OnClickListener() {

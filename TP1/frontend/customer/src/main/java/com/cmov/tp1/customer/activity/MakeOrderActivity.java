@@ -16,10 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.core.CafeteriaOrderProduct;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,13 +30,14 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static com.cmov.tp1.customer.core.CafeteriaOrderProduct.productsToJson;
+
 public class MakeOrderActivity extends AppCompatActivity {
 
     private static final String TAG = "MakeOrderActivity";
-    private ArrayList<String> products = new ArrayList<>();
-    private ArrayList<Integer> quantities = new ArrayList<>();
+    private ArrayList<CafeteriaOrderProduct> products = new ArrayList<>();
     private String[] productsStrList = new String[0];
-    private int quantity = 1;
+    private int quantityCounter = 1;
     private double totalToPay = 0.0;
 
     @Override
@@ -111,8 +114,7 @@ public class MakeOrderActivity extends AppCompatActivity {
                     Intent intent = new Intent(MakeOrderActivity.this, OrderFinishedActivity.class);
                     Bundle b = new Bundle();
                     b.putInt("orderID", orderId);
-                    b.putStringArrayList("products", products);
-                    b.putIntegerArrayList("quantities", quantities);
+                    b.putString("products", productsToJson(products));
                     b.putStringArrayList("strings", new ArrayList<>(Arrays.asList(productsStrList)));
                     intent.putExtras(b);
                     startActivity(intent);
@@ -131,7 +133,7 @@ public class MakeOrderActivity extends AppCompatActivity {
 
     private void addProduct(){
         Spinner spinner = findViewById(R.id.products);
-        final String product = spinner.getSelectedItem().toString();
+        final String productName = spinner.getSelectedItem().toString();
         TextView quantityLabel = findViewById(R.id.quantity_label);
         final int quantity = Integer.parseInt(quantityLabel.getText().toString());
 
@@ -140,7 +142,7 @@ public class MakeOrderActivity extends AppCompatActivity {
             return;
         }
 
-        NetworkRequests.getProductPrice(this, product, new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.getProductPrice(this, productName, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 try {
@@ -149,14 +151,18 @@ public class MakeOrderActivity extends AppCompatActivity {
                     TextView total = findViewById(R.id.total);
                     total.setText(String.format("%.2f", totalToPay));
 
-                    products.add(product);
-                    quantities.add(quantity);
-                    List<String> productsStrListTmp = new ArrayList<>(Arrays.asList(productsStrList));
-                    productsStrListTmp.add(String.format("%dx %.2f - %s", quantity, price, product));
-                    productsStrList = productsStrListTmp.toArray(new String[productsStrListTmp.size()]);
-                    Log.d(TAG, productsStrListTmp.toString());
-                    setupSelectedProductsList();
-                    resetQuantity();
+                    boolean productAlreadyExists = false;
+                    for(CafeteriaOrderProduct prod: products) {
+                        if(prod.getName().equals(productName)) {
+                            productAlreadyExists = true;
+                            prod.addQuantity(quantity);
+                            break;
+                        }
+                    }
+                    if(!productAlreadyExists) {
+                        products.add(new CafeteriaOrderProduct(productName, price, quantity));
+                    }
+                    updateProductListView();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -169,26 +175,37 @@ public class MakeOrderActivity extends AppCompatActivity {
         });
     }
 
+    private void updateProductListView() {
+        List<String> productsStrListTmp = new ArrayList<>();
+        for(CafeteriaOrderProduct prod: products) {
+            productsStrListTmp.add(String.format("%dx %.2f - %s", prod.getQuantity(), prod.getPrice(), prod.getName()));
+        }
+        productsStrList = productsStrListTmp.toArray(new String[productsStrListTmp.size()]);
+        Log.d(TAG, "productsStr: "+productsStrListTmp.toString());
+        setupSelectedProductsList();
+        resetQuantity();
+    }
+
     private void changeQuantity(boolean type){
         if(type)
-            quantity++;
+            quantityCounter++;
         else{
-            if(quantity <= 1){
+            if(quantityCounter <= 1){
                 Toast.makeText(this, "Quantity needs to be positive", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            quantity--;
+            quantityCounter--;
         }
 
         TextView quant = findViewById(R.id.quantity_label);
-        quant.setText(Integer.toString(quantity));
+        quant.setText(Integer.toString(quantityCounter));
     }
 
     private void resetQuantity() {
         TextView quant = findViewById(R.id.quantity_label);
         quant.setText("1");
-        quantity = 1;
+        quantityCounter = 1;
     }
 
     @Override
