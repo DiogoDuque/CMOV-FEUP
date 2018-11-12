@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/grey</item>
         <item name="colorAccent">@color/orange</item>
         <item name="android:statusBarColor">@color/orange</item>
+        <item name="cardViewStyle">@style/CardView.Light</item>
+        <item name="navigationViewStyle">@style/Widget.Design.NavigationView</item>
     </style>
 
 </resources>

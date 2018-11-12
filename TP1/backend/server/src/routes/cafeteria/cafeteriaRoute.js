@@ -47,9 +47,9 @@ router.get('/order_vouchers', (req, res) => {
 });
 
 router.get('/verify', (req, res) => {
-  const { userId } = req.session;
-  const { signature, message } = req.query;
-  Query.verifyOrderSignature(userId, signature, message, (result, err) => {
+  const { obj, signature } = req.query;
+
+  Query.verifyOrderSignature(signature, obj, (result, err) => {
     if (result) {
       res.status(200).send(result);
     } else {

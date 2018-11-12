@@ -98,17 +98,22 @@ module.exports = {
     });
   },
 
-  verifyOrderSignature(user_id, signature, message, callback) {
+  verifyOrderSignature(signature, message, callback) {
+    const { userId, orderId, products, vouchersIds } = message;
     const baseQuery = 'SELECT public_key FROM customer WHERE id = $1';
-    execute(baseQuery, [user_id], (response, err) => {
+    execute(baseQuery, [userId], (response, err) => {
       if (err) {
         callback(null, err);
       } else {
         const publicKey = response.rows[0].public_key;
+
         verify.write(message);
         verify.end();
 
-        callback(verify.verify(publicKey, signature));
+        if(verify.verify(publicKey, signature)){
+          
+        }
+        callback(false);
       }
     });
   },

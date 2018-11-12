@@ -22,6 +22,7 @@ public class QrGeneratorActivity extends AppCompatActivity {
     TextView errorTv;
     public final static int DIMENSION=500;
     private TicketTerminal ticket;
+    private String cafeteriaOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +34,26 @@ public class QrGeneratorActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-        if(b.getIntegerArrayList("ticketsID") != null)
-            ticket = new TicketTerminal(b.getInt("userId"), b.getInt("eventId"), b.getIntegerArrayList("ticketsID"), b.getString("name"), b.getString("date"), b.getDouble("price"));
+        if(b.getString("type").equals("cafeteria")) {
+            cafeteriaOrder = b.getString("cafeteriaOrder");
+            generate(true);
+        }
+        else{
+            if(b.getIntegerArrayList("ticketsID") != null)
+                ticket = new TicketTerminal(b.getInt("userId"), b.getInt("eventId"), b.getIntegerArrayList("ticketsID"), b.getString("name"), b.getString("date"), b.getDouble("price"));
 
-        else
-            ticket = new TicketTerminal(b.getInt("userId"), b.getInt("eventId"), b.getInt("id"), b.getString("name"), b.getString("date"), b.getDouble("price"));
+            else
+                ticket = new TicketTerminal(b.getInt("userId"), b.getInt("eventId"), b.getInt("id"), b.getString("name"), b.getString("date"), b.getDouble("price"));
 
-        generate();
+            generate(false);
+        }
     }
 
-    void generate() {
-        Log.d("QR", "tickets: "+ticket.getTicket());new Thread(new convertToQR(ticket.getTicket())).start();
+    void generate(boolean type) {
+        if(type)
+            new Thread(new convertToQR(cafeteriaOrder)).start();
+        else
+            new Thread(new convertToQR(ticket.getTicket())).start();
     }
 
     class convertToQR implements Runnable {

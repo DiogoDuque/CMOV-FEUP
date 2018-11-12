@@ -43,6 +43,7 @@
             android:noHistory="true"
             android:parentActivityName=".activity.MakeOrderActivity"/>
         <activity android:name=".activity.QrGeneratorActivity"/>
+        <activity android:name=".activity.MainMenuActivity"/>
 
         <!--<service
             android:name=".utility.CardService"

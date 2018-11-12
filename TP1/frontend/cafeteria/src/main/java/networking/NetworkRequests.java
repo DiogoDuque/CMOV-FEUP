@@ -83,13 +83,12 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void verifyOrder(Context context, byte[] signature, String message, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void verifyOrder(Context context, String message, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/verify";
         final int METHOD = Request.Method.GET;
 
         JSONObject body = new JSONObject();
         try {
-            body.put("signature", signature);
             body.put("message", message);
         } catch (JSONException e) {
             e.printStackTrace();
