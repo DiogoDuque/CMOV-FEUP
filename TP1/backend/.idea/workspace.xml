@@ -3,19 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/server/src/database/Cafeteria.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/database/Cafeteria.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/cafeteria/cafeteriaRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/cafeteria/cafeteriaRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/cafeteria/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/cafeteria/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/cafeteria/cafeteria.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/cafeteria/cafeteria.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/cafeteria/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/cafeteria/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/customer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/customer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/QrGeneratorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/QrGeneratorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_buy_show_ticket.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_buy_show_ticket.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_splash_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_splash_screen.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/res/values-v21/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/res/values-v21/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/terminal/terminal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/terminal/terminal.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,14 +46,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2" />
-          <entry key="js" value="8600" />
+          <entry key="js" value="8671" />
           <entry key="sql" value="187" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2" />
-          <entry key="JavaScript" value="8595" />
+          <entry key="JavaScript" value="8666" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="188" />
         </counts>
@@ -87,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="113" column="10" lean-forward="true" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
+            <state relative-caret-position="563">
+              <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -359,12 +346,12 @@
       <workItem from="1541530045094" duration="1791000" />
       <workItem from="1541578322425" duration="2759000" />
       <workItem from="1541774337454" duration="2068000" />
-      <workItem from="1542044609274" duration="517000" />
+      <workItem from="1542044609274" duration="768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43119000" />
+    <option name="totallyTimeSpent" value="43370000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
@@ -599,8 +586,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="113" column="10" lean-forward="true" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
+        <state relative-caret-position="563">
+          <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
         </state>
       </provider>
     </entry>

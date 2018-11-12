@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
 
-public abstract class CafeteriaOrdersActivity extends AppCompatActivity {
+public abstract class TransactionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

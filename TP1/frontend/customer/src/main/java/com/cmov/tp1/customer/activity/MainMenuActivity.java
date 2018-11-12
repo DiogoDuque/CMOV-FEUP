@@ -75,7 +75,7 @@ public class MainMenuActivity extends AppCompatActivity {
         else if(value == 4)
             intent = new Intent(this, VouchersActivity.class);
         else if(value == 5)
-            intent = new Intent(this, CafeteriaOrdersActivity.class);
+            intent = new Intent(this, TransactionsActivity.class);
         else if(value == 6)
             intent = new Intent(this, ProfileActivity.class);
 

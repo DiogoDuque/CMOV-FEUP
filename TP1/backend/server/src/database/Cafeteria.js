@@ -111,7 +111,9 @@ module.exports = {
         verify.end();
 
         if(verify.verify(publicKey, signature)){
-          
+          //Verificar vouchers
+            //Inserts para cada produto
+            //Calcular novo preço
         }
         callback(false);
       }
