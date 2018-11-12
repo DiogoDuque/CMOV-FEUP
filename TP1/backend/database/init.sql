@@ -72,7 +72,9 @@ CREATE TABLE cafeteria_order
 (
   id SERIAL PRIMARY KEY,
   "date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-  customer_id INTEGER REFERENCES customer(id) NOT NULL
+  customer_id INTEGER REFERENCES customer(id) NOT NULL,
+  is_validated BOOLEAN NOT NULL DEFAULT FALSE,
+  price NUMERIC NOT NULL DEFAULT 0
 );
 
 CREATE TABLE cafeteria_product

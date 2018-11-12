@@ -267,6 +267,20 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
+    public static void getOrdersValidated(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/cafeteria/orders_costumer_validated";
+        final int METHOD = Request.Method.GET;
+
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
+    }
+
+    public static void getOrdersNotValidated(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/cafeteria/orders_costumer_not_validated";
+        final int METHOD = Request.Method.GET;
+
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
+    }
+
     public static void getOrdersCostumer(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/orders_costumer";
         final int METHOD = Request.Method.GET;

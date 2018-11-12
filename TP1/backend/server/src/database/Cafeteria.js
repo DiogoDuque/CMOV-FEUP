@@ -39,6 +39,39 @@ module.exports = {
     });
   },
 
+    getOrdersNotValidated(callback) {
+        const baseQuery = 'SELECT id, date, price FROM cafeteria_order WHERE is_validated = FALSE ORDER BY date DESC';
+        execute(baseQuery, [], (response, err) => {
+            if (err) {
+                callback(null, err);
+            } else {
+                callback(response);
+            }
+        });
+    },
+
+  getOrdersValidated(id, callback) {
+      const baseQuery = 'SELECT id, date, price FROM cafeteria_order WHERE customer_id = $1 AND is_validated = TRUE ORDER BY date DESC';
+      execute(baseQuery, [id], (response, err) => {
+          if (err) {
+              callback(null, err);
+          } else {
+              callback(response);
+          }
+      });
+  },
+
+    getOrdersNotValidated(id, callback) {
+        const baseQuery = 'SELECT id, date FROM cafeteria_order WHERE customer_id = $1 AND is_validated = FALSE ORDER BY date';
+        execute(baseQuery, [id], (response, err) => {
+            if (err) {
+                callback(null, err);
+            } else {
+                callback(response);
+            }
+        });
+    },
+
   getOrdersCostumer(id, callback) {
     const baseQuery = 'SELECT id, date FROM cafeteria_order'
       + ' WHERE customer_id = $1 ORDER BY date';
@@ -114,6 +147,7 @@ module.exports = {
           //Verificar vouchers
             //Inserts para cada produto
             //Calcular novo preço
+            //Dar update de is_validated na order
         }
         callback(false);
       }

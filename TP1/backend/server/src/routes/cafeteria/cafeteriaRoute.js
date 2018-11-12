@@ -13,6 +13,16 @@ router.get('/orders', (req, res) => {
   });
 });
 
+router.get('/orders__not_validated', (req, res) => {
+    Query.getOrdersNotValidated((result, err) => {
+        if (result) {
+            res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
+        } else {
+            res.status(400).send(err);
+        }
+    });
+});
+
 router.get('/order', (req, res) => {
   const { id } = req.query;
   Query.getOrder(id, (result, err) => {

@@ -10,6 +10,16 @@
         <item>Sandwich</item>
     </string-array>
 
+    <string-array name="type">
+        <item>Tickets</item>
+        <item>Cafeteria Orders</item>
+    </string-array>
+
+    <string-array name="result">
+        <item>New</item>
+        <item>Validated</item>
+    </string-array>
+
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="drawer_main_menu_make_order">Make an Order</string>
