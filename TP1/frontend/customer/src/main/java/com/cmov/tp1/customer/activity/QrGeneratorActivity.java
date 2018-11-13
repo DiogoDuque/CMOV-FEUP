@@ -3,12 +3,15 @@ package com.cmov.tp1.customer.activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.TicketTerminal;
+import com.cmov.tp1.customer.utility.ToolbarUtility;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -31,6 +34,18 @@ public class QrGeneratorActivity extends AppCompatActivity {
 
         qrCodeImageview = findViewById(R.id.img_qr_code);
         errorTv = findViewById(R.id.tv_error);
+
+        ToolbarUtility.setupToolbar(this);
+        ToolbarUtility.setupDrawer(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // back button pressed
+            }
+        });
 
         Bundle b = getIntent().getExtras();
 

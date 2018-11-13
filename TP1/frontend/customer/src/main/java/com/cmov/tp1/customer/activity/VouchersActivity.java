@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +50,15 @@ public class VouchersActivity extends AppCompatActivity {
 
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // back button pressed
+            }
+        });
 
         final RecyclerView unusedVouchers = findViewById(R.id.unused_vouchers);
         final RecyclerView usingVouchers = findViewById(R.id.using_vouchers);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // back button pressed
+            }
+        });
 
         Button editButton = findViewById(R.id.edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {

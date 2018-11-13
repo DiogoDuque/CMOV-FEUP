@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,15 @@ public class OrderFinishedActivity extends AppCompatActivity {
 
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // back button pressed
+            }
+        });
 
         Bundle b = getIntent().getExtras();
         orderId = b.getInt("orderID");

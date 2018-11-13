@@ -6,6 +6,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,6 +43,15 @@ public abstract class TransactionsActivity extends AppCompatActivity {
 
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // back button pressed
+            }
+        });
 
         NetworkRequests.getAllTickets(this, new HTTPRequestUtility.OnRequestCompleted() {
 
