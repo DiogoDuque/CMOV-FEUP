@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -116,7 +117,8 @@ public class RegisterActivity extends AppCompatActivity {
         PublicKey pubKey = keyPair.getPublic();
         final PrivateKey privateKey = keyPair.getPrivate();
 
-        NetworkRequests.registerRequest(this, name, username, nif, password, cardNumber, cardCode, cardValidity, cardType, pubKey.toString(), new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.registerRequest(this, name, username, nif, password, cardNumber, cardCode,
+                cardValidity, cardType, Base64.encodeToString(pubKey.getEncoded(), Base64.DEFAULT), new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 try {

@@ -354,7 +354,7 @@ public abstract class NetworkRequests {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("order", order);
+            body.put("orderId", order);
             JSONArray jsonProducts = new JSONArray();
             for(CafeteriaOrderProduct prod: products) {
                 JSONObject obj = new JSONObject();

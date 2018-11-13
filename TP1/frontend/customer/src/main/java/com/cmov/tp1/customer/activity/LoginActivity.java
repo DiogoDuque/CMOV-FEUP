@@ -2,6 +2,7 @@ package com.cmov.tp1.customer.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,11 +63,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, json.toString());
                 try {
-                    if(json.getBoolean("result")) {
+                    int userId = json.getInt("userId");
+
+                    SharedPreferences sPrefs = getApplicationContext().getSharedPreferences("MyPref", 0);
+                    SharedPreferences.Editor editor = sPrefs.edit();
+                    editor.putInt("userId", userId);
+                    editor.apply();
+
                         Intent intent = new Intent(activity.getBaseContext(), MainMenuActivity.class);
-                        activity.getBaseContext().startActivity(intent);
-                        finish();
-                    }
+                    activity.getBaseContext().startActivity(intent);
+                    finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

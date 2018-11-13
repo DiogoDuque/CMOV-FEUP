@@ -1,7 +1,5 @@
 package com.cmov.tp1.customer.core;
 
-import com.android.volley.toolbox.JsonObjectRequest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +11,7 @@ public class CafeteriaOrderProduct {
     private String name;
     private double price;
     private int quantity;
+    private ArrayList<Integer> voucherIds;
 
     public CafeteriaOrderProduct(String name, double price, int quantity) {
         this.name = name;
@@ -30,6 +29,22 @@ public class CafeteriaOrderProduct {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public ArrayList<Integer> getVoucherIds() {
+        return voucherIds;
+    }
+
+    public boolean addVoucherId(int voucherId) {
+        if(voucherIds == null) {
+            voucherIds = new ArrayList<>();
+        }
+        if(voucherIds.size() >= quantity) {
+            resetVoucherIds();
+            return false;
+        }
+        voucherIds.add(voucherId);
+        return true;
     }
 
     public void addQuantity(int quantity) {
@@ -50,6 +65,10 @@ public class CafeteriaOrderProduct {
             array.put(obj);
         }
         return array.toString();
+    }
+
+    public void resetVoucherIds() {
+        voucherIds = null;
     }
 
     public static ArrayList<CafeteriaOrderProduct> jsonToProducts(String jsonStr) {

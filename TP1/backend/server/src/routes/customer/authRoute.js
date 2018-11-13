@@ -18,7 +18,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     if (result) {
       req.session.username = username;
       req.session.userId = result;
-      res.send('{result: true}');
+      res.send(`{userId: ${result}}`);
     } else if (result === false) {
       res.status(401).send();
     } else {
