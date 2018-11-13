@@ -29,7 +29,7 @@ public class PurchaseFinishedActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // back button pressed
+                finish();
             }
         });
 
