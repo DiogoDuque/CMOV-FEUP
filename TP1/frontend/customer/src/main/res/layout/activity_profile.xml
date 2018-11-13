@@ -109,7 +109,6 @@
                     android:id="@+id/edit_button"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
                     android:background="@drawable/mybutton"
                     android:fontFamily="@font/monserrat"
                     android:textSize="16dp"
@@ -118,18 +117,6 @@
                     android:textColor="@android:color/background_light"
                     android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/associate_button"
-                    android:layout_width="113dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/mybutton"
-                    android:fontFamily="@font/monserrat"
-                    android:textSize="16dp"
-                    android:text="Credit Card"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/background_light"
-                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
