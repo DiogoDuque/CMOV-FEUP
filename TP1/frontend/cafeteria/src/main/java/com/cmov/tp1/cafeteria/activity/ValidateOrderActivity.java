@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import networking.HTTPRequestUtility;
 import networking.NetworkRequests;
 
-public class ValidateTicketActivity extends AppCompatActivity {
+public class ValidateOrderActivity extends AppCompatActivity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     private String message = "";
@@ -29,7 +29,7 @@ public class ValidateTicketActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_validate_ticket);
+        setContentView(R.layout.activity_validate_order);
 
         Button QRButton = (Button) findViewById(R.id.validate_button);
         QRButton.setOnClickListener(new View.OnClickListener() {
@@ -87,12 +87,12 @@ public class ValidateTicketActivity extends AppCompatActivity {
          NetworkRequests.verifyOrder(this, message, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) throws JSONException {
-                Toast.makeText(getBaseContext(), "Ticket validated successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Order validated successfully", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(JSONObject json) {
-                Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Error validating order", Toast.LENGTH_LONG).show();
             }
         });
 

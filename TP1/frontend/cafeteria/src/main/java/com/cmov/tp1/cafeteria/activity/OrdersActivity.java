@@ -1,7 +1,10 @@
 package com.cmov.tp1.cafeteria.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,48 +13,61 @@ import android.widget.Spinner;
 
 import com.cmov.tp1.cafeteria.R;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+import core.CafeteriaOrder;
+import core.CafeteriaOrderAdapter;
+import core.MyClickListener;
+import networking.HTTPRequestUtility;
+import networking.NetworkRequests;
 
-    //Só para teste
-    List<String> orders = new ArrayList<>();
-    ArrayAdapter<String> adapter;
-
+public class OrdersActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
 
-        ListView list = findViewById(R.id.orders_list);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, orders);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(this);
+        final RecyclerView recyclerView = findViewById(R.id.orders_list);
 
-        Spinner spinner = findViewById(R.id.orders_selector);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.order_by, android.R.layout.activity_list_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        NetworkRequests.getOrders(this, new HTTPRequestUtility.OnRequestCompleted() {
 
-        spinner.setOnItemSelectedListener(
-            new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            @Override
+            public void onSuccess(JSONObject json) {
+                final List<CafeteriaOrder> ordersList = CafeteriaOrderAdapter.parseJsonOrders(json);
+                CafeteriaOrderAdapter adapter = new CafeteriaOrderAdapter(ordersList);
+                adapter.setupBoilerplate(getApplicationContext(), recyclerView, new MyClickListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        CafeteriaOrder order = ordersList.get(position);
 
-                Object item = parent.getItemAtPosition(pos);
-                System.out.println(item.toString());     //prints the text in spinner item.
+                        Intent intent = new Intent(OrdersActivity.this, OrderPageActivity.class);
+                        Bundle b = new Bundle();
+                        b.putInt("id", order.getId());
+                        b.putString("date", order.getDate());
+                        b.putDouble("price", order.getPrice());
+                        intent.putExtras(b); //Put your id to your next Intent
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+                    }
+                });
+
+                recyclerView.setAdapter(adapter);
+
 
             }
-            public void onNothingSelected(AdapterView<?> parent) {
+
+            @Override
+            public void onError(JSONObject json) {
+                 //TODO handle error
             }
         });
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //Como ir buscar a posição do sítio clicado
-        String name = orders.get(position);
-
-    }
 }

@@ -38,7 +38,7 @@ public abstract class NetworkRequests {
 
     //CAFETERIA REQUESTS
     public static void getOrders(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/orders__not_validated";
+        final String PATH = "/orders_validated";
         final int METHOD = Request.Method.GET;
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
