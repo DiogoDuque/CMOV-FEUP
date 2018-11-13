@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TP1 - Terminal</string>
+    <string name="app_name">Ticket Terminal</string>
     <string name="service_name">Simple CardEmulation</string>
     <string name="card_title">NFC Costumer</string>
     <string name="ok">OK</string>

@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/light_orange"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:theme="@style/ToolbarTheme" />
 
         <LinearLayout
             android:id="@+id/linear"

@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, json.toString());
                 try {
                     if(json.getBoolean("result")) {
-                        Intent intent = new Intent(activity.getBaseContext(), ShowsActivity.class);
+                        Intent intent = new Intent(activity.getBaseContext(), MainMenuActivity.class);
                         activity.getBaseContext().startActivity(intent);
                         finish();
                     }

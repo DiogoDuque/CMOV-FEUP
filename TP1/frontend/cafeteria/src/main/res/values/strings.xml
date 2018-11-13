@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TP1 - Cafeteria</string>
+    <string name="app_name">Cafeteria Terminal</string>
     <string-array name="order_by">
             <item>Order ID</item>
             <item>Name</item>

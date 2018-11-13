@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cmov.tp1.customer.R;
+import com.cmov.tp1.cafeteria.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +54,7 @@ public class CafeteriaOrderProductAdapter extends RecyclerView.Adapter<Cafeteria
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.show_list_row, parent, false);
+                .inflate(R.layout.list_row, parent, false);
 
         return new MyViewHolder(itemView);
     }

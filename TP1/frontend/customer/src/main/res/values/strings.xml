@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TP1 - Customer</string>
+    <string name="app_name">Events Buyer</string>
     <string name="drawer_main_menu_shows">Shows</string>
     <string name="drawer_main_menu_my_shows">My Shows</string>
     <string name="drawer_main_menu_vouchers">My Vouchers</string>

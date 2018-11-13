@@ -9,4 +9,9 @@
         <item name="navigationViewStyle">@style/Widget.Design.NavigationView</item>
     </style>
 
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/colorBackground</item>
+    </style>
+
 </resources>

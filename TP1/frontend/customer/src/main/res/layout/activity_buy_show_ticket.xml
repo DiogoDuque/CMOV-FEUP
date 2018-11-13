@@ -16,18 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/light_orange"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:theme="@style/ToolbarTheme" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="55dp"
-            android:paddingBottom="55dp">
+            android:paddingTop="55dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="55dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
