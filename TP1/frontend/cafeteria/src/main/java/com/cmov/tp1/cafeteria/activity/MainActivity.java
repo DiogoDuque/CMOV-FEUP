@@ -97,22 +97,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void getResultScan(String message) throws JSONException {
 
+        final Bundle b = new Bundle();
         NetworkRequests.verifyOrder(this, message, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) throws JSONException {
-                Toast.makeText(getBaseContext(), "Order validated successfully", Toast.LENGTH_SHORT).show();
+                b.putBoolean("result", true);
             }
 
             @Override
             public void onError(JSONObject json) {
-                Toast.makeText(getBaseContext(), "Error validating order", Toast.LENGTH_LONG).show();
+                b.putBoolean("result", false);
             }
         });
 
 
         Intent intent = new Intent(this, ResultActivity.class);
-        Bundle b = new Bundle();
-        b.putBoolean("result", true);
 
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);

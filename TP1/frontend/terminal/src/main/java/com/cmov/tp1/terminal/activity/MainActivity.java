@@ -93,19 +93,21 @@ public class MainActivity extends AppCompatActivity {
             showId = Integer.parseInt(strings[2]);
         else
             shows = strings[2].split("\\+");
-        Log.d("Validate","1st show: "+shows[0]);
+        Log.d("Validate","1st show: " + shows[0]);
+
+        final Bundle b = new Bundle();
 
         if(quantity == 1){
             NetworkRequests.checkTickets(this, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {
                 @Override
                 public void onSuccess(JSONObject json) throws JSONException {
                     show_name[0] = json.getString("showName");
-                    Toast.makeText(getBaseContext(), "Ticket validated successfully", Toast.LENGTH_SHORT).show();
+                    b.putBoolean("result", true);
                 }
 
                 @Override
                 public void onError(JSONObject json) {
-                    Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
+                    b.putBoolean("result", false);
                 }
             }); }
         else{
@@ -114,11 +116,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(JSONObject json) throws JSONException {
                         show_name[0] = json.getString("showName");
+                        b.putBoolean("result", true);
                     }
 
                     @Override
                     public void onError(JSONObject json) {
-                        Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
+                        b.putBoolean("result", false);
                     }
                 });
             }
@@ -126,9 +129,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, ResultActivity.class);
-        Bundle b = new Bundle();
-        b.putBoolean("result", true);
-
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
     }

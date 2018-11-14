@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/server/src/database/Tickets.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/database/Tickets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/customer/ticketsRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/customer/ticketsRoute.js" afterDir="false" />
-    </list>
+    <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +12,7 @@
     <session id="1615718789">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="2" />
@@ -360,12 +357,12 @@
       <workItem from="1542044609274" duration="2436000" />
       <workItem from="1542146178888" duration="354000" />
       <workItem from="1542189648054" duration="1030000" />
-      <workItem from="1542229160335" duration="174000" />
+      <workItem from="1542229160335" duration="281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46596000" />
+    <option name="totallyTimeSpent" value="46703000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
