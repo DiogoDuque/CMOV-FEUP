@@ -17,7 +17,7 @@ module.exports = {
   },
 
   getUsedTickets(user_id, callback) {
-    const baseQuery = 'SELECT ticket.place, event.name, event.price, event.date'
+    const baseQuery = 'SELECT ticket.place, ticket.id, event.name, event.price, event.date'
       + ' FROM ticket, customer, event WHERE ticket.customer_id = $1 AND ticket.is_used = TRUE AND event.id = ticket.event_id AND customer.id = ticket.customer_id';
     execute(baseQuery, [user_id], (response, err) => {
       if (err) {
