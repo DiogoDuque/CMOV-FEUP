@@ -54,12 +54,27 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
-
         CardView card6 = findViewById(R.id.card_view6);
         card6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setActivity(6);
+            }
+        });
+
+        CardView card7 = findViewById(R.id.card_view7);
+        card7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setActivity(7);
+            }
+        });
+
+        CardView card8 = findViewById(R.id.card_view8);
+        card8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setActivity(8);
             }
         });
     }
@@ -78,6 +93,9 @@ public class MainMenuActivity extends AppCompatActivity {
             intent = new Intent(this, TransactionsActivity.class);
         else if(value == 6)
             intent = new Intent(this, ProfileActivity.class);
+        else if(value == 7)
+            intent = new Intent(this, TransactionsActivity.class);
+        else if(value == 6)
 
         startActivity(intent);
     }

@@ -125,7 +125,7 @@
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@mipmap/gifticonnew" />
+                    app:srcCompat="@drawable/voucher" />
 
                 <TextView
                     android:id="@+id/info_text4"
@@ -185,19 +185,19 @@
                 card_view:cardCornerRadius="4dp">
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/imageView7"
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@mipmap/profile" />
+                    app:srcCompat="@drawable/transaction" />
 
                 <TextView
-                    android:id="@+id/info_text6"
+                    android:id="@+id/info_text7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="120dp"
                     android:fontFamily="@font/monserrat"
-                    android:text="Profile"
+                    android:text="Transactions"
                     android:textAlignment="center"
                     android:textColor="@color/orange"
                     android:textSize="20dp"
@@ -216,18 +216,46 @@
                 android:id="@+id/card_view7"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_marginRight="40dp"
                 android:layout_gravity="center"
                 card_view:cardCornerRadius="4dp">
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageView6"
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@mipmap/credit_card" />
+                    app:srcCompat="@mipmap/profile" />
 
                 <TextView
-                    android:id="@+id/info_text7"
+                    android:id="@+id/info_text6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/monserrat"
+                    android:text="Profile"
+                    android:textAlignment="center"
+                    android:textColor="@color/orange"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view8"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                card_view:cardCornerRadius="4dp">
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/logout" />
+
+                <TextView
+                    android:id="@+id/info_text8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="120dp"

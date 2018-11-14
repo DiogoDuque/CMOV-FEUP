@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
@@ -54,6 +55,8 @@ public class TicketsActivity extends AppCompatActivity {
 
         final RecyclerView unusedTicketsView = findViewById(R.id.unused_tickets_list);
         final RecyclerView selectedTicketsView = findViewById(R.id.selected_tickets_list);
+        final Button finishButton = findViewById(R.id.finish_button);
+        final TextView text = findViewById(R.id.textView);
 
         NetworkRequests.getNotUsedTickets(this, new HTTPRequestUtility.OnRequestCompleted() {
 
@@ -66,6 +69,10 @@ public class TicketsActivity extends AppCompatActivity {
                 unusedTicketsAdapter.setupBoilerplate(getApplicationContext(), unusedTicketsView, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
+                        selectedTicketsView.setVisibility(View.VISIBLE);
+                        finishButton.setVisibility(View.VISIBLE);
+                        text.setVisibility(View.VISIBLE);
+
                         if(selectedTicketsAdapter.getItemCount() >= 4) {
                             Toast.makeText(TicketsActivity.this, "No more than 4 tickets may be validated!", Toast.LENGTH_SHORT).show();
                             return;
@@ -102,7 +109,6 @@ public class TicketsActivity extends AppCompatActivity {
             }
         });
 
-        Button finishButton = findViewById(R.id.finish_button);
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,9 +123,10 @@ public class TicketsActivity extends AppCompatActivity {
 
                 List<TicketTerminal> tickets = selectedTicketsAdapter.getTickets();
                 String date = tickets.get(0).getDate();
+                int eventId = tickets.get(0).getEventId();
                 for(int i=1; i<selectedTicketsAdapter.getItemCount(); i++){
-                    if(!tickets.get(i).getDate().equals(date)){
-                        Toast.makeText(TicketsActivity.this, "The tickets' date must be the same.",Toast.LENGTH_SHORT).show();
+                    if(!tickets.get(i).getDate().equals(date) || tickets.get(i).getEventId() != eventId){
+                        Toast.makeText(TicketsActivity.this, "The tickets' date and show must be the same.",Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
