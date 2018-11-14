@@ -185,14 +185,14 @@
                 card_view:cardCornerRadius="4dp">
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageView6"
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/transaction" />
 
                 <TextView
-                    android:id="@+id/info_text7"
+                    android:id="@+id/info_text6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="120dp"
@@ -221,14 +221,14 @@
                 card_view:cardCornerRadius="4dp">
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/imageView7"
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:layout_gravity="center"
                     app:srcCompat="@mipmap/profile" />
 
                 <TextView
-                    android:id="@+id/info_text6"
+                    android:id="@+id/info_text7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="120dp"

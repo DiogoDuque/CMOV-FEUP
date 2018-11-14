@@ -95,7 +95,8 @@ public class MainMenuActivity extends AppCompatActivity {
             intent = new Intent(this, ProfileActivity.class);
         else if(value == 7)
             intent = new Intent(this, TransactionsActivity.class);
-        else if(value == 6)
+        else if(value == 8)
+            intent = null;
 
         startActivity(intent);
     }
