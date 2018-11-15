@@ -1,6 +1,6 @@
-const verify = require('crypto').createVerify('RSA-SHA256');
 const NodeRSA = require('node-rsa');
 const execute = require('./DB');
+const Profile = require('./Profile');
 
 function validateVoucher(voucherId, productsOld, accumulatedDiscount = 0, callback) {
   let discount = accumulatedDiscount;
@@ -43,7 +43,6 @@ function validateProduct(orderId, product, cost = 0, callback) {
   const hasVoucher = product.vouchersUsed && (product.vouchersUsed.length > 0);
   const insertQuery = `INSERT INTO cafeteria_order_product (order_id, product_id${hasVoucher ? ', voucher_id' : ''}) `
     + `(SELECT $1, id${hasVoucher ? `, ${product.vouchersUsed.pop()}` : ''} FROM cafeteria_product WHERE name = $2)`;
-  console.log(`4. query: ${insertQuery}`);
   const insArgs = [orderId, product.name];
   execute(insertQuery, insArgs, (insRes, insErr) => {
     if (insErr) {
@@ -58,11 +57,13 @@ function validateProduct(orderId, product, cost = 0, callback) {
       } else {
         const selQuery = 'SELECT price from cafeteria_product WHERE name = $1';
         execute(selQuery, [product.name], (selRes, selErr) => {
+          let { price } = selRes.rows[0];
+          price = parseFloat(price);
           if (selErr) {
             callback(null, selErr);
           } else if (newProd.quantity > 0) {
-            validateProduct(orderId, newProd, cost + selRes.rows[0].price, callback);
-          } else callback(cost);
+            validateProduct(orderId, newProd, cost + price, callback);
+          } else callback(cost + price);
         });
       }
     }
@@ -70,30 +71,23 @@ function validateProduct(orderId, product, cost = 0, callback) {
 }
 
 function calculateAndValidateOrder(orderId, productsOld, vouchersIds, accumulatedDiscount = 0, accumulatedCost = 0, callback) {
-
-  console.log('1. calcAndVal');
+  // console.log(`cost: ${accumulatedCost}, discount: ${accumulatedDiscount}, products: ${JSON.stringify(productsOld)}`);
   if (vouchersIds && vouchersIds.length > 0) {
-    console.log('2. calcAndVal - vouchers');
     const voucherId = vouchersIds.pop();
     validateVoucher(voucherId, productsOld, 0, (voucherRes, voucherErr) => {
-      console.log(`2.9 calcAndVal - vouchers final: err: ${JSON.stringify(voucherErr)}; res: ${JSON.stringify(voucherRes)}`);
       if (voucherErr) {
         callback(null, voucherErr);
       } else {
-        let { discount, products } = voucherRes;
-        console.log('discoutn '+discount);
-        calculateAndValidateOrder(orderId, products, vouchersIds, accumulatedDiscount + discount, callback);
+        const { discount, products } = voucherRes;
+        calculateAndValidateOrder(orderId, products, vouchersIds, accumulatedDiscount + discount, accumulatedCost, callback);
       }
     });
     return;
   }
-  console.log('3. passed vouchers');
 
   if (productsOld.length > 0) {
-    console.log('4. calcAndVal - prod');
     const product = productsOld.pop();
     validateProduct(orderId, product, 0, (productRes, productErr) => {
-      console.log('4.9 calcAndVal - prod final');
       if (productErr) {
         callback(null, productErr);
       } else {
@@ -103,15 +97,16 @@ function calculateAndValidateOrder(orderId, productsOld, vouchersIds, accumulate
     });
     return;
   }
-  console.log('5. passed prod');
 
   // make final calculations and validate order
   const finalCost = accumulatedCost * (1 - accumulatedDiscount);
-  const validateQuery = 'UPDATE cafeteria_order SET is_validated = TRUE WHERE cafeteria_order = $1';
+  const validateQuery = 'UPDATE cafeteria_order SET is_validated = TRUE WHERE id = $1';
   execute(validateQuery, [orderId], (validRes, validErr) => {
     if (validErr) {
       callback(null, validErr);
-    } else callback(finalCost);
+    } else {
+      callback(finalCost);
+    }
   });
 }
 
@@ -250,20 +245,24 @@ module.exports = {
         callback(null, err);
       } else {
         const publicKey = response.rows[0].public_key;
-        console.log(`0. finished query. key=${publicKey}`);
 
         const key = new NodeRSA();
         key.importKey(publicKey, 'public');
-        console.log('0. everything ok here 2');
         const buffer = Buffer.from(signature, 'base64');
-        console.log('0. everything ok here 3');
         const res = key.verify(message, buffer, 'binary');
-        console.log(res);
         if (res) {
-          console.log('0. signature verified');
-          calculateAndValidateOrder(orderId, products, vouchersIds, callback);
+          calculateAndValidateOrder(orderId, products, vouchersIds, 0, 0, (calcRes, calcErr) => {
+            if(calcErr) {
+              callback(null, calcErr);
+            } else {
+              Profile.setBalance(userId, calcRes, (balanceRes, balanceErr) => {
+                if (balanceErr) {
+                  callback(null, balanceErr);
+                } else callback(calcRes);
+              });
+            }
+          });
         } else {
-          console.log('0. FAIL');
           callback(false);
         }
       }
