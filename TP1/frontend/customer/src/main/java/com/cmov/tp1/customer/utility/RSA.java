@@ -93,7 +93,7 @@ public class RSA {
     public static String sign(String message) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableEntryException, InvalidKeyException, SignatureException {
         KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
         ks.load(null);
-        //KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
+        KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
         Signature privateSignature = Signature.getInstance(SIGNATURE_ALGORITHM);
         privateSignature.initSign(((KeyStore.PrivateKeyEntry)entry).getPrivateKey());
         privateSignature.update(message.getBytes("UTF-8"));

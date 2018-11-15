@@ -252,17 +252,11 @@ module.exports = {
         const publicKey = response.rows[0].public_key;
         console.log(`0. finished query. key=${publicKey}`);
 
-        /*const key = new NodeRSA();
+        const key = new NodeRSA();
         key.importKey(publicKey, 'public');
         console.log('0. everything ok here 2');
         const buffer = Buffer.from(signature, 'base64');
         console.log('0. everything ok here 3');
-        const res = key.verify(JSON.stringify(message), buffer, 'binary');*/
-        /*const pubKey = `-----BEGIN PUBLIC KEY-----\n${publicKey}-----END PUBLIC KEY-----`;
-        verify.update(JSON.stringify(message));
-        console.log('0. helloooooo');
-        //verify.end();
-        const res = verify.verify(pubKey, signature);*/
         const res = key.verify(message, buffer, 'binary');
         console.log(res);
         if (res) {
