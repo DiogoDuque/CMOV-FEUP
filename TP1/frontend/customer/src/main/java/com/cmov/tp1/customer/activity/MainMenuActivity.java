@@ -102,7 +102,7 @@ public class MainMenuActivity extends AppCompatActivity {
         else if(value == 6)
             intent = new Intent(this, TransactionsActivity.class);
         else if(value == 7)
-            intent = new Intent(this, ProfileActivity.class);
+            getInfoUser();
         else if(value == 8)
             logout();
 
@@ -120,6 +120,38 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onError(JSONObject json) {
                 Toast.makeText(MainMenuActivity.this, "Impossible to logout", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
+    }
+
+    public void getInfoUser(){
+        NetworkRequests.getProfileInfo(this, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json){
+                Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
+                Bundle b = new Bundle();
+                try {
+                    b.putInt("id", json.getInt("id"));
+                    b.putString("name", json.getString("name"));
+                    b.putString("username", json.getString("username"));
+                    b.putString("password", json.getString("password"));
+                    b.putString("nif", json.getString("nif"));
+                    b.putString("card_type", json.getString("card_type"));
+                    b.putString("card_number", json.getString("card_number"));
+                    b.putString("card_validity", json.getString("card_validity"));
+                    b.putDouble("balance", json.getDouble("balance"));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+                Toast.makeText(MainMenuActivity.this, "Error accessing profile", Toast.LENGTH_SHORT).show();
                 return;
             }
         });
