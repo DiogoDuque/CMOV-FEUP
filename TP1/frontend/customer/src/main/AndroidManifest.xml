@@ -34,9 +34,9 @@
         <activity android:name=".activity.BuyTicketActivity"
             android:parentActivityName=".activity.ShowPageActivity"/>
         <activity android:name=".activity.VouchersActivity"
-            android:parentActivityName=".activity.MainMenuActivity"/>
+            android:parentActivityName=".activity.MakeOrderActivity"/>
         <activity android:name=".activity.VoucherPageActivity"
-            android:parentActivityName=".activity.VouchersActivity"/>
+            android:parentActivityName=".activity.MyVouchersActivity"/>
         <activity android:name=".activity.MakeOrderActivity"
             android:parentActivityName=".activity.BuyTicketActivity"/>
         <activity android:name=".activity.PurchaseFinishedActivity"
@@ -49,6 +49,8 @@
             android:parentActivityName=".activity.TicketsActivity"/>
         <activity android:name=".activity.ChangeIPActivity"/>
         <activity android:name=".activity.TransactionsActivity"
+            android:parentActivityName=".activity.MainMenuActivity"/>
+        <activity android:name=".activity.MyVouchersActivity"
             android:parentActivityName=".activity.MainMenuActivity"/>
 
         <!--<service
