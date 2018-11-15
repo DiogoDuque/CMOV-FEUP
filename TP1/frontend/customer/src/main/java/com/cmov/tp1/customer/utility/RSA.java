@@ -93,11 +93,11 @@ public class RSA {
         ks.load(null);
         KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
         Signature privateSignature = Signature.getInstance(SIGNATURE_ALGORITHM);
-        privateSignature.initSign(getPrivKey());
-        privateSignature.update(message.getBytes(UTF_8));
+        privateSignature.initSign(((KeyStore.PrivateKeyEntry)entry).getPrivateKey());
+        privateSignature.update(message.getBytes("UTF-8"));
 
         byte[] signature = privateSignature.sign();
 
-        return Base64.encodeToString(signature, Base64.DEFAULT);
+        return Base64.encodeToString(signature, Base64.NO_WRAP);
     }
 }

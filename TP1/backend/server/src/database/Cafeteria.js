@@ -250,9 +250,9 @@ module.exports = {
         const key = new NodeRSA();
         key.importKey(publicKey, 'public');
         console.log('0. everything ok here 2');
-        const buffer = Buffer.from(message, 'base64');
+        const buffer = Buffer.from(signature, 'base64');
         console.log('0. everything ok here 3');
-        const res = key.verify(buffer, signature, 'buffer', 'base64');
+        const res = key.verify(message, buffer, 'binary');
         console.log(res);
         if (res) {
           console.log('0. signature verified');

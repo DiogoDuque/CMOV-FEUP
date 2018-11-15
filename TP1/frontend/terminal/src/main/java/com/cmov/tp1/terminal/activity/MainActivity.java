@@ -5,17 +5,17 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.cmov.tp1.terminal.R;
 import com.cmov.tp1.terminal.networking.HTTPRequestUtility;
 import com.cmov.tp1.terminal.networking.NetworkRequests;
+import com.cmov.tp1.terminal.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,21 +93,19 @@ public class MainActivity extends AppCompatActivity {
             showId = Integer.parseInt(strings[2]);
         else
             shows = strings[2].split("\\+");
-        Log.d("Validate","1st show: " + shows[0]);
-
-        final Bundle b = new Bundle();
+        Log.d("Validate","1st show: "+shows[0]);
 
         if(quantity == 1){
             NetworkRequests.checkTickets(this, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {
                 @Override
                 public void onSuccess(JSONObject json) throws JSONException {
                     show_name[0] = json.getString("showName");
-                    b.putBoolean("result", true);
+                    Toast.makeText(getBaseContext(), "Ticket validated successfully", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onError(JSONObject json) {
-                    b.putBoolean("result", false);
+                    Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
                 }
             }); }
         else{
@@ -116,12 +114,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(JSONObject json) throws JSONException {
                         show_name[0] = json.getString("showName");
-                        b.putBoolean("result", true);
                     }
 
                     @Override
                     public void onError(JSONObject json) {
-                        b.putBoolean("result", false);
+                        Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -129,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, ResultActivity.class);
+        Bundle b = new Bundle();
+        b.putBoolean("result", true);
+
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
     }
