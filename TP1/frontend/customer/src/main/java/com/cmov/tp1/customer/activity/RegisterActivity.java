@@ -98,9 +98,8 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        KeyPair keyPair = null;
         try {
-            keyPair = RSA.buildKeyPair(this);
+            RSA.buildKeyPair(this);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (KeyStoreException e) {

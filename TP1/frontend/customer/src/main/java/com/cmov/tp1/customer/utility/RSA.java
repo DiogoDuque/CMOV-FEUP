@@ -37,11 +37,10 @@ public class RSA {
     private static final String KEY_ALGORITHM = "RSA";
     private static final int keySize = 512;
 
-    public static KeyPair buildKeyPair(Context context) throws NoSuchAlgorithmException, NoSuchProviderException, KeyStoreException, InvalidAlgorithmParameterException, UnrecoverableEntryException, CertificateException, IOException {
+    public static void buildKeyPair(Context context) throws NoSuchAlgorithmException, NoSuchProviderException, KeyStoreException, InvalidAlgorithmParameterException, UnrecoverableEntryException, CertificateException, IOException {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
         keyStore.load(null);
 
-        KeyPair kp = null;
         KeyStore.Entry entry = keyStore.getEntry(RSA_KEY_ALIAS, null);
         if (entry == null) {
             Calendar start = new GregorianCalendar();
@@ -57,10 +56,8 @@ public class RSA {
                     .setEndDate(end.getTime())
                     .build();
             kgen.initialize(spec);
-            kp = kgen.generateKeyPair();
+            KeyPair kp = kgen.generateKeyPair();
         }
-
-        return kp;
     }
 
     public static PublicKey getPubKey() {
@@ -96,7 +93,7 @@ public class RSA {
         ks.load(null);
         KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
         Signature privateSignature = Signature.getInstance(SIGNATURE_ALGORITHM);
-        privateSignature.initSign(((KeyStore.PrivateKeyEntry)entry).getPrivateKey());
+        privateSignature.initSign(getPrivKey());
         privateSignature.update(message.getBytes(UTF_8));
 
         byte[] signature = privateSignature.sign();
