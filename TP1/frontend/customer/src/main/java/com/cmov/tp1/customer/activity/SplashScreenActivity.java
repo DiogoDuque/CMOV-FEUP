@@ -1,6 +1,5 @@
 package com.cmov.tp1.customer.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,7 +32,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject json) {
                 Log.i(TAG, "Success -> "+json.toString());
-                Intent intent = new Intent(getBaseContext(), ShowsActivity.class);
+                Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
                 getBaseContext().startActivity(intent);
             }
 

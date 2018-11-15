@@ -108,7 +108,20 @@ public class VouchersActivity extends AppCompatActivity {
                     }
                 }
 
-                Log.d(TAG, getJsonFromVouchersAndProducts(orderId, products, vouchers).toString());
+                JSONObject body = getJsonFromVouchersAndProducts(orderId, products, vouchers);
+                Log.d(TAG, body.toString());
+                NetworkRequests.addToOrder(VouchersActivity.this, body, new HTTPRequestUtility.OnRequestCompleted() {
+                    @Override
+                    public void onSuccess(JSONObject json) {
+                        Log.d(TAG, json.toString());
+                    }
+
+                    @Override
+                    public void onError(JSONObject json) {
+                        Log.w(TAG, json.toString());
+                    }
+                });
+
             }
         });
 
@@ -185,8 +198,8 @@ public class VouchersActivity extends AppCompatActivity {
             Log.d(TAG, "finished vouchers: "+vouchers);
 
             obj.put("obj", order);
-            byte[] rsaBytes = RSA.sign(obj.toString().getBytes());
-            obj.put("signature", new String(rsaBytes));
+            String signature = RSA.sign(order.toString());
+            obj.put("signature", signature);
         } catch (JSONException | IOException | CertificateException | NoSuchAlgorithmException | InvalidKeyException |
                 SignatureException | UnrecoverableEntryException | KeyStoreException e) {
             e.printStackTrace();

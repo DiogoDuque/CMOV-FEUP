@@ -12,7 +12,7 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main_menu);
 
         CardView card1 = findViewById(R.id.card_view);
         card1.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +90,7 @@ public class MainMenuActivity extends AppCompatActivity {
         else if(value == 4)
             intent = new Intent(this, VouchersActivity.class);
         else if(value == 5)
-            intent = new Intent(this, TransactionsActivity.class);
+            intent = new Intent(this, MakeOrderActivity.class);
         else if(value == 6)
             intent = new Intent(this, ProfileActivity.class);
         else if(value == 7)

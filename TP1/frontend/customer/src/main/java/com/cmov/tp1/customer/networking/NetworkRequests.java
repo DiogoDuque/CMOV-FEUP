@@ -347,32 +347,11 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void addToOrder(Context context, int order, List<CafeteriaOrderProduct> products,
-                                  List<Voucher> vouchers, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    //TODO delete
+    public static void addToOrder(Context context, JSONObject body, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/add_products";
         final int METHOD = Request.Method.POST;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("orderId", order);
-            JSONArray jsonProducts = new JSONArray();
-            for(CafeteriaOrderProduct prod: products) {
-                JSONObject obj = new JSONObject();
-                obj.put("name", prod.getName());
-                obj.put("quantity", prod.getQuantity());
-                jsonProducts.put(obj);
-            }
-            body.put("products", jsonProducts);
-            if(vouchers != null && vouchers.size()>0) {
-                JSONArray jsonVouchersIds = new JSONArray();
-                for(Voucher v: vouchers) {
-                    jsonVouchersIds.put(v.getId());
-                }
-                body.put("vouchersIds", jsonVouchersIds);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 }
