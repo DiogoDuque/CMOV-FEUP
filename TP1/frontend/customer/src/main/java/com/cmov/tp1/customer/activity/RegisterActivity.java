@@ -98,8 +98,9 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        KeyPair kp = null;
         try {
-            RSA.buildKeyPair(this);
+            kp = RSA.buildKeyPair(this);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (KeyStoreException e) {
@@ -114,14 +115,13 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         PublicKey pubKey = RSA.getPubKey();
-        final PrivateKey privateKey = RSA.getPrivKey();
 
         NetworkRequests.registerRequest(this, name, username, nif, password, cardNumber, cardCode,
-                cardValidity, cardType, Base64.encodeToString(pubKey.getEncoded(), Base64.DEFAULT), new HTTPRequestUtility.OnRequestCompleted() {
+                cardValidity, cardType, new String(Base64.encode(pubKey.getEncoded(), Base64.DEFAULT)), new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
                 try {
-                    storeInfoKey(privateKey, json.getString("uuid"));
+                    storeInfoKey(json.getString("uuid"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -153,12 +153,11 @@ public class RegisterActivity extends AppCompatActivity {
         pd.show(getSupportFragmentManager(), "MonthYearPickerDialog");
     }
 
-    private void storeInfoKey(PrivateKey privateKey, String uuid){
+    private void storeInfoKey(String uuid){
 
         SharedPreferences sPrefs = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = sPrefs.edit();
         editor.putString("uuid", uuid);
-        editor.putString("privateKey", privateKey.toString());
         editor.apply();
     }
 

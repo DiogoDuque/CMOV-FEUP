@@ -47,6 +47,7 @@
             android:parentActivityName=".activity.MakeOrderActivity"/>
         <activity android:name=".activity.QrGeneratorActivity"
             android:parentActivityName=".activity.TicketsActivity"/>
+        <activity android:name=".activity.TransactionsActivity"/>
 
         <!--<service
             android:name=".utility.CardService"

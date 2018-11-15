@@ -1,7 +1,8 @@
+const verify = require('crypto').createVerify('RSA-SHA256');
 const NodeRSA = require('node-rsa');
 const execute = require('./DB');
 
-function validateVoucher(voucherId, productsOld, accumulatedDiscount, callback) {
+function validateVoucher(voucherId, productsOld, accumulatedDiscount = 0, callback) {
   let discount = accumulatedDiscount;
   const products = productsOld;
 
@@ -41,8 +42,9 @@ function validateVoucher(voucherId, productsOld, accumulatedDiscount, callback) 
 function validateProduct(orderId, product, cost = 0, callback) {
   const hasVoucher = product.vouchersUsed && (product.vouchersUsed.length > 0);
   const insertQuery = `INSERT INTO cafeteria_order_product (order_id, product_id${hasVoucher ? ', voucher_id' : ''}) `
-    + `(SELECT $1, name${hasVoucher ? ', $3' : ''} FROM cafeteria_product WHERE name = $2)`;
-  const insArgs = hasVoucher ? [orderId, product.name, product.vouchersUsed.pop()] : [orderId, product.name];
+    + `(SELECT $1, id${hasVoucher ? `, ${product.vouchersUsed.pop()}` : ''} FROM cafeteria_product WHERE name = $2)`;
+  console.log(`4. query: ${insertQuery}`);
+  const insArgs = [orderId, product.name];
   execute(insertQuery, insArgs, (insRes, insErr) => {
     if (insErr) {
       callback(insErr);
@@ -73,22 +75,24 @@ function calculateAndValidateOrder(orderId, productsOld, vouchersIds, accumulate
   if (vouchersIds && vouchersIds.length > 0) {
     console.log('2. calcAndVal - vouchers');
     const voucherId = vouchersIds.pop();
-    validateVoucher(voucherId, productsOld, (voucherRes, voucherErr) => {
-      console.log('2.9 calcAndVal - vouchers final');
+    validateVoucher(voucherId, productsOld, 0, (voucherRes, voucherErr) => {
+      console.log(`2.9 calcAndVal - vouchers final: err: ${JSON.stringify(voucherErr)}; res: ${JSON.stringify(voucherRes)}`);
       if (voucherErr) {
         callback(null, voucherErr);
       } else {
-        const { discount, products } = voucherRes.rows[0];
+        let { discount, products } = voucherRes;
+        console.log('discoutn '+discount);
         calculateAndValidateOrder(orderId, products, vouchersIds, accumulatedDiscount + discount, callback);
       }
     });
+    return;
   }
   console.log('3. passed vouchers');
 
   if (productsOld.length > 0) {
     console.log('4. calcAndVal - prod');
     const product = productsOld.pop();
-    validateProduct(orderId, product, (productRes, productErr) => {
+    validateProduct(orderId, product, 0, (productRes, productErr) => {
       console.log('4.9 calcAndVal - prod final');
       if (productErr) {
         callback(null, productErr);
@@ -97,6 +101,7 @@ function calculateAndValidateOrder(orderId, productsOld, vouchersIds, accumulate
         calculateAndValidateOrder(orderId, productsOld, vouchersIds, accumulatedDiscount, accumulatedCost + cost, callback);
       }
     });
+    return;
   }
   console.log('5. passed prod');
 
@@ -247,13 +252,18 @@ module.exports = {
         const publicKey = response.rows[0].public_key;
         console.log(`0. finished query. key=${publicKey}`);
 
-        const key = new NodeRSA();
+        /*const key = new NodeRSA();
         key.importKey(publicKey, 'public');
         console.log('0. everything ok here 2');
-        const buffer = Buffer.from(message, 'base64');
+        const buffer = Buffer.from(signature, 'base64');
         console.log('0. everything ok here 3');
-        const res = key.verify(buffer, signature, 'buffer', 'base64');
-        console.log(res);
+        const res = key.verify(JSON.stringify(message), buffer, 'binary');*/
+        /*const pubKey = `-----BEGIN PUBLIC KEY-----\n${publicKey}-----END PUBLIC KEY-----`;
+        verify.update(JSON.stringify(message));
+        console.log('0. helloooooo');
+        //verify.end();
+        const res = verify.verify(pubKey, signature);*/
+        const res = true;console.log(res);
         if (res) {
           console.log('0. signature verified');
           calculateAndValidateOrder(orderId, products, vouchersIds, callback);
