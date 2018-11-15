@@ -5,10 +5,10 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ShowsActivity">
+    tools:context=".activity.MyVouchersActivity">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/unused_tickets_list"
+            android:id="@+id/unused_vouchers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

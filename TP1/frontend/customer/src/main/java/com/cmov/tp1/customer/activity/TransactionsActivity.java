@@ -41,19 +41,6 @@ public class TransactionsActivity extends AppCompatActivity {
 
         addValuesToSpinner();
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-        recyclerView = findViewById(R.id.list_transactions);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         NetworkRequests.getAllTickets(this, new HTTPRequestUtility.OnRequestCompleted() {
 
             @Override
@@ -110,18 +97,6 @@ public class TransactionsActivity extends AppCompatActivity {
                 return;
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void addValuesToSpinner(){

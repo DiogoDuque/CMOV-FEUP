@@ -61,6 +61,13 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
+    public static void logoutRequest(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/auth/logout";
+        final int METHOD = Request.Method.GET;
+
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
+    }
+
     //SHOWS REQUESTS
     public static void getShowsRequest(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/show/next_shows";
@@ -120,7 +127,7 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void updateCreditCardInfo(Context context, String card_type, String card_number, Date card_validity, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void updateCreditCardInfo(Context context, String card_type, String card_number, String card_validity, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile/credit_card";
         final int METHOD = Request.Method.PUT;
 

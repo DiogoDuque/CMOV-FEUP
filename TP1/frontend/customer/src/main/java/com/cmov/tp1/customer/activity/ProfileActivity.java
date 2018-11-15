@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.utility.ToolbarUtility;
@@ -19,36 +20,31 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
+        Bundle b = getIntent().getExtras();
+        setValues(b.getString("name"), b.getString("username"), b.getDouble("balance"));
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         Button editButton = findViewById(R.id.edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                editProfile();
             }
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
+    public void setValues(String name, String username, Double balance){
+        TextView textName = findViewById(R.id.name_label);
+        textName.setText(name);
 
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        TextView textUsername = findViewById(R.id.username_label);
+        textUsername.setText(username);
+
+        TextView textBalance = findViewById(R.id.balance);
+        textBalance.setText(Double.toString(balance));
+    }
+
+    public void editProfile(){
+        Bundle b = getIntent().getExtras();
     }
 }

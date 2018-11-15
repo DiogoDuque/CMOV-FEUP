@@ -21,46 +21,14 @@ public class VoucherPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voucher_info);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         Bundle bundle = getIntent().getExtras();
 
-        /*TextView productLabel = findViewById(R.id.product_label);
+        TextView productLabel = findViewById(R.id.product_label);
         String product = bundle.getString("product");
         productLabel.setText(product == null ? "" : product);
         TextView typeLabel = findViewById(R.id.type_discount_label);
         typeLabel.setText(bundle.getString("type"));
         TextView statusLabel = findViewById(R.id.status_label);
-        statusLabel.setText(Boolean.parseBoolean(bundle.getString("isUsed")) ? "Used" : "Not used");*/
-
-        Button useVoucherButton = findViewById(R.id.use_voucher);
-        useVoucherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //makeOrder();
-            }
-        });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        statusLabel.setText(Boolean.parseBoolean(bundle.getString("isUsed")) ? "Used" : "Not used");
     }
 }

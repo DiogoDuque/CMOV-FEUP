@@ -4,7 +4,7 @@ const Vouchers = require('./Vouchers');
 module.exports = {
 
   getProfileInfo(id, callback) {
-    const baseQuery = 'SELECT id, name, username, nif, password, balance FROM customer WHERE username = $1';
+    const baseQuery = 'SELECT id, name, username, nif, password, balance, card_type, card_number, card_validity FROM customer WHERE username = $1';
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
