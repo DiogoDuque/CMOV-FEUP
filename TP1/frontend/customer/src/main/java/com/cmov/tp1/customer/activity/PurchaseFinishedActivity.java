@@ -57,16 +57,4 @@ public class PurchaseFinishedActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
