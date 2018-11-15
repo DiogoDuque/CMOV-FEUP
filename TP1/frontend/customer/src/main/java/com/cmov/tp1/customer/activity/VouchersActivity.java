@@ -59,18 +59,6 @@ public class VouchersActivity extends AppCompatActivity {
         final int orderId = bundle.getInt("orderID");
         products = CafeteriaOrderProduct.jsonToProducts(bundle.getString("products"));
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         final RecyclerView unusedVouchers = findViewById(R.id.unused_vouchers);
         final RecyclerView usingVouchers = findViewById(R.id.using_vouchers);
 

@@ -33,18 +33,6 @@ public class BuyTicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_show_ticket);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         Bundle b = getIntent().getExtras();
         show = new Show(b.getInt("id"), b.getString("name"), b.getString("date"), b.getFloat("price"));
         setShow();

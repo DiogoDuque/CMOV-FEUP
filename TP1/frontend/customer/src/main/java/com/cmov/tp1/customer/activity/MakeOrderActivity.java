@@ -46,18 +46,6 @@ public class MakeOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_order);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         addValuesToSpinner();
 
         setupSelectedProductsList();

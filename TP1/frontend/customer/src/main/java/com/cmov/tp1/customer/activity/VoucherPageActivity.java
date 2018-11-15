@@ -21,18 +21,6 @@ public class VoucherPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voucher_info);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         Bundle bundle = getIntent().getExtras();
 
         /*TextView productLabel = findViewById(R.id.product_label);

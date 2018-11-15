@@ -41,18 +41,6 @@ public class TicketsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tickets);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         final RecyclerView unusedTicketsView = findViewById(R.id.unused_tickets_list);
         final RecyclerView selectedTicketsView = findViewById(R.id.selected_tickets_list);
         final Button finishButton = findViewById(R.id.finish_button);

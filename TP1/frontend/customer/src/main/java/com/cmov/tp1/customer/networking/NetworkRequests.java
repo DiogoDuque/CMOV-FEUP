@@ -61,6 +61,13 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
+    public static void logoutRequest(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/auth/logout";
+        final int METHOD = Request.Method.GET;
+
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
+    }
+
     //SHOWS REQUESTS
     public static void getShowsRequest(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/show/next_shows";

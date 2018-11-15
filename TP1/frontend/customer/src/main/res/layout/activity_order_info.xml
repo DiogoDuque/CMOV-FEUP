@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
@@ -7,24 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".activity.ShowPageActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/light_orange"
-            app:navigationIcon="?attr/homeAsUpIndicator"
-            android:theme="@style/ToolbarTheme" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_below="@+id/toolbar">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,12 +60,8 @@
                     android:id="@+id/products_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/toolbar"
                     android:scrollbars="vertical" />
             </LinearLayout>
         </ScrollView>
-    </RelativeLayout>
 
-    <include layout="@layout/nav_view"/>
-
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>

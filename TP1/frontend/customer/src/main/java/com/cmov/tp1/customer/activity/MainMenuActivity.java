@@ -1,12 +1,20 @@
 package com.cmov.tp1.customer.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
+import com.cmov.tp1.customer.networking.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.NetworkRequests;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainMenuActivity extends AppCompatActivity {
     @Override
@@ -96,8 +104,24 @@ public class MainMenuActivity extends AppCompatActivity {
         else if(value == 7)
             intent = new Intent(this, ProfileActivity.class);
         else if(value == 8)
-            intent = null;
+            logout();
 
         startActivity(intent);
+    }
+
+    public void logout(){
+        NetworkRequests.logoutRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+                Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+                Toast.makeText(MainMenuActivity.this, "Impossible to logout", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
     }
 }

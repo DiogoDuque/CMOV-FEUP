@@ -27,18 +27,6 @@ public class OrderFinishedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_finished_cafeteria);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         Bundle b = getIntent().getExtras();
         orderId = b.getInt("orderID");
         products = CafeteriaOrderProduct.jsonToProducts(b.getString("products"));

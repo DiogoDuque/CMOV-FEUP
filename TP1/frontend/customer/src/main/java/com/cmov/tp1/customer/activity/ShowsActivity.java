@@ -31,18 +31,6 @@ public class ShowsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shows);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         final RecyclerView recyclerView = findViewById(R.id.unused_tickets_list);
 
         NetworkRequests.getShowsRequest(this, new HTTPRequestUtility.OnRequestCompleted() {
