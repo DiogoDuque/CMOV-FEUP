@@ -114,8 +114,8 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        PublicKey pubKey = keyPair.getPublic();
-        final PrivateKey privateKey = keyPair.getPrivate();
+        PublicKey pubKey = RSA.getPubKey();
+        final PrivateKey privateKey = RSA.getPrivKey();
 
         NetworkRequests.registerRequest(this, name, username, nif, password, cardNumber, cardCode,
                 cardValidity, cardType, Base64.encodeToString(pubKey.getEncoded(), Base64.DEFAULT), new HTTPRequestUtility.OnRequestCompleted() {

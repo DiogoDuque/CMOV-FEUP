@@ -2,7 +2,6 @@ package com.cmov.tp1.customer.utility;
 
 import android.content.Context;
 import android.security.KeyPairGeneratorSpec;
-import android.security.keystore.KeyProperties;
 import android.util.Log;
 
 import java.io.IOException;
@@ -21,99 +20,87 @@ import java.security.Signature;
 import java.security.SignatureException;
 import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.security.auth.x500.X500Principal;
-
-import static com.android.volley.VolleyLog.TAG;
+import android.util.Base64;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class RSA {
 
+    private static final String TAG = "RSA_KEYS";
     private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
-    private static final String RSA_KEY_ALIAS = "RSA_keys";
+    private static final String RSA_KEY_ALIAS = "myKeys";
     private static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
+    private static final String KEY_ALGORITHM = "RSA";
     private static final int keySize = 512;
-
-    /**public static void main(String [] args) throws Exception {
-     // generate public and private keys
-     KeyPair keyPair = buildKeyPair();
-     PublicKey pubKey = keyPair.getPublic();
-     PrivateKey privateKey = keyPair.getPrivate();
-     // sign the message
-     byte [] signed = encrypt(privateKey, "This is a secret message");
-     System.out.println(new String(signed));  // <<signed message>>
-     // verify the message
-     byte[] verified = decrypt(pubKey, signed);
-     System.out.println(new String(verified));     // This is a secret message
-     }**/
 
     public static KeyPair buildKeyPair(Context context) throws NoSuchAlgorithmException, NoSuchProviderException, KeyStoreException, InvalidAlgorithmParameterException, UnrecoverableEntryException, CertificateException, IOException {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
         keyStore.load(null);
 
-        Calendar start = Calendar.getInstance();
-        Calendar end = Calendar.getInstance();
-        end.add(Calendar.YEAR, 25);
+        KeyPair kp = null;
+        KeyStore.Entry entry = keyStore.getEntry(RSA_KEY_ALIAS, null);
+        if (entry == null) {
+            Calendar start = new GregorianCalendar();
+            Calendar end = new GregorianCalendar();
+            end.add(Calendar.YEAR, 20);
+            KeyPairGenerator kgen = KeyPairGenerator.getInstance(KEY_ALGORITHM, ANDROID_KEY_STORE);
+            AlgorithmParameterSpec spec = new KeyPairGeneratorSpec.Builder(context)
+                    .setKeySize(keySize)
+                    .setAlias(RSA_KEY_ALIAS)
+                    .setSubject(new X500Principal("CN=" + RSA_KEY_ALIAS))
+                    .setSerialNumber(BigInteger.valueOf(12121212))
+                    .setStartDate(start.getTime())
+                    .setEndDate(end.getTime())
+                    .build();
+            kgen.initialize(spec);
+            kp = kgen.generateKeyPair();
+        }
 
-        KeyPairGenerator keyGen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, ANDROID_KEY_STORE);
-
-        KeyPairGeneratorSpec spec = new KeyPairGeneratorSpec.Builder(context)
-                .setAlias(RSA_KEY_ALIAS)
-                .setKeySize(keySize)
-                .setKeyType(KeyProperties.KEY_ALGORITHM_RSA)
-                .setEndDate(end.getTime())
-                .setStartDate(start.getTime())
-                .setSerialNumber(BigInteger.ONE)
-                .setSubject(new X500Principal("CN = Secured Preference Store, O = Devliving Online"))
-                .build();
-
-        keyGen.initialize(spec);
-        return keyGen.generateKeyPair();
+        return kp;
     }
 
-    public static byte[] encrypt(PrivateKey privateKey, String message) throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
-        Cipher cipher = Cipher.getInstance(SIGNATURE_ALGORITHM);
-        cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-
-        return cipher.doFinal(message.getBytes());
+    public static PublicKey getPubKey() {
+        try {
+            KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
+            ks.load(null);
+            KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
+            PublicKey pub = ((KeyStore.PrivateKeyEntry)entry).getCertificate().getPublicKey();
+            return pub;
+        }
+        catch (Exception ex) {
+            Log.d(TAG, ex.getMessage());
+        }
+        return null;
     }
 
-
-    public static byte[] decrypt(PublicKey publicKey, byte [] encrypted) throws Exception {
-        Cipher cipher = Cipher.getInstance(SIGNATURE_ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, publicKey);
-
-        return cipher.doFinal(encrypted);
+    public static PrivateKey getPrivKey() {
+        try {
+            KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
+            ks.load(null);
+            KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
+            PrivateKey priv = ((KeyStore.PrivateKeyEntry)entry).getPrivateKey();
+            return priv;
+        }
+        catch (Exception ex) {
+            Log.d(TAG, ex.getMessage());
+        }
+        return null;
     }
 
-    public static byte[] sign(byte[] data) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableEntryException, InvalidKeyException, SignatureException {
+    public static String sign(String message) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableEntryException, InvalidKeyException, SignatureException {
         KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
         ks.load(null);
         KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
-        if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
-            Log.w(TAG, "Not an instance of a PrivateKeyEntry");
-            return null;
-        }
-        Signature s = Signature.getInstance(SIGNATURE_ALGORITHM);
-        s.initSign(((KeyStore.PrivateKeyEntry) entry).getPrivateKey());
-        s.update(data);
-        return s.sign();
-    }
+        Signature privateSignature = Signature.getInstance(SIGNATURE_ALGORITHM);
+        privateSignature.initSign(((KeyStore.PrivateKeyEntry)entry).getPrivateKey());
+        privateSignature.update(message.getBytes(UTF_8));
 
-    public static boolean verify(byte[] data, byte[] signature) throws KeyStoreException, UnrecoverableEntryException, NoSuchAlgorithmException, InvalidKeyException, SignatureException {
-        KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
-        KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
-        if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
-            Log.w(TAG, "Not an instance of a PrivateKeyEntry");
-            return false;
-        }
-        Signature s = Signature.getInstance(SIGNATURE_ALGORITHM);
-        s.initVerify(((KeyStore.PrivateKeyEntry) entry).getCertificate());
-        s.update(data);
-        return s.verify(signature);
+        byte[] signature = privateSignature.sign();
+
+        return Base64.encodeToString(signature, Base64.DEFAULT);
     }
 }
