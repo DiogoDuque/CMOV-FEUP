@@ -170,7 +170,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="120dp"
                     android:fontFamily="@font/monserrat"
-                    android:text="My Orders"
+                    android:text="New Order"
                     android:textAlignment="center"
                     android:textColor="@color/orange"
                     android:textSize="20dp"
