@@ -263,7 +263,8 @@ module.exports = {
         console.log('0. helloooooo');
         //verify.end();
         const res = verify.verify(pubKey, signature);*/
-        const res = true;console.log(res);
+        const res = key.verify(message, buffer, 'binary');
+        console.log(res);
         if (res) {
           console.log('0. signature verified');
           calculateAndValidateOrder(orderId, products, vouchersIds, callback);
