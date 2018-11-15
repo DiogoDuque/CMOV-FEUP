@@ -13,6 +13,21 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
+    const { username, password } = req.body;
+    Query.checkIfLoginExists(username, password, (result, err) => {
+        if (result) {
+            req.session.username = username;
+            req.session.userId = result;
+            res.send(`{userId: ${result}}`);
+        } else if (result === false) {
+            res.status(401).send();
+        } else {
+            res.status(500).send(err);
+        }
+    });
+});
+
+router.post('/login', passport.authenticate('local'), (req, res) => {
   const { username, password } = req.body;
   Query.checkIfLoginExists(username, password, (result, err) => {
     if (result) {
@@ -84,6 +99,19 @@ router.post('/register', (req, res) => {
       });
     }
   });
+});
+
+router.get('/logout', function(req, res, next) {
+    if (req.session) {
+        // delete session object
+        req.session.destroy(function(err) {
+            if(err) {
+                return next(err);
+            } else {
+                return res.redirect('/');
+            }
+        });
+    }
 });
 
 module.exports = router;
