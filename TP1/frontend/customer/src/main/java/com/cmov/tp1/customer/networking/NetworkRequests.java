@@ -127,7 +127,7 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void updateCreditCardInfo(Context context, String card_type, String card_number, Date card_validity, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void updateCreditCardInfo(Context context, String card_type, String card_number, String card_validity, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile/credit_card";
         final int METHOD = Request.Method.PUT;
 
