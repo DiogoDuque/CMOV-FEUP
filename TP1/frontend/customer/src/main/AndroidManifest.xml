@@ -48,6 +48,8 @@
         <activity android:name=".activity.QrGeneratorActivity"
             android:parentActivityName=".activity.TicketsActivity"/>
         <activity android:name=".activity.ChangeIPActivity"/>
+        <activity android:name=".activity.TransactionsActivity"
+            android:parentActivityName=".activity.MainMenuActivity"/>
 
         <!--<service
             android:name=".utility.CardService"
