@@ -11,16 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.cmov.tp1.terminal.R;
 import com.cmov.tp1.terminal.networking.HTTPRequestUtility;
 import com.cmov.tp1.terminal.networking.NetworkRequests;
-import com.cmov.tp1.terminal.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+
+public class ValidateTicketActivity extends AppCompatActivity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     private String message = "";
@@ -28,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_validate_ticket);
 
-        CardView card1 = findViewById(R.id.card_view);
-        card1.setOnClickListener(new View.OnClickListener() {
+        CardView cardView = findViewById(R.id.card_view);
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 scan(true);
@@ -85,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
         Integer userId = Integer.parseInt(strings[0]);
         Integer quantity = Integer.parseInt(strings[1]);
         String show_Date = strings[3];
+
+
         final String[] show_name = {""};
         Integer showId = 0;
         String[] shows = null;
@@ -93,41 +97,48 @@ public class MainActivity extends AppCompatActivity {
             showId = Integer.parseInt(strings[2]);
         else
             shows = strings[2].split("\\+");
+
         Log.d("Validate","1st show: "+shows[0]);
 
+        final Bundle b = new Bundle();
+
         if(quantity == 1){
-            NetworkRequests.checkTickets(this, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {
+         NetworkRequests.checkTickets(this, userId, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) throws JSONException {
+                boolean value = json.getBoolean("result");
+
+                b.putBoolean("result", value);
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+
+                b.putBoolean("result", false);
+            }
+         });
+        }
+        else{
+         for(int i = 0; i < shows.length; i++){
+            NetworkRequests.checkTickets(this, userId, Integer.parseInt(shows[i]), show_Date, new HTTPRequestUtility.OnRequestCompleted() {
                 @Override
                 public void onSuccess(JSONObject json) throws JSONException {
-                    show_name[0] = json.getString("showName");
-                    Toast.makeText(getBaseContext(), "Ticket validated successfully", Toast.LENGTH_SHORT).show();
+                    boolean value = json.getBoolean("result");
+
+                    b.putBoolean("result", value);
+
                 }
 
                 @Override
                 public void onError(JSONObject json) {
-                    Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
+                    b.putBoolean("result", false);
                 }
-            }); }
-        else{
-            for(int i = 0; i < shows.length; i++){
-                NetworkRequests.checkTickets(this, Integer.parseInt(shows[i]), show_Date, new HTTPRequestUtility.OnRequestCompleted() {
-                    @Override
-                    public void onSuccess(JSONObject json) throws JSONException {
-                        show_name[0] = json.getString("showName");
-                    }
+            });
+         }
 
-                    @Override
-                    public void onError(JSONObject json) {
-                        Toast.makeText(getBaseContext(), "Error validating ticket", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-
-        }
+         }
 
         Intent intent = new Intent(this, ResultActivity.class);
-        Bundle b = new Bundle();
-        b.putBoolean("result", true);
 
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);

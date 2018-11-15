@@ -4,37 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.ValidateTicketActivity">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="4dp"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="163dp">
+        android:layout_marginBottom="20dp"
+        card_view:cardCornerRadius="4dp">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView"
             android:layout_width="92dp"
             android:layout_height="92dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/right" />
 
         <TextView
-            android:id="@+id/info_text2"
+            android:id="@+id/info_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="120dp"
             android:fontFamily="@font/monserrat"
-            android:text="Validate Tickets"
+            android:text="Validate"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="16dp"
             android:textStyle="bold" />
     </android.support.v7.widget.CardView>
-
 </LinearLayout>

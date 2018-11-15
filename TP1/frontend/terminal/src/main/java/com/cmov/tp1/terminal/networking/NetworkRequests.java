@@ -1,26 +1,25 @@
 package com.cmov.tp1.terminal.networking;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
-
 public abstract class NetworkRequests {
 
     //TICKETS REQUESTS
-    public static void checkTickets(Context context, int ticketId, String showDate, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+    public static void checkTickets(Context context, int userId, int ticketId, String showDate, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/";
-        final int METHOD = Request.Method.GET;
-
+        final int METHOD = Request.Method.PUT;
 
         JSONObject body = new JSONObject();
         try {
+            body.put("userId", userId);
             body.put("ticketId", ticketId);
-            body.put("showDatw", showDate);
+            body.put("showDate", showDate);
         } catch (JSONException e) {
             e.printStackTrace();
         }

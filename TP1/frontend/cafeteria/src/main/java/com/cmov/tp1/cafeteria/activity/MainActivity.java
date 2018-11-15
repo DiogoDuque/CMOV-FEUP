@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setActivity(){
+    public void setActivity() {
         Intent intent = new Intent(this, OrdersActivity.class);
         startActivity(intent);
     }
@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(ACTION_SCAN);
             intent.putExtra("SCAN_MODE", qrcode ? "QR_CODE_MODE" : "PRODUCT_MODE");
             startActivityForResult(intent, 0);
-        }
-        catch (ActivityNotFoundException anfe) {
+        } catch (ActivityNotFoundException anfe) {
             showDialog(this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
         }
     }
@@ -86,34 +85,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Validate", contents);
                 String format = data.getStringExtra("SCAN_RESULT_FORMAT");
 
-                try {
-                    getResultScan(contents);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                getResultScan(contents);
             }
         }
     }
 
-    public void getResultScan(String message) throws JSONException {
+    public void getResultScan(String message) {
 
-        final Bundle b = new Bundle();
-        NetworkRequests.verifyOrder(this, message, new HTTPRequestUtility.OnRequestCompleted() {
-            @Override
-            public void onSuccess(JSONObject json) throws JSONException {
-                b.putBoolean("result", true);
-            }
-
-            @Override
-            public void onError(JSONObject json) {
-                b.putBoolean("result", false);
-            }
-        });
-
-
-        Intent intent = new Intent(this, ResultActivity.class);
-
-        intent.putExtras(b); //Put your id to your next Intent
-        startActivity(intent);
     }
 }
+

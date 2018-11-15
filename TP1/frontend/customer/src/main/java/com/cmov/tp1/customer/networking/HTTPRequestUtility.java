@@ -22,7 +22,7 @@ public class HTTPRequestUtility {
         void onError(JSONObject json);
     }
 
-    private static final String HOST = "http://192.168.1.247/customer";
+    private static String HOST = "http://192.168.1.247/customer";
     private static HTTPRequestUtility instance = null;
     private RequestQueue queue;
     private static Context context;
@@ -79,5 +79,9 @@ public class HTTPRequestUtility {
         });
 
         getRequestQueue().add(request);
+    }
+
+    void setHost(String host){
+        HOST = host;
     }
 }

@@ -21,12 +21,12 @@ public class ResultActivity extends AppCompatActivity {
         if(b.getBoolean("result")){
             text.setText("All tickets were validated with success");
             text.setTextColor(getResources().getColor(R.color.green));
-            image.setImageResource(R.drawable.right);
+            image.setBackgroundResource(R.drawable.right);
         }
         else{
             text.setText("Tickets not valid");
             text.setTextColor(getResources().getColor(R.color.red));
-            image.setImageResource(R.drawable.wrong);
+            image.setBackgroundResource(R.drawable.wrong);
         }
     }
 }
