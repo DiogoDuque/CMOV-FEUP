@@ -133,6 +133,7 @@ public class TicketsActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(TicketsActivity.this, QrGeneratorActivity.class);
                 Bundle b = new Bundle();
+                b.putString("type", "tickets");
                 TicketTerminal ticket = tickets.get(0);
                 b.putInt("userId", ticket.getUserId());
                 b.putInt("eventId", ticket.getEventId());

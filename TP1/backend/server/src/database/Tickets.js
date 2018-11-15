@@ -109,21 +109,12 @@ module.exports = {
   },
 
   checkTicket(userId, ticketId, showDate, callback) {
-    let baseQuery = 'SELECT event.name AS showName'
-          + ' FROM ticket, event WHERE ticket.customer_id = $1 AND ticket.id = $2 AND ticket.is_used = FALSE AND event.date = $3 AND ticket.event_id = event.id';
-    execute(baseQuery, [userId, ticketId, showDate], (response, err) => {
+    const baseQuery = 'UPDATE ticket SET is_used = TRUE WHERE id = $1 AND customer_id = $2';
+    execute(baseQuery, [ticketId, userId], (response, err) => {
       if (err) {
         callback(null, err);
       } else {
-        const showName = response.rows[0].showName;
-        baseQuery = 'UPDATE ticket set is_used = TRUE WHERE id = $1';
-        execute(baseQuery, [userId, ticketId, showDate], (response, err) => {
-          if (err) {
-            callback(null, err);
-          } else {
-            callback(showName);
-          }
-        });
+        callback(true);
       }
     });
   },

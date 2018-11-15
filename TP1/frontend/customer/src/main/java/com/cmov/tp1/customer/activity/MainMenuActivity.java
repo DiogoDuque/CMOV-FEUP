@@ -87,14 +87,14 @@ public class MainMenuActivity extends AppCompatActivity {
             intent = new Intent(this, MyShowsActivity.class);
         else if(value == 3)
             intent = new Intent(this, TicketsActivity.class);
-        else if(value == 4)
-            intent = new Intent(this, VouchersActivity.class);
+        //else if(value == 4)
+            //intent = new Intent(this, VouchersActivity.class); //TODO
         else if(value == 5)
             intent = new Intent(this, MakeOrderActivity.class);
         else if(value == 6)
-            intent = new Intent(this, ProfileActivity.class);
-        else if(value == 7)
             intent = new Intent(this, TransactionsActivity.class);
+        else if(value == 7)
+            intent = new Intent(this, ProfileActivity.class);
         else if(value == 8)
             intent = null;
 

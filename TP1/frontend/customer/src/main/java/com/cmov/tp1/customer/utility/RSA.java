@@ -33,14 +33,15 @@ public class RSA {
     private static final String TAG = "RSA_KEYS";
     private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
     private static final String RSA_KEY_ALIAS = "myKeys";
-    private static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
+    private static final String SIGNATURE_ALGORITHM = "SHA256WithRSA";
     private static final String KEY_ALGORITHM = "RSA";
     private static final int keySize = 512;
 
-    public static void buildKeyPair(Context context) throws NoSuchAlgorithmException, NoSuchProviderException, KeyStoreException, InvalidAlgorithmParameterException, UnrecoverableEntryException, CertificateException, IOException {
+    public static KeyPair buildKeyPair(Context context) throws NoSuchAlgorithmException, NoSuchProviderException, KeyStoreException, InvalidAlgorithmParameterException, UnrecoverableEntryException, CertificateException, IOException {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
         keyStore.load(null);
 
+        KeyPair kp = null;
         KeyStore.Entry entry = keyStore.getEntry(RSA_KEY_ALIAS, null);
         if (entry == null) {
             Calendar start = new GregorianCalendar();
@@ -56,8 +57,9 @@ public class RSA {
                     .setEndDate(end.getTime())
                     .build();
             kgen.initialize(spec);
-            KeyPair kp = kgen.generateKeyPair();
+            kp = kgen.generateKeyPair();
         }
+        return kp;
     }
 
     public static PublicKey getPubKey() {
@@ -91,7 +93,7 @@ public class RSA {
     public static String sign(String message) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableEntryException, InvalidKeyException, SignatureException {
         KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
         ks.load(null);
-        KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
+        //KeyStore.Entry entry = ks.getEntry(RSA_KEY_ALIAS, null);
         Signature privateSignature = Signature.getInstance(SIGNATURE_ALGORITHM);
         privateSignature.initSign(((KeyStore.PrivateKeyEntry)entry).getPrivateKey());
         privateSignature.update(message.getBytes("UTF-8"));

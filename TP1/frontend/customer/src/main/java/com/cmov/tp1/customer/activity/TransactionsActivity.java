@@ -31,8 +31,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public abstract class TransactionsActivity extends AppCompatActivity {
-    private RecyclerView recyclerView = findViewById(R.id.list_transactions);
+public class TransactionsActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public abstract class TransactionsActivity extends AppCompatActivity {
 
         ToolbarUtility.setupToolbar(this);
         ToolbarUtility.setupDrawer(this);
+        recyclerView = findViewById(R.id.list_transactions);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 

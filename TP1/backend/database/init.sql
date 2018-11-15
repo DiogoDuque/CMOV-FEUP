@@ -104,8 +104,7 @@ CREATE TABLE cafeteria_order_product
 (
   order_id INTEGER REFERENCES cafeteria_order(id) NOT NULL,
   product_id INTEGER REFERENCES cafeteria_product(id) NOT NULL,
-  voucher_id INTEGER REFERENCES voucher(id) UNIQUE,
-  PRIMARY KEY(order_id, product_id)
+  voucher_id INTEGER REFERENCES voucher(id) UNIQUE
 );
 
 CREATE TABLE encryption
