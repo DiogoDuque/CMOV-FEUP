@@ -35,18 +35,6 @@ public class QrGeneratorActivity extends AppCompatActivity {
         qrCodeImageview = findViewById(R.id.img_qr_code);
         errorTv = findViewById(R.id.tv_error);
 
-        ToolbarUtility.setupToolbar(this);
-        ToolbarUtility.setupDrawer(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         Bundle b = getIntent().getExtras();
 
         if(b.getString("type").equals("cafeteria")) {
