@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_main_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/res/layout/activity_main_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/BuyTicketActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/BuyTicketActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,10 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/init.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1875">
+            <state relative-caret-position="1109">
               <caret line="125" column="91" selection-start-line="125" selection-start-column="82" selection-end-line="125" selection-end-column="91" />
             </state>
           </provider>
@@ -136,7 +135,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/database/Shows.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
@@ -380,12 +379,12 @@
       <workItem from="1542189648054" duration="1030000" />
       <workItem from="1542229160335" duration="281000" />
       <workItem from="1542364453768" duration="464000" />
-      <workItem from="1542377654278" duration="181000" />
+      <workItem from="1542377654278" duration="215000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54125000" />
+    <option name="totallyTimeSpent" value="54159000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
@@ -569,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/init.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1875">
-          <caret line="125" column="91" selection-start-line="125" selection-start-column="82" selection-end-line="125" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3960">
@@ -629,6 +621,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/init.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1109">
+          <caret line="125" column="91" selection-start-line="125" selection-start-column="82" selection-end-line="125" selection-end-column="91" />
         </state>
       </provider>
     </entry>

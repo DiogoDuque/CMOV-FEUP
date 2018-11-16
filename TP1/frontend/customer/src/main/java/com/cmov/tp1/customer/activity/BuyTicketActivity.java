@@ -85,7 +85,7 @@ public class BuyTicketActivity extends AppCompatActivity {
         NetworkRequests.buyTickets(this, show, quantity, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
-                Intent intent = new Intent(BuyTicketActivity.this, MyShowsActivity.class);
+                Intent intent = new Intent(BuyTicketActivity.this, MainMenuActivity.class);
 
                 try {
                     JSONArray jsonArray = json.getJSONArray("result");

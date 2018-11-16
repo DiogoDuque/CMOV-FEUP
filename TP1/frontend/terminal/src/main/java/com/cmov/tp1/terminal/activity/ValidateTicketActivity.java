@@ -101,20 +101,23 @@ public class ValidateTicketActivity extends AppCompatActivity {
         Log.d("Validate","1st show: "+shows[0]);
 
         final Bundle b = new Bundle();
+        final Intent intent = new Intent(this, ResultActivity.class);
 
         if(quantity == 1){
          NetworkRequests.checkTickets(this, userId, showId, show_Date, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) throws JSONException {
-                boolean value = json.getBoolean("result");
+                b.putBoolean("result", true);
+                intent.putExtras(b);
+                startActivity(intent);
 
-                b.putBoolean("result", value);
             }
 
             @Override
             public void onError(JSONObject json) {
-
                 b.putBoolean("result", false);
+                intent.putExtras(b);
+                startActivity(intent);
             }
          });
         }
@@ -123,24 +126,22 @@ public class ValidateTicketActivity extends AppCompatActivity {
             NetworkRequests.checkTickets(this, userId, Integer.parseInt(shows[i]), show_Date, new HTTPRequestUtility.OnRequestCompleted() {
                 @Override
                 public void onSuccess(JSONObject json) throws JSONException {
-                    boolean value = json.getBoolean("result");
-
-                    b.putBoolean("result", value);
+                    b.putBoolean("result", true);
+                    intent.putExtras(b);
+                    startActivity(intent);
 
                 }
 
                 @Override
                 public void onError(JSONObject json) {
                     b.putBoolean("result", false);
+                    intent.putExtras(b);
+                    startActivity(intent);
                 }
             });
          }
 
          }
 
-        Intent intent = new Intent(this, ResultActivity.class);
-
-        intent.putExtras(b); //Put your id to your next Intent
-        startActivity(intent);
     }
 }
