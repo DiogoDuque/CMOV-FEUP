@@ -38,19 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 scan(true);
             }
         });
-
-        CardView card2 = findViewById(R.id.card_view2);
-        card2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setActivity();
-            }
-        });
-    }
-
-    public void setActivity() {
-        Intent intent = new Intent(this, OrdersActivity.class);
-        startActivity(intent);
     }
 
     public void scan(boolean qrcode) {

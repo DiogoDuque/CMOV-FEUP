@@ -13,11 +13,9 @@ import android.view.MenuItem;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.activity.MakeOrderActivity;
-import com.cmov.tp1.customer.activity.MyShowsActivity;
 import com.cmov.tp1.customer.activity.ProfileActivity;
 import com.cmov.tp1.customer.activity.ShowsActivity;
 import com.cmov.tp1.customer.activity.TicketsActivity;
-import com.cmov.tp1.customer.activity.VouchersActivity;
 
 public abstract class ToolbarUtility {
     private static final String TAG = "ToolbarUtil";
@@ -44,9 +42,6 @@ public abstract class ToolbarUtility {
         if(app instanceof ShowsActivity)
             menu.findItem(R.id.nav_menu_shows).setChecked(true);
 
-        else if(app instanceof MyShowsActivity)
-            menu.findItem(R.id.nav_menu_my_shows).setChecked(true);
-
         else if(app instanceof TicketsActivity)
             menu.findItem(R.id.unused_tickets).setChecked(true);
 
@@ -68,10 +63,6 @@ public abstract class ToolbarUtility {
                         if(selection.equals(res.getString(R.string.drawer_main_menu_shows)) &&
                                 !(app instanceof ShowsActivity))
                             changeActivity(app, ShowsActivity.class);
-
-                        else if(selection.equals(res.getString(R.string.drawer_main_menu_my_shows)) &&
-                                !(app instanceof MyShowsActivity))
-                            changeActivity(app, MyShowsActivity.class);
 
                         else if(selection.equals(res.getString(R.string.my_unused_tickets)) &&
                                 !(app instanceof TicketsActivity))

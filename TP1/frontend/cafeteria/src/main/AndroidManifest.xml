@@ -19,12 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.OrdersActivity"
-            android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.OrderPageActivity"
-            android:parentActivityName=".activity.OrdersActivity"/>
-        <activity android:name=".activity.VouchersPageActivity"
-            android:parentActivityName=".activity.OrderPageActivity"/>
         <activity android:name=".activity.ResultActivity"
             android:parentActivityName=".activity.MainActivity"/>
     </application>

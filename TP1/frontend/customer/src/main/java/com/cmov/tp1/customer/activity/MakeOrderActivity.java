@@ -109,7 +109,7 @@ public class MakeOrderActivity extends AppCompatActivity {
             public void onSuccess(JSONObject json) {
                 try {
                     int orderId = json.getInt("id");
-                    Intent intent = new Intent(MakeOrderActivity.this, OrderFinishedActivity.class);
+                    Intent intent = new Intent(MakeOrderActivity.this, VouchersActivity.class);
                     Bundle b = new Bundle();
                     b.putInt("orderID", orderId);
                     b.putString("products", productsToJson(products));

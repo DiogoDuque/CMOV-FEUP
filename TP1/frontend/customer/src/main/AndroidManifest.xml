@@ -27,8 +27,6 @@
             android:parentActivityName=".activity.MainMenuActivity"/>
         <activity android:name=".activity.TicketsActivity"
             android:parentActivityName=".activity.MainMenuActivity"/>
-        <activity android:name=".activity.MyShowsActivity"
-            android:parentActivityName=".activity.MainMenuActivity"/>
         <activity android:name=".activity.ShowPageActivity"
             android:parentActivityName=".activity.ShowsActivity"/>
         <activity android:name=".activity.BuyTicketActivity"
@@ -39,12 +37,8 @@
             android:parentActivityName=".activity.MyVouchersActivity"/>
         <activity android:name=".activity.MakeOrderActivity"
             android:parentActivityName=".activity.BuyTicketActivity"/>
-        <activity android:name=".activity.PurchaseFinishedActivity"
-            android:parentActivityName=".activity.BuyTicketActivity"/>
         <activity android:name=".activity.ProfileActivity"
             android:parentActivityName=".activity.MainMenuActivity"/>
-        <activity android:name=".activity.OrderFinishedActivity"
-            android:parentActivityName=".activity.MakeOrderActivity"/>
         <activity android:name=".activity.QrGeneratorActivity"
             android:parentActivityName=".activity.TicketsActivity"/>
         <activity android:name=".activity.ChangeIPActivity"/>

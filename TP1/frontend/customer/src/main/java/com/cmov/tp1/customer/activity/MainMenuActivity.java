@@ -91,8 +91,6 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = null;
         if(value == 1)
             intent = new Intent(this, ShowsActivity.class);
-        else if(value == 2)
-            intent = new Intent(this, MyShowsActivity.class);
         else if(value == 3)
             intent = new Intent(this, TicketsActivity.class);
         else if(value == 4)
