@@ -30,14 +30,6 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
-        CardView card2 = findViewById(R.id.card_view2);
-        card2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setActivity(2);
-            }
-        });
-
         CardView card3 = findViewById(R.id.card_view3);
         card3.setOnClickListener(new View.OnClickListener() {
             @Override
