@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         textUsername.setText(username);
 
         TextView textBalance = findViewById(R.id.balance);
-        textBalance.setText(Double.toString(balance));
+        textBalance.setText(Double.toString(balance) + "$");
     }
 
     public void editProfile(){
