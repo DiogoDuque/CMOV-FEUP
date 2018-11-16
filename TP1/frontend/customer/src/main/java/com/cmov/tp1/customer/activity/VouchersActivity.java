@@ -98,17 +98,7 @@ public class VouchersActivity extends AppCompatActivity {
 
                 JSONObject body = getJsonFromVouchersAndProducts(orderId, products, vouchers);
                 Log.d(TAG, body.toString());
-                NetworkRequests.addToOrder(VouchersActivity.this, body, new HTTPRequestUtility.OnRequestCompleted() {
-                    @Override
-                    public void onSuccess(JSONObject json) {
-                        Log.d(TAG, json.toString());
-                    }
-
-                    @Override
-                    public void onError(JSONObject json) {
-                        Log.w(TAG, json.toString());
-                    }
-                });
+                //TODO send order to terminal through QE
 
             }
         });

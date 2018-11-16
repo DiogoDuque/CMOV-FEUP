@@ -85,7 +85,7 @@ public abstract class NetworkRequests {
 
     public static void verifyOrder(Context context, String message, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/verify";
-        final int METHOD = Request.Method.GET;
+        final int METHOD = Request.Method.PUT;
 
         JSONObject body = new JSONObject();
         try {
