@@ -102,15 +102,4 @@ router.post('/make_order', (req, res) => {
   });
 });
 
-router.post('/add_products', (req, res) => {
-  const { obj, signature } = req.body;
-  Query.verifyOrderSignature(signature, obj, (result, err) => {
-    if (result) {
-      res.status(200).send(`{cost:${result}}`);
-    } else {
-      res.status(400).send(err);
-    }
-  });
-});
-
 module.exports = router;

@@ -56,12 +56,12 @@ router.get('/order_vouchers', (req, res) => {
   });
 });
 
-router.get('/verify', (req, res) => {
-  const { obj, signature } = req.query;
+router.put('/verify', (req, res) => {
+  const { obj, signature } = req.body;
 
   Query.verifyOrderSignature(signature, obj, (result, err) => {
     if (result) {
-      res.status(200).send(result);
+      res.status(200).send(`{cost:${result}}`);
     } else {
       res.status(400).send(err);
     }
