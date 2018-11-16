@@ -24,7 +24,7 @@ public class PurchaseFinishedActivity extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
 
         TextView discount = findViewById(R.id.type_discount_label);
-        discount.setText("You have "+bundle.getFloat("balance")+"$ accumulated");
+        discount.setText("You have " + bundle.getFloat("balance")+"$ accumulated");
 
         Button makeOrderButton = findViewById(R.id.make_order);
         makeOrderButton.setOnClickListener(new View.OnClickListener() {

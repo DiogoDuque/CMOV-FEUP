@@ -44,6 +44,7 @@ public class MyVouchersActivity extends AppCompatActivity {
                         b.putInt("id", voucher.getId());
                         b.putString("product", voucher.getProduct());
                         b.putString("type", voucher.getType());
+                        b.putBoolean("isUsed", false);
                         intent.putExtras(b);
                         startActivity(intent);
                     }

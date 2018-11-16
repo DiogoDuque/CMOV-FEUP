@@ -83,6 +83,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     NetworkRequests.updateCreditCardInfo(EditProfileActivity.this, cardType, cardNumber, cardValidity, new HTTPRequestUtility.OnRequestCompleted() {
                         @Override
                         public void onSuccess(JSONObject json) {
+                            Toast.makeText(getBaseContext(), "Profile edited successfully", Toast.LENGTH_LONG).show();
                         }
 
                         @Override
@@ -92,7 +93,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         }
                     });
                 }
-                Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, MainMenuActivity.class);
                 Bundle b = new Bundle();
                 b.putString("name", name);
                 b.putString("username", username);
