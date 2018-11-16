@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c85864a-c05e-4b6f-8d68-eba4fce1fce4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/BuyTicketActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/BuyTicketActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/customer/authRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/customer/authRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/MyVouchersActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/customer/src/main/java/com/cmov/tp1/customer/activity/MyVouchersActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,32 +31,33 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="gitignore" value="1" />
           <entry key="java" value="5" />
-          <entry key="js" value="194" />
-          <entry key="json" value="2" />
+          <entry key="js" value="198" />
+          <entry key="json" value="4" />
           <entry key="sql" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="5" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="190" />
-          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="JSON" value="4" />
+          <entry key="JavaScript" value="194" />
+          <entry key="PLAIN_TEXT" value="5" />
           <entry key="SQL" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2" />
-          <entry key="js" value="9043" />
+          <entry key="js" value="9096" />
           <entry key="sql" value="283" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2" />
-          <entry key="JavaScript" value="9038" />
+          <entry key="JavaScript" value="9091" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="284" />
         </counts>
@@ -64,28 +67,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/database/Tickets.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1770">
-              <caret line="118" column="7" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/init.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1109">
-              <caret line="125" column="91" selection-start-line="125" selection-start-column="82" selection-end-line="125" selection-end-column="91" />
+            <state relative-caret-position="179">
+              <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/database/Cafeteria.js">
+        <entry file="file://$PROJECT_DIR$/server/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3960">
-              <caret line="264" column="16" selection-start-line="264" selection-start-column="16" selection-end-line="264" selection-end-column="16" />
+            <state relative-caret-position="345">
+              <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/routes/customer/profileRoute.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="735">
+              <caret line="49" column="71" selection-start-line="49" selection-start-column="71" selection-end-line="49" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -99,20 +102,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/routes/customer/authRoute.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1215">
-              <caret line="81" column="2" selection-start-line="81" selection-start-column="2" selection-end-line="100" selection-end-column="5" />
+            <state relative-caret-position="471">
+              <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/routes/customer/profileRoute.js">
+        <entry file="file://$PROJECT_DIR$/server/src/routes/customer/cafeteriaRoute.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="71" selection-start-line="49" selection-start-column="71" selection-end-line="49" selection-end-column="71" />
+            <state relative-caret-position="-444">
+              <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -166,6 +169,7 @@
     <findStrings>
       <find>startActivityForResult</find>
       <find>onActivityResult</find>
+      <find>node-r</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -211,9 +215,9 @@
         <option value="$PROJECT_DIR$/server/src/routes/customer/ticketsRoute.js" />
         <option value="$PROJECT_DIR$/server/src/database/Cafeteria.js" />
         <option value="$PROJECT_DIR$/server/src/database/Auth.js" />
-        <option value="$PROJECT_DIR$/server/src/routes/customer/authRoute.js" />
         <option value="$PROJECT_DIR$/server/src/database/Profile.js" />
         <option value="$PROJECT_DIR$/server/src/routes/customer/profileRoute.js" />
+        <option value="$PROJECT_DIR$/server/src/routes/customer/authRoute.js" />
       </list>
     </option>
   </component>
@@ -252,11 +256,6 @@
             <path>
               <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="database" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -286,12 +285,6 @@
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="routes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="customer" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="backend" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -379,12 +372,12 @@
       <workItem from="1542189648054" duration="1030000" />
       <workItem from="1542229160335" duration="281000" />
       <workItem from="1542364453768" duration="464000" />
-      <workItem from="1542377654278" duration="215000" />
+      <workItem from="1542377654278" duration="1056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54159000" />
+    <option name="totallyTimeSpent" value="55000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
@@ -465,16 +458,6 @@
     <entry file="file://$USER_HOME$/Downloads/LunchList1-2/LunchList1a/app/src/main/java/org/feup/apm/lunchlist1a/MainActivity.java" />
     <entry file="file://$USER_HOME$/Downloads/LunchList1-2/LunchList1b/app/src/main/java/org/feup/apm/lunchlist1b/MainActivity.java" />
     <entry file="file://$USER_HOME$/Downloads/LunchList1-2/LunchList1c/app/src/main/java/org/feup/apm/lunchlist1c/MainActivity.java" />
-    <entry file="file://$PROJECT_DIR$/server/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/database/DB.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -488,13 +471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
           <caret line="49" column="3" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
@@ -547,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/customer/cafeteriaRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/routes/customer/ticketsRoute.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
@@ -572,20 +541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3960">
           <caret line="264" column="16" selection-start-line="264" selection-start-column="16" selection-end-line="264" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/database/Auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/customer/authRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="81" column="2" selection-start-line="81" selection-start-column="2" selection-end-line="100" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -626,8 +581,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/init.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1109">
-          <caret line="125" column="91" selection-start-line="125" selection-start-column="82" selection-end-line="125" selection-end-column="91" />
+        <state relative-caret-position="179">
+          <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="2929" column="32" lean-forward="true" selection-start-line="2929" selection-start-column="32" selection-end-line="2929" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/database/Auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/customer/cafeteriaRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-444">
+          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/customer/authRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
         </state>
       </provider>
     </entry>

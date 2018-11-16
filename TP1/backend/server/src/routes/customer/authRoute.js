@@ -106,9 +106,9 @@ router.get('/logout', function(req, res, next) {
         // delete session object
         req.session.destroy(function(err) {
             if(err) {
-                return next(err);
+                res.status(400).send(err);
             } else {
-                return res.redirect('/');
+                res.status(200).send(true);
             }
         });
     }

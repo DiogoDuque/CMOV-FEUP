@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.MyClickListener;
-import com.cmov.tp1.customer.core.Show;
-import com.cmov.tp1.customer.core.ShowsAdapter;
 import com.cmov.tp1.customer.core.Voucher;
 import com.cmov.tp1.customer.core.VouchersAdapter;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
