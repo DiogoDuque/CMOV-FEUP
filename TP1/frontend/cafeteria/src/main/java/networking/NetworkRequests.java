@@ -87,9 +87,9 @@ public abstract class NetworkRequests {
         final String PATH = "/verify";
         final int METHOD = Request.Method.PUT;
 
-        JSONObject body = new JSONObject();
+        JSONObject body = null;
         try {
-            body.put("message", message);
+            body = new JSONObject(message);
         } catch (JSONException e) {
             e.printStackTrace();
         }

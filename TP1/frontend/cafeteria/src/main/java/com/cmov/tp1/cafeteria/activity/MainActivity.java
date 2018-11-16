@@ -91,6 +91,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getResultScan(String message) {
+        Log.d("MAIN", message);
+        final Intent intent = new Intent(this, ResultActivity.class);
+        final Bundle b= new Bundle();
+        NetworkRequests.verifyOrder(this, message, new HTTPRequestUtility.OnRequestCompleted() {
+            @Override
+            public void onSuccess(JSONObject json) {
+                b.putString("message", json.toString());
+                b.putBoolean("result", true);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError(JSONObject json) {
+                b.putString("message", json.toString());
+                b.putBoolean("result", false);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
 
     }
 }

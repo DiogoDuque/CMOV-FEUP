@@ -58,6 +58,7 @@ router.get('/order_vouchers', (req, res) => {
 
 router.put('/verify', (req, res) => {
   const { obj, signature } = req.body;
+  console.log(JSON.stringify(obj));
 
   Query.verifyOrderSignature(signature, obj, (result, err) => {
     if (result) {
