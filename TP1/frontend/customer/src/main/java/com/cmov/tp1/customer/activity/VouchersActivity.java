@@ -98,7 +98,12 @@ public class VouchersActivity extends AppCompatActivity {
 
                 JSONObject body = getJsonFromVouchersAndProducts(orderId, products, vouchers);
                 Log.d(TAG, body.toString());
-                //TODO send order to terminal through QE
+                Intent intent = new Intent(VouchersActivity.this, QrGeneratorActivity.class);
+                Bundle b = new Bundle();
+                b.putString("type", "cafeteria");
+                b.putString("cafeteriaOrder", body.toString());
+                intent.putExtras(b);
+                startActivity(intent);
 
             }
         });
