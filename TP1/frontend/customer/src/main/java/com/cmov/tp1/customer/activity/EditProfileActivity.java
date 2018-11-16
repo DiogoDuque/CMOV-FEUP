@@ -20,7 +20,6 @@ import org.json.JSONObject;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private double balance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +46,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
         EditText nif = findViewById(R.id.nif_input);
         nif.setText(bundle.getString("nif"));
-
-        balance = bundle.getDouble("balance");
     }
 
     public void editProfile(){
@@ -67,7 +64,7 @@ public class EditProfileActivity extends AppCompatActivity {
         final String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
         final String cardNumber = cardNumberInput.getText().toString();
-        String cardCode = cardCodeInput.getText().toString();
+        final String cardCode = cardCodeInput.getText().toString();
         final String cardValidity = cardValidityInput.getText().toString();
         final String cardType = cardTypeSelected.getText().toString();
 
@@ -79,7 +76,7 @@ public class EditProfileActivity extends AppCompatActivity {
         NetworkRequests.updateProfileInfo(this, name, username, nif, password, new HTTPRequestUtility.OnRequestCompleted() {
             @Override
             public void onSuccess(JSONObject json) {
-                if(cardNumber.length() != 0 || cardValidity.length() != 0){
+                if(cardNumber.length() != 0 && cardValidity.length() != 0 && cardCode.length() != 0){
                     NetworkRequests.updateCreditCardInfo(EditProfileActivity.this, cardType, cardNumber, cardValidity, new HTTPRequestUtility.OnRequestCompleted() {
                         @Override
                         public void onSuccess(JSONObject json) {
@@ -93,13 +90,6 @@ public class EditProfileActivity extends AppCompatActivity {
                         }
                     });
                 }
-                Intent intent = new Intent(EditProfileActivity.this, MainMenuActivity.class);
-                Bundle b = new Bundle();
-                b.putString("name", name);
-                b.putString("username", username);
-                b.putDouble("balance", balance);
-                intent.putExtras(b);
-                startActivity(intent);
             }
 
             @Override
@@ -108,6 +98,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 return;
             }
         });
+
+        Intent intent = new Intent(EditProfileActivity.this, MainMenuActivity.class);
+        startActivity(intent);
     }
 
 }

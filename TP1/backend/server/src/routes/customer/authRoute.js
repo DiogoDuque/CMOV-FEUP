@@ -101,7 +101,7 @@ router.post('/register', (req, res) => {
   });
 });
 
-router.get('/logout', function(req, res, next) {
+router.get('/logout', (req, res) => {
     if (req.session) {
         // delete session object
         req.session.destroy(function(err) {

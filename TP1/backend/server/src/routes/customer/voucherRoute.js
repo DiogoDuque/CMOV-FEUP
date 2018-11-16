@@ -19,7 +19,7 @@ router.get('/my_vouchers_by_status', (req, res) => {
   const { userId } = req.session;
   Query.getMyVouchersByStatus(userId, status, (result, err) => {
     if (result) {
-      res.status(200).send(result);
+      res.status(200).send(`{vouchers: ${JSON.stringify(result.rows)}}`);
     } else {
       res.status(400).send(err);
     }

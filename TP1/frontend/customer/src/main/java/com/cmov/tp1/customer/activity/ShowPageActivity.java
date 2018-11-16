@@ -39,7 +39,7 @@ public class ShowPageActivity extends AppCompatActivity {
         TextView dateLabel = findViewById(R.id.show_date);
         dateLabel.setText(show.getDate());
         TextView priceLabel = findViewById(R.id.show_price);
-        priceLabel.setText(Float.toString(show.getPrice()));
+        priceLabel.setText(Float.toString(show.getPrice()) + "$");
     }
 
     private void changeToBuy(){

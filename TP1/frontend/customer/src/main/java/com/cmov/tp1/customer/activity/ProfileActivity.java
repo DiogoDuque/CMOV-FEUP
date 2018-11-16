@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    public void setValues(String name, String username, Double balance){
+    public void setValues(String name, String username, double balance){
         TextView textName = findViewById(R.id.name_label);
         textName.setText(name);
 

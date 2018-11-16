@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="166dp" />
+        android:layout_marginBottom="146dp" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -20,6 +20,6 @@
         android:layout_height="214dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="77dp"
         app:srcCompat="@mipmap/ticket" />
 </RelativeLayout>

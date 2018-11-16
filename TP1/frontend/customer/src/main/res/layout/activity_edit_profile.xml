@@ -24,6 +24,7 @@
             android:layout_marginStart="10dp"
             android:fontFamily="@font/monserrat"
             android:text="Personal Information"
+            android:textAlignment="center"
             android:textColor="@color/orange"
             android:textSize="18sp"
             android:textStyle="bold" />

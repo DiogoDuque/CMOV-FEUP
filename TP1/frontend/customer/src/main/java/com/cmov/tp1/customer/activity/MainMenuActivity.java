@@ -127,9 +127,6 @@ public class MainMenuActivity extends AppCompatActivity {
                     b.putString("username", json.getString("username"));
                     b.putString("password", json.getString("password"));
                     b.putString("nif", json.getString("nif"));
-                    b.putString("card_type", json.getString("card_type"));
-                    b.putString("card_number", json.getString("card_number"));
-                    b.putString("card_validity", json.getString("card_validity"));
                     b.putDouble("balance", json.getDouble("balance"));
 
                 } catch (JSONException e) {
