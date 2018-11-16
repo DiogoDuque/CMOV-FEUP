@@ -23,7 +23,7 @@
             android:fontFamily="@font/monserrat"
             android:text="Change your IP address"
             android:textAlignment="center"
-            android:textColor="@color/orange"
+            android:textColor="@color/colorPrimary"
             android:textSize="25dp"
             android:textStyle="bold" />
 
