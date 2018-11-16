@@ -39,7 +39,7 @@ public class ResultActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            text.setText("All tickets were validated with success");
+            text.setText("Cafeteria order was validated with success");
             text.setTextColor(getResources().getColor(R.color.green));
             image.setImageResource(R.drawable.right);
             showDialog(this, "Cost Alert","Final cost was "+cost+" and is being credited to the credit card.", "OK").show();
@@ -57,8 +57,7 @@ public class ResultActivity extends AppCompatActivity {
         downloadDialog.setMessage(message);
         downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
-                Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                Intent intent = new Intent(act, MainActivity.class);
                 act.startActivity(intent);
             }
         });
