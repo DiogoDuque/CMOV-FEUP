@@ -21,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ResultActivity"/>
+        <activity android:name=".activity.ResultActivity"
+            android:parentActivityName=".activity.ValidateTicketActivity"/>
+        <activity android:name=".activity.ChangeIPActivity"/>
     </application>
 
 </manifest>
