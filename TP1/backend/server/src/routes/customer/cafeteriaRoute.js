@@ -24,7 +24,7 @@ router.get('/orders_costumer', (req, res) => {
   });
 });
 
-router.get('/orders_costumer_validated', (req, res) => {
+router.get('/orders_customer_validated', (req, res) => {
   const { userId } = req.session;
   console.log(userId);
   Query.getOrdersValidated(userId, (result, err) => {

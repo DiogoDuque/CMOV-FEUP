@@ -48,9 +48,9 @@ module.exports = {
   },
 
   getMyVouchersByStatus(customerId, status, callback) {
-    const baseQuery = 'SELECT voucher.id, voucher.type, voucher.is_used FROM customer, ticket, voucher, voucher_ticket'
-      + ' WHERE customer.id = $1 AND ticket.customer_id = customer.id AND voucher_ticket.ticket_id = ticket.id'
-      + ' AND voucher.id = voucher_ticket.voucher_id AND voucher.is_used = $2';
+    const baseQuery = 'SELECT voucher.id, voucher.type, voucher.is_used, cafeteria_product.name AS product '
+      + 'FROM voucher LEFT JOIN cafeteria_product ON voucher.product_id = cafeteria_product.id '
+      + 'WHERE voucher.customer_id = $1 AND voucher.is_used = $2';
     execute(baseQuery, [customerId, status], (response, err) => {
       if (err) {
         callback(null, err);

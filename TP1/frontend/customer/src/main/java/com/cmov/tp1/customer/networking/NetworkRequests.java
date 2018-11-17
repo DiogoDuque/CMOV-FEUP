@@ -213,16 +213,10 @@ public abstract class NetworkRequests {
     }
 
     public static void getMyVouchersByStatus(Context context, boolean status, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/vouchers/my_vouchers_by_status";
+        final String PATH = "/vouchers/my_vouchers_by_status?status="+Boolean.toString(status);
         final int METHOD = Request.Method.GET;
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("status", status);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, null, onRequestCompleted);
     }
 
     public static void getVoucherInfo(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
