@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,13 @@ import java.util.regex.Pattern;
 /**
  * With help from: https://www.androidhive.info/2016/01/android-working-with-recycler-view/
  */
-public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder> {
+public class TicketsAllAdapter extends RecyclerView.Adapter<TicketsAllAdapter.MyViewHolder> {
 
-    private List<Show> shows;
+    private RecyclerView view;
+    private List<Ticket> tickets;
 
     public void setupBoilerplate(Context context, RecyclerView recyclerView, MyClickListener.ClickListener clickListener) {
+        this.view = recyclerView;
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -38,57 +41,61 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, date, price;
+        public TextView name, date, price, isUsed;
 
         public MyViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.name);
             date = view.findViewById(R.id.date);
             price = view.findViewById(R.id.price);
+            isUsed = view.findViewById(R.id.isUsed);
         }
     }
 
-    public ShowsAdapter(List<Show> shows) {
-        this.shows = shows;
+    public TicketsAllAdapter(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.show_list_row, parent, false);
+                .inflate(R.layout.ticket_list_row, parent, false);
 
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Show show = shows.get(position);
-        holder.name.setText(show.getName());
-        holder.date.setText(show.getDate());
-        holder.price.setText(Float.toString(show.getPrice()) + "$");
+        Ticket ticket = tickets.get(position);
+        holder.name.setText(ticket.getName());
+        holder.date.setText(ticket.getDate());
+        holder.price.setText(Double.toString(ticket.getPrice()) + "$");
+        holder.isUsed.setText(ticket.isUsed() ? "Used" : "Not used");
     }
 
     @Override
     public int getItemCount() {
-        return shows.size();
+        return tickets.size();
     }
 
-    public static List<Show> parseJsonShows(JSONObject jsonObject) {
-        List<Show> shows = new ArrayList<>();
+    public static List<Ticket> parseJsonTickets(JSONObject jsonObject) {
+        List<Ticket> ticketsNew = new ArrayList<>();
         try {
-            JSONArray jsonArray = jsonObject.getJSONArray("shows");
+            JSONArray jsonArray = jsonObject.getJSONArray("result");
             for(int i=0; i<jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 int id = obj.getInt("id");
                 String name = obj.getString("name");
+                int eventId = obj.getInt("eventid");
                 String date = reformatDateStr(obj.getString("date"));
-                float price = (float)obj.getDouble("price");
-                shows.add(new Show(id, name, date, price));
+                double price = obj.getDouble("price");
+                boolean isUsed = obj.getBoolean("is_used");
+                ticketsNew.add(new Ticket(eventId, id, name, date, price, isUsed));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return shows;
+        return ticketsNew;
     }
 
     private static String reformatDateStr(String oldDate) {
@@ -103,6 +110,10 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             return String.format("%s/%s/%s %s:%s", day, month, year, hour, minute);
         }
         return "No date parsed";
+    }
 
+
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 }

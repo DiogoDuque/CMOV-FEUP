@@ -41,7 +41,7 @@ router.get('/all_tickets', (req, res) => {
   const { userId } = req.session;
   Query.getAllTickets(userId, (result, err) => {
     if (result) {
-      res.status(200).send(result);
+      res.status(200).send(`{result:${JSON.stringify(result)}}`);
     } else {
       res.status(400).send(err);
     }

@@ -12,7 +12,7 @@
     android:paddingBottom="10dp">
 
     <TextView
-        android:id="@+id/type"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,6 +20,19 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monserrat"
+        android:layout_below="@id/name"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monserrat"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:id="@+id/isUsed"
@@ -27,6 +40,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/monserrat"
         android:textColor="@color/orange"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/price"/>
 
 </RelativeLayout>

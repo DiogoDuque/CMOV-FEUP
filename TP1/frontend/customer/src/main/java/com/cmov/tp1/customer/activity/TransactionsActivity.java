@@ -10,8 +10,10 @@ import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.CafeteriaOrder;
 import com.cmov.tp1.customer.core.CafeteriaOrderAdapter;
 import com.cmov.tp1.customer.core.MyClickListener;
+import com.cmov.tp1.customer.core.Ticket;
 import com.cmov.tp1.customer.core.TicketTerminal;
 import com.cmov.tp1.customer.core.TicketsAdapter;
+import com.cmov.tp1.customer.core.TicketsAllAdapter;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 
@@ -31,12 +33,12 @@ public class TransactionsActivity extends AppCompatActivity {
         recyclerView1 = findViewById(R.id.list_tickets);
         recyclerView2 = findViewById(R.id.list_orders);
 
-        NetworkRequests.getUsedTickets(this, new HTTPRequestUtility.OnRequestCompleted() {
+        NetworkRequests.getAllTickets(this, new HTTPRequestUtility.OnRequestCompleted() {
 
             @Override
             public void onSuccess(JSONObject json) {
-                final List<TicketTerminal> ticketsList = TicketsAdapter.parseJsonTickets(json);
-                TicketsAdapter adapter = new TicketsAdapter(ticketsList);
+                final List<Ticket> ticketsList = TicketsAllAdapter.parseJsonTickets(json);
+                TicketsAllAdapter adapter = new TicketsAllAdapter(ticketsList);
                 adapter.setupBoilerplate(getApplicationContext(), recyclerView1, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
