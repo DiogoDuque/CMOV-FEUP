@@ -1,11 +1,25 @@
 package com.cmov.tp1.customer.core;
 
+import com.cmov.tp1.customer.core.db.CachedVoucher;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Voucher {
 
     private int id;
     private String type;
     private boolean isUsed;
     private String product;
+
+    public Voucher(CachedVoucher voucher) {
+        this.id = voucher.id;
+        this.type = voucher.type;
+        this.isUsed = voucher.isUsed;
+        if(type.equals("Free Product")) {
+            this.product = voucher.productName;
+        }
+    }
 
     public Voucher(int id, boolean isUsed, String product) {
         this.id = id;
@@ -48,5 +62,26 @@ public class Voucher {
                 ", isUsed=" + isUsed +
                 ", product='" + product + '\'' +
                 '}';
+    }
+
+    public static List<Voucher> fromCachedVouchers(List<CachedVoucher> cachedVouchers) {
+        List<Voucher> vouchers = new ArrayList<>();
+        for(CachedVoucher v: cachedVouchers) {
+            vouchers.add(new Voucher(v));
+        }
+        return vouchers;
+    }
+
+    public static CachedVoucher[] toCachedVouchers(List<Voucher> vouchers) {
+        List<CachedVoucher> cachedVouchers = new ArrayList<>();
+        for(Voucher v: vouchers) {
+            CachedVoucher voucher = new CachedVoucher();
+            voucher.id = v.id;
+            voucher.isUsed = v.isUsed;
+            voucher.type = v.type;
+            voucher.productName = v.product;
+            cachedVouchers.add(voucher);
+        }
+        return cachedVouchers.toArray(new CachedVoucher[cachedVouchers.size()]);
     }
 }
