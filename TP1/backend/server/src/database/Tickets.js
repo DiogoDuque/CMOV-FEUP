@@ -45,9 +45,10 @@ module.exports = {
       + ' FROM ticket, customer, event WHERE ticket.customer_id = $1 AND event.id = ticket.event_id AND customer.id = ticket.customer_id';
     execute(baseQuery, [user_id], (response, err) => {
       if (err) {
+        console.log(err);
         callback(null, err);
       } else {
-        callback(response);
+        callback(response.rows);
       }
     });
   },

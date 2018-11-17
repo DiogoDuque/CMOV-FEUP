@@ -275,7 +275,7 @@ public abstract class NetworkRequests {
     }
 
     public static void getOrdersValidated(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/orders_costumer_validated";
+        final String PATH = "/cafeteria/orders_customer_validated";
         final int METHOD = Request.Method.GET;
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);

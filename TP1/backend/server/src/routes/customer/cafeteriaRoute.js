@@ -25,25 +25,26 @@ router.get('/orders_costumer', (req, res) => {
 });
 
 router.get('/orders_costumer_validated', (req, res) => {
-    const { userId } = req.session;
-    Query.getOrdersValidated(userId, (result, err) => {
-        if (result) {
-            res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
-        } else {
-            res.status(400).send(err);
-        }
-    });
+  const { userId } = req.session;
+  console.log(userId);
+  Query.getOrdersValidated(userId, (result, err) => {
+    if (result) {
+      res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
+    } else {
+      res.status(400).send(err);
+    }
+  });
 });
 
 router.get('/orders_costumer_not_validated', (req, res) => {
-    const { userId } = req.session;
-    Query.getOrdersNotValidated(userId, (result, err) => {
-        if (result) {
-            res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
-        } else {
-            res.status(400).send(err);
-        }
-    });
+  const { userId } = req.session;
+  Query.getOrdersNotValidated(userId, (result, err) => {
+    if (result) {
+      res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
+    } else {
+      res.status(400).send(err);
+    }
+  });
 });
 
 router.get('/order', (req, res) => {

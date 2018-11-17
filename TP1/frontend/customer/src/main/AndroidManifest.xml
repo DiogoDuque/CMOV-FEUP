@@ -30,7 +30,7 @@
         <activity android:name=".activity.ShowPageActivity"
             android:parentActivityName=".activity.ShowsActivity"/>
         <activity android:name=".activity.BuyTicketActivity"
-            android:parentActivityName=".activity.ShowPageActivity"/>
+            android:parentActivityName=".activity.ShowsActivity"/>
         <activity android:name=".activity.VouchersActivity"
             android:parentActivityName=".activity.MakeOrderActivity"/>
         <activity android:name=".activity.VoucherPageActivity"

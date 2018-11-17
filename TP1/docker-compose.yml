@@ -20,3 +20,14 @@ services:
       - "80:3000"
     depends_on:
       - postgres
+  pgadmin:
+    links:
+      - postgres:postgres
+    image: fenglc/pgadmin4
+    environment: 
+      DEFAULT_USER: cmov
+      DEFAULT_PASSWORD: tickets
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    ports:
+      - "5050:5050"

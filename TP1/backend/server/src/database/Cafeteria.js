@@ -100,8 +100,8 @@ function calculateAndValidateOrder(orderId, productsOld, vouchersIds, accumulate
 
   // make final calculations and validate order
   const finalCost = accumulatedCost * (1 - accumulatedDiscount);
-  const validateQuery = 'UPDATE cafeteria_order SET is_validated = TRUE WHERE id = $1';
-  execute(validateQuery, [orderId], (validRes, validErr) => {
+  const validateQuery = 'UPDATE cafeteria_order SET is_validated = TRUE, price = $2 WHERE id = $1';
+  execute(validateQuery, [orderId, finalCost], (validRes, validErr) => {
     if (validErr) {
       callback(null, validErr);
     } else {
