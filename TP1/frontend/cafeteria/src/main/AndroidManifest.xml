@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeCafeteria">
         <activity
-            android:name=".activity.MainActivity">
+            android:name=".activity.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ResultActivity"
-            android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.ChangeIPActivity"/>
+            android:parentActivityName=".activity.MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChangeIPActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

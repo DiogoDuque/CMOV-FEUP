@@ -13,39 +13,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.SplashScreenActivity"
-            android:noHistory="true">
+            android:noHistory="true" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.RegisterActivity"
-            android:parentActivityName=".activity.LoginActivity"/>
-        <activity android:name=".activity.MainMenuActivity"/>
+            android:parentActivityName=".activity.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ShowsActivity"
-            android:parentActivityName=".activity.MainMenuActivity"/>
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.TicketsActivity"
-            android:parentActivityName=".activity.MainMenuActivity"/>
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ShowPageActivity"
-            android:parentActivityName=".activity.ShowsActivity"/>
+            android:parentActivityName=".activity.ShowsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.BuyTicketActivity"
-            android:parentActivityName=".activity.ShowsActivity"/>
-        <activity android:name=".activity.VouchersActivity"
-            android:parentActivityName=".activity.MakeOrderActivity"/>
-        <activity android:name=".activity.VoucherPageActivity"
-            android:parentActivityName=".activity.MyVouchersActivity"/>
+            android:parentActivityName=".activity.ShowPageActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.MakeOrderActivity"
-            android:parentActivityName=".activity.BuyTicketActivity"/>
-        <activity android:name=".activity.ProfileActivity"
-            android:parentActivityName=".activity.MainMenuActivity"/>
-        <activity android:name=".activity.QrGeneratorActivity"
-            android:parentActivityName=".activity.TicketsActivity"/>
-        <activity android:name=".activity.ChangeIPActivity"/>
-        <activity android:name=".activity.TransactionsActivity"
-            android:parentActivityName=".activity.MainMenuActivity"/>
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.VouchersActivity"
+            android:parentActivityName=".activity.MakeOrderActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.MyVouchersActivity"
-            android:parentActivityName=".activity.MainMenuActivity"/>
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.VoucherPageActivity"
+            android:parentActivityName=".activity.MyVouchersActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ProfileActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.QrGeneratorActivity"
+            android:parentActivityName=".activity.TicketsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChangeIPActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TransactionsActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.EditProfileActivity"
+            android:parentActivityName=".activity.ProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.OrderPageActivity"
+            android:parentActivityName=".activity.TransactionsActivity" android:screenOrientation="portrait"/>
 
         <!--<service
             android:name=".utility.CardService"
