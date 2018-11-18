@@ -7,11 +7,32 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class CachedTicket {
     @PrimaryKey
-    public int id;
+    public int ticketId;
 
-    @ColumnInfo(name = "place")
-    public String place;
+    @ColumnInfo
+    public int eventId;
 
-    @ColumnInfo(name = "is_used")
-    public boolean isUsed;
+    @ColumnInfo
+    public int userId;
+
+    @ColumnInfo
+    public String date;
+
+    @ColumnInfo
+    public double price;
+
+    @ColumnInfo(name = "name")
+    public String eventName;
+
+    @Override
+    public String toString() {
+        return "CachedTicket{" +
+                "ticketId=" + ticketId +
+                ", eventId=" + eventId +
+                ", userId=" + userId +
+                ", date='" + date + '\'' +
+                ", price=" + price +
+                ", eventName='" + eventName + '\'' +
+                '}';
+    }
 }

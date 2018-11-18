@@ -1,8 +1,16 @@
 package com.cmov.tp1.customer.core;
 
+import android.util.Log;
+
+import com.cmov.tp1.customer.core.db.CachedTicket;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TicketTerminal {
+    private static final String TAG = "TicketTerminal";
     private int userId;
     private int eventId;
     private int ticketId;
@@ -30,28 +38,6 @@ public class TicketTerminal {
         this.date = date;
         this.price = price;
         this.isMultiple = true;
-    }
-
-    public TicketTerminal setTicket(int userId2, int eventId2, int ticketId2, String name2, String date2, double price2){
-        userId = userId2;
-        eventId = eventId2;
-        ticketId = ticketId2;
-        name = name2;
-        date = date2;
-        price = price2;
-
-        return new TicketTerminal(userId2, eventId2, ticketId2, name2, date2, price2);
-    }
-
-    public TicketTerminal setTicket(int userId2, int eventId2, ArrayList<Integer> tickets, String name2, String date2, double price2){
-        userId = userId2;
-        eventId = eventId2;
-        ticketsIDs = tickets;
-        name = name2;
-        date = date2;
-        price = price2;
-
-        return new TicketTerminal(userId2, eventId2, tickets, name2, date2, price2);
     }
 
     public int getUserId() {
@@ -93,5 +79,58 @@ public class TicketTerminal {
             ticketsInfo += "-"+Integer.toString(eventId) + "-" + date;
             return ticketsInfo;
         }
+    }
+
+
+
+    public static CachedTicket[] toCachedTickets(List<TicketTerminal> tickets) {
+        List<CachedTicket> cachedTickets = new ArrayList<>();
+        for(TicketTerminal t: tickets) {
+            if(t.isMultiple) {
+                for(int tId: t.ticketsIDs) {
+                    CachedTicket ticket = new CachedTicket();
+                    ticket.ticketId = tId;
+                    ticket.date = t.getDate();
+                    ticket.eventId = t.getEventId();
+                    ticket.eventName = t.getName();
+                    ticket.price = t.getPrice();
+                    cachedTickets.add(ticket);
+                }
+            } else {
+                CachedTicket ticket = new CachedTicket();
+                ticket.ticketId = t.ticketId;
+                ticket.date = t.getDate();
+                ticket.eventId = t.getEventId();
+                ticket.eventName = t.getName();
+                ticket.price = t.getPrice();
+                cachedTickets.add(ticket);
+            }
+        }
+        return cachedTickets.toArray(new CachedTicket[cachedTickets.size()]);
+    }
+
+    public static List<TicketTerminal> fromCachedTickets(List<CachedTicket> cachedTickets) {
+        Log.d(TAG, "Retrieved from cache: "+cachedTickets);
+        List<TicketTerminal> tickets = new ArrayList<>();
+        for(CachedTicket t: cachedTickets) {
+            tickets.add(new TicketTerminal(t.userId, t.eventId, t.ticketId, t.eventName, t.date, t.price));
+        }
+
+        Log.d(TAG, "Converted from cache: "+tickets);
+        return tickets;
+    }
+
+    @Override
+    public String toString() {
+        return "TicketTerminal{" +
+                "userId=" + userId +
+                ", eventId=" + eventId +
+                ", ticketId=" + ticketId +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", price=" + price +
+                ", isMultiple=" + isMultiple +
+                ", ticketsIDs=" + ticketsIDs +
+                '}';
     }
 }

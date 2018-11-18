@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +16,11 @@ import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.MyClickListener;
 import com.cmov.tp1.customer.core.TicketTerminal;
 import com.cmov.tp1.customer.core.TicketsAdapter;
+import com.cmov.tp1.customer.core.db.AppDatabase;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,50 +48,74 @@ public class TicketsActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(JSONObject json) {
-                List<TicketTerminal> unusedTicketList = TicketsAdapter.parseJsonTickets(json);
+                final List<TicketTerminal> unusedTicketList = TicketsAdapter.parseJsonTickets(json);
                 unusedTicketsAdapter = new TicketsAdapter(unusedTicketList);
                 selectedTicketsAdapter = new TicketsAdapter(new ArrayList<TicketTerminal>());
+                final AppDatabase db  = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name").build();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.query().updateTickets(TicketTerminal.toCachedTickets(unusedTicketList));
+                    }
+                }).start();
 
-                unusedTicketsAdapter.setupBoilerplate(getApplicationContext(), unusedTicketsView, new MyClickListener.ClickListener() {
+                setupTickets(unusedTicketsView, selectedTicketsView, finishButton, text);
+                unusedTicketsView.setAdapter(unusedTicketsAdapter);
+
+                selectedTicketsAdapter.setupBoilerplate(getApplicationContext(), selectedTicketsView, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        selectedTicketsView.setVisibility(View.VISIBLE);
-                        finishButton.setVisibility(View.VISIBLE);
-                        text.setVisibility(View.VISIBLE);
-
-                        if(selectedTicketsAdapter.getItemCount() >= 4) {
-                            Toast.makeText(TicketsActivity.this, "No more than 4 tickets may be validated!", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        TicketTerminal ticket = unusedTicketsAdapter.removeTicket(position);
-                        selectedTicketsAdapter.addTicket(ticket);
+                        TicketTerminal t = selectedTicketsAdapter.removeTicket(position);
+                        unusedTicketsAdapter.addTicket(t);
                     }
 
                     @Override
                     public void onLongClick(View view, int position) {
+
                     }
                 });
-            unusedTicketsView.setAdapter(unusedTicketsAdapter);
-
-            selectedTicketsAdapter.setupBoilerplate(getApplicationContext(), selectedTicketsView, new MyClickListener.ClickListener() {
-                @Override
-                public void onClick(View view, int position) {
-                    TicketTerminal t = selectedTicketsAdapter.removeTicket(position);
-                    unusedTicketsAdapter.addTicket(t);
-                }
-
-                @Override
-                public void onLongClick(View view, int position) {
-
-                }
-            });
 
 
             }
 
             @Override
             public void onError(JSONObject json) {
-                Log.e(TAG, json.toString()); //TODO handle error
+                try {
+                    if(json.getString("message").equals("java.net.ConnectException: Network is unreachable")) {
+                        selectedTicketsAdapter = new TicketsAdapter(new ArrayList<TicketTerminal>());
+                        final AppDatabase db  = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name").build();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<TicketTerminal> tickets = TicketTerminal.fromCachedTickets(db.query().getTickets());
+                                unusedTicketsAdapter = new TicketsAdapter(tickets);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        setupTickets(unusedTicketsView, selectedTicketsView, finishButton, text);
+                                        unusedTicketsView.setAdapter(unusedTicketsAdapter);
+
+                                        selectedTicketsAdapter.setupBoilerplate(getApplicationContext(), selectedTicketsView, new MyClickListener.ClickListener() {
+                                            @Override
+                                            public void onClick(View view, int position) {
+                                                TicketTerminal t = selectedTicketsAdapter.removeTicket(position);
+                                                unusedTicketsAdapter.addTicket(t);
+                                            }
+
+                                            @Override
+                                            public void onLongClick(View view, int position) {
+
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.w(TAG, json.toString()); //TODO handle error
             }
         });
 
@@ -140,5 +167,27 @@ public class TicketsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setupTickets(RecyclerView unusedTicketsView, final RecyclerView selectedTicketsView, final Button finishButton, final TextView text) {
+        unusedTicketsAdapter.setupBoilerplate(getApplicationContext(), unusedTicketsView, new MyClickListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                selectedTicketsView.setVisibility(View.VISIBLE);
+                finishButton.setVisibility(View.VISIBLE);
+                text.setVisibility(View.VISIBLE);
+
+                if(selectedTicketsAdapter.getItemCount() >= 4) {
+                    Toast.makeText(TicketsActivity.this, "No more than 4 tickets may be validated!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                TicketTerminal ticket = unusedTicketsAdapter.removeTicket(position);
+                selectedTicketsAdapter.addTicket(ticket);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+            }
+        });
     }
 }

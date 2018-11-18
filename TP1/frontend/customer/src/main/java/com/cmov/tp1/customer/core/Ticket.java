@@ -1,5 +1,10 @@
 package com.cmov.tp1.customer.core;
 
+import com.cmov.tp1.customer.core.db.CachedTicket;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ticket {
     private int eventId;
     private int ticketId;

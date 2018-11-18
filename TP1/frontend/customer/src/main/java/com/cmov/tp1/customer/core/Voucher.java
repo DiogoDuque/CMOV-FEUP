@@ -1,11 +1,14 @@
 package com.cmov.tp1.customer.core;
 
+import android.util.Log;
+
 import com.cmov.tp1.customer.core.db.CachedVoucher;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Voucher {
+    private static final String TAG = "Voucher";
 
     private int id;
     private String type;
@@ -23,14 +26,14 @@ public class Voucher {
 
     public Voucher(int id, boolean isUsed, String product) {
         this.id = id;
-        this.type = "Discount";
+        this.type = "Free Product";
         this.isUsed = isUsed;
         this.product = product;
     }
 
     public Voucher(int id, boolean isUsed) {
         this.id = id;
-        this.type = "Free Product";
+        this.type = "Discount";
         this.isUsed = isUsed;
     }
 
@@ -73,6 +76,7 @@ public class Voucher {
     }
 
     public static CachedVoucher[] toCachedVouchers(List<Voucher> vouchers) {
+        Log.d(TAG, "to be cached: "+vouchers);
         List<CachedVoucher> cachedVouchers = new ArrayList<>();
         for(Voucher v: vouchers) {
             CachedVoucher voucher = new CachedVoucher();
@@ -82,6 +86,7 @@ public class Voucher {
             voucher.productName = v.product;
             cachedVouchers.add(voucher);
         }
+        Log.d(TAG, "sending to cache: "+cachedVouchers);
         return cachedVouchers.toArray(new CachedVoucher[cachedVouchers.size()]);
     }
 }

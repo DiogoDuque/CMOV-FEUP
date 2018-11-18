@@ -42,7 +42,7 @@ public class MyVouchersActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        db.query().setVouchers(Voucher.toCachedVouchers(voucherList));
+                        db.query().updateVouchers(Voucher.toCachedVouchers(voucherList));
                     }
                 }).start();
             }

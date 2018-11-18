@@ -22,7 +22,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/monserrat"
                     android:padding="10dp"
-                    android:text="My Tickets Unvalidated"
+                    android:text="My Unvalidated Tickets"
                     android:textAlignment="center"
                     android:textColor="@color/orange"
                     android:textSize="20dp"
