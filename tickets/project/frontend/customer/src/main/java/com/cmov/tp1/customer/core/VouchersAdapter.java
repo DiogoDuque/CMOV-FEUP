@@ -75,7 +75,7 @@ public class VouchersAdapter extends RecyclerView.Adapter<VouchersAdapter.MyView
         return vouchers.size();
     }
 
-    public static List<Voucher> parseJsonVouchers(JSONObject jsonObject) { //TODO
+    public static List<Voucher> parseJsonVouchers(JSONObject jsonObject) {
         List<Voucher> vouchers = new ArrayList<>();
         try {
             JSONArray jsonArray = jsonObject.getJSONArray("vouchers");
