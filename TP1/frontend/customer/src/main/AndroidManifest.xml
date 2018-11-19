@@ -12,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashScreenActivity"
+        <activity android:name=".activity.ChangeIPActivity"
             android:noHistory="true" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.SplashScreenActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.RegisterActivity"
             android:parentActivityName=".activity.LoginActivity" android:screenOrientation="portrait"/>
@@ -43,7 +44,6 @@
             android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.QrGeneratorActivity"
             android:parentActivityName=".activity.TicketsActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ChangeIPActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.TransactionsActivity"
             android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.EditProfileActivity"
