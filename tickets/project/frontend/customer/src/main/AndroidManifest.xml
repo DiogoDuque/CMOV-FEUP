@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cmov.tp1.customer">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/show"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.ChangeIPActivity"
+            android:noHistory="true" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.SplashScreenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RegisterActivity"
+            android:parentActivityName=".activity.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ShowsActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TicketsActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ShowPageActivity"
+            android:parentActivityName=".activity.ShowsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BuyTicketActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MakeOrderActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.VouchersActivity"
+            android:parentActivityName=".activity.MakeOrderActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MyVouchersActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.VoucherPageActivity"
+            android:parentActivityName=".activity.MyVouchersActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ProfileActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.QrGeneratorActivity"
+            android:parentActivityName=".activity.TicketsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TransactionsActivity"
+            android:parentActivityName=".activity.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.EditProfileActivity"
+            android:parentActivityName=".activity.ProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.OrderPageActivity"
+            android:parentActivityName=".activity.TransactionsActivity" android:screenOrientation="portrait"/>
+
+        <!--<service
+            android:name=".utility.CardService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_NFC_SERVICE">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.nfc.cardemulation.host_apdu_service"
+                android:resource="@xml/aid_list"/>
+        </service>-->
+    </application>
+
+</manifest>

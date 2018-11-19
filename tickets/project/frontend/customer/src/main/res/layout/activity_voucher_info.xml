@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".activity.VoucherPageActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/voucher_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:layout_marginBottom= "20dp"
+                    android:fontFamily="@font/monserrat"
+                    android:text="Voucher"
+                    android:textColor="@color/orange"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/product_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+                    android:fontFamily="@font/monserrat"
+                    android:text="Product"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/type_discount_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+                    android:fontFamily="@font/monserrat"
+                    android:text="Type of discount"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:paddingBottom="15dp"
+                    android:fontFamily="@font/monserrat"
+                    android:text="Status"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="249dp"
+                    android:layout_height="149dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/gifticonnew" />
+
+            </LinearLayout>
+        </ScrollView>
+
+</LinearLayout>

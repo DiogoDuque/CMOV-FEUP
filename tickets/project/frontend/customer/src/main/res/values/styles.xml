@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/light_orange</item>
+        <item name="colorPrimaryDark">@color/orange</item>
+        <item name="colorAccent">@color/orange</item>
+        <item name="cardViewStyle">@style/CardView.Light</item>
+        <item name="navigationViewStyle">@style/Widget.Design.NavigationView</item>
+    </style>
+
+</resources>

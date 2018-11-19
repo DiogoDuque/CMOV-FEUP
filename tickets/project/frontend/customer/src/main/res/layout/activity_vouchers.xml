@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.VouchersActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/products"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/black_border" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/unused_vouchers"
+            android:layout_width="match_parent"
+            android:layout_height="149dp"
+            android:layout_below="@+id/products"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/black_border"
+            android:scrollbars="vertical" />
+
+        <ImageView
+            android:id="@+id/down_arrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/unused_vouchers"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@android:drawable/arrow_down_float" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/down_arrow"
+            android:layout_alignTop="@+id/down_arrow"
+            android:layout_marginLeft="-140dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/monserrat"
+            android:text="Choose Vouchers"
+            android:textColor="@color/orange"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/using_vouchers"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/down_arrow"
+            android:background="@drawable/black_border"
+            android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/cafeteria_buy_button"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/monserrat"
+            android:foregroundGravity="center"
+            android:text="Buy"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_light"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
