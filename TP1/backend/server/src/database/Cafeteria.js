@@ -270,12 +270,14 @@ module.exports = {
   },
 
   isOrderValidated(orderId, callback) {
-    const baseQuery = 'SELECT is_validated FROM cafeteria_order WHERE id = $1';
+    const baseQuery = 'SELECT is_validated, price FROM cafeteria_order WHERE id = $1';
     execute(baseQuery, [orderId], (res, err) => {
+      console.log(`err: ${JSON.stringify(err)}`);
+      console.log(`res: ${JSON.stringify(res)}`);
       if(err) {
         callback(null, err);
       } else {
-        callback(res.rows[0].is_validated);
+        callback(res.rows[0]);
       }
     });
   },

@@ -1,6 +1,7 @@
 package com.cmov.tp1.customer.networking;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.cmov.tp1.customer.core.CafeteriaOrderProduct;
@@ -356,6 +357,7 @@ public abstract class NetworkRequests {
     }
 
     public static void isOrderValidated(Context context, int orderId, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        Log.d("Netw", orderId+"");
         final String PATH = "/cafeteria/is_order_validated?orderId="+orderId;
         final int METHOD = Request.Method.GET;
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, null, onRequestCompleted);

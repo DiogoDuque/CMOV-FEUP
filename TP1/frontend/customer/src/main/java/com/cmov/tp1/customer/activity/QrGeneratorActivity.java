@@ -43,7 +43,12 @@ public class QrGeneratorActivity extends AppCompatActivity {
 
         if(b.getString("type").equals("cafeteria")) {
             cafeteriaOrder = b.getString("cafeteriaOrder");
-            orderID = b.getInt("orderID)");
+            try {
+                orderID = new JSONObject(cafeteriaOrder).getJSONObject("obj").getInt("orderId");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.d("QR", orderID+"");
             generate(true);
         }
         else{

@@ -103,14 +103,14 @@ router.post('/make_order', (req, res) => {
 });
 
 
-
-router.get('is_order_validated', (req, res) => {
+router.get('/is_order_validated', (req, res) => {
   const { orderId } = req.query;
+  console.log(`orderId=${orderId}`);
   Query.isOrderValidated(orderId, (qRes, qErr) => {
     if(qErr) {
       res.status(400).send(qErr);
     } else {
-      res.status(200).send(`{result: ${qRes}}`);
+      res.status(200).send(JSON.stringify(qRes));
     }
   });
 });
