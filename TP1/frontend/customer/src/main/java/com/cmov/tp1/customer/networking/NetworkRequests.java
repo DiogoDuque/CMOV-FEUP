@@ -348,11 +348,16 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    //TODO delete
     public static void addToOrder(Context context, JSONObject body, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/add_products";
         final int METHOD = Request.Method.POST;
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+    }
+
+    public static void isOrderValidated(Context context, int orderId, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
+        final String PATH = "/cafeteria/is_order_validated?orderId="+orderId;
+        final int METHOD = Request.Method.GET;
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, null, onRequestCompleted);
     }
 }

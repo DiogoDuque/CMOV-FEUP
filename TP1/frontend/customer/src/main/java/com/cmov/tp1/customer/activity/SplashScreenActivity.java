@@ -35,6 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Log.i(TAG, "Success -> "+json.toString());
                 Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
                 getBaseContext().startActivity(intent);
+                finish();
             }
 
             @Override
@@ -56,6 +57,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         } else {
                             Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
                             getBaseContext().startActivity(intent);
+                            finish();
                         }
                     }
                 } catch (JSONException e) {

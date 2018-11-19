@@ -268,4 +268,15 @@ module.exports = {
       }
     });
   },
+
+  isOrderValidated(orderId, callback) {
+    const baseQuery = 'SELECT is_validated FROM cafeteria_order WHERE id = $1';
+    execute(baseQuery, [orderId], (res, err) => {
+      if(err) {
+        callback(null, err);
+      } else {
+        callback(res.rows[0].is_validated);
+      }
+    });
+  },
 };

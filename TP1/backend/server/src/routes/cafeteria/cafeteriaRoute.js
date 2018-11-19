@@ -14,13 +14,13 @@ router.get('/orders', (req, res) => {
 });
 
 router.get('/orders_not_validated', (req, res) => {
-    Query.getOrdersNotValidated((result, err) => {
-        if (result) {
-            res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
-        } else {
-            res.status(400).send(err);
-        }
-    });
+  Query.getOrdersNotValidated((result, err) => {
+    if (result) {
+      res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
+    } else {
+      res.status(400).send(err);
+    }
+  });
 });
 
 router.get('/order', (req, res) => {
@@ -58,7 +58,7 @@ router.get('/order_vouchers', (req, res) => {
 
 router.put('/verify', (req, res) => {
   const { obj, signature } = req.body;
-  console.log(JSON.stringify(obj));
+  console.log(`verify: ${JSON.stringify(obj)}`);
 
   Query.verifyOrderSignature(signature, obj, (result, err) => {
     if (result) {

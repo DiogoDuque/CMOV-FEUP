@@ -26,7 +26,6 @@ router.get('/orders_costumer', (req, res) => {
 
 router.get('/orders_customer_validated', (req, res) => {
   const { userId } = req.session;
-  console.log(userId);
   Query.getOrdersValidated(userId, (result, err) => {
     if (result) {
       res.status(200).send(`{orders:${JSON.stringify(result.rows)}}`);
@@ -99,6 +98,19 @@ router.post('/make_order', (req, res) => {
       res.status(200).send(JSON.stringify(result));
     } else {
       res.status(400).send(err);
+    }
+  });
+});
+
+
+
+router.get('is_order_validated', (req, res) => {
+  const { orderId } = req.query;
+  Query.isOrderValidated(orderId, (qRes, qErr) => {
+    if(qErr) {
+      res.status(400).send(qErr);
+    } else {
+      res.status(200).send(`{result: ${qRes}}`);
     }
   });
 });
