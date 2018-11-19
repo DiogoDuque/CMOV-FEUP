@@ -68,9 +68,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="10dp"
                     android:fontFamily="@font/monserrat"
-                    android:text="Currenyt Balance"
+                    android:padding="10dp"
+                    android:text="Current Balance"
                     android:textStyle="bold" />
 
                 <TextView
