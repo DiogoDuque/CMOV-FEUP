@@ -1,11 +1,13 @@
 package com.cmov.tp1.customer.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,9 +16,14 @@ import android.widget.Toast;
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
+import com.cmov.tp1.customer.utility.MonthYearPickerDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -33,6 +40,14 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editProfile();
+            }
+        });
+
+        final EditText cardDateInput = findViewById(R.id.card_validity_input);
+        cardDateInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickCardDate();
             }
         });
     }
@@ -101,6 +116,22 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Intent intent = new Intent(EditProfileActivity.this, MainMenuActivity.class);
         startActivity(intent);
+    }
+
+    private void pickCardDate() {
+        final EditText cardDateInput = findViewById(R.id.card_validity_input);
+        final Calendar calendar = Calendar.getInstance();
+        MonthYearPickerDialog pd = new MonthYearPickerDialog();
+        pd.setListener(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month-1);
+                // update
+                cardDateInput.setText(new SimpleDateFormat("MM/yy", Locale.UK).format(calendar.getTime()));
+            }
+        });
+        pd.show(getSupportFragmentManager(), "MonthYearPickerDialog");
     }
 
 }
