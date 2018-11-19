@@ -91,10 +91,13 @@ public class MainMenuActivity extends AppCompatActivity {
             intent = new Intent(this, MakeOrderActivity.class);
         else if(value == 6)
             intent = new Intent(this, TransactionsActivity.class);
-        else if(value == 7)
-            getInfoUser();
-        else if(value == 8)
-            logout();
+        else{
+            if(value == 7)
+                getInfoUser();
+            else if(value == 8)
+                logout();
+            return;
+        }
 
         startActivity(intent);
     }
