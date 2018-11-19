@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.cmov.tp1.customer.core.CafeteriaOrderProduct.productsToJson;
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
 
 public class MakeOrderActivity extends AppCompatActivity {
 
@@ -118,7 +119,7 @@ public class MakeOrderActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                //TODO handle
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
     }
@@ -162,7 +163,7 @@ public class MakeOrderActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                //TODO handle
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
     }

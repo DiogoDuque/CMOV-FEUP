@@ -17,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
+
 public class BuyTicketActivity extends AppCompatActivity {
 
     private Show show;
@@ -102,7 +104,7 @@ public class BuyTicketActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                //TODO handle error
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
     }

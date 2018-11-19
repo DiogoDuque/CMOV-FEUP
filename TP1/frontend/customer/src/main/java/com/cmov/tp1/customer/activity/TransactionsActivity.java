@@ -23,6 +23,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
+
 public class TransactionsActivity extends AppCompatActivity {
     private RecyclerView recyclerView1;
     private RecyclerView recyclerView2;
@@ -63,7 +65,7 @@ public class TransactionsActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                //TODO handle error
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
 
@@ -97,7 +99,7 @@ public class TransactionsActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                //TODO handle error
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
     }

@@ -23,6 +23,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
+
 public class OrderPageActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,7 @@ public class OrderPageActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                //TODO handle error
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
     }

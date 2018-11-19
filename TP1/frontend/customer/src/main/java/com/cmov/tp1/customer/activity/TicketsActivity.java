@@ -26,6 +26,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
+
 public class TicketsActivity extends AppCompatActivity {
     static private final String TAG = "TicketsActivity";
     private List<CheckBox> checkboxes = new ArrayList<>();
@@ -115,7 +117,8 @@ public class TicketsActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.w(TAG, json.toString()); //TODO handle error
+                Log.w(TAG, json.toString());
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
 

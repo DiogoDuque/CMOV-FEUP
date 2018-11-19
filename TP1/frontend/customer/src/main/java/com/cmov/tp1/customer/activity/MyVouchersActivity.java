@@ -22,6 +22,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
+
 public class MyVouchersActivity extends AppCompatActivity {
 
     @Override
@@ -72,8 +74,7 @@ public class MyVouchersActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-                //TODO handle error
+                } else genericErrorHandler(getApplicationContext(), json);
             }
         });
     }

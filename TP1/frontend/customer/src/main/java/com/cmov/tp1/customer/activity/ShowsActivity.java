@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
+
 public class ShowsActivity extends AppCompatActivity {
     static private final String TAG = "ShowsActivity";
 
@@ -62,7 +64,7 @@ public class ShowsActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                Log.e(TAG, json.toString()); //TODO handle error
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
     }

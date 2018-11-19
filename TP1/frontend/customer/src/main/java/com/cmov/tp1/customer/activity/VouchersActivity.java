@@ -34,6 +34,8 @@ import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.cmov.tp1.customer.utility.ErrorHandler.genericErrorHandler;
+
 public class VouchersActivity extends AppCompatActivity {
     private static final String TAG = "VouchersActivity";
 
@@ -143,7 +145,7 @@ public class VouchersActivity extends AppCompatActivity {
 
             @Override
             public void onError(JSONObject json) {
-                //TODO handle error
+                genericErrorHandler(getApplicationContext(), json);
             }
         });
     }
