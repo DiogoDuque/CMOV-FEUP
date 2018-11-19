@@ -78,7 +78,7 @@ public class TransactionsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position) {
                         CafeteriaOrder order = orderList.get(position);
-                        Intent intent = new Intent(TransactionsActivity.this, QrGeneratorActivity.class);
+                        Intent intent = new Intent(TransactionsActivity.this, OrderPageActivity.class);
                         Bundle b = new Bundle();
                         b.putInt("orderId", order.getId());
                         b.putString("date", order.getDate());

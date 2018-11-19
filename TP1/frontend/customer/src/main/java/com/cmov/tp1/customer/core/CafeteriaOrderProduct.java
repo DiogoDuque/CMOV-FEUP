@@ -19,6 +19,11 @@ public class CafeteriaOrderProduct {
         this.quantity = quantity;
     }
 
+    public CafeteriaOrderProduct(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
     public String getName() {
         return name;
     }

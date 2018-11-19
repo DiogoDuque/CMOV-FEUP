@@ -59,9 +59,11 @@ router.get('/order', (req, res) => {
 
 router.get('/order_products', (req, res) => {
   const { id } = req.query;
+  console.log(id);
   Query.getOrderProducts(id, (result, err) => {
+    console.log(result);
     if (result) {
-      res.status(200).send(result);
+      res.status(200).send({ result });
     } else {
       res.status(400).send(err);
     }
@@ -105,7 +107,6 @@ router.post('/make_order', (req, res) => {
 
 router.get('/is_order_validated', (req, res) => {
   const { orderId } = req.query;
-  console.log(`orderId=${orderId}`);
   Query.isOrderValidated(orderId, (qRes, qErr) => {
     if(qErr) {
       res.status(400).send(qErr);

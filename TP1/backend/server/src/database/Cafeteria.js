@@ -202,15 +202,16 @@ module.exports = {
   },
 
   getOrderProducts(id, callback) {
-    const baseQuery = 'SELECT cafeteria_order.id, cafeteria_product.name'
-      + ' FROM cafeteria_order, cafeteria_product, cafeteria_order_product'
-      + ' WHERE cafeteria_order.id = $1 AND cafeteria_order_product.order_id = cafeteria_order.id'
-      + ' AND cafeteria_product.id = cafeteria_order_product.product_id';
+    const baseQuery = 'SELECT cafeteria_product.name '
+      + 'FROM cafeteria_order '
+      + 'INNER JOIN cafeteria_order_product ON cafeteria_order_product.order_id = cafeteria_order.id '
+      + 'INNER JOIN cafeteria_product ON cafeteria_product.id = cafeteria_order_product.product_id '
+      + 'WHERE cafeteria_order.id = $1';
     execute(baseQuery, [id], (response, err) => {
       if (err) {
         callback(null, err);
       } else {
-        callback(response);
+        callback(response.rows);
       }
     });
   },
@@ -272,8 +273,6 @@ module.exports = {
   isOrderValidated(orderId, callback) {
     const baseQuery = 'SELECT is_validated, price FROM cafeteria_order WHERE id = $1';
     execute(baseQuery, [orderId], (res, err) => {
-      console.log(`err: ${JSON.stringify(err)}`);
-      console.log(`res: ${JSON.stringify(res)}`);
       if(err) {
         callback(null, err);
       } else {

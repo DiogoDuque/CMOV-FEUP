@@ -13,9 +13,15 @@ import com.cmov.tp1.customer.core.MyClickListener;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class OrderPageActivity extends AppCompatActivity {
 
@@ -32,7 +38,7 @@ public class OrderPageActivity extends AppCompatActivity {
         date.setText(b.getString("date"));
 
         TextView price = findViewById(R.id.price);
-        price.setText(Double.toString(b.getDouble("price")));
+        price.setText(Double.toString(b.getDouble("price")) + "$");
 
         final RecyclerView recyclerView = findViewById(R.id.products_list);
 
@@ -40,21 +46,36 @@ public class OrderPageActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(JSONObject json) {
-                final List<CafeteriaOrderProduct> products = CafeteriaOrderProductAdapter.parseJsonProducts(json);
-                CafeteriaOrderProductAdapter adapter = new CafeteriaOrderProductAdapter(products);
-                adapter.setupBoilerplate(getApplicationContext(), recyclerView, new MyClickListener.ClickListener() {
-                    @Override
-                    public void onClick(View view, int position) {
-
+                try {
+                    final HashMap<String, Integer> productsMap = new HashMap<>();
+                    JSONArray array = json.getJSONArray("result");
+                    for(int i=0; i<array.length(); i++) {
+                        String name = array.getJSONObject(i).getString("name");
+                        if(productsMap.containsKey(name)) {
+                            productsMap.put(name, productsMap.get(name)+1);
+                        } else productsMap.put(name, 1);
+                    }
+                    ArrayList<CafeteriaOrderProduct> products = new ArrayList<>();
+                    for(Map.Entry<String, Integer> pair: productsMap.entrySet()) {
+                        products.add(new CafeteriaOrderProduct(pair.getKey(), pair.getValue()));
                     }
 
-                    @Override
-                    public void onLongClick(View view, int position) {
-                    }
-                });
+                    CafeteriaOrderProductAdapter adapter = new CafeteriaOrderProductAdapter(products);
+                    adapter.setupBoilerplate(getApplicationContext(), recyclerView, new MyClickListener.ClickListener() {
+                        @Override
+                        public void onClick(View view, int position) {
 
-                recyclerView.setAdapter(adapter);
+                        }
 
+                        @Override
+                        public void onLongClick(View view, int position) {
+                        }
+                    });
+
+                    recyclerView.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             }
 

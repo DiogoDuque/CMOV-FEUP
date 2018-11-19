@@ -317,16 +317,9 @@ public abstract class NetworkRequests {
     }
 
     public static void getOrderProducts(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/order_products";
+        final String PATH = "/cafeteria/order_products?id="+id;
         final int METHOD = Request.Method.GET;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
+        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, null, onRequestCompleted);
     }
 
     public static void getProductPrice(Context context, String product, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
@@ -357,7 +350,6 @@ public abstract class NetworkRequests {
     }
 
     public static void isOrderValidated(Context context, int orderId, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        Log.d("Netw", orderId+"");
         final String PATH = "/cafeteria/is_order_validated?orderId="+orderId;
         final int METHOD = Request.Method.GET;
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, null, onRequestCompleted);
