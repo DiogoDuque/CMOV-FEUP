@@ -133,9 +133,9 @@ public abstract class NetworkRequests {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("card_type", card_type);
-            body.put("card_number", card_number);
-            body.put("card_validity", card_validity);
+            body.put("cardType", card_type);
+            body.put("cardNumber", card_number);
+            body.put("cardValidity", card_validity);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.activity;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.cmov.tp1.customer.core.Ticket;
 import com.cmov.tp1.customer.core.TicketTerminal;
 import com.cmov.tp1.customer.core.TicketsAdapter;
 import com.cmov.tp1.customer.core.TicketsAllAdapter;
+import com.cmov.tp1.customer.core.db.AppDatabase;
 import com.cmov.tp1.customer.networking.HTTPRequestUtility;
 import com.cmov.tp1.customer.networking.NetworkRequests;
 
@@ -39,6 +41,13 @@ public class TransactionsActivity extends AppCompatActivity {
             public void onSuccess(JSONObject json) {
                 final List<Ticket> ticketsList = TicketsAllAdapter.parseJsonTickets(json);
                 TicketsAllAdapter adapter = new TicketsAllAdapter(ticketsList);
+                final AppDatabase db  = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name").build();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.query().updateTickets(Ticket.toCachedTickets(ticketsList));
+                    }
+                }).start();
                 adapter.setupBoilerplate(getApplicationContext(), recyclerView1, new MyClickListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {

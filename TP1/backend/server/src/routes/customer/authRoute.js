@@ -13,18 +13,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
-    const { username, password } = req.body;
-    Query.checkIfLoginExists(username, password, (result, err) => {
-        if (result) {
-            req.session.username = username;
-            req.session.userId = result;
-            res.send(`{userId: ${result}}`);
-        } else if (result === false) {
-            res.status(401).send();
-        } else {
-            res.status(500).send(err);
-        }
-    });
+  const { username, password } = req.body;
+  Query.checkIfLoginExists(username, password, (result, err) => {
+    if (result) {
+      req.session.username = username;
+      req.session.userId = result;
+      res.send(`{userId: ${result}}`);
+    } else if (result === false) {
+      res.status(401).send();
+    } else {
+      res.status(500).send(err);
+    }
+  });
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
@@ -102,16 +102,16 @@ router.post('/register', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    if (req.session) {
-        // delete session object
-        req.session.destroy(function(err) {
-            if(err) {
-                res.status(400).send(err);
-            } else {
-                res.status(200).send(true);
-            }
-        });
-    }
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function (err) {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(`{result: ${true}}`);
+      }
+    });
+  }
 });
 
 module.exports = router;

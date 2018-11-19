@@ -1,5 +1,6 @@
 package com.cmov.tp1.customer.core;
 
+
 import com.cmov.tp1.customer.core.db.CachedTicket;
 
 import java.util.ArrayList;
@@ -45,5 +46,22 @@ public class Ticket {
 
     public boolean isUsed() {
         return isUsed;
+    }
+
+
+
+    public static CachedTicket[] toCachedTickets(List<Ticket> tickets) {
+        List<CachedTicket> cachedTickets = new ArrayList<>();
+        for(Ticket t: tickets) {
+
+            CachedTicket ticket = new CachedTicket();
+            ticket.ticketId = t.getTicketId();
+            ticket.date = t.getDate();
+            ticket.eventId = t.getEventId();
+            ticket.eventName = t.getName();
+            ticket.price = t.getPrice();
+            cachedTickets.add(ticket);
+        }
+        return cachedTickets.toArray(new CachedTicket[cachedTickets.size()]);
     }
 }

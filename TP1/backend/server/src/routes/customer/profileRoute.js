@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt-nodejs');
 const Query = require('../../database/Profile');
 
 const router = express.Router();
@@ -40,23 +41,23 @@ router.put('/', (req, res) => {
   const { name, username, nif, password } = req.body;
   const { userId } = req.session;
   bcrypt.genSalt(10, (saltErr, salt) => {
-      if (saltErr) {
-          res.status(500).send(saltErr);
-      } else {
-          bcrypt.hash(password, salt, null, (err, hash) => {
-              if (err) {
-                  res.status(500).send(err);
-              } else {
-                  Query.setMyProfile(userId, name, username, nif, password, (result, err) => {
-                      if (result) {
-                          res.status(200).send(result);
-                      } else {
-                          res.status(400).send(err);
-                      }
-                  });
-              }
+    if (saltErr) {
+      res.status(500).send(saltErr);
+    } else {
+      bcrypt.hash(password, salt, null, (err, hash) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          Query.setMyProfile(userId, name, username, nif, hash, (result, err) => {
+            if (result) {
+              res.status(200).send(result);
+            } else {
+              res.status(400).send(err);
+            }
           });
-      }
+        }
+      });
+    }
   });
 });
 
