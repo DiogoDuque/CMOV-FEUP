@@ -77,36 +77,9 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
     }
 
-    public static void getMyShowsRequest(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/show/my_shows";
-        final int METHOD = Request.Method.GET;
-
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
-    }
-
     //PROFILE REQUESTS
     public static void getProfileInfo(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/profile";
-        final int METHOD = Request.Method.GET;
-
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
-    }
-
-    public static void getProfileID(Context context, String username, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/profile/user_id";
-        final int METHOD = Request.Method.GET;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("username", username);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
-    public static void getCreditCard(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/profile/credit_card";
         final int METHOD = Request.Method.GET;
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
@@ -143,40 +116,7 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
-    public static void updateBalance(Context context, double adding, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/profile/credit_card";
-        final int METHOD = Request.Method.PUT;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("adding", adding);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
     //TICKETS REQUESTS
-    public static void getTicket(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/tickets";
-        final int METHOD = Request.Method.GET;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
-    public static void getUsedTickets(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/tickets/used_tickets";
-        final int METHOD = Request.Method.GET;
-
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
-    }
-
     public static void getNotUsedTickets(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/tickets/not_used_tickets";
         final int METHOD = Request.Method.GET;
@@ -220,100 +160,12 @@ public abstract class NetworkRequests {
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, null, onRequestCompleted);
     }
 
-    public static void getVoucherInfo(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/vouchers/voucher_info";
-        final int METHOD = Request.Method.GET;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
-    public static void createVoucher(Context context, int ticket, String type, int product, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/vouchers/create_voucher";
-        final int METHOD = Request.Method.POST;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("ticket", ticket);
-            body.put("type", type);
-            body.put("product", product);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
-    public static void updateStatus(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/vouchers/change_voucher";
-        final int METHOD = Request.Method.PUT;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
     //CAFETERIA REQUESTS
-    public static void getOrders(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/orders";
-        final int METHOD = Request.Method.GET;
-
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
-    }
-
     public static void getOrdersValidated(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/orders_customer_validated";
         final int METHOD = Request.Method.GET;
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
-    }
-
-    public static void getOrdersNotValidated(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/orders_costumer_not_validated";
-        final int METHOD = Request.Method.GET;
-
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
-    }
-
-    public static void getOrdersCostumer(Context context, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/orders_costumer";
-        final int METHOD = Request.Method.GET;
-
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, onRequestCompleted);
-    }
-
-    public static void getOrderInfo(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/order";
-        final int METHOD = Request.Method.GET;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
-    public static void getOrderVouchers(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/order_vouchers";
-        final int METHOD = Request.Method.GET;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
 
     public static void getOrderProducts(Context context, int id, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
@@ -341,14 +193,7 @@ public abstract class NetworkRequests {
 
         HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
     }
-
-    public static void addToOrder(Context context, JSONObject body, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
-        final String PATH = "/cafeteria/add_products";
-        final int METHOD = Request.Method.POST;
-
-        HTTPRequestUtility.getInstance(context).addToRequestQueue(PATH, METHOD, body, onRequestCompleted);
-    }
-
+    
     public static void isOrderValidated(Context context, int orderId, HTTPRequestUtility.OnRequestCompleted onRequestCompleted) {
         final String PATH = "/cafeteria/is_order_validated?orderId="+orderId;
         final int METHOD = Request.Method.GET;
