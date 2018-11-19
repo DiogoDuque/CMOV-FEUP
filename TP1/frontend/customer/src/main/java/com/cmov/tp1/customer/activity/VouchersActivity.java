@@ -95,6 +95,7 @@ public class VouchersActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putString("type", "cafeteria");
                 b.putString("cafeteriaOrder", body.toString());
+                b.putInt("orderID", orderId);
                 intent.putExtras(b);
                 startActivity(intent);
 

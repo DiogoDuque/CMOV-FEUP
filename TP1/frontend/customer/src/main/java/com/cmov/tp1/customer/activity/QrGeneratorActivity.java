@@ -3,16 +3,23 @@ package com.cmov.tp1.customer.activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cmov.tp1.customer.R;
 import com.cmov.tp1.customer.core.TicketTerminal;
+import com.cmov.tp1.customer.networking.HTTPRequestUtility;
+import com.cmov.tp1.customer.networking.NetworkRequests;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Hashtable;
 
@@ -22,6 +29,7 @@ public class QrGeneratorActivity extends AppCompatActivity {
     public final static int DIMENSION=500;
     private TicketTerminal ticket;
     private String cafeteriaOrder;
+    private int orderID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,7 @@ public class QrGeneratorActivity extends AppCompatActivity {
 
         if(b.getString("type").equals("cafeteria")) {
             cafeteriaOrder = b.getString("cafeteriaOrder");
+            orderID = b.getInt("orderID)");
             generate(true);
         }
         else{
@@ -49,8 +58,20 @@ public class QrGeneratorActivity extends AppCompatActivity {
     }
 
     void generate(boolean type) {
-        if(type)
+        if(type) {
             new Thread(new convertToQR(cafeteriaOrder)).start();
+            Thread t1 = new Thread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    try { pollingResponse(); }
+                    catch(InterruptedException e) { e.printStackTrace(); }
+                }
+            });
+
+            t1.start();
+        }
         else
             new Thread(new convertToQR(ticket.getTicket())).start();
     }
@@ -112,6 +133,43 @@ public class QrGeneratorActivity extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
         return bitmap;
+    }
+
+    void pollingResponse() throws InterruptedException {
+        Thread.sleep(5000);
+
+        // synchronized block ensures only one thread
+        // running at a time.
+        synchronized(this)
+        {
+            NetworkRequests.isOrderValidated(this, orderID, new HTTPRequestUtility.OnRequestCompleted(){
+
+                @Override
+                public void onSuccess(JSONObject json) {
+                    try {
+                        if(json.getBoolean("is_validated"))
+                        {
+                            Toast.makeText(getBaseContext(), "The final price of your cafeteria order is " + json.getDouble("price"), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        else{
+                            pollingResponse();
+                        }
+                    } catch (JSONException e) {
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(JSONObject json) {
+                    Toast.makeText(getBaseContext(), "Error! Try again later", Toast.LENGTH_LONG).show();
+                    Log.w("QR", json.toString());
+                    return;
+                }
+            });
+        }
     }
 }
 
