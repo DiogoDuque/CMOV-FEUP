@@ -1,0 +1,16 @@
+{
+    "globals": {
+        "it": true
+    },
+    "env": {
+        "node": true,
+        "mocha": true
+    },
+    "extends": "airbnb",
+    "rules":{
+        "space-before-function-paren": ["error", "never"],
+        "function-paren-newline": "warn",
+        "no-plusplus": "off",
+        "max-len": "off"
+    }
+}

@@ -1,0 +1,11 @@
+list of at least ten common NASDAQ companies
+
+given 1 or 2 companies, and a 7 or 30 day extension:
+ - list of close session quotes in the last corresponding number of days where quotes were available (quotes are not available for Saturdays, Sundays and US holidays)
+
+optional: see current quotes
+
+// https://www.barchart.com/ondemand/api/getQuote
+// https://www.barchart.com/ondemand/api/getHistory
+
+// https://paginas.fe.up.pt/~apm/CM/docs/cm_a2_1819.pdf
