@@ -15,5 +15,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ListCompanies.cs" />
+    <Compile Remove="Views\MyPage.cs" />
+    <Compile Remove="Views\MyPage.xaml.cs" />
+    <Compile Remove="Views\CompaniesList.xaml.cs" />
+    <Compile Remove="Views\CompanyPage.cs" />
+    <Compile Remove="Views\CompanyPage.xaml.cs" />
+    <Compile Remove="Views\ItemPage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\MyPage.xaml" />
+    <EmbeddedResource Remove="Views\CompaniesList.xaml" />
+    <EmbeddedResource Remove="Views\CompanyPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemPage.xaml" />
   </ItemGroup>
 </Project>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace Stocks
+namespace Stocks.Views
 {
-    public partial class CompaniesList : ContentPage
+    public partial class MainPage : ContentPage
     {
-        public CompaniesList()
+        public MainPage()
         {
             InitializeComponent();
         }

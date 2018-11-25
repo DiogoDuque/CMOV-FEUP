@@ -1,6 +1,6 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Stocks.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Stocks

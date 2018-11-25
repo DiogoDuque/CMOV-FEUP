@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Stocks.Views.ItemListPage">
+   <ContentPage.Content>
+        <ListView x:Name="listView" ItemsSource="{Binding Companies}" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5,0,5,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                            <Image Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50"  />
+                            <Label Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="nextButton" Text="Next" />
+    </ContentPage.Content>
+</ContentPage>
