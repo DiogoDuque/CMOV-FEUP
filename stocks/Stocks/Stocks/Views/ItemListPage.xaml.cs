@@ -16,8 +16,8 @@ namespace Stocks.Views
             itemListViewModel = new ItemListViewModel();
             BindingContext = itemListViewModel;
 
-           // listView.ItemSelected += ListView_ItemSelected;
-           // nextButton.Clicked += NextButton_Clicked;
+           listView.ItemSelected += ListView_ItemSelected;
+           nextButton.Clicked += NextButton_Clicked;
         }
 
         void NextButton_Clicked(object sender, EventArgs e)
@@ -31,15 +31,15 @@ namespace Stocks.Views
 
         void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-           // String selectedFromList = listView.SelectedItem.ToString();
+           String selectedFromList = listView.SelectedItem.ToString();
 
             foreach(var company in itemListViewModel.Companies){
-                /*if (company.Name == selectedFromList){
+                if (company.Name == selectedFromList){
                     if (companies.Count < 2)
                         companies.Add(company);
                     else
                         DisplayAlert("Alert", "You have to select only 1 or 2 companies", "OK");
-                }*/
+                }
             }
         }
 

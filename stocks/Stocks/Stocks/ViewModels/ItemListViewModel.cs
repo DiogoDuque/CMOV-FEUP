@@ -14,7 +14,71 @@ public class ItemListViewModel : BaseViewModel
         {
             Name = "Apple",
             Id = 1,
-            Nick = "APPL"
+            Nick = "APPL",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "IBM",
+            Id = 2,
+            Nick = "IBM",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "Hewlett Packard",
+            Id = 3,
+            Nick = "Hewlett Packard",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "Microsoft",
+            Id = 4,
+            Nick = "Microsoft",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "Oracle",
+            Id = 5,
+            Nick = "Oracle",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "Google",
+            Id = 6,
+            Nick = "Google",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "Facebook",
+            Id = 7,
+            Nick = "Facebook",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "Twitter",
+            Id = 8,
+            Nick = "Twitter",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "Intel",
+            Id = 9,
+            Nick = "Intel",
+            CurrentQuote = 1
+        });
+        this.Companies.Add(new Company
+        {
+            Name = "AMD",
+            Id = 10,
+            Nick = "AMD",
+            CurrentQuote = 1
         });
     }
 }
