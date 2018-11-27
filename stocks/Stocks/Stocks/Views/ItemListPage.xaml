@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Stocks.Views.ItemListPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Stocks.Views.ItemListPage" Title="Companies List" BackgroundColor="White">
    <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="listView" ItemsSource="{Binding Companies}" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement" Margin="0,30,0,0" RowHeight="50">
@@ -7,15 +7,16 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="5,0,5,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-                                <Image Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50"  />
-                                <Label Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" />
-                                <Label Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" />
+                                <Image Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" />
+                                <Label Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
+                                <Label Text="-" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="nextButton" Text="Next" HorizontalOptions="Center" BackgroundColor="Teal" BorderRadius="20"/>
+            <Button x:Name="nextButton" Text="Next" HorizontalOptions="Center" WidthRequest="100" BackgroundColor="Teal" TextColor="White" Font="Bold, 15" BorderRadius="20" Margin="0,0,0,20"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
