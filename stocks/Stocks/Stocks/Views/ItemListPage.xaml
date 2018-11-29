@@ -9,8 +9,8 @@
                             <StackLayout Padding="5,0,5,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
                                 <Image Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" />
                                 <Label Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
-                                <Label Text="-" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
-                                <Label Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text=" " VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Green"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
