@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Stocks.Models;
-using Stocks.ViewModels;
 
-public class ItemListViewModel : BaseViewModel
+public class ItemListViewModel
 {
     public ObservableCollection<Company> Companies { get; set; }
 
@@ -81,5 +80,11 @@ public class ItemListViewModel : BaseViewModel
                 CurrentQuote = 1
             }
         };
+    }
+
+    public void SetValue(){
+        foreach(Company company in Companies)
+            company.CurrentQuote = 0;
+       
     }
 }

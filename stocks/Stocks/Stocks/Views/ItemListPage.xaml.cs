@@ -43,5 +43,10 @@ namespace Stocks.Views
             }
         }
 
+        void ChangeListView(){
+            itemListViewModel.SetValue();
+            BindingContext = itemListViewModel;
+        }
+
     }
 }

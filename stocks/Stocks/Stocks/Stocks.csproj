@@ -21,6 +21,7 @@
     <Compile Remove="Views\CompanyPage.cs" />
     <Compile Remove="Views\CompanyPage.xaml.cs" />
     <Compile Remove="Views\ItemPage.xaml.cs" />
+    <Compile Remove="ViewModels\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
