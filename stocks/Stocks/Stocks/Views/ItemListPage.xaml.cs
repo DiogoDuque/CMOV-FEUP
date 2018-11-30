@@ -22,8 +22,9 @@ namespace Stocks.Views
 
         void NextButton_Clicked(object sender, EventArgs e)
         {
-            if(companies.Count != 0)
-                Application.Current.MainPage = new QuotationFlutuation(companies);
+            if(companies.Count != 0){
+                Navigation.PushModalAsync(new QuotationFlutuation(companies));
+            }
             else
                 DisplayAlert("Alert", "You have to select 1 or 2 companies", "OK");
         }
