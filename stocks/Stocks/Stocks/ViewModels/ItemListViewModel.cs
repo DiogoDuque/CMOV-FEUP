@@ -83,8 +83,7 @@ public class ItemListViewModel
     }
 
     public void SetValue(){
-        foreach(Company company in Companies)
-            company.CurrentQuote = 0;
-       
+        for (int i = 0; i < Companies.Count; i++)
+            Companies[i].CurrentQuote = 0;
     }
 }

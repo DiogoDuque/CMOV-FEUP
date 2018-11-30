@@ -16,8 +16,8 @@ namespace Stocks.Views
             itemListViewModel = new ItemListViewModel();
             BindingContext = itemListViewModel;
 
-           listView.ItemSelected += ListView_ItemSelected;
-           nextButton.Clicked += NextButton_Clicked;
+            listView.ItemSelected += ListView_ItemSelected;
+            nextButton.Clicked += NextButton_Clicked;
         }
 
         void NextButton_Clicked(object sender, EventArgs e)
@@ -43,10 +43,16 @@ namespace Stocks.Views
             }
         }
 
-        void ChangeListView(){
+        protected void ListItems_Refreshing(object sender, EventArgs e)
+        {
+            listView.BeginRefresh();
+            DoRefresh();       
+            listView.EndRefresh();  
+        }
+
+        void DoRefresh(){
             itemListViewModel.SetValue();
             BindingContext = itemListViewModel;
         }
-
     }
 }
