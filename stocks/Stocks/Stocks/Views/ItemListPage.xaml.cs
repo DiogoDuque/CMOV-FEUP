@@ -32,9 +32,8 @@ namespace Stocks.Views
 
         void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedFromList = (Company)e.SelectedItem;
+            Company selectedFromList = (Company) e.SelectedItem;
             string name = selectedFromList.Name;
-
             foreach(Company company in itemListViewModel.Companies){
                 if (company.Name == name){
                     if (!companies.Contains(selectedFromList) && companies.Count < 2)
