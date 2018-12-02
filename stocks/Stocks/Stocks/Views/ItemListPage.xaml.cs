@@ -37,15 +37,17 @@ namespace Stocks.Views
 
             foreach(Company company in itemListViewModel.Companies){
                 if (company.Name == name){
-                    if (companies.Count < 2)
+                    if (!companies.Contains(selectedFromList) && companies.Count < 2)
                         companies.Add(company);
+                    else if (companies.Contains(selectedFromList))
+                        companies.Remove(company);
                     else
                         DisplayAlert("Alert", "You have to select only 1 or 2 companies", "OK");
                 }
             }
         }
 
-        protected void ListItems_Refreshing(object sender, EventArgs e)
+        void ListItems_Refreshing(object sender, EventArgs e)
         {
             listView.BeginRefresh();
             DoRefresh();       
