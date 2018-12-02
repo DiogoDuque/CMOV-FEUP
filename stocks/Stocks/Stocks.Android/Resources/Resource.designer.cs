@@ -4770,6 +4770,9 @@ namespace Stocks.Droid
 			// aapt resource value: 0x7f0c0047
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131492935;
 			
+			// aapt resource value: 0x7f0c0192
+			public const int Splash = 2131493266;
+			
 			// aapt resource value: 0x7f0c00d6
 			public const int TextAppearance_AppCompat = 2131493078;
 			
