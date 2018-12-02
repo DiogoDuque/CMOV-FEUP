@@ -23,6 +23,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label x:Name="selectLabel" Text="You select: " IsVisible="false" TextColor="Black" HorizontalOptions="Center"/>
+            <Label x:Name="selectedCompanies" Text="" IsVisible="false" TextColor="Blue" HorizontalOptions="Center" Font="Bold, 15"/>
             <Button x:Name="nextButton" Text="Next" HorizontalOptions="Center" WidthRequest="100" BackgroundColor="Teal" TextColor="White" Font="Bold, 15" BorderRadius="20" Margin="0,0,0,20"/>
         </StackLayout>
     </ContentPage.Content>
