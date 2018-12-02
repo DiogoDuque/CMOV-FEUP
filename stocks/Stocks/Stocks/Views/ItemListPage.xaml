@@ -32,7 +32,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" x:Name="selectLabel" Text="You selected: " IsVisible="false" TextColor="Black" HorizontalOptions="Center"/>
-                <Label Grid.Column="1" x:Name="selectedCompanies" Text="" IsVisible="false" TextColor="#019fc6" HorizontalOptions="Start" Font="Bold, 15"/>
+                <Label Grid.Column="1" x:Name="selectedCompanies" Text="" IsVisible="false" TextColor="#019fc6" HorizontalOptions="Center" Font="Bold, 15"/>
              </Grid>
             <Button x:Name="nextButton" Text="Next" HorizontalOptions="Center" WidthRequest="100" BackgroundColor="#019fc6" TextColor="White" Font="Bold, 15" BorderRadius="20" Margin="0,0,0,20"/>
         </StackLayout>

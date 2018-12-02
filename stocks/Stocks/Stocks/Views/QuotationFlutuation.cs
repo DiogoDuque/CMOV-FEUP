@@ -20,6 +20,8 @@ namespace Stocks.Views
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center,
                 TextColor = Color.Black,
+                FontSize = 20,
+                FontAttributes = FontAttributes.Bold,
                 Margin = new Thickness(0, 20, 0, 30),
                 Text = (companies.Count == 1 ? "Quotation flutuation of " + companies[0].Name : "Quotation flutuation of " + companies[0].Name + " and " + companies[1].Name)
             };
