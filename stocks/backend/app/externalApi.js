@@ -4,7 +4,6 @@ const { apiKey, apiHost } = require('./config');
 const basePath = `${apiHost}getHistory.json?apikey=${apiKey}`;
 
 function getFinalUrl(args) {
-  console.log(`args: ${JSON.stringify(args)}`);
   let url = `${basePath}`;
   for (const key in args) {
     url += `&${key}=${args[key]}`;
@@ -13,6 +12,18 @@ function getFinalUrl(args) {
 }
 
 module.exports = {
+  getLastQuotesTwoCompanies(companies, period, callback) {
+    this.getLastQuotes(companies[0], period, (err1, res1) => {
+      if (err1) {
+        callback(err1);
+      } else {
+        this.getLastQuotes(companies[1], period, (err2, res2) => {
+          callback(err2, [res1, res2]);
+        });
+      }
+    });
+  },
+
   getLastQuotes(company, period, callback) {
     const url = getFinalUrl({
       symbol: company,
@@ -25,7 +36,6 @@ module.exports = {
       volume: 'sum',
     });
 
-    console.log(`url: ${url}`);
     request(url, { json: true }, (err, res, body) => callback(err, body.results));
   },
 };

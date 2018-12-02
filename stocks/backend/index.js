@@ -45,8 +45,7 @@ app.get('/history', (req, res) => {
     (joiErr, joiRes) => joiHandler(joiErr, joiRes, res, () => {
       const { company, period } = query;
       if (Array.isArray(company)) {
-        // TODO
-        res.send();
+        History.getLastQuotesTwoCompanies(company, period, (err, body) => externalApiHandler(err, body, res));
       } else {
         History.getLastQuotes(company, period, (err, body) => externalApiHandler(err, body, res));
       }
