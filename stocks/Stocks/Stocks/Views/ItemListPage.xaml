@@ -2,21 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Stocks.Views.ItemListPage" Title="Companies List" BackgroundColor="White">
    <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="listView" ItemsSource="{Binding Companies}" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement" Margin="0,30,0,0" RowHeight="50">
+            <ListView x:Name="listView" ItemsSource="{Binding Companies}" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement" Margin="0,30,0,0" RowHeight="50" IsPullToRefreshEnabled="True" Refreshing="ListItems_Refreshing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="5,0,5,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-                                <Image Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" />
-                                <Label Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
-                                <Label Text="-" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
-                                <Label Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
-                            </StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20*" />
+                                    <ColumnDefinition Width="30*" />
+                                    <ColumnDefinition Width="50*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" />
+                                <Label Grid.Column="1" Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
+                                <Label Grid.Column="2" Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Green" HorizontalOptions="CenterAndExpand"/>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="nextButton" Text="Next" HorizontalOptions="Center" WidthRequest="100" BackgroundColor="Teal" TextColor="White" Font="Bold, 15" BorderRadius="20" Margin="0,0,0,20"/>
+            <Grid Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" x:Name="selectLabel" Text="You selected: " IsVisible="false" TextColor="Black" HorizontalOptions="Center"/>
+                <Label Grid.Column="1" x:Name="selectedCompanies" Text="" IsVisible="false" TextColor="#019fc6" HorizontalOptions="Start" Font="Bold, 15"/>
+             </Grid>
+            <Button x:Name="nextButton" Text="Next" HorizontalOptions="Center" WidthRequest="100" BackgroundColor="#019fc6" TextColor="White" Font="Bold, 15" BorderRadius="20" Margin="0,0,0,20"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

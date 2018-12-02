@@ -1,15 +1,15 @@
 ﻿using System;
-
-using Xamarin.Forms;
+using Stocks.ViewModels;
 
 namespace Stocks.Models
 {
-    public class Company
+    public class Company : BaseViewModel
     {
         public string Name { get; set; }
         public int Id { get; set; }
         public string Nick { get; set; }
-        public double CurrentQuote { get; set; }
+        private double _CurrentQuote;
+        public double CurrentQuote { get => _CurrentQuote; set => SetProperty(ref _CurrentQuote, value); }
         public String ImageUrl { get; set; }
     }
 }

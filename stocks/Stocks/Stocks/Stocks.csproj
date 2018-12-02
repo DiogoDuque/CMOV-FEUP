@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="SkiaSharp" Version="1.60.3" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ListCompanies.cs" />
@@ -33,5 +34,6 @@
     <EmbeddedResource Remove="Views\CompaniesList.xaml" />
     <EmbeddedResource Remove="Views\CompanyPage.xaml" />
     <EmbeddedResource Remove="Views\ItemPage.xaml" />
+    <EmbeddedResource Remove="Views\QuotationFlutuation.xaml" />
   </ItemGroup>
 </Project>
