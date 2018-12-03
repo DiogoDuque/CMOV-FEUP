@@ -16,7 +16,7 @@ namespace Stocks.Views
             itemListViewModel = new ItemListViewModel();
             BindingContext = itemListViewModel;
 
-            listView.ItemSelected += ListView_ItemSelected;
+            listView.ItemTapped += ListView_ItemSelected;
             nextButton.Clicked += NextButton_Clicked;
         }
 
@@ -30,9 +30,9 @@ namespace Stocks.Views
         }
 
 
-        void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        void ListView_ItemSelected(object sender, ItemTappedEventArgs e)
         {
-            Company selectedFromList = (Company) e.SelectedItem;
+            Company selectedFromList = (Company) e.Item;
             string name = selectedFromList.Name;
 
             foreach(Company company in itemListViewModel.Companies){
