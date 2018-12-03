@@ -13,6 +13,7 @@ namespace Stocks.Views
         Label title;
         Label typeActivate;
         Button button;
+        Button back;
         SKCanvasView view;
         Boolean isSelected;
         public QuotationFlutuation(List<Company> companies)
@@ -50,7 +51,21 @@ namespace Stocks.Views
                 BackgroundColor = Color.FromHex("#019fc6"),
                 TextColor = Color.White,
                 CornerRadius = 20,
+                FontAttributes = FontAttributes.Bold,
                 Margin = new Thickness(0,0,0,10)
+            };
+
+            back = new Button()
+            {
+                Text = "Back",
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                WidthRequest = 100,
+                BackgroundColor = Color.FromHex("#019fc6"),
+                TextColor = Color.White,
+                CornerRadius = 20,
+                FontAttributes = FontAttributes.Bold,
+                Margin = new Thickness(0, 20, 0, 20)
             };
 
             view = new SKCanvasView() {
@@ -63,7 +78,7 @@ namespace Stocks.Views
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                Children = { title, typeActivate, button, view }
+                Children = { title, typeActivate, button, view, back }
             };
 
             BackgroundColor = Color.White;
@@ -71,7 +86,14 @@ namespace Stocks.Views
             isSelected = true;
 
             button.Clicked += Button_Clicked;
+            back.Clicked += Back_Clicked;
         }
+
+        void Back_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new ItemListPage());
+        }
+
 
         void Button_Clicked(object sender, EventArgs e)
         {

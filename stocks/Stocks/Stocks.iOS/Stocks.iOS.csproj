@@ -140,28 +140,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image.imageset\nasdaq.png" />
-    <ImageAsset Include="Assets.xcassets\Image-1.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-2.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-3.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-4.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-5.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-6.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-7.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-8.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-9.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-10.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Image-1.imageset\amd.png" />
-    <ImageAsset Include="Assets.xcassets\Image-2.imageset\apple.png" />
-    <ImageAsset Include="Assets.xcassets\Image-3.imageset\facebook.png" />
-    <ImageAsset Include="Assets.xcassets\Image-4.imageset\google.png" />
-    <ImageAsset Include="Assets.xcassets\Image-5.imageset\hp.png" />
-    <ImageAsset Include="Assets.xcassets\Image-6.imageset\ibm.png" />
-    <ImageAsset Include="Assets.xcassets\Image-7.imageset\intel.png" />
-    <ImageAsset Include="Assets.xcassets\Image-8.imageset\oracle.png" />
-    <ImageAsset Include="Assets.xcassets\Image-9.imageset\twitter.png" />
-    <ImageAsset Include="Assets.xcassets\Image-10.imageset\microsoft.png" />
+    <ImageAsset Include="Assets.xcassets\logo_splash_screen.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\logo_splash_screen.imageset\nasdaq.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -178,5 +158,22 @@
       <Project>{E4E94C46-0CDB-4BA9-AE0C-94CFC8CDE995}</Project>
       <Name>Stocks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\logo_splash_screen.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hp.png" />
+    <BundleResource Include="Resources\ibm.png" />
+    <BundleResource Include="Resources\icon.png" />
+    <BundleResource Include="Resources\intel.png" />
+    <BundleResource Include="Resources\microsoft.png" />
+    <BundleResource Include="Resources\nasdaq.png" />
+    <BundleResource Include="Resources\oracle.png" />
+    <BundleResource Include="Resources\twitter.png" />
+    <BundleResource Include="Resources\amd.png" />
+    <BundleResource Include="Resources\apple.png" />
+    <BundleResource Include="Resources\facebook.png" />
+    <BundleResource Include="Resources\google.png" />
   </ItemGroup>
 </Project>
