@@ -11,7 +11,10 @@ namespace Stocks.Views
     {
         private List<Company> companies;
         Label title;
+        Label typeActivate;
+        Button button;
         SKCanvasView view;
+        Boolean isSelected;
         public QuotationFlutuation(List<Company> companies)
         {
             this.companies = companies;
@@ -19,11 +22,35 @@ namespace Stocks.Views
             {
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
                 TextColor = Color.Black,
-                FontSize = 20,
+                FontSize = 18,
                 FontAttributes = FontAttributes.Bold,
-                Margin = new Thickness(0, 20, 0, 30),
+                Margin = new Thickness(0, 40, 0, 30),
                 Text = (companies.Count == 1 ? "Quotation flutuation of " + companies[0].Name : "Quotation flutuation of " + companies[0].Name + " and " + companies[1].Name)
+            };
+
+            typeActivate = new Label()
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                TextColor = Color.FromHex("#019fc6"),
+                FontSize = 17,
+                FontAttributes = FontAttributes.Bold,
+                Margin = new Thickness(0, 0, 0, 15),
+                Text= "7 days analysis activated"
+            };
+
+            button = new Button() {
+                Text = "30 days",
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                WidthRequest = 100,
+                BackgroundColor = Color.FromHex("#019fc6"),
+                TextColor = Color.White,
+                CornerRadius = 20,
+                Margin = new Thickness(0,0,0,10)
             };
 
             view = new SKCanvasView() {
@@ -34,11 +61,35 @@ namespace Stocks.Views
 
             Content = new StackLayout()
             {
-                Children = { title, view }
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Children = { title, typeActivate, button, view }
             };
 
             BackgroundColor = Color.White;
+
+            isSelected = true;
+
+            button.Clicked += Button_Clicked;
         }
+
+        void Button_Clicked(object sender, EventArgs e)
+        {
+            if (isSelected)
+            {
+                typeActivate.Text = "30 days analysis activated";
+                button.Text = "7 days";
+                isSelected = false;
+            }
+            else
+            {
+                typeActivate.Text = "7 days analysis activated";
+                button.Text = "30 days";
+                isSelected = true;
+            }
+
+        }
+
 
         private void OnPainting(object sender, SKPaintSurfaceEventArgs e)
         {

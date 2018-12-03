@@ -83,6 +83,17 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\nasdaq.png" />
+    <AndroidResource Include="Resources\drawable\amd.png" />
+    <AndroidResource Include="Resources\drawable\intel.png" />
+    <AndroidResource Include="Resources\drawable\twitter.png" />
+    <AndroidResource Include="Resources\drawable\facebook.png" />
+    <AndroidResource Include="Resources\drawable\google.png" />
+    <AndroidResource Include="Resources\drawable\oracle.png" />
+    <AndroidResource Include="Resources\drawable\microsoft.png" />
+    <AndroidResource Include="Resources\drawable\hp.png" />
+    <AndroidResource Include="Resources\drawable\ibm.png" />
+    <AndroidResource Include="Resources\drawable\apple.png" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

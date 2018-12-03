@@ -142,6 +142,26 @@
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Image.imageset\nasdaq.png" />
+    <ImageAsset Include="Assets.xcassets\Image-1.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-3.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-5.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-6.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-7.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-8.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-9.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-10.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image-1.imageset\amd.png" />
+    <ImageAsset Include="Assets.xcassets\Image-2.imageset\apple.png" />
+    <ImageAsset Include="Assets.xcassets\Image-3.imageset\facebook.png" />
+    <ImageAsset Include="Assets.xcassets\Image-4.imageset\google.png" />
+    <ImageAsset Include="Assets.xcassets\Image-5.imageset\hp.png" />
+    <ImageAsset Include="Assets.xcassets\Image-6.imageset\ibm.png" />
+    <ImageAsset Include="Assets.xcassets\Image-7.imageset\intel.png" />
+    <ImageAsset Include="Assets.xcassets\Image-8.imageset\oracle.png" />
+    <ImageAsset Include="Assets.xcassets\Image-9.imageset\twitter.png" />
+    <ImageAsset Include="Assets.xcassets\Image-10.imageset\microsoft.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
