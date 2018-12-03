@@ -58,7 +58,7 @@ public class ItemListViewModel
             {
                 Name = "Google",
                 Id = 6,
-                Nick = "GOOGL",
+                Nick = "GOOG",
                 CurrentQuote = 1,
                 ImageUrl = "google.jpg",
                 Type = "Green"

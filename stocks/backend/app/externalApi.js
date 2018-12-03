@@ -1,9 +1,10 @@
 const request = require('request');
 const { apiKey, apiHost } = require('./config');
 
-const basePath = `${apiHost}getHistory.json?apikey=${apiKey}`;
+const historyBasePath = `${apiHost}getHistory.json?apikey=${apiKey}`;
+const quoteBasePath = `${apiHost}getQuote.json?apikey=${apiKey}`;
 
-function getFinalUrl(args) {
+function getFinalUrl(basePath, args) {
   let url = `${basePath}`;
   for (const key in args) {
     url += `&${key}=${args[key]}`;
@@ -12,20 +13,20 @@ function getFinalUrl(args) {
 }
 
 module.exports = {
-  getLastQuotesTwoCompanies(companies, period, callback) {
-    this.getLastQuotes(companies[0], period, (err1, res1) => {
+  getQuotesHistoryTwoCompanies(companies, period, callback) {
+    this.getQuotesHistory(companies[0], period, (err1, res1) => {
       if (err1) {
         callback(err1);
       } else {
-        this.getLastQuotes(companies[1], period, (err2, res2) => {
+        this.getQuotesHistory(companies[1], period, (err2, res2) => {
           callback(err2, [res1, res2]);
         });
       }
     });
   },
 
-  getLastQuotes(company, period, callback) {
-    const url = getFinalUrl({
+  getQuotesHistory(company, period, callback) {
+    const url = getFinalUrl(historyBasePath, {
       symbol: company,
       maxRecords: period,
       type: 'daily',
@@ -35,7 +36,41 @@ module.exports = {
       dividends: true,
       volume: 'sum',
     });
+    request(url, { json: true }, (err, res, body) => {
+      if (err) {
+        callback(err);
+      } else {
+        const history = [];
+        body.results.forEach((elem) => {
+          const { tradingDay, close } = elem;
+          history.push({ tradingDay, close });
+        });
+        callback(null, { company, history });
+      }
+    });
+  },
 
-    request(url, { json: true }, (err, res, body) => callback(err, body.results));
+  getCurrentQuotes(callback) {
+    const url = getFinalUrl(quoteBasePath, {
+      symbols: 'AAPL%2CAMD%2CFB%2CGOOG%2CHPE%2CIBM%2CINTC%2CMSFT%2CORCL%2CTWTR',
+      fields: 'previousClose',
+    });
+    request(url, { json: true }, (err, res, body) => {
+      if (err) {
+        callback(err);
+      } else {
+        const quotes = {};
+        body.results.forEach((elem) => {
+          const {
+            symbol, lastPrice, netChange, percentChange, high, low, previousClose,
+          } = elem;
+          quotes[symbol] = {
+            lastPrice, netChange, percentChange, high, low, previousClose,
+          };
+        });
+        console.log(quotes);
+        callback(null, quotes);
+      }
+    });
   },
 };

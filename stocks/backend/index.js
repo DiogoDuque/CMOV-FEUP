@@ -1,7 +1,7 @@
 const express = require('express');
 const ejs = require('ejs');
 const Joi = require('joi');
-const History = require('./app/externalApi');
+const Api = require('./app/externalApi');
 
 const PORT = 8080;
 const app = express();
@@ -45,11 +45,15 @@ app.get('/history', (req, res) => {
     (joiErr, joiRes) => joiHandler(joiErr, joiRes, res, () => {
       const { company, period } = query;
       if (Array.isArray(company)) {
-        History.getLastQuotesTwoCompanies(company, period, (err, body) => externalApiHandler(err, body, res));
+        Api.getQuotesHistoryTwoCompanies(company, period, (err, body) => externalApiHandler(err, body, res));
       } else {
-        History.getLastQuotes(company, period, (err, body) => externalApiHandler(err, body, res));
+        Api.getQuotesHistory(company, period, (err, body) => externalApiHandler(err, body, res));
       }
     }));
+});
+
+app.get('/quote', (req, res) => {
+  Api.getCurrentQuotes((err, body) => externalApiHandler(err, body, res));
 });
 
 
