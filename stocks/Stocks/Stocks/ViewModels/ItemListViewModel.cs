@@ -29,7 +29,7 @@ public class ItemListViewModel
             {
                 Name = "Hewlett Packard",
                 Id = 3,
-                Nick = "Hewlett Packard",
+                Nick = "HPE",
                 CurrentQuote = 1,
                 ImageUrl = "hp.png"
             },
@@ -37,7 +37,7 @@ public class ItemListViewModel
             {
                 Name = "Microsoft",
                 Id = 4,
-                Nick = "Microsoft",
+                Nick = "MSFT",
                 CurrentQuote = 1,
                 ImageUrl = "microsoft.png"
             },
@@ -45,7 +45,7 @@ public class ItemListViewModel
             {
                 Name = "Oracle",
                 Id = 5,
-                Nick = "Oracle",
+                Nick = "ORCL",
                 CurrentQuote = 1,
                 ImageUrl = "oracle.png"
             },
@@ -53,15 +53,15 @@ public class ItemListViewModel
             {
                 Name = "Google",
                 Id = 6,
-                Nick = "Google",
+                Nick = "GOOGL",
                 CurrentQuote = 1,
-                ImageUrl = "google.png"
+                ImageUrl = "google.jpg"
             },
             new Company
             {
                 Name = "Facebook",
                 Id = 7,
-                Nick = "Facebook",
+                Nick = "FB",
                 CurrentQuote = 1,
                 ImageUrl = "facebook.png"
             },
@@ -69,7 +69,7 @@ public class ItemListViewModel
             {
                 Name = "Twitter",
                 Id = 8,
-                Nick = "Twitter",
+                Nick = "TWTR",
                 CurrentQuote = 1,
                 ImageUrl = "twitter.png"
             },
@@ -77,7 +77,7 @@ public class ItemListViewModel
             {
                 Name = "Intel",
                 Id = 9,
-                Nick = "Intel",
+                Nick = "INTC",
                 CurrentQuote = 1,
                 ImageUrl = "intel.png"
             },

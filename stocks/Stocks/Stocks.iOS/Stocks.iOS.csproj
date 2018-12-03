@@ -174,6 +174,5 @@
     <BundleResource Include="Resources\amd.png" />
     <BundleResource Include="Resources\apple.png" />
     <BundleResource Include="Resources\facebook.png" />
-    <BundleResource Include="Resources\google.png" />
   </ItemGroup>
 </Project>
