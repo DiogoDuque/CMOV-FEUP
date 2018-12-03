@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Stocks.Views.ItemListPage" Title="Companies List" BackgroundColor="White">
    <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="listView" ItemsSource="{Binding Companies}" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement" Margin="0,30,0,0" RowHeight="50" IsPullToRefreshEnabled="True" Refreshing="ListItems_Refreshing">
+            <ListView x:Name="listView" ItemsSource="{Binding Companies}" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement" Margin="0,30,0,0" RowHeight="50" IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

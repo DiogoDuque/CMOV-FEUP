@@ -16,6 +16,11 @@ namespace Stocks.Views
             itemListViewModel = new ItemListViewModel();
             BindingContext = itemListViewModel;
 
+            listView.RefreshCommand = new Command(() => {
+                DoRefresh();
+                listView.IsRefreshing = false;
+            });
+
             listView.ItemTapped += ListView_ItemSelected;
             nextButton.Clicked += NextButton_Clicked;
         }
@@ -68,16 +73,10 @@ namespace Stocks.Views
             }
         }
 
-        void ListItems_Refreshing(object sender, EventArgs e)
-        {
-            listView.BeginRefresh();
-            DoRefresh();       
-            listView.EndRefresh();  
-        }
-
         void DoRefresh(){
             itemListViewModel.SetValue();
-            BindingContext = itemListViewModel;
+            listView.ItemsSource = null;
+            listView.ItemsSource = itemListViewModel.Companies;
         }
     }
 }
