@@ -11,6 +11,8 @@ namespace Stocks.Models
         private double _CurrentQuote;
         public double CurrentQuote { get => _CurrentQuote; set => SetProperty(ref _CurrentQuote, value); }
         public String ImageUrl { get; set; }
+        private String _Type;
+        public String Type { get => _Type; set => SetProperty(ref _Type, value); }
     }
 }
 

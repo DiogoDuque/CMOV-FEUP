@@ -97,7 +97,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -131,9 +130,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -142,6 +138,9 @@
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\logo_splash_screen.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\logo_splash_screen.imageset\nasdaq.png" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -174,5 +173,7 @@
     <BundleResource Include="Resources\amd.png" />
     <BundleResource Include="Resources\apple.png" />
     <BundleResource Include="Resources\facebook.png" />
+    <BundleResource Include="Resources\google.jpg" />
+    <BundleResource Include="Resources\icon-2.png" />
   </ItemGroup>
 </Project>

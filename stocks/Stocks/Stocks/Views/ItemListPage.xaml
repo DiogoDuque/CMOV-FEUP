@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Stocks.Views.ItemListPage" Title="Companies List" BackgroundColor="White">
-   <ContentPage.Content>
+    <ContentPage.Content>
         <StackLayout>
+            <Label Text="Nasdaq Companies" TextColor="#019fc6" Font="Bold, 30" HorizontalTextAlignment="Center" Margin="0, 40, 0, 0"/>
             <ListView x:Name="listView" ItemsSource="{Binding Companies}" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement" Margin="0,30,0,0" RowHeight="50" IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid Margin="0,10,0,10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20*" />
                                     <ColumnDefinition Width="30*" />
@@ -17,7 +18,7 @@
                                 </Grid.RowDefinitions>
                                 <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" />
                                 <Label Grid.Column="1" Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
-                                <Label Grid.Column="2" Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="Green" HorizontalOptions="CenterAndExpand"/>
+                                <Label Grid.Column="2" Text="{Binding CurrentQuote}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="{Binding Type}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -32,7 +33,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" x:Name="selectLabel" Text="You selected: " IsVisible="false" TextColor="Black" HorizontalOptions="Center"/>
-                <Label Grid.Column="1" x:Name="selectedCompanies" Text="" IsVisible="false" TextColor="#019fc6" HorizontalOptions="Center" Font="Bold, 15"/>
+                <Label Grid.Column="1" x:Name="selectedCompanies" Text="" IsVisible="false" TextColor="#019fc6" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Font="Bold, 15"/>
              </Grid>
             <Button x:Name="nextButton" Text="Next" HorizontalOptions="Center" WidthRequest="100" BackgroundColor="#019fc6" TextColor="White" Font="Bold, 15" BorderRadius="20" Margin="0,0,0,20"/>
         </StackLayout>
