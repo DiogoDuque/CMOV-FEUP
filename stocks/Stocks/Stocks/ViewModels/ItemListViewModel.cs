@@ -55,7 +55,7 @@ public class ItemListViewModel
                 Id = 6,
                 Nick = "GOOGL",
                 CurrentQuote = 1,
-                ImageUrl = "google.png"
+                ImageUrl = "google.jpg"
             },
             new Company
             {
