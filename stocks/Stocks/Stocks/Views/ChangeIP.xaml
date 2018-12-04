@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Stocks.Views.ChangeIP" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="Change your server IP" TextColor="#019fc6" Font="Bold, 30" HorizontalTextAlignment="Center"/>
+            <Entry x:Name="IP" Placeholder="http://" TextColor="Black" Margin="0, 60, 0, 60"/>
+            <Button x:Name="saveButton" Text="Save" HorizontalOptions="Center" WidthRequest="100" BackgroundColor="#019fc6" TextColor="White" Font="Bold, 15" BorderRadius="20" Margin="0,0,0,20"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
