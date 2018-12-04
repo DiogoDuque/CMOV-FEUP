@@ -25,9 +25,10 @@ module.exports = {
     });
   },
 
-  getQuotesHistory(company, period, callback) {
+  getQuotesHistory(companySymbol, period, callback) {
+    console.log(1);
     const url = getFinalUrl(historyBasePath, {
-      symbol: company,
+      symbol: companySymbol,
       maxRecords: period,
       type: 'daily',
       startDate: '20100101',
@@ -45,7 +46,7 @@ module.exports = {
           const { tradingDay, close } = elem;
           history.push({ tradingDay, close });
         });
-        callback(null, { company, history });
+        callback(null, history);
       }
     });
   },
