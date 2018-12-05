@@ -134,18 +134,14 @@ namespace Stocks.Views
             SKImageInfo info = e.Info;
             SKSurface surface = e.Surface;
             SKCanvas canvas = surface.Canvas;
-            const double margin = 0.05;
-            int maxWidth = (int)Math.Round(info.Width * (1-margin));
-            int maxHeight = (int)Math.Round(info.Height * (1-margin));
-            int minWidth = (int)Math.Round(info.Width * margin);
-            int minHeight = (int)Math.Round(info.Height * margin);
-            int circleRadius = (int)Math.Round((double)info.Width / 120);
+            int maxWidth = (int)Math.Round(info.Width * 0.95);
+            int maxHeight = (int)Math.Round(info.Height * 0.95);
+            int minWidth = (int)Math.Round(info.Width * 0.1);
+            int minHeight = (int)Math.Round(info.Height * 0.08);
+            int circleRadius = (int)Math.Round((double)info.Width / 125);
 
             // clear canvas
             canvas.Clear(SKColors.LightGray);
-            
-            if (companiesHistory == null)
-                return;
 
             //set paints
             SKPaint[] graphLinePaint = new SKPaint[]
@@ -153,24 +149,36 @@ namespace Stocks.Views
                 new SKPaint()
                 {
                     IsAntialias = true,
-                    Color = new SKColor(0x2c, 0x3e, 0x50),
+                    Color = new SKColor(0x00, 0x00, 0xcc),
                     StrokeCap = SKStrokeCap.Round,
-                    StrokeWidth = 5,
+                    StrokeWidth = 6,
+                    TextSize = 30,
                 },
                 new SKPaint()
                 {
                     IsAntialias = true,
-                    Color = new SKColor(0x80, 0xa0, 0x30),
+                    Color = new SKColor(0x00, 0xa0, 0x00),
                     StrokeCap = SKStrokeCap.Round,
-                    StrokeWidth = 5,
+                    StrokeWidth = 6,
+                    TextSize = 30,
                 },
             };
             SKPaint circlePaint = new SKPaint()
             {
                 IsAntialias = true,
-                Color = new SKColor(0xa6, 0x70, 0x40),
+                Color = new SKColor(0xcc, 0x64, 0x64),
                 StrokeCap = SKStrokeCap.Round,
             };
+
+            for(int i=0; i<companies.Count; i++)
+            {
+                float width = info.Width * (0.20f + i * 0.40f);
+                float height = maxHeight - (maxHeight - minHeight) * 1.03f;
+                canvas.DrawText(companies[i].Name, new SKPoint(width, height), graphLinePaint[i]);
+            }
+
+            if (companiesHistory == null)
+                return;
 
             // calculate boundaries and rescale values
             double closeMax = Double.MinValue;
@@ -198,7 +206,8 @@ namespace Stocks.Views
                 closes.Add(tmpCloses);
             }
             double xStep = ((double)maxWidth - minWidth)/(days.Count-1);
-            double yFactor = (maxHeight-minHeight)/(closeMax-closeMin);
+            closeMin = companies.Count > 1 ? closeMax - 1.1 * (closeMax - closeMin) : closeMin;
+            double yFactor = (maxHeight-minHeight)/ (closeMax - closeMin);
 
             // draw graph axis and aux lines
             DrawGraphAxis(canvas, days, new SKPoint(minWidth, minHeight), new SKPoint(maxWidth, maxHeight), xStep, closeMin, closeMax);
@@ -264,7 +273,7 @@ namespace Stocks.Views
                 canvas.DrawText(""+close, new SKPoint(0, height), textPaint);
             }
 
-            int daysSkip = 4;
+            int daysSkip = 5;
             int inc = isSelected ? 1 : daysSkip;
             double widthDiff = max.X - min.X;
             double widthStep = widthDiff / daysSkip;
@@ -272,7 +281,10 @@ namespace Stocks.Views
             for(int i=0; i<days.Count; i+=inc)
             {
                 int width = (int)Math.Round(min.X + i * xStep);
-                canvas.DrawLine(new SKPoint(width, min.Y), new SKPoint(width, max.Y), auxLinePaint);
+                if(i!=0)
+                {
+                    canvas.DrawLine(new SKPoint(width, min.Y), new SKPoint(width, max.Y), auxLinePaint);
+                }
                 canvas.DrawText(days[i], new SKPoint(width - (float)widthOffset, min.Y + (float)heightDiff*1.05f), textPaint);
             }
         }
