@@ -94,7 +94,7 @@ namespace Stocks.Views
             companiesHistory = null;
             view.InvalidateSurface();
 
-            const string basePath = "http://10.227.147.131:8080/history?";
+            const string basePath = "http://192.168.1.247:8080/history?";
             string companyStr = "company=" + companies[0].Nick + (companies.Count>1 ? "&company="+companies[1].Nick : "");
             string periodStr = "&period=" + (isSelected ? 7 : 30);
             var uri = new Uri(string.Format(basePath+companyStr+periodStr, string.Empty));
@@ -146,6 +146,7 @@ namespace Stocks.Views
             
             if (companiesHistory == null)
                 return;
+
             //set paints
             SKPaint[] graphLinePaint = new SKPaint[]
             {
@@ -159,7 +160,7 @@ namespace Stocks.Views
                 new SKPaint()
                 {
                     IsAntialias = true,
-                    Color = new SKColor(0x50, 0x60, 0x30),
+                    Color = new SKColor(0x80, 0xa0, 0x30),
                     StrokeCap = SKStrokeCap.Round,
                     StrokeWidth = 5,
                 },
@@ -167,7 +168,7 @@ namespace Stocks.Views
             SKPaint circlePaint = new SKPaint()
             {
                 IsAntialias = true,
-                Color = new SKColor(0x70, 0x40, 0x80),
+                Color = new SKColor(0xa6, 0x70, 0x40),
                 StrokeCap = SKStrokeCap.Round,
             };
 
@@ -200,7 +201,7 @@ namespace Stocks.Views
             double yFactor = (maxHeight-minHeight)/(closeMax-closeMin);
 
             // draw graph axis and aux lines
-            drawGraphAxis(canvas, minWidth, maxWidth, minHeight, maxHeight, closeMin, closeMax);
+            DrawGraphAxis(canvas, days, new SKPoint(minWidth, minHeight), new SKPoint(maxWidth, maxHeight), xStep, closeMin, closeMax);
 
             // draw graph
             for(int c=0; c<companiesHistory.Count; c++)
@@ -210,12 +211,7 @@ namespace Stocks.Views
                     double currentClose = closes[c][i];
                     int currentX = (int)Math.Round(minWidth + i * xStep);
                     int currentY = maxHeight - (int)Math.Round((currentClose - closeMin) * yFactor);
-
-                    if (!isSelected || i % 5 == 0)
-                    {
-                        // TODO draw close and tradingDay labels
-                    }
-
+                    
                     canvas.DrawCircle(new SKPoint(currentX, currentY), circleRadius, circlePaint);
 
                     if (i == 0)
@@ -224,25 +220,24 @@ namespace Stocks.Views
                     double prevClose = closes[c][i - 1];
 
                     int prevY = maxHeight - (int)Math.Round((prevClose - closeMin) * yFactor);
-                    int prevX = (int)Math.Round(minWidth + (i - 1) * xStep);
+                    int prevX = (int)Math.Round(minWidth + (i-1) * xStep);
 
                     canvas.DrawLine(new SKPoint(prevX, prevY), new SKPoint(currentX, currentY), graphLinePaint[c]);
                 }
             }
         }
 
-        private void drawGraphAxis(SKCanvas canvas, int minWidth, int maxWidth, int minHeight, int maxHeight, double closeMin, double closeMax)
+        private void DrawGraphAxis(SKCanvas canvas, List<string> days, SKPoint min, SKPoint max, double xStep, double closeMin, double closeMax)
         {
             const int graphLines = 4;
-            double heightStep = ((double)maxHeight - minHeight) / graphLines;
+            double heightDiff = max.Y - min.Y;
+            double heightStep = heightDiff / graphLines;
             double closeStep = (closeMax - closeMin) / graphLines;
-            //double heightStart = maxHeight - (heightStep / 2);
-            //double closeStart = closeMax - (closeStep/2);
 
             SKPaint axisPaint = new SKPaint()
             {
                 Color = new SKColor(0x00, 0x00, 0x00),
-                StrokeCap = SKStrokeCap.Butt,
+                StrokeCap = SKStrokeCap.Square,
                 StrokeWidth = 10,
             };
             SKPaint auxLinePaint = new SKPaint()
@@ -256,16 +251,29 @@ namespace Stocks.Views
                 Color = new SKColor(0x1a, 0x1a, 0x1a),
                 TextSize = 22,
             };
-            SKPoint origin = new SKPoint(minWidth, maxHeight);
-            canvas.DrawLine(origin, new SKPoint(minWidth, minHeight), axisPaint);
-            canvas.DrawLine(origin, new SKPoint(maxWidth, maxHeight), axisPaint);
+
+            SKPoint origin = new SKPoint(min.X, max.Y);
+            canvas.DrawLine(origin, new SKPoint(min.X, min.Y), axisPaint);
+            canvas.DrawLine(origin, new SKPoint(max.X, max.Y), axisPaint);
 
             for(int i=1; i<=graphLines; i++)
             {
-                int height = (int) Math.Round(maxHeight - i * heightStep);
+                int height = (int) Math.Round(max.Y - i * heightStep);
                 double close = Math.Round(closeMax + i * closeStep, 2);
-                canvas.DrawLine(new SKPoint(minWidth, height), new SKPoint(maxWidth, height), auxLinePaint);
+                canvas.DrawLine(new SKPoint(min.X, height), new SKPoint(max.X, height), auxLinePaint);
                 canvas.DrawText(""+close, new SKPoint(0, height), textPaint);
+            }
+
+            int daysSkip = 4;
+            int inc = isSelected ? 1 : daysSkip;
+            double widthDiff = max.X - min.X;
+            double widthStep = widthDiff / daysSkip;
+            double widthOffset = widthDiff / 14;
+            for(int i=0; i<days.Count; i+=inc)
+            {
+                int width = (int)Math.Round(min.X + i * xStep);
+                canvas.DrawLine(new SKPoint(width, min.Y), new SKPoint(width, max.Y), auxLinePaint);
+                canvas.DrawText(days[i], new SKPoint(width - (float)widthOffset, min.Y + (float)heightDiff*1.05f), textPaint);
             }
         }
     }
