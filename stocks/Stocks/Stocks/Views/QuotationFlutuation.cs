@@ -38,7 +38,7 @@ namespace Stocks.Views
                 TextColor = Color.White,
                 CornerRadius = 20,
                 FontAttributes = FontAttributes.Bold,
-                Margin = new Thickness(0, 10, 0, 0),
+                Margin = new Thickness(0, 50, 0, 0),
 
             };
 
