@@ -13,7 +13,7 @@ public class ItemListViewModel
             {
                 Name = "Apple",
                 Id = 1,
-                Nick = "APPL",
+                Nick = "AAPL",
                 CurrentQuote = 1,
                 ImageUrl = "apple.png",
                 Type = "Red"

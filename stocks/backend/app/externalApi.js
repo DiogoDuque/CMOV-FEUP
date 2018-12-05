@@ -26,7 +26,6 @@ module.exports = {
   },
 
   getQuotesHistory(companySymbol, period, callback) {
-    console.log(1);
     const url = getFinalUrl(historyBasePath, {
       symbol: companySymbol,
       maxRecords: period,
@@ -41,6 +40,7 @@ module.exports = {
       if (err) {
         callback(err);
       } else {
+        console.log(JSON.stringify(body));
         const history = [];
         body.results.forEach((elem) => {
           const { tradingDay, close } = elem;

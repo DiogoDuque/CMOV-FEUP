@@ -40,6 +40,7 @@ const historySchema = Joi.object().keys({
 
 
 app.get('/history', (req, res) => {
+  console.log(JSON.stringify(req.query));
   const { query } = req;
   Joi.validate(query, historySchema,
     (joiErr, joiRes) => joiHandler(joiErr, joiRes, res, () => {
@@ -47,7 +48,7 @@ app.get('/history', (req, res) => {
       if (Array.isArray(company)) {
         Api.getQuotesHistoryTwoCompanies(company, period, (err, body) => externalApiHandler(err, body, res));
       } else {
-        Api.getQuotesHistory(company, period, (err, body) => externalApiHandler(err, body, res));
+        Api.getQuotesHistory(company, period, (err, body) => externalApiHandler(err, [body], res));
       }
     }));
 });
