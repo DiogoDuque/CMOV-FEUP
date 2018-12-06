@@ -50,7 +50,7 @@ namespace Stocks.Views
                 FontSize = 18,
                 FontAttributes = FontAttributes.Bold,
                 Margin = new Thickness(0, 20, 0, 0),
-                Text = (companies.Count == 1 ? "Quotation flutuation of " + companies[0].Name : "Quotation flutuation of " + companies[0].Name + " and " + companies[1].Name)
+                Text = (companies.Count == 1 ? "Quotation fluctuation of " + companies[0].Name : "Quotation fluctuation of " + companies[0].Name + " and " + companies[1].Name)
             };
 
             typeActivate = new Label()
