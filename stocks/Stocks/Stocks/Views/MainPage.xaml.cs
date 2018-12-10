@@ -14,7 +14,7 @@ namespace Stocks.Views
 
         public void OnButtonTapped(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new ItemListPage());
+            Navigation.PushModalAsync(new ChangeIP());
         }
     }
 }

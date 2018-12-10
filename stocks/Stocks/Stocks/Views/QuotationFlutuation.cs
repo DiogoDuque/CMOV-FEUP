@@ -94,7 +94,7 @@ namespace Stocks.Views
             companiesHistory = null;
             view.InvalidateSurface();
 
-            const string basePath = "http://192.168.1.247:8080/history?";
+            string basePath = Network.GetHistory();
             string companyStr = "company=" + companies[0].Nick + (companies.Count>1 ? "&company="+companies[1].Nick : "");
             string periodStr = "&period=" + (isSelected ? 7 : 30);
             var uri = new Uri(string.Format(basePath+companyStr+periodStr, string.Empty));

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Stocks.Models;
 using Xamarin.Forms;
 
 namespace Stocks.Views
@@ -20,6 +20,7 @@ namespace Stocks.Views
 
             if (ip.Length != 0)
             {
+                Network.IP = ip;
                 Navigation.PushModalAsync(new ItemListPage());
             }
             else
