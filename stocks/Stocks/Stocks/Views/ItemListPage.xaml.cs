@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Stocks.Models;
 using Xamarin.Forms;
@@ -73,7 +73,8 @@ namespace Stocks.Views
             }
         }
 
-        void DoRefresh(){
+        void DoRefresh()
+        {
             itemListViewModel.SetValue();
             listView.ItemsSource = null;
             listView.ItemsSource = itemListViewModel.Companies;

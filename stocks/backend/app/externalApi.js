@@ -60,16 +60,15 @@ module.exports = {
       if (err) {
         callback(err);
       } else {
-        const quotes = {};
+        const quotes = [];
         body.results.forEach((elem) => {
           const {
-            symbol, lastPrice, netChange, percentChange, high, low, previousClose,
+            symbol, netChange, percentChange,
           } = elem;
-          quotes[symbol] = {
-            lastPrice, netChange, percentChange, high, low, previousClose,
-          };
+          quotes.push({
+            symbol, netChange, percentChange: percentChange.toFixed(2),
+          });
         });
-        console.log(quotes);
         callback(null, quotes);
       }
     });

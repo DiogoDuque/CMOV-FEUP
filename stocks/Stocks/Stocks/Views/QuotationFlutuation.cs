@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Stocks.Models;
 using Xamarin.Forms;
@@ -95,11 +95,13 @@ namespace Stocks.Views
             view.InvalidateSurface();
 
             string basePath = Network.GetHistory();
-            string companyStr = "company=" + companies[0].Nick + (companies.Count>1 ? "&company="+companies[1].Nick : "");
+            string companyStr = "company=" + companies[0].symbol + (companies.Count>1 ? "&company="+companies[1].symbol : "");
             string periodStr = "&period=" + (isSelected ? 7 : 30);
             var uri = new Uri(string.Format(basePath+companyStr+periodStr, string.Empty));
-            var client = new HttpClient();
-            client.MaxResponseContentBufferSize = 256000;
+            var client = new HttpClient
+            {
+                MaxResponseContentBufferSize = 256000
+            };
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {

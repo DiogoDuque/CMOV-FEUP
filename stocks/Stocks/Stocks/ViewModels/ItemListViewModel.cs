@@ -1,4 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Net.Http;
+using Newtonsoft.Json;
 using Stocks.Models;
 
 public class ItemListViewModel
@@ -13,8 +17,8 @@ public class ItemListViewModel
             {
                 Name = "Apple",
                 Id = 1,
-                Nick = "AAPL",
-                CurrentQuote = 1,
+                symbol = "AAPL",
+                netChange = 1,
                 ImageUrl = "apple.png",
                 Type = "Red"
             },
@@ -22,8 +26,8 @@ public class ItemListViewModel
             {
                 Name = "IBM",
                 Id = 2,
-                Nick = "IBM",
-                CurrentQuote = 1,
+                symbol = "IBM",
+                netChange = 1,
                 ImageUrl = "ibm.png",
                 Type = "Blue"
             },
@@ -31,8 +35,8 @@ public class ItemListViewModel
             {
                 Name = "Hewlett Packard",
                 Id = 3,
-                Nick = "HPE",
-                CurrentQuote = 1,
+                symbol = "HPE",
+                netChange = 1,
                 ImageUrl = "hp.png",
                 Type = "Green"
             },
@@ -40,8 +44,8 @@ public class ItemListViewModel
             {
                 Name = "Microsoft",
                 Id = 4,
-                Nick = "MSFT",
-                CurrentQuote = 1,
+                symbol = "MSFT",
+                netChange = 1,
                 ImageUrl = "microsoft.png",
                 Type = "Green"
             },
@@ -49,8 +53,8 @@ public class ItemListViewModel
             {
                 Name = "Oracle",
                 Id = 5,
-                Nick = "ORCL",
-                CurrentQuote = 1,
+                symbol = "ORCL",
+                netChange = 1,
                 ImageUrl = "oracle.png",
                 Type = "Green"
             },
@@ -58,8 +62,8 @@ public class ItemListViewModel
             {
                 Name = "Google",
                 Id = 6,
-                Nick = "GOOG",
-                CurrentQuote = 1,
+                symbol = "GOOG",
+                netChange = 1,
                 ImageUrl = "google.jpg",
                 Type = "Green"
             },
@@ -67,8 +71,8 @@ public class ItemListViewModel
             {
                 Name = "Facebook",
                 Id = 7,
-                Nick = "FB",
-                CurrentQuote = 1,
+                symbol = "FB",
+                netChange = 1,
                 ImageUrl = "facebook.png",
                 Type = "Green"
             },
@@ -76,8 +80,8 @@ public class ItemListViewModel
             {
                 Name = "Twitter",
                 Id = 8,
-                Nick = "TWTR",
-                CurrentQuote = 1,
+                symbol = "TWTR",
+                netChange = 1,
                 ImageUrl = "twitter.png",
                 Type = "Red"
             },
@@ -85,8 +89,8 @@ public class ItemListViewModel
             {
                 Name = "Intel",
                 Id = 9,
-                Nick = "INTC",
-                CurrentQuote = 1,
+                symbol = "INTC",
+                netChange = 1,
                 ImageUrl = "intel.png",
                 Type = "Blue"
             },
@@ -94,20 +98,49 @@ public class ItemListViewModel
             {
                 Name = "AMD",
                 Id = 10,
-                Nick = "AMD",
-                CurrentQuote = 1,
+                symbol = "AMD",
+                netChange = 1,
                 ImageUrl = "amd.png",
                 Type = "Red"
             }
         };
     }
 
-    public void SetValue(){
+    public async void SetValue()
+    {
+        string basePath = Network.GetQuote();
+        var uri = new Uri(string.Format(basePath, string.Empty));
+        var client = new HttpClient
+        {
+            MaxResponseContentBufferSize = 256000
+        };
+        var response = await client.GetAsync(uri);
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            List<Company> companiesVals = JsonConvert.DeserializeObject<List<Company>>(content);
+            foreach(Company comp in Companies)
+            {
+                foreach(Company compVal in companiesVals)
+                {
+                    if(comp.symbol.Equals(compVal.symbol))
+                    {
+                        comp.netChange = compVal.netChange;
+                        comp.percentChange = compVal.percentChange;
+                        companiesVals.Remove(compVal);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    /*public void SetValue(){
         for (int i = 0; i < Companies.Count; i++)
         {
             Companies[i].CurrentQuote = 0;
             Companies[i].Type = "Blue";
             //se mantem quote fica azul, se desce fica a vermelho e se sobe fica a verde
         }
-    }
+    }*/
 }

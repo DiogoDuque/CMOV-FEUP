@@ -5,6 +5,6 @@ namespace Stocks.Models
     {
         public static string IP { get; set; }
         public static string GetHistory() { return IP + "/history?"; }
-        public static string GetQuote() { return IP + "/quote?"; }
+        public static string GetQuote() { return IP + "/quote"; }
     }
 }
