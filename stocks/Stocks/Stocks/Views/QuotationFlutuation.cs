@@ -22,7 +22,10 @@ namespace Stocks.Views
         Label typeActivate;
         Button back;
         SKCanvasView view;
+        Slider slider;
+        Label totalSlider;
         Boolean isSelected;
+        int sliderValue;
         List<List<CompanyHistory>> companiesHistory;
 
         public QuotationFlutuation(List<Company> companies)
@@ -69,6 +72,30 @@ namespace Stocks.Views
                 Margin = new Thickness(0, 15, 0, 0)
             };
 
+            slider = new Slider()
+            {
+                Maximum = 30.0f,
+                Minimum = 7.0f,
+                Value = 0.0f,
+                ThumbColor = Color.FromHex("#019fc6"),
+                HorizontalOptions = LayoutOptions.Center,
+                WidthRequest = 200,
+                IsVisible = false,
+                Margin = new Thickness(0, 20, 0, 10)
+            };
+
+            totalSlider = new Label()
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                TextColor = Color.FromHex("#019fc6"),
+                FontSize = 17,
+                FontAttributes = FontAttributes.Bold,
+                Margin = new Thickness(0, 10, 0, 0),
+                IsVisible = false,
+                Text = "7 days"
+            };
+
             view.PaintSurface += OnPainting;
             TapGestureRecognizer tap = new TapGestureRecognizer();
             tap.Tapped += OnCanvasTap;
@@ -79,15 +106,23 @@ namespace Stocks.Views
                 VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Margin = 10,
-                Children = { back, title, typeActivate, view }
+                Children = { back, title, typeActivate, view, slider, totalSlider }
             };
 
             BackgroundColor = Color.White;
             isSelected = true;
+            slider.ValueChanged += Slider_ValueChanged;
             back.Clicked += Back_Clicked;
 
             this.GetHistory();
         }
+
+        void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            sliderValue = System.Convert.ToInt32(slider.Value);
+            totalSlider.Text = sliderValue + " days";
+        }
+
 
         private async void GetHistory()
         {
