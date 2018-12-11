@@ -23,6 +23,7 @@ namespace Stocks.Views
 
             listView.ItemTapped += ListView_ItemSelected;
             nextButton.Clicked += NextButton_Clicked;
+            DoRefresh();
         }
 
         void NextButton_Clicked(object sender, EventArgs e)
