@@ -127,6 +127,14 @@ public class ItemListViewModel
                     {
                         comp.netChange = compVal.netChange;
                         comp.percentChange = compVal.percentChange;
+
+                        if (comp.netChange < 0)
+                            comp.Type = "Red";
+                        else if(comp.netChange > 0)
+                            comp.Type = "Green";
+                        else
+                            comp.Type = "Blue";
+                         
                         companiesVals.Remove(compVal);
                         break;
                     }
