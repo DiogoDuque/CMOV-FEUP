@@ -31,10 +31,10 @@ module.exports = {
       maxRecords: period,
       type: 'daily',
       startDate: '20100101',
-      interval: 60,
+      // interval: 60,
       order: 'asc',
       dividends: true,
-      volume: 'sum',
+      // volume: 'sum',
     });
     request(url, { json: true }, (err, res, body) => {
       if (err) {

@@ -35,7 +35,8 @@ function externalApiHandler(err, body, res) {
 
 const historySchema = Joi.object().keys({
   company: [Joi.string().required(), Joi.array().length(2).required()],
-  period: Joi.number().integer().valid(7, 30).required(),
+  period: Joi.number().integer().max(30).min(7)
+    .required(),
 });
 
 
