@@ -40,7 +40,6 @@ module.exports = {
       if (err) {
         callback(err);
       } else {
-        console.log(JSON.stringify(body));
         const history = [];
         body.results.forEach((elem) => {
           const { tradingDay, close } = elem;
@@ -66,7 +65,7 @@ module.exports = {
             symbol, netChange, percentChange,
           } = elem;
           quotes.push({
-            symbol, netChange, percentChange: percentChange.toFixed(2),
+            symbol, netChange: netChange.toFixed(2), percentChange: percentChange.toFixed(2),
           });
         });
         callback(null, quotes);

@@ -40,7 +40,6 @@ const historySchema = Joi.object().keys({
 
 
 app.get('/history', (req, res) => {
-  console.log(JSON.stringify(req.query));
   const { query } = req;
   Joi.validate(query, historySchema,
     (joiErr, joiRes) => joiHandler(joiErr, joiRes, res, () => {
