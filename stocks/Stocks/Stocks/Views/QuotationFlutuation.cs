@@ -246,8 +246,9 @@ namespace Stocks.Views
                     double currentClose = closes[c][i];
                     int currentX = (int)Math.Round(minWidth + i * xStep);
                     int currentY = maxHeight - (int)Math.Round((currentClose - closeMin) * yFactor);
-                    
-                    canvas.DrawCircle(new SKPoint(currentX, currentY), circleRadius, circlePaint);
+
+                    SKPoint currentPoint = new SKPoint(currentX, currentY);
+                    canvas.DrawCircle(currentPoint, circleRadius, circlePaint);
 
                     if (i == 0)
                         continue;
@@ -256,10 +257,41 @@ namespace Stocks.Views
 
                     int prevY = maxHeight - (int)Math.Round((prevClose - closeMin) * yFactor);
                     int prevX = (int)Math.Round(minWidth + (i-1) * xStep);
+                    SKPoint prevPoint = new SKPoint(prevX, prevY);
 
-                    canvas.DrawLine(new SKPoint(prevX, prevY), new SKPoint(currentX, currentY), graphLinePaint[c]);
+                    DrawShade(canvas, prevPoint, currentPoint, graphLinePaint[c].Color, (float)closeMin, maxHeight);
+                    canvas.DrawLine(prevPoint, currentPoint, graphLinePaint[c]);
                 }
             }
+        }
+
+        private void DrawShade(SKCanvas canvas, SKPoint prevPoint, SKPoint currentPoint, SKColor color, float minHeight, int maxHeight)
+        {
+            float x = (prevPoint.X + currentPoint.X) / 2;
+            SKColor strongColor = new SKColor(color.Red, color.Green, color.Blue, 200);
+            SKColor weakColor = new SKColor(color.Red, color.Green, color.Blue, 40);
+            SKPaint shaderPaint = new SKPaint
+            {
+                Style = SKPaintStyle.StrokeAndFill,
+                Shader = SKShader.CreateLinearGradient(
+                    new SKPoint(x, minHeight),
+                    new SKPoint(x, maxHeight),
+                    new SKColor[]
+                    {
+                        strongColor,
+                        weakColor,
+                    },
+                    null,
+                    SKShaderTileMode.Clamp),
+            };
+            var path = new SKPath { FillType = SKPathFillType.EvenOdd };
+            path.MoveTo(prevPoint);
+            path.LineTo(currentPoint);
+            path.LineTo(currentPoint.X, maxHeight);
+            path.LineTo(prevPoint.X, maxHeight);
+            path.MoveTo(prevPoint);
+            path.Close();
+            canvas.DrawPath(path, shaderPaint);
         }
 
         private void DrawGraphAxis(SKCanvas canvas, List<string> days, SKPoint min, SKPoint max, double xStep, double closeMin, double closeMax)
