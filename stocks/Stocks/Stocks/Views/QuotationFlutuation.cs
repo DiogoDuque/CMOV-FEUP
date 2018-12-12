@@ -21,10 +21,9 @@ namespace Stocks.Views
         Label title;
         Label typeActivate;
         Button back;
+        Button refresh;
         SKCanvasView view;
         Slider slider;
-        Label totalSlider;
-        Boolean isSelected;
         int sliderValue;
         List<List<CompanyHistory>> companiesHistory;
 
@@ -41,8 +40,7 @@ namespace Stocks.Views
                 TextColor = Color.White,
                 CornerRadius = 20,
                 FontAttributes = FontAttributes.Bold,
-                Margin = new Thickness(0, 50, 0, 0),
-
+                Margin = new Thickness(0, 20, 0, 0),
             };
 
             title = new Label()
@@ -64,7 +62,7 @@ namespace Stocks.Views
                 FontSize = 17,
                 FontAttributes = FontAttributes.Bold,
                 Margin = new Thickness(0, 25, 0, 0),
-                Text= "7 days analysis activated.\nTouch graph to change view."
+                Text= "7 days analysis activated"
             };
             
             view = new SKCanvasView() {
@@ -80,47 +78,52 @@ namespace Stocks.Views
                 ThumbColor = Color.FromHex("#019fc6"),
                 HorizontalOptions = LayoutOptions.Center,
                 WidthRequest = 200,
-                IsVisible = false,
+                IsVisible = true,
                 Margin = new Thickness(0, 20, 0, 10)
             };
 
-            totalSlider = new Label()
+            refresh = new Button()
             {
+                Text = "Refresh",
                 HorizontalOptions = LayoutOptions.Center,
-                HorizontalTextAlignment = TextAlignment.Center,
-                TextColor = Color.FromHex("#019fc6"),
-                FontSize = 17,
+                WidthRequest = 90,
+                BackgroundColor = Color.FromHex("#019fc6"),
+                TextColor = Color.White,
+                CornerRadius = 20,
                 FontAttributes = FontAttributes.Bold,
                 Margin = new Thickness(0, 10, 0, 0),
-                IsVisible = false,
-                Text = "7 days"
             };
 
             view.PaintSurface += OnPainting;
-            TapGestureRecognizer tap = new TapGestureRecognizer();
-            tap.Tapped += OnCanvasTap;
-            view.GestureRecognizers.Add(tap);
 
             Content = new StackLayout()
             {
                 VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Margin = 10,
-                Children = { back, title, typeActivate, view, slider, totalSlider }
+                Children = { back, title, typeActivate, slider, refresh, view }
             };
 
             BackgroundColor = Color.White;
-            isSelected = true;
             slider.ValueChanged += Slider_ValueChanged;
+            refresh.Clicked += Refresh_Clicked;
+            sliderValue = 7;
             back.Clicked += Back_Clicked;
 
             this.GetHistory();
         }
 
+        void Refresh_Clicked(object sender, EventArgs e)
+        {
+            sliderValue = System.Convert.ToInt32(slider.Value);
+            GetHistory();
+        }
+
+
         void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             sliderValue = System.Convert.ToInt32(slider.Value);
-            totalSlider.Text = sliderValue + " days";
+            typeActivate.Text = sliderValue + " days analysis activated";
         }
 
 
@@ -131,7 +134,7 @@ namespace Stocks.Views
 
             string basePath = Network.GetHistory();
             string companyStr = "company=" + companies[0].symbol + (companies.Count>1 ? "&company="+companies[1].symbol : "");
-            string periodStr = "&period=" + (isSelected ? 7 : 30);
+            string periodStr = "&period=" + sliderValue;
             var uri = new Uri(string.Format(basePath+companyStr+periodStr, string.Empty));
             var client = new HttpClient
             {
@@ -149,20 +152,6 @@ namespace Stocks.Views
         void Back_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new ItemListPage());
-        }
-
-        private void OnCanvasTap(object sender, EventArgs args)
-        {
-            if (isSelected)
-            {
-                typeActivate.Text = "30 days analysis activated.\nTouch graph to change view.";
-            }
-            else
-            {
-                typeActivate.Text = "7 days analysis activated.\nTouch graph to change view.";
-            }
-            isSelected = !isSelected;
-            GetHistory();
         }
 
         private void OnPainting(object sender, SKPaintSurfaceEventArgs e)
@@ -311,7 +300,11 @@ namespace Stocks.Views
             }
 
             int daysSkip = 5;
-            int inc = isSelected ? 1 : daysSkip;
+            int inc = 1;
+
+            if (sliderValue > 8)
+                inc = daysSkip;
+
             double widthDiff = max.X - min.X;
             double widthStep = widthDiff / daysSkip;
             double widthOffset = widthDiff / 14;
