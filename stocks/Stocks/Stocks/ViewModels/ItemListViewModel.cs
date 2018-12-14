@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Plugin.Connectivity;
 using Stocks.Models;
 
 public class ItemListViewModel
@@ -108,47 +109,42 @@ public class ItemListViewModel
 
     public async void SetValue()
     {
-        string basePath = Network.GetQuote();
-        var uri = new Uri(string.Format(basePath, string.Empty));
-        var client = new HttpClient
+        if (CrossConnectivity.Current.IsConnected)
         {
-            MaxResponseContentBufferSize = 256000
-        };
-        var response = await client.GetAsync(uri);
-        if (response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            List<Company> companiesVals = JsonConvert.DeserializeObject<List<Company>>(content);
-            foreach(Company comp in Companies)
+            string basePath = Network.GetQuote();
+            var uri = new Uri(string.Format(basePath, string.Empty));
+            var client = new HttpClient
             {
-                foreach(Company compVal in companiesVals)
+                MaxResponseContentBufferSize = 256000
+            };
+            var response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                List<Company> companiesVals = JsonConvert.DeserializeObject<List<Company>>(content);
+                foreach (Company comp in Companies)
                 {
-                    if(comp.symbol.Equals(compVal.symbol))
+                    foreach (Company compVal in companiesVals)
                     {
-                        comp.netChange = compVal.netChange;
-                        comp.percentChange = compVal.percentChange;
+                        if (comp.symbol.Equals(compVal.symbol))
+                        {
+                            comp.netChange = compVal.netChange;
+                            comp.percentChange = compVal.percentChange;
 
-                        if (comp.netChange < 0)
-                            comp.Type = "Red";
-                        else if(comp.netChange > 0)
-                            comp.Type = "Green";
-                        else
-                            comp.Type = "Blue";
-                         
-                        companiesVals.Remove(compVal);
-                        break;
+                            if (comp.netChange < 0)
+                                comp.Type = "Red";
+                            else if (comp.netChange > 0)
+                                comp.Type = "Green";
+                            else
+                                comp.Type = "Blue";
+
+                            companiesVals.Remove(compVal);
+                            break;
+                        }
                     }
                 }
             }
         }
-    }
 
-    /*public void SetValue(){
-        for (int i = 0; i < Companies.Count; i++)
-        {
-            Companies[i].CurrentQuote = 0;
-            Companies[i].Type = "Blue";
-            //se mantem quote fica azul, se desce fica a vermelho e se sobe fica a verde
-        }
-    }*/
+    }
 }

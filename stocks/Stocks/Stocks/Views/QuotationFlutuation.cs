@@ -6,6 +6,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Newtonsoft.Json;
 using System.Net.Http;
+using Plugin.Connectivity;
 
 namespace Stocks.Views
 {
@@ -129,24 +130,28 @@ namespace Stocks.Views
 
         private async void GetHistory()
         {
-            companiesHistory = null;
-            view.InvalidateSurface();
-
-            string basePath = Network.GetHistory();
-            string companyStr = "company=" + companies[0].symbol + (companies.Count>1 ? "&company="+companies[1].symbol : "");
-            string periodStr = "&period=" + sliderValue;
-            var uri = new Uri(string.Format(basePath+companyStr+periodStr, string.Empty));
-            var client = new HttpClient
+            if (CrossConnectivity.Current.IsConnected)
             {
-                MaxResponseContentBufferSize = 256000
-            };
-            var response = await client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                companiesHistory = JsonConvert.DeserializeObject<List<List<CompanyHistory>>>(content);
+                companiesHistory = null;
                 view.InvalidateSurface();
+
+                string basePath = Network.GetHistory();
+                string companyStr = "company=" + companies[0].symbol + (companies.Count > 1 ? "&company=" + companies[1].symbol : "");
+                string periodStr = "&period=" + sliderValue;
+                var uri = new Uri(string.Format(basePath + companyStr + periodStr, string.Empty));
+                var client = new HttpClient
+                {
+                    MaxResponseContentBufferSize = 256000
+                };
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    companiesHistory = JsonConvert.DeserializeObject<List<List<CompanyHistory>>>(content);
+                    view.InvalidateSurface();
+                }
             }
+
         }
 
         void Back_Clicked(object sender, EventArgs e)

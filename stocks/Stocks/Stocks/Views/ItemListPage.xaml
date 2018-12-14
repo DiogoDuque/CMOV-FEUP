@@ -20,7 +20,7 @@
                                 <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" />
                                 <Label Grid.Column="1" Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
                                 <Label Grid.Column="2" Text="{Binding netChange}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="{Binding Type}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
-                                <Label Grid.Column="3" Text="{Binding percentChange}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="{Binding Type}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="3" Text="{Binding percentChange, StringFormat='\{0\}%'}" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" TextColor="{Binding Type}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
