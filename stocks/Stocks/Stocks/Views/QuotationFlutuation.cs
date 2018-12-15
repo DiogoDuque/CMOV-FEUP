@@ -41,7 +41,7 @@ namespace Stocks.Views
                 TextColor = Color.White,
                 CornerRadius = 20,
                 FontAttributes = FontAttributes.Bold,
-                Margin = new Thickness(0, 20, 0, 0),
+                Margin = new Thickness(0, 25, 0, 0),
             };
 
             title = new Label()
