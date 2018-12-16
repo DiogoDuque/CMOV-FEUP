@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using Newtonsoft.Json;
-using Plugin.Connectivity;
 using Stocks.Models;
+using Xamarin.Essentials;
 
 public class ItemListViewModel
 {
@@ -109,7 +109,9 @@ public class ItemListViewModel
 
     public async void SetValue()
     {
-        if (CrossConnectivity.Current.IsConnected)
+        var current = Connectivity.NetworkAccess;
+
+        if (current == NetworkAccess.Internet)
         {
             string basePath = Network.GetQuote();
             var uri = new Uri(string.Format(basePath, string.Empty));

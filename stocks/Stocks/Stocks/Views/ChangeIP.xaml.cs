@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Plugin.Connectivity;
 using Stocks.Models;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace Stocks.Views
 {
@@ -21,7 +21,9 @@ namespace Stocks.Views
 
             if (ip.Length != 0)
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+
+                if (current == NetworkAccess.Internet)
                 {
                     string pattern = @"^http://\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}$";
 

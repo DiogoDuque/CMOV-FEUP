@@ -6,7 +6,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Newtonsoft.Json;
 using System.Net.Http;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 
 namespace Stocks.Views
 {
@@ -130,7 +130,9 @@ namespace Stocks.Views
 
         private async void GetHistory()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
             {
                 companiesHistory = null;
                 view.InvalidateSurface();
